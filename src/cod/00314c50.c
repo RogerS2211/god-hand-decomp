@@ -1,0 +1,102 @@
+extern int D_00747A34;
+extern char D_00754C10[];
+
+__attribute__((section(".text.func_00314C50")))
+int func_00314C50(void){
+    void *s0;
+    if (D_00747A34 & 0x10000) return 0;
+    s0 = func_0030EE08(0x8C0, 0x10, D_00754C10);
+    if (s0 == 0) return 0;
+    func_003A52F0(s0, 0, 0x8C0);
+    return func_0019A998(s0);
+}
+
+__attribute__((section(".text.func_00314CC0")))
+int func_00314CC0(void){
+    void *s0;
+    if (D_00747A34 & 0x10000) return 0;
+    s0 = func_0030EE08(0x8C0, 0x10, D_00754C10);
+    if (s0 == 0) return 0;
+    func_003A52F0(s0, 0, 0x8C0);
+    return func_0019AC18(s0);
+}
+
+__attribute__((section(".text.func_00314D30")))
+int func_00314D30(void){
+    void *s0;
+    if (D_00747A34 & 0x10000) return 0;
+    s0 = func_0030EE08(0xAA0, 0x10, D_00754C10);
+    if (s0 == 0) return 0;
+    func_003A52F0(s0, 0, 0xAA0);
+    return func_0019AE98(s0);
+}
+
+__attribute__((section(".text.func_00314DA0")))
+int func_00314DA0(void){
+    void *s0;
+    if (D_00747A34 & 0x10000) return 0;
+    s0 = func_0030EE08(0xAA0, 0x10, D_00754C10);
+    if (s0 == 0) return 0;
+    func_003A52F0(s0, 0, 0xAA0);
+    return func_0019BBB8(s0);
+}
+
+__attribute__((section(".text.func_00314E10")))
+int func_00314E10(void){
+    void *s0;
+    if (D_00747A34 & 0x10000) return 0;
+    s0 = func_0030EE08(0x920, 0x10, D_00754C10);
+    if (s0 == 0) return 0;
+    func_003A52F0(s0, 0, 0x920);
+    return func_0019BE28(s0);
+}
+
+__attribute__((section(".text.func_00314E80")))
+int func_00314E80(void){
+    void *s0;
+    if (D_00747A34 & 0x10000) return 0;
+    s0 = func_0030EE08(0x610, 0x10, D_00754C10);
+    if (s0 == 0) return 0;
+    func_003A52F0(s0, 0, 0x610);
+    return func_0019C118(s0);
+}
+
+__attribute__((section(".text.func_00314EF0")))
+int func_00314EF0(void){
+    void *s0;
+    if (D_00747A34 & 0x10000) return 0;
+    s0 = func_0030EE08(0x8F0, 0x10, D_00754C10);
+    if (s0 == 0) return 0;
+    func_003A52F0(s0, 0, 0x8F0);
+    return func_0019C320(s0);
+}
+
+__attribute__((section(".text.func_00314F60")))
+int func_00314F60(void){
+    void *s0;
+    if (D_00747A34 & 0x10000) return 0;
+    s0 = func_0030EE08(0x8A0, 0x10, D_00754C10);
+    if (s0 == 0) return 0;
+    func_003A52F0(s0, 0, 0x8A0);
+    return func_0019C588(s0);
+}
+
+__attribute__((section(".text.func_00314FD0")))
+int func_00314FD0(void){
+    void *s0;
+    if (D_00747A34 & 0x10000) return 0;
+    s0 = func_0030EE08(0x8F0, 0x10, D_00754C10);
+    if (s0 == 0) return 0;
+    func_003A52F0(s0, 0, 0x8F0);
+    return func_0019D340(s0);
+}
+
+__attribute__((section(".text.func_00315040")))
+int func_00315040(void){
+    void *s0;
+    if (D_00747A34 & 0x10000) return 0;
+    s0 = func_0030EE08(0x610, 0x10, D_00754C10);
+    if (s0 == 0) return 0;
+    func_003A52F0(s0, 0, 0x610);
+    return func_0019D5A8(s0);
+}

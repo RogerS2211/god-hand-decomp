@@ -1,0 +1,73 @@
+#include "include_asm.h"
+
+extern int D_00747A34;
+extern char D_00754C10[];
+extern char D_00754220[];
+
+__attribute__((section(".text.func_002CB778")))
+int func_002CB778(int a0, int a1)
+{
+    int *p;
+    if (a1 == -1) return 1;
+    p = func_002CC4B8(a0, a1);
+    if (p[0x3C/4] == -1) return 1;
+    p = func_002CC4B8(a0, a1);
+    return func_002CFC68(p);
+}
+
+/* REGRESSED to nonmatching: the byte-match required a
+ * forced-register pin (`register ... __asm__("$N")`), which is not a
+ * real C match.  Reverted to INCLUDE_ASM pending an authentic re-match
+ * (restructure -> decomp-permuter -> C++ TU).  Retail asm + matching
+ * analysis preserved in the comments above for the retry. */
+INCLUDE_ASM("nonmatching", func_002CD6D0);
+
+
+__attribute__((section(".text.func_00309028")))
+void func_00309028(char *a0)
+{
+    func_003A52F0((int)a0, 0, 0x2E0);
+    *(char *)(a0 + 0x8D) = 6;
+    *(short *)(a0 + 0x8E) = 5;
+    *(unsigned int *)(a0 + 0x4C) = 0x80808080u;
+    *(float *)(a0 + 0x7C) = 1.0f;
+    *(float *)(a0 + 0x78) = 1.0f;
+    *(float *)(a0 + 0x40) = 1.0f;
+    *(short *)(a0 + 0xA0) = 0;
+    *(short *)(a0 + 0xA2) = 0;
+    *(short *)(a0 + 0xA6) = 0;
+    *(short *)(a0 + 0xA8) = 0;
+    *(short *)(a0 + 0xA4) = 0;
+}
+
+__attribute__((section(".text.func_00312F00")))
+void *func_00312F00(void)
+{
+    void *p;
+    if (!(D_00747A34 & 0x10000))
+    {
+        p = func_0030EE08(0x1690, 0x10, D_00754C10);
+        if (p != 0)
+        {
+            func_003A52F0(p, 0, 0x1690);
+            return func_00107E40(p);
+        }
+    }
+    return 0;
+}
+
+__attribute__((section(".text.func_003130E0")))
+void *func_003130E0(void)
+{
+    void *p;
+    if (!(D_00747A34 & 0x100000))
+    {
+        p = func_0030EE08(0x1980, 0x10, D_00754220);
+        if (p != 0)
+        {
+            func_003A52F0(p, 0, 0x1980);
+            return func_00201FA0(p);
+        }
+    }
+    return 0;
+}

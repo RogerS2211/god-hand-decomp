@@ -1,0 +1,71 @@
+extern int D_00747A84;
+extern int *D_00569B70;
+extern int D_00420070;
+extern char D_00574380[];
+extern char D_007419A0[];
+extern int D_00420158;
+extern int D_00420240;
+
+__attribute__((section(".text.func_003734F0")))
+void func_003734F0(void *a0)
+{
+	if (func_00373A50(a0) != 0) {
+		if (func_00373B20(a0) == 1) {
+			func_00374598(a0);
+		} else {
+			func_00373FC8(a0);
+		}
+		*(int *)((char *)a0 + 0x4C) &= 0xFFFFFFFD;
+	}
+}
+
+__attribute__((section(".text.func_0013DAE0")))
+void func_0013DAE0(void *a0)
+{
+	int v1;
+
+	v1 = D_00747A84;
+	if ((v1 & 0x08000000) != 0) {
+		return;
+	}
+	if ((v1 & 0x02000000) != 0) {
+		return;
+	}
+	if ((D_00569B70[5] & 0x04000000) != 0) {
+		func_002AAC28((char *)a0 + 0xD0);
+	}
+	func_002AAC28(a0);
+}
+
+__attribute__((section(".text.func_0016F438")))
+void func_0016F438(int *a0, int a1) {
+    *(int *)((char *)a0 + 0x214) = (int)&D_00420070;
+    if (*(int *)((char *)a0 + 0x600) != 0) {
+        func_001FE278(D_00574380, *(int *)((char *)a0 + 0x600));
+        *(int *)((char *)a0 + 0x600) = 0;
+    }
+    func_00305778(D_007419A0, 0x258);
+    func_001C2820(a0, a1);
+}
+
+__attribute__((section(".text.func_0016F720")))
+void func_0016F720(int *a0, int a1) {
+    *(int *)((char *)a0 + 0x214) = (int)&D_00420158;
+    if (*(int *)((char *)a0 + 0x600) != 0) {
+        func_001FE278(D_00574380, *(int *)((char *)a0 + 0x600));
+        *(int *)((char *)a0 + 0x600) = 0;
+    }
+    func_00305778(D_007419A0, 0x259);
+    func_001C2820(a0, a1);
+}
+
+__attribute__((section(".text.func_0016FA10")))
+void func_0016FA10(int *a0, int a1) {
+    *(int *)((char *)a0 + 0x214) = (int)&D_00420240;
+    if (*(int *)((char *)a0 + 0x600) != 0) {
+        func_001FE278(D_00574380, *(int *)((char *)a0 + 0x600));
+        *(int *)((char *)a0 + 0x600) = 0;
+    }
+    func_00305778(D_007419A0, 0x25A);
+    func_001C2820(a0, a1);
+}

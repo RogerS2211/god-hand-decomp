@@ -1,0 +1,34 @@
+name: Upload Objdiff Progress Report
+
+# decomp.dev integration: on every push to the default branch this uploads the
+# committed objdiff report as an artifact named "<VERSION>_report". Once the repo
+# is registered at https://decomp.dev/manage/new, decomp.dev ingests that artifact
+# to render the live progress page, badges, and PR comments.
+#
+# The report is committed (progress/report.json) and regenerated locally, so this
+# job does not build the project or vendor the (non-redistributable) toolchain.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify report exists
+        run: test -f progress/report.json
+
+      - name: Upload progress report
+        uses: actions/upload-artifact@v4
+        with:
+          name: SLUS_215.03_report
+          path: progress/report.json
+          if-no-files-found: error

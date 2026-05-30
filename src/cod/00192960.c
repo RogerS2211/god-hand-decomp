@@ -1,0 +1,143 @@
+extern int D_00785C28;
+extern char D_004243D8[];
+extern char D_00785878[];
+extern char D_004243F0[];
+extern void Obj0000_Set_Byte_54(void *a0, int a1);
+extern int D_00574380;
+extern int D_00785C38;
+extern int D_004244C0;
+extern int D_00785798;
+extern int D_004244D8;
+extern int D_004245C0;
+
+__attribute__((section(".text.func_00192960")))
+void *func_00192960(void) {
+    if (D_00785C28 == 0) {
+        func_001B8058();
+        func_0031EEA8(&D_00785C28, D_004243D8, D_00785878);
+    }
+    return &D_00785C28;
+}
+
+#include "godhand/vu0.h"
+
+
+
+
+
+__attribute__((section(".text.func_001929B0")))
+void *func_001929B0(void *a0) {
+    char *p;
+    int i = 5;
+    int end;
+    func_001C27E8(a0);
+    p = (char*)a0 + 0x620;
+    end = -1;
+    *(void**)((char*)a0 + 0x214) = D_004243F0;
+    for (; i != end; i--) {
+        VU0_SQC2_VF0(p, 0x0);
+        VU0_SQC2_VF0(p, 0x10);
+        VU0_SQC2_VF0(p, 0x20);
+        VU0_SQC2_VF0(p, 0x30);
+        VU0_SQC2_VF0(p, 0x40);
+        Obj0000_Set_Byte_54(p, 0);
+        p += 0x60;
+    }
+    return a0;
+}
+
+__attribute__((section(".text.func_00192A38")))
+void *func_00192A38(void *a0, void *a1) {
+    *(int **)((char *)a0 + 0x214) = &D_004243F0;
+    {
+        void *v1 = *(void **)((char *)a0 + 0x600);
+        if (v1) {
+            func_001FE278(&D_00574380, v1);
+            *(int *)((char *)a0 + 0x600) = 0;
+        }
+    }
+    func_001C2820(a0, a1);
+}
+
+__attribute__((section(".text.func_00192BE8")))
+void *func_00192BE8(void) {
+    if (D_00785C38 == 0) {
+        func_001C3BE8();
+        func_0031EEA8(&D_00785C38, &D_004244C0, &D_00785798);
+    }
+    return &D_00785C38;
+}
+
+#include "godhand/vu0.h"
+
+
+
+
+
+__attribute__((section(".text.func_00192C38")))
+void *func_00192C38(void *a0) {
+    char *s0 = (char *)a0 + 0x620;
+    int i;
+    func_001C27E8(a0);
+    *(int **)((char *)a0 + 0x214) = &D_004244D8;
+    for (i = 5; i != -1; i--) {
+        VU0_SQC2_VF0(s0, 0x0);
+        VU0_SQC2_VF0(s0, 0x10);
+        VU0_SQC2_VF0(s0, 0x20);
+        VU0_SQC2_VF0(s0, 0x30);
+        VU0_SQC2_VF0(s0, 0x40);
+        Obj0000_Set_Byte_54(s0, 0);
+        s0 += 0x60;
+    }
+    return a0;
+}
+
+__attribute__((section(".text.func_00192CC0")))
+void *func_00192CC0(void *a0, void *a1) {
+    *(int **)((char *)a0 + 0x214) = &D_004244D8;
+    {
+        void *v1 = *(void **)((char *)a0 + 0x600);
+        if (v1) {
+            func_001FE278(&D_00574380, v1);
+            *(int *)((char *)a0 + 0x600) = 0;
+        }
+    }
+    func_001C2820(a0, a1);
+}
+
+#include "godhand/vu0.h"
+
+
+
+
+
+__attribute__((section(".text.func_00192F68")))
+void *func_00192F68(void *a0) {
+    char *p;
+    int i;
+    func_001C27E8(a0);
+    *(int **)((char *)a0 + 0x214) = &D_004245C0;
+    p = (char *)a0 + 0x620;
+    for (i = 4; i != -1; i--) {
+        VU0_SQC2_VF0(p, 0x0);
+        VU0_SQC2_VF0(p, 0x10);
+        VU0_SQC2_VF0(p, 0x20);
+        VU0_SQC2_VF0(p, 0x30);
+        VU0_SQC2_VF0(p, 0x40);
+        Obj0000_Set_Byte_54(p, 0);
+        p += 0x60;
+    }
+    return a0;
+}
+
+__attribute__((section(".text.func_00192FF0")))
+void *func_00192FF0(void *a0, int a1) {
+    int v1;
+    *(int **)((char *)a0 + 0x214) = &D_004245C0;
+    v1 = *(int *)((char *)a0 + 0x600);
+    if (v1 != 0) {
+        func_001FE278(&D_00574380, v1);
+        *(int *)((char *)a0 + 0x600) = 0;
+    }
+    return func_001C2820(a0, a1);
+}

@@ -1,0 +1,86 @@
+extern int D_00747A30;
+extern char D_00569B70[];
+extern int D_0044F448;
+
+__attribute__((section(".text.func_00292E80")))
+void func_00292E80(int a0)
+{
+    if ((D_00747A30 & 0x800) == 0) {
+        if (func_00292F08() == 0) {
+            func_00306528(0, 0xF, 0, 0, -1, 0xFFFFFFFFu);
+            func_00292EF0(a0, 2);
+        }
+    }
+}
+
+__attribute__((section(".text.func_002982A0")))
+void func_002982A0(int a0)
+{
+    int *s1 = (int *)a0;
+    unsigned short s0;
+    int v1;
+
+    if (s1 != 0) {
+        s0 = *(unsigned short *)((char *)s1 + 0x2FE);
+        v1 = func_001FC0A8(D_00569B70);
+        if (s0 == 0x603) {
+            if ((unsigned int)((v1 - 4) & 0xFF) < 2) {
+                *(int *)((char *)s1 + 0x250) = *(int *)((char *)s1 + 0x250) | 2;
+            }
+        }
+    }
+}
+
+__attribute__((section(".text.func_002CB830")))
+int func_002CB830(int a0, int a1)
+{
+	int s2;
+
+	s2 = 1;
+	if (func_002CFC78(func_002CC4B8(a0, a1)) == 1) {
+		return 1;
+	}
+	if (func_002CFC88(func_002CC4B8(a0, a1)) != 0) {
+		s2 = 0;
+	}
+	return s2;
+}
+
+__attribute__((section(".text.func_002CC050")))
+int func_002CC050(int a0)
+{
+	int s0;
+
+	for (s0 = 0x14; s0 < 0x34; s0++) {
+		if (func_002CFC78(*(int *)(a0 + 0x3C) + (s0 << 6)) == 1) {
+			return s0;
+		}
+	}
+	return -1;
+}
+
+#include "godhand/vu0.h"
+
+
+
+
+__attribute__((section(".text.func_002F56C0")))
+void *func_002F56C0(void *a0)
+{
+	func_002FBCC8(a0);
+
+	*(int *)((char *)a0 + 0x2B0) = 0;
+	*(float *)((char *)a0 + 0x2D4) = 1.0f;
+	*(int **)((char *)a0 + 0xF0) = &D_0044F448;
+	*(int *)((char *)a0 + 0x2B4) = 0;
+	*(int *)((char *)a0 + 0x2B8) = 0;
+	*(int *)((char *)a0 + 0x2BC) = 0;
+	*(int *)((char *)a0 + 0x2C0) = 0;
+	*(int *)((char *)a0 + 0x2C4) = 0;
+	*(int *)((char *)a0 + 0x2C8) = 0;
+	*(int *)((char *)a0 + 0x2D8) = 0;
+	*(int *)((char *)a0 + 0x2DC) = 0;
+	VU0_SQC2_VF0(a0, 0x300);
+	*(int *)((char *)a0 + 0x2F0) = 0;
+	return a0;
+}

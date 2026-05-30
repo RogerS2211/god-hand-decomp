@@ -1,0 +1,48 @@
+__attribute__((section(".text.func_002B5BB8")))
+void func_002B5BB8(int a0, int a1, int a2)
+{
+    int *s0;
+    int v0;
+    int v1;
+    s0 = func_002B4FE8(a0, a2);
+    v0 = s0[0];
+    v1 = s0[1];
+    if (v0 != 0) {
+        func_002A9680(v1, v0);
+    }
+    s0[0] = 0;
+    s0[1] = 0;
+}
+
+__attribute__((section(".text.func_002C2A48")))
+void func_002C2A48(int *a0, unsigned short a1, int a2) {
+    int v0;
+    if (*a0) {
+        v0 = func_002C3118(a0, a1);
+        if (v0) {
+            func_002C0E78(v0, a2);
+        }
+    }
+}
+
+__attribute__((section(".text.func_002C8EB0")))
+void func_002C8EB0(int *a0) {
+    a0[0] = 0;
+    func_003A52F0((int)((char *)a0 + 0x4), 0, 0xC);
+    func_003A52F0((int)((char *)a0 + 0x14), 0, 0x80);
+}
+
+__attribute__((section(".text.func_002CCAC8")))
+void func_002CCAC8(void *a0) {
+    if (func_002CC568(a0)) {
+        *(int *)((char *)a0 + 0x98) = *(int *)((char *)a0 + 0x98) & 0xFFFFFFFE;
+        func_003734F0(a0);
+    }
+}
+
+__attribute__((section(".text.func_00373858")))
+void func_00373858(void *a0, unsigned int a1) {
+    if (func_00373A50(a0)) {
+        *(int *)((char *)a0 + 0x4C) = *(int *)((char *)a0 + 0x4C) & ~a1;
+    }
+}

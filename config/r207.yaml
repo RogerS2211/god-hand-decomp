@@ -1,0 +1,139 @@
+# God Hand (USA) — r207.rel — splat config
+#
+# First REL splat target. Chosen on size/simplicity per the REL
+# inventory recon (`progress/rel_inventory.json`):
+#
+#   r207.rel       1720 B  15 funcs  4 externals  8 relocs
+#   r502.rel       1720 B  15 funcs  4 externals  8 relocs (tied)
+#   *.rel (rest)   ≥ 1828 B; mcport.rel is 114 375 B
+#
+# The on-disc target is the SNR2 container (not ELF).
+# splat 0.40 has no SNR2 segment type, so we use the "transitional"
+# workaround the task body endorses: a hand-written carve with `bin`
+# subsegments for the header + tail and a single `asm` subsegment for
+# the code/early-data region.  The carve points are:
+#
+#   [0x000, 0x03C)  SNR2 header (60 B)
+#   [0x03C, 0x488)  code + early data (1100 B; spans .text + ctor/dtor
+#                   lists at 0x400/0x408; spimdisasm will emit data
+#                   words for the non-instruction tail of the range
+#                   based on its own heuristics)
+#   [0x488, 0x6B8)  func name strings + image-name string + reloc
+#                   table (8×12 B @ 0x588) + func table (15×12 B @
+#                   0x5E8) + trailing zero pad (0x69C..0x6B8 = 28 B)
+#
+# The carve `sndata_ext_addr = 0x488` is derived from the SNR2 header
+# per IDA's prodg-rel.py:
+#
+#   sndata_ext_addr = min(OriginalImageNameAddress,
+#                         RelocTableAddress,
+#                         FuncTableAddress,
+#                         every FunctionTable[i].NameAddress)
+#
+# For r207.rel that minimum is the first name address (0x488,
+# the sentinel entry [0]'s empty-string).
+#
+# vram is REL-local (the loader rebases at runtime; we keep on-disc
+# offsets identity-mapped so round-trip math stays trivial).
+
+name: God Hand (USA) — r207.rel
+sha256: ea59932301345e48add7a3eff029b7d0d0138fff1abc67569467880678c653c1
+
+options:
+  basename: r207
+  target_path: disc_extract/rel/r207.rel
+  # We do not (yet) produce a relocatable ELF for r207 — a later stage wires
+  # `compile.py --rel r207` to ee-ld -r the splat output. For now
+  # elf_path is unset; splat doesn't need it for `split`.
+  base_path: ..
+  platform: ps2
+  compiler: EEGCC
+
+  asm_path: asm/rel/r207
+  src_path: src/rel/r207
+  build_path: build/rel/r207
+  asset_path: bin/rel/r207
+
+  # No linker-script generation here; the LCF for the REL is hand-
+  # written at config/r207.lcf.
+  ld_script_path: config/r207.gen.ld
+  ld_dependencies: False
+  ld_wildcard_sections: True
+  ld_bss_contains_common: True
+
+  create_asm_dependencies: True
+
+  find_file_boundaries: False
+  o_as_suffix: True
+
+  # The REL has no symbol seeding of its own; main-ELF symbol_addrs
+  # carries the externs (`MemDefalutHeapPtr`, `_MemoryAlloc__FUiUiR5cHeap`,
+  # `free__5cHeapPv`) that the loader resolves at runtime. We share
+  # the file so cross-references stay consistent across all targets.
+  symbol_addrs_path:
+    - config/symbol_addrs.txt
+  reloc_addrs_path:
+    - config/reloc_addrs.txt
+
+  undefined_funcs_auto_path: config/r207.undefined_funcs_auto.txt
+  undefined_syms_auto_path: config/r207.undefined_syms_auto.txt
+
+  extensions_path: tools/splat_ext
+
+  # Do NOT regenerate include/macro.inc / include/include_asm.h on
+  # every split: the main-ELF preflight customized
+  # include/include_asm.h with `.pushsection .text.<NAME> ...
+  # .popsection` brackets so per-function carves land at distinct
+  # virtual addresses. Splat's default template uses bare
+  # `.section .text` which collapses every INCLUDE_ASM-included
+  # function into the first carve slot. Disable the regeneration
+  # so r207's splat run doesn't clobber the main-ELF preflight
+  # customization.
+  generate_asm_macros_files: False
+
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+  rodata_string_guesser_level: 2
+  data_string_guesser_level: 2
+
+  named_regs_for_c_funcs: False
+
+  section_order:
+    - .text
+    - .data
+    - .sndata
+    - .rodata
+    - .gcc_except_table
+    - .sbss
+    - .bss
+
+  auto_link_sections: []
+
+segments:
+  - name: r207
+    type: code
+    start: 0x000
+    vram: 0x000           # REL-local; loader rebases at runtime
+    bss_size: 0
+    subalign: null
+    subsegments:
+      # SNR2 header: 60 B, raw bytes. Includes Magic / table
+      # addresses / counts / image-name pointer / Unk28 / FileSize.
+      - [0x000, bin, header]
+      # Code + early data: 1100 B. Starts at 0x03C with first
+      # instruction of `__builtin_new` after a small pad; ends at
+      # 0x488 where the SNR2 name-string region begins.
+      # spimdisasm (R5900 instr category, EABI64 ABI) disassembles
+      # this region without symbols; relocation sites at 0x100 /
+      # 0x108 / 0x110 / 0x128 / 0x130 / 0x138 / 0x160 / 0x188 carry
+      # zeroed immediates in the on-disc bytes, which is exactly
+      # the form we want to round-trip.
+      - [0x03C, asm, 00003C]
+      # Tail: function name strings (0x488..0x56C), image-name
+      # string "..\PS2_EE_Release\r207.elf" (0x56C..0x588), reloc
+      # table (8×12 B @ 0x588), func table (15×12 B @ 0x5E8),
+      # trailing zero pad (0x69C..0x6B8 = 28 B; these 28 B are
+      # always zero across the 81-REL corpus
+      # "pad_nonzero == 0").
+      - [0x488, bin, tail]
+  - [0x6B8]   # end-of-file marker (file size from SNR2 header)

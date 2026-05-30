@@ -1,0 +1,136 @@
+#include "include_asm.h"
+
+/* ──────────────────────────── small picks ─────────────────────────────── */
+
+/* func_001B0B70: addiu sp,-0x20; sq s0; sd ra; jal func_001BD580 (daddu s0,a0);
+ *                lui v1,%hi(D_00428228); daddu v0,s0; addiu v1,v1,%lo(...);
+ *                ld ra; sw v1,0x214(s0); lq s0; jr ra; addiu sp,0x20
+ *                13 insns, 52 B — save+forward shape, returns arg unchanged. */
+extern void func_001BD580(void *);
+extern int D_00428228;
+
+__attribute__((section(".text.func_001B0B70")))
+void *func_001B0B70(void *a) {
+    func_001BD580(a);
+    *(int **)((char *)a + 0x214) = &D_00428228;
+    return a;
+}
+
+/* func_001BDE00: lazy-init singleton getter for &D_00785858; calls
+ *                func_001B8058() + func_0031EEA8(&D_00785858, &D_004294D0,
+ *                &D_00785878) when the underlying word is 0.
+ *                20 insns, 80 B. */
+extern int D_00785858;
+extern int D_004294D0;
+extern int D_00785878;
+extern void func_001B8058(void);
+extern void func_0031EEA8(void *, void *, void *);
+
+__attribute__((section(".text.func_001BDE00")))
+void *func_001BDE00(void) {
+    if (D_00785858 == 0) {
+        func_001B8058();
+        func_0031EEA8(&D_00785858, &D_004294D0, &D_00785878);
+    }
+    return &D_00785858;
+}
+
+/* func_002BA948: lazy-init singleton getter for &D_00786358; structurally
+ *                identical to func_001BDE00 — calls func_002BAFA0() +
+ *                func_0031EEA8(&D_00786358, &D_0044BE48, &D_00460D68) when
+ *                the underlying word is 0.
+ *                20 insns, 80 B. */
+extern int D_00786358;
+extern int D_0044BE48;
+extern int D_00460D68;
+extern void func_002BAFA0(void);
+extern void func_0031EEA8(void *, void *, void *);
+
+__attribute__((section(".text.func_002BA948")))
+void *func_002BA948(void) {
+    if (D_00786358 == 0) {
+        func_002BAFA0();
+        func_0031EEA8(&D_00786358, &D_0044BE48, &D_00460D68);
+    }
+    return &D_00786358;
+}
+
+/* ─────────────────────────── medium picks ─────────────────────────────── */
+
+/* func_001F5EF8: jal func_002ABBE8 + 4-arg jal func_00307208 + 1-arg jal
+ *                func_002D5AA0 via vtable; sets bytes 0..3 of $a0 struct;
+ *                29 insns, 116 B. */
+extern void func_002ABBE8(void *);
+extern void func_00307208(void *p, int b, int c, int d, unsigned int e, int f, int g);
+extern void func_002D5AA0(void *p, int a);
+extern int D_00747470;
+extern void *PTR_DAT_003c2f84;
+
+__attribute__((section(".text.func_001F5EF8")))
+void func_001F5EF8(unsigned char *this) {
+    func_002ABBE8(this + 0x30);
+    this[0] = 1;
+    this[1] = 1;
+    this[2] = 0;
+    this[3] = 0;
+    func_00307208(&D_00747470, 0, 0xA, 0, 0xFF000000U, 0, 0xA);
+    func_002D5AA0(*(void **)((char *)PTR_DAT_003c2f84 + 0x20), 0xA);
+}
+
+/* func_00313E50: 28 insns, 112 B — sq-prologue, no VU0, no jumptable. */
+extern int D_00747A34;
+extern int D_00754C10;
+extern void *func_0030EE08(int size, int align, void *region);
+extern void func_003A52F0(void *p, int v, int size);
+extern int func_0018B290(void *p);
+
+__attribute__((section(".text.func_00313E50")))
+int func_00313E50(void) {
+    void *p;
+    if (D_00747A34 & 0x10000) {
+        return 0;
+    }
+    p = func_0030EE08(0x9C0, 0x10, &D_00754C10);
+    if (p == (void *)0) {
+        return 0;
+    }
+    func_003A52F0(p, 0, 0x9C0);
+    return func_0018B290(p);
+}
+
+/* func_001DE5F8: 116 insns, 464 B — sq-prologue, no VU0, no jumptable. */
+INCLUDE_ASM("nonmatching", func_001DE5F8);
+
+/* func_00387160: jal func_00377998 ; conditional ldl/ldr/sdl/sdr 0x20-byte
+ *                memcpy loop; multiple sb/sh writes to allocated struct
+ *                @ a2+0x10; 66 insns, 264 B. */
+extern void *func_00377998(void);
+extern void *memcpy(void *dst, const void *src, unsigned int n);
+
+__attribute__((section(".text.func_00387160")))
+int func_00387160(short arg1, const void *src) {
+    unsigned char *obj = (unsigned char *)func_00377998();
+    if (obj == 0) {
+        return -1;
+    }
+    obj[8] = 0x10;
+    obj[9] = 2;
+    *(short *)(obj + 0x0) = 1;
+    *(short *)(obj + 0xA) = 1;
+    *(short *)(obj + 0xC) = arg1;
+    *(int   *)(obj + 0x4) = 0;
+    memcpy(obj + 0x10, src, 0x60);
+    return 0;
+}
+
+/* ──────────────────────────── large picks ─────────────────────────────── */
+
+/* func_001F35C0: 183 insns, 732 B — sq-prologue, saves $s0..$s4,$ra. */
+INCLUDE_ASM("nonmatching", func_001F35C8);
+
+/* func_001F4928: 147 insns, 588 B — sq-prologue, saves $s0..$s5,$ra. */
+INCLUDE_ASM("nonmatching", func_001F4928);
+
+/* func_002A10E8: 341 insns, 1364 B — sq-prologue, deepest pick;
+ *                no VU0, no jumptable. */
+INCLUDE_ASM("nonmatching", func_002A10E8);

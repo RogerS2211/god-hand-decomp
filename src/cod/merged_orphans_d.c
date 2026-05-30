@@ -1,0 +1,79 @@
+/* ── 1. id/mask thunks ──────────────────────────────────────────────
+ * `addiu $a0,1 ; jal helper ; ori $a1,0xFFFF` — a forwarding call with
+ * a stack frame (the helper is not a tail call).  $v0 is left as the
+ * helper's return value.
+ */
+extern int func_00107DE0(int id, int mask);
+extern int func_00155DC8(int id, int mask);
+extern int func_001574F0(int id, int mask);
+extern int func_00294AE0(int id, int mask);
+extern int func_00308EE8(int id, int mask);
+extern int func_0031D9F0(int id, int mask);
+
+__attribute__((section(".text.func_00107E20")))
+int func_00107E20(void) { return func_00107DE0(1, 0xFFFF); }
+
+__attribute__((section(".text.func_001563D0")))
+int func_001563D0(void) { return func_00155DC8(1, 0xFFFF); }
+
+__attribute__((section(".text.func_00157540")))
+int func_00157540(void) { return func_001574F0(1, 0xFFFF); }
+
+__attribute__((section(".text.func_00294B18")))
+int func_00294B18(void) { return func_00294AE0(1, 0xFFFF); }
+
+__attribute__((section(".text.func_00308EF8")))
+int func_00308EF8(void) { return func_00308EE8(1, 0xFFFF); }
+
+__attribute__((section(".text.func_0031DA28")))
+int func_0031DA28(void) { return func_0031D9F0(1, 0xFFFF); }
+
+/* ── 2. trivial leaves ──────────────────────────────────────────────*/
+
+/* `jr $ra ; nop` — empty. */
+__attribute__((section(".text.func_001F0530")))
+void func_001F0530(void) {}
+
+/* `jr $ra ; lw $v0, 0xF0($a0)` — return obj->field_F0. */
+__attribute__((section(".text.func_002A9458")))
+int func_002A9458(void *obj) { return *(int *)((char *)obj + 0xF0); }
+
+/* `sb $a2,0x54($a0) ; jr $ra ; sb $a1,0x3A($a0)` — two byte stores. */
+/* Source order is swapped vs the asm: SN -O2 schedules the second store
+ * into the jr delay slot, so writing 0x3A then 0x54 yields the retail
+ * `sb a2,0x54 ; jr ; sb a1,0x3A` order. */
+__attribute__((section(".text.func_002C0DD8")))
+void func_002C0DD8(char *obj, int a1, int a2) {
+    obj[0x3A] = a1;
+    obj[0x54] = a2;
+}
+
+/* ── 3. store-then-init constructor variants ────────────────────────
+ * Like batch C (store a struct/vtable pointer, then call an init helper
+ * with obj) but with a non-0xF0 store offset, or a 2-arg registration.
+ */
+extern int D_0041D7B8;
+extern int D_00424D18;
+extern int D_00586AF0;
+extern void func_001339C0(void *obj);
+extern void func_001B6F38(void *obj);
+extern void func_00298088(void);
+extern void func_00297B40(void *a, void *b);
+
+__attribute__((section(".text.func_00133B58")))
+void func_00133B58(void *obj) {
+    *(int **)((char *)obj + 0x30) = &D_0041D7B8;
+    func_001339C0(obj);
+}
+
+__attribute__((section(".text.func_00195ED0")))
+void func_00195ED0(void *obj) {
+    *(int **)((char *)obj + 0x214) = &D_00424D18;
+    func_001B6F38(obj);
+}
+
+/* `func_00297B40(&D_00586AF0, &func_00298088)` — register a callback. */
+__attribute__((section(".text.func_00298060")))
+void func_00298060(void) {
+    func_00297B40(&D_00586AF0, (void *)&func_00298088);
+}

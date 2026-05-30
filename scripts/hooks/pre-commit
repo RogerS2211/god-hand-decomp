@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# Example pre-commit hook for god-hand-decomp.
+#
+# Install with:
+#     ln -s ../../scripts/hooks/pre-commit .git/hooks/pre-commit
+#
+# Or, if you prefer a copy (so the hook follows what was committed at
+# checkout time rather than the working tree):
+#     cp scripts/hooks/pre-commit .git/hooks/pre-commit
+#     chmod +x .git/hooks/pre-commit
+#
+# Either way the hook runs scripts/session_check.sh.  It is intentionally
+# NOT installed automatically — developers opt in per clone.
+set -euo pipefail
+
+ROOT="$(git rev-parse --show-toplevel)"
+HARNESS="$ROOT/scripts/session_check.sh"
+
+if [[ ! -x "$HARNESS" ]]; then
+    echo "pre-commit: $HARNESS missing or not executable; skipping." >&2
+    exit 0
+fi
+
+if ! "$HARNESS"; then
+    cat >&2 <<'EOF'
+
+pre-commit: session_check.sh failed.
+
+Refusing the commit because the ratchet has regressed.  See output
+above for which sub-check failed.  Fix, re-run scripts/session_check.sh
+to confirm green, then commit again.
+
+To bypass (only for an explicit, documented ratchet-loosening
+change):  git commit --no-verify
+EOF
+    exit 1
+fi
