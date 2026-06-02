@@ -15,6 +15,65 @@ data, ROMs/ISOs, SDK binaries, or any copyrighted material.
 
 You must own a copy of the game and dump it yourself.
 
+### Platform support
+
+The matching toolchain — `ee-gcc` 2.96, the SN ProDG `ee-gcc` 2.95.3 compiler
+(run under [`wibo`](https://github.com/decompals/wibo)), `ee-dvp-as`, and
+`objdiff-cli` — is distributed as **Linux x86-64** binaries, and the build is
+verified against them. All three OSes below converge on running that same Linux
+toolchain; pick your path:
+
+| OS | How you run the toolchain |
+| --- | --- |
+| **Linux** | Natively (reference platform). |
+| **Windows** | Inside **WSL2** (Ubuntu) — recommended. |
+| **macOS** | Inside a Linux **x86-64 container** or VM (Intel & Apple Silicon). |
+
+The Python-only parts of the workflow — reading `m2c` output, editing C, running
+the pytest suite, and regenerating the tracker — run natively everywhere; only
+*compile → link → diff* needs the Linux environment. [objdiff](https://github.com/encounter/objdiff)
+also ships a native GUI app for all three OSes, so you can diff graphically even
+when the build runs in WSL2 or a container.
+
+**Linux (native).** The ee-gcc binaries are 32-bit, so you need i386 glibc plus
+the `mipsel-linux-gnu` cross-binutils:
+
+```bash
+# Debian / Ubuntu
+sudo apt install libc6:i386 binutils binutils-mipsel-linux-gnu curl git python3
+# Arch / CachyOS:  base-devel git python, then mipsel-linux-gnu-binutils from the AUR
+```
+
+**Windows (WSL2).** Native Windows can't run the Linux ELF toolchain, but WSL2
+runs it unmodified. In an elevated PowerShell:
+
+```powershell
+wsl --install -d Ubuntu        # then reboot
+```
+
+Then open the Ubuntu shell and follow the **Linux** path above. Keep your
+checkout on the Linux filesystem (`~/god-hand-decomp`, *not* `/mnt/c/...`) for
+usable build speed. You can run the native-Windows objdiff GUI against the
+`objdiff.json` in your WSL checkout (`\\wsl$\Ubuntu\home\...`).
+
+**macOS (container or VM).** The binaries are Linux x86-64, so they don't run
+natively on Intel or Apple Silicon — run the build in a container:
+
+```bash
+# from the repo root; --platform forces x86-64 (emulated on Apple Silicon)
+docker run --platform linux/amd64 -it -v "$PWD":/repo -w /repo ubuntu:22.04 bash
+# inside the container, follow the Linux path (apt install ... && ./scripts/...)
+```
+
+A full Linux VM (UTM, Lima, `multipass`) works equally well. On Apple Silicon
+the x86-64 toolchain runs under emulation (Rosetta/QEMU) — slower than
+Linux/WSL2, but byte-identical output.
+
+### Fetch the toolchain and build
+
+Once you're in a Linux environment (native, WSL2, or container), the rest is
+identical on every platform:
+
 ```bash
 # Place your dumped disc at the repo root as 'God Hand (USA).iso', then:
 ./scripts/extract_iso.sh        # carve disc_extract/SLUS_215.03 (+ overlay tables)

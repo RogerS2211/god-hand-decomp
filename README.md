@@ -37,8 +37,10 @@ python tools/gen_progress_page.py   # refreshes docs/progress.html + docs/badge_
 
 ## Quick start
 
-You need a Linux host with Python 3.10+, an `mipsel-linux-gnu` binutils, and
-your own God Hand (USA) disc image.
+You need Python 3.10+, the `mipsel-linux-gnu` binutils, and your own God Hand
+(USA) disc image. The matching toolchain is Linux x86-64; **Windows** (via WSL2)
+and **macOS** (via a Linux container/VM) are supported — see
+[CONTRIBUTING.md § Platform support](CONTRIBUTING.md#platform-support).
 
 ```bash
 # 1. Place your own dumped disc at the repo root as 'God Hand (USA).iso'.
