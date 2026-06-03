@@ -60,3 +60,6 @@ __pycache__/
 *.pyc
 .pytest_cache/
 .env
+
+# ── Local tool caches ────────────────────────────────────────────────────────
+.osgrep/
