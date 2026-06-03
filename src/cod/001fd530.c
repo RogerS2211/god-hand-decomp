@@ -1,0 +1,80 @@
+/* SN ProDG ee-gcc 2.95.3 matched TU. */
+
+__attribute__((section(".text.func_001FD530")))
+int func_001FD530(void *a0, int a1, int a2) {
+    if (*(char*)((char*)a0+0x49) == 0) {
+        return 1;
+    }
+    *(int*)((char*)a0+0x30) = a1;
+    *(char*)((char*)a0+0x4A) = 1;
+    func_001FD988(a0, a2);
+    *(int*)((char*)a0+0x34) = 0;
+    return 1;
+}
+
+__attribute__((section(".text.func_001FD820")))
+void func_001FD820(void *a0, void *a1) {
+    int *s0 = *(int **)((char*)a0 + 0x3C);
+    while (s0) {
+        char *v1 = *(char **)((char*)s0 + 0x28);
+        char *a2 = *(char **)(v1 + 0x34);
+        char *v0 = *(char **)(a2 + 0x100);
+        short a0h = *(short *)(v0 + 0x38);
+        void (*f3c)(char *, void *) = *(void (**)(char *, void *))(v0 + 0x3C);
+        f3c(a2 + a0h, a1);
+        s0 = *(int **)((char*)s0 + 0x24);
+    }
+}
+
+__attribute__((section(".text.func_001FD888")))
+void func_001FD888(void *a0, void *a1) {
+    int *s0 = *(int **)((char*)a0 + 0x3C);
+    while (s0) {
+        void *v0 = *(void **)((char*)s0 + 0x28);
+        func_002BB258(*(void **)((char*)v0 + 0x34), a1);
+        s0 = *(int **)((char*)s0 + 0x24);
+    }
+}
+
+__attribute__((section(".text.func_001FDFA8")))
+void func_001FDFA8(void *a0) {
+    func_001FE188(a0);
+    func_001FE2B8(a0);
+}
+
+__attribute__((section(".text.func_001FE0E8")))
+int func_001FE0E8(int a0, int a1, int a2) {
+    int p = func_001FE1E0(a0);
+    if (p == 0) return 0;
+    if (func_001FD2C0(p, a1, a2) == 0) p = 0;
+    return p;
+}
+
+__attribute__((section(".text.func_001FE188")))
+void func_001FE188(int a0) {
+    char *p = (char *)a0;
+    char *end = (char *)a0 + 0x3C00;
+    do {
+        func_001FE148(a0, (int)p);
+        p += 0x60;
+    } while (p < end);
+}
+
+__attribute__((section(".text.func_001FE218")))
+int func_001FE218(int a0, int a1, int a2) {
+    int p = func_001FE310(a0);
+    if (p == 0) return 0;
+    if (func_001FD530(p, a1, a2) == 0) p = 0;
+    return p;
+}
+
+__attribute__((section(".text.func_001FE2B8")))
+void func_001FE2B8(int a0) {
+    char *p = (char *)a0 + 0x3C00;
+    unsigned int i = 0;
+    do {
+        func_001FE278(a0, (int)p);
+        i++;
+        p += 0x70;
+    } while (i < 0x100);
+}

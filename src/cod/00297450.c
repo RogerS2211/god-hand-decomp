@@ -1,0 +1,54 @@
+/* SN ProDG ee-gcc 2.95.3 matched TU. */
+
+extern void func_003A6C58(void *a0, void *a1, void *a2);
+extern int D_00747A30;
+extern unsigned char D_0044A920[];
+extern unsigned char D_0044A940[];
+extern unsigned char D_0044A958[];
+extern unsigned char D_005E8640[];
+extern void func_002BE8B0(void *a0, int a1);
+extern void func_00297660(void);
+extern void func_00299320(void *a0, int a1);
+extern unsigned char D_00586B30[];
+
+__attribute__((section(".text.func_00297450")))
+void func_00297450(void *a0) {
+    unsigned char *s0 = (unsigned char *)a0;
+    char buf[0x40];
+    unsigned long b = *(unsigned char *)(s0 + 8);
+    int a1;
+    if ((b >> 7) == 0) {
+        if (D_00747A30 & 0x400) {
+            func_003A6C58(buf, D_0044A920, D_0044A940);
+        } else {
+            func_003A6C58(buf, D_0044A958, D_0044A940);
+        }
+        a1 = *(int *)(s0 + 0x10);
+        if (a1 != 0) {
+            func_002BE890(D_005E8640, a1, buf, 2);
+            *(int *)(s0 + 8) = *(int *)(s0 + 8) | 0x80;
+        }
+    }
+}
+
+__attribute__((section(".text.func_002974F0")))
+void func_002974F0(void *a0) {
+    unsigned char *s0 = (unsigned char *)a0;
+    unsigned long v0 = *(unsigned char *)(s0 + 8);
+    if (v0 >> 7) {
+        func_002BE8B0(D_005E8640, 2);
+        *(int *)(s0 + 8) = *(int *)(s0 + 8) & -0x81;
+    }
+}
+
+__attribute__((section(".text.func_002975F8")))
+void func_002975F8(void *a0, int a1) {
+    unsigned char *s0 = (unsigned char *)a0;
+    unsigned long t = *(int *)(s0 + 8);
+    if (((t >> 1) & 1) == 0) {
+        func_00297660();
+        *(int *)(s0 + 0x18) = a1;
+        func_00299320(D_00586B30, a1);
+        *(int *)(s0 + 8) = *(int *)(s0 + 8) | 2;
+    }
+}

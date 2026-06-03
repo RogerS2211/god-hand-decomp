@@ -158,7 +158,61 @@ def compact_units(units: list[dict]) -> list[dict]:
     return out
 
 
-def render_html(measures: dict, units: list[dict], modules: list[dict]) -> str:
+_CAT_NAMES = {
+    "cri-middleware": "CRI middleware",
+    "sce-runtime": "SCE runtime",
+    "crt": "C runtime (libc / libm / libstdc++ / libgcc)",
+}
+
+
+def library_panel(summary: dict | None) -> str:
+    """Render the function-categories breakdown from progress/function_categories.json.
+
+    These are functions in the game's own ``.text`` identified (by relocation-
+    masked instruction-signature analysis, byte-identical modulo relocation) as
+    standard-library / middleware / C-runtime code — i.e. *not* the engine code
+    the decomp targets.  The axis is orthogonal to matched/INCLUDE_ASM: it says
+    what subsystem a function belongs to, not whether it is decompiled yet."""
+    if not summary:
+        return ""
+    order = ["cri-middleware", "sce-runtime", "crt"]
+    rows = []
+    for cid in order:
+        s = summary.get(cid)
+        if not s:
+            continue
+        pct = float(s.get("pct_of_text", 0.0))
+        rows.append(
+            f'<tr><td class="name">{html.escape(_CAT_NAMES.get(cid, cid))}</td>'
+            f'<td>{int(s.get("count", 0)):,}</td>'
+            f'<td class="pct"><span class="mini"><span style="width:{min(pct*4,100):.2f}%;'
+            f'background:#8957e5"></span></span> {pct:.2f}%</td>'
+            f'<td>{human_bytes(s.get("code_bytes", 0))}</td></tr>'
+        )
+    if not rows:
+        return ""
+    tot = summary.get("library_total", {})
+    tpct = float(tot.get("pct_of_text", 0.0))
+    rows.append(
+        f'<tr style="font-weight:600;border-top:2px solid #30363d">'
+        f'<td class="name">total identified</td><td>{int(tot.get("count", 0)):,}</td>'
+        f'<td class="pct">{tpct:.2f}% of .text</td>'
+        f'<td>{human_bytes(tot.get("code_bytes", 0))}</td></tr>'
+    )
+    return f"""<div class="section">
+  <div class="h2">Library / middleware (identified)</div>
+  <div class="hint">Functions in the game's <code>.text</code> identified as standard-library /
+    middleware / C-runtime code (not the engine code the decomp targets), from
+    <code>progress/function_categories.json</code>. Independent of the matched/INCLUDE_ASM axis.</div>
+  <table class="modtbl">
+    <thead><tr><th>Category</th><th>Functions</th><th>Share&nbsp;of&nbsp;.text</th><th>Code&nbsp;size</th></tr></thead>
+    <tbody>{''.join(rows)}</tbody>
+  </table>
+</div>"""
+
+
+def render_html(measures: dict, units: list[dict], modules: list[dict],
+                lib_summary: dict | None = None) -> str:
     fuzzy = float(measures.get("fuzzy_match_percent", 0.0))
     mfunc = int(measures.get("matched_functions", 0) or 0)
     tfunc = int(measures.get("total_functions", 0) or 0)
@@ -193,6 +247,7 @@ def render_html(measures: dict, units: list[dict], modules: list[dict]) -> str:
 
     modules_html = "".join(mod_row(m) for m in modules)
     n_modules = len([m for m in modules if m["id"] != "unclassified"])
+    lib_html = library_panel(lib_summary)
 
     return f"""<!doctype html>
 <html lang="en">
@@ -254,6 +309,7 @@ def render_html(measures: dict, units: list[dict], modules: list[dict]) -> str:
     <tbody>{modules_html}</tbody>
   </table>
 </div>
+{lib_html}
 <div class="section">
   <div class="h2">Translation units</div>
   <div class="controls">
@@ -341,8 +397,14 @@ def main(argv: list[str]) -> int:
     modules = module_rollup(raw_units, report.get("categories", []))
     units = compact_units(raw_units)
 
+    cats_path = ROOT / "progress" / "function_categories.json"
+    lib_summary = None
+    if cats_path.exists():
+        lib_summary = json.loads(cats_path.read_text()).get("summary")
+
     DOCS.mkdir(exist_ok=True)
-    (DOCS / "progress.html").write_text(render_html(measures, units, modules))
+    (DOCS / "progress.html").write_text(
+        render_html(measures, units, modules, lib_summary))
 
     fuzzy = float(measures.get("fuzzy_match_percent", 0.0))
     fpct = float(measures.get("matched_functions_percent", 0.0))

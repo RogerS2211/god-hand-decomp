@@ -1,0 +1,197 @@
+/* SN ProDG ee-gcc 2.95.3 matched TU. */
+
+extern char *PTR_DAT_003c2f84;
+extern char *PTR_DAT_003c23a4;
+extern void func_002C4150(char *a0, int a1, int a2, int a3, int t0, int t1);
+extern void func_002D5A48(int a0);
+extern void func_002C1D68(int a0, int a1, int a2);
+extern void func_002C0E78(int a0, int a1);
+extern void func_002D56A8(void *a0);
+extern char D_007474A0[];
+extern char D_0061A990[];
+extern void func_002D9BD0(void *a0);
+extern void func_002D9BD8(void *a0);
+
+__attribute__((section(".text.func_002C2138")))
+int func_002C2138(char *a0, int a1) {
+    int t;
+    if (*(int*)(a0+0x3C) == 0) {
+        return 0;
+    }
+    t = func_002C38D8(PTR_DAT_003c2f84, *(int*)(a0+0x3C), *(int*)(a0+0x40), *(char*)(a0+0x44));
+    *(int*)(PTR_DAT_003c2f84 + (t << 3) + 0x58) = a1;
+    return 1;
+}
+
+__attribute__((section(".text.func_002C2368")))
+void func_002C2368(char *a0) {
+    char *s1 = a0 + 0x5C;
+    int v1 = *(unsigned short*)(s1 + 2);
+    if ((unsigned int)v1 < 0x1000) {
+        v1 = func_002AEB50(PTR_DAT_003c23a4, *(unsigned short*)(a0 + 0x5C), v1);
+    }
+    func_002C4150(PTR_DAT_003c2f84, v1, *(int*)(s1 + 0xC), 0, 0, 1);
+    func_002D5A48(*(int*)(PTR_DAT_003c2f84 + 0x20));
+}
+
+__attribute__((section(".text.func_002C2490")))
+int func_002C2490(int a0, int a1, float *a2) {
+    int s0;
+    int sp[12];
+    s0 = func_002C30C0(a0);
+    while ((s0 = func_002C30C8(a0, s0)) != 0) {
+        if ((*(int*)(s0 + 0x34) & 0xFF01) == 0xB01) {
+            func_002C1D68(a0, (int)sp, s0);
+            if (func_001F83E8((int)sp, a1) == 1) {
+                if (a2 != 0) {
+                    a2[0] = *(float*)(s0 + 0x5C);
+                    a2[1] = *(float*)(s0 + 0x60);
+                    a2[2] = *(float*)(s0 + 0x64);
+                }
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
+__attribute__((section(".text.func_002C2568")))
+int func_002C2568(int a0, int a1, float *a2) {
+    int s0;
+    int sp[12];
+    s0 = func_002C30C0(a0);
+    while ((s0 = func_002C30C8(a0, s0)) != 0) {
+        if (*(unsigned char*)(s0 + 0x35) == 0xD) {
+            func_002C1D68(a0, (int)sp, s0);
+            if (func_001F83E8((int)sp, a1) == 1) {
+                if (a2 != 0) {
+                    a2[0] = *(float*)(s0 + 0x5C);
+                    a2[1] = *(float*)(s0 + 0x60);
+                    a2[2] = *(float*)(s0 + 0x64);
+                }
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
+__attribute__((section(".text.func_002C2638")))
+int func_002C2638(int a0, int a1, int a2, float *a3) {
+    int s0;
+    int buf[12];
+    s0 = func_002C30C0(a0);
+    while ((s0 = func_002C30C8(a0, s0)) != 0) {
+        if (((*(unsigned char *)(s0 + 0x34) ^ 1) & 1) != 0) continue;
+        if (*(unsigned char *)(s0 + 0x35) != 0xC) continue;
+        func_002C1D68(a0, buf, s0);
+        if (func_001F83E8(buf, a1) != 1) continue;
+        if (a2 != 0) func_002C0E78(s0, a2);
+        if (a3 != 0) *a3 = *(float *)(s0 + 0x10);
+        return 1;
+    }
+    return 0;
+}
+
+__attribute__((section(".text.func_002C28F8")))
+int func_002C28F8(int *a0, int a1) {
+    if (*a0 == 0) return 0;
+    if (a1 == 0) return 0;
+    if (func_002C0E68(a1) != 0) return 1;
+    func_002C0DE8(a1, 0);
+    return 1;
+}
+
+__attribute__((section(".text.func_002C2950")))
+int func_002C2950(int *a0, unsigned short a1) {
+    int v0;
+    if (*a0 == 0) return 0;
+    v0 = func_002C3118((int)a0, a1);
+    if (v0 == 0) return 0;
+    return func_002C28F8((int)a0, v0);
+}
+
+__attribute__((section(".text.func_002C29A0")))
+int func_002C29A0(int *a0, int a1) {
+    if (*a0 == 0) return 0;
+    if (a1 == 0) return 0;
+    if (func_002C0E68(a1) != 0) {
+        func_002C0E28(a1, 0);
+    }
+    return 1;
+}
+
+__attribute__((section(".text.func_002C29F8")))
+int func_002C29F8(int a0, int a1) {
+    int r;
+    if (*(int*)a0 == 0) return 0;
+    r = func_002C3118(a0, a1 & 0xFFFF);
+    if (r == 0) return 0;
+    return func_002C29A0(a0, r);
+}
+
+__attribute__((section(".text.func_002C2AE0")))
+int func_002C2AE0(int a0, int a1) {
+    int e;
+    e = func_002C30C0(a0);
+    while ((e = func_002C30C8(a0, e)) != 0) {
+        if (*(unsigned char*)((char*)e + 0x35) == 1) {
+            if (*(unsigned char*)((char*)e + 0x79) == a1) return e;
+        }
+    }
+    return 0;
+}
+
+__attribute__((section(".text.func_002C3118")))
+int func_002C3118(int a0, int a1) {
+    int e;
+    if (a1 == 0xFFFFF) return 0;
+    e = func_002C30C0(a0);
+    while ((e = func_002C30C8(a0, e)) != 0) {
+        if (*(unsigned short*)((char*)e + 0x36) == a1) return e;
+    }
+    return 0;
+}
+
+__attribute__((section(".text.func_002C32C0")))
+void func_002C32C0(void *a0) {
+    func_002D56A8((char*)a0 + 0x1C);
+    *(char*)((char*)a0 + 0x14) = 0;
+}
+
+__attribute__((section(".text.func_002C3440")))
+void func_002C3440(void *a0) {
+    int v0;
+    char *b = D_007474A0;
+    *(unsigned short*)((char*)a0 + 0x112) = 0xFFFF;
+    *(int*)((char*)a0 + 0x104) = 0;
+    *(int*)((char*)a0 + 0xEC) = 0;
+    *(int*)((char*)a0 + 0xF0) = 0;
+    *(int*)((char*)a0 + 0xF4) = 0;
+    *(int*)((char*)a0 + 0xF8) = 0;
+    *(int*)((char*)a0 + 0xFC) = 0;
+    *(int*)((char*)a0 + 0x100) = 0;
+    *(char*)((char*)a0 + 0x108) = 0;
+    *(short*)((char*)a0 + 0xE8) = 0;
+    *(int*)(b + 0x610) = 0xFFFFu;
+    v0 = *(int*)((char*)a0 + 0x48);
+    v0 &= -2;
+    v0 &= -3;
+    *(int*)((char*)a0 + 0x48) = v0;
+    if ((*(int*)(b + 0x590) & 1) == 0) {
+        void (*f)(void);
+        func_002D9BD0(D_0061A990);
+        f = *(void (**)(void))(*(char**)((char*)a0 + 0xD4) + 8);
+        if (f != 0) f();
+        func_002D9BD8(D_0061A990);
+    }
+}
+
+__attribute__((section(".text.func_002C3820")))
+void func_002C3820(void *a0) {
+    void (*f)(int) = *(void (**)(int))((char*)a0 + 0xEC);
+    if (f != 0) {
+        f(*(int*)((char*)a0 + 0xF0));
+        *(int*)((char*)a0 + 0xEC) = 0;
+    }
+}

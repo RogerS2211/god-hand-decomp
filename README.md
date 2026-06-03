@@ -20,10 +20,10 @@ function-by-function against the retail binary with [objdiff](https://github.com
 
 | Metric | Value |
 | --- | --- |
-| Code matched (fuzzy) | **2.52 %** |
-| Functions matched | **1,613 / 11,199** (14.40 %) |
+| Code matched (fuzzy) | **3.02 %** |
+| Functions matched | **1,735 / 11,199** (15.49 %) |
 | Data matched | **83.01 %** |
-| Translation units | 1,905 |
+| Translation units | 2,043 |
 
 **Visual function tracker:** open the
 [**live progress tracker**](https://lucaspicoli.github.io/god-hand-decomp/progress.html) —
@@ -144,12 +144,21 @@ modulo relocation); no third-party source is committed. Identified so far
 | `sce-runtime` | 224 | 1.70 % |
 | `crt` | 250 | 1.24 % |
 
+This breakdown is rendered as a **Library / middleware** panel on the
+[progress tracker](https://lucaspicoli.github.io/god-hand-decomp/progress.html).
+
 The category axis is orthogonal to the matching/`permanent` axis: a function's
 category says *what subsystem it belongs to*, independent of whether it is
-matched or carried as `INCLUDE_ASM`. Populating objdiff's per-**unit** category
-bars from this map requires the per-function units to exist first (the
-monolithic `.text` is still being carved into units); until then the map is the
-source of truth for the breakdown above.
+matched or carried as `INCLUDE_ASM`. The companion
+[`progress/library_identified.json`](progress/library_identified.json) is the
+permanent-classification axis — the subset of identified library functions
+carried as `INCLUDE_ASM` and treated as non-gating for decomp progress (they are
+not the engine code the decomp targets).
+
+Populating objdiff's per-**unit** category bars from this map would require the
+per-function units to exist first (the monolithic `.text` is carved into units
+by matched function, not by subsystem); until then the panel and these maps are
+the source of truth for the breakdown above.
 
 ## Contributing
 
