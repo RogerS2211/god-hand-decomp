@@ -169,8 +169,24 @@ Then:
 4. Commit messages: short imperative subject, e.g.
    `match func_00359218 in src/cod/func_00359218`.
 
-CI ([`.github/workflows/progress.yml`](.github/workflows/progress.yml)) uploads
-the progress report on every push so decomp.dev (and the badges) stay current.
+### Automated PR checks
+
+Opening a PR runs [`.github/workflows/pr.yml`](.github/workflows/pr.yml) on a
+stock Linux runner (no toolchain or disc required). All three gates must pass:
+
+- the **`pytest` suite** (`tests/`) — build-helper and carver invariants;
+- a **game-data guard** (`scripts/checks/ci_no_game_data.sh`) — rejects any
+  ISO, AFS, boot ELF, SDK binary, or other binary blob from the diff;
+- a **report-consistency lint** (`scripts/checks/report_lint.py`) — confirms
+  `progress/report.json` is internally consistent (the badges read it directly).
+
+These gates deliberately do **not** rebuild the game — the toolchain and target
+are non-redistributable — so the byte-level match is **your** responsibility:
+make sure `scripts/checks/diff.sh src/cod/<addr>` shows your unit at 100 %
+before you open the PR.
+
+[`.github/workflows/progress.yml`](.github/workflows/progress.yml) uploads the
+progress report on pushes and PRs so decomp.dev (and the badges) stay current.
 
 ## 6. Questions
 

@@ -1,0 +1,56 @@
+name: PR checks
+
+# Toolchain-free gates that run on every pull request, including from forks.
+# The matching toolchain (ee-gcc / SN ProDG) and the disc-derived target are
+# non-redistributable, so this workflow never builds the game — it runs only
+# the checks that need nothing but Python + git:
+#
+#   1. the pytest suite (build-helper / carver invariants),
+#   2. a game-data leak guard (no ISO/AFS/boot-ELF/SDK/binary blobs), and
+#   3. a progress-report consistency lint.
+#
+# The byte-level match itself is verified locally by the contributor with
+# objdiff (see CONTRIBUTING.md); it cannot run here.
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (full history for the diff guard)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install test dependencies
+        run: python -m pip install --upgrade pip pytest
+
+      - name: Run test suite
+        run: python -m pytest tests/ -q
+
+      - name: Guard against committed game data
+        env:
+          DIFF_BASE: ${{ github.event.pull_request.base.sha }}
+        run: |
+          rc=0
+          bash scripts/checks/ci_no_game_data.sh || rc=$?
+          [ "$rc" = 77 ] && { echo "skipped (could not determine base)"; exit 0; }
+          exit $rc
+
+      - name: Lint progress report consistency
+        run: |
+          rc=0
+          python3 scripts/checks/report_lint.py || rc=$?
+          [ "$rc" = 77 ] && { echo "skipped (no report.json)"; exit 0; }
+          exit $rc
