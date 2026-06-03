@@ -92,8 +92,9 @@ If that hash differs, your dump is wrong — stop, nothing else will match.
 
 ## 2. Pick a function
 
-Open the visual tracker ([`docs/progress.html`](docs/progress.html)) or the live
-[decomp.dev](https://decomp.dev) page and look for a translation unit that is
+Open the visual tracker
+([live](https://lucaspicoli.github.io/god-hand-decomp/progress.html), or
+`docs/progress.html` offline) and look for a translation unit that is
 **partially** matched — those have the most low-hanging functions. Good first
 targets are small leaf functions (no calls) in a unit that is already mostly
 done.

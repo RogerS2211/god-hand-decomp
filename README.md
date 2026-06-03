@@ -1,8 +1,8 @@
 # god-hand-decomp
 
 [![Build](https://github.com/LucasPicoli/god-hand-decomp/actions/workflows/progress.yml/badge.svg)](https://github.com/LucasPicoli/god-hand-decomp/actions/workflows/progress.yml)
-[![Code matched](docs/badge_code.svg)](docs/progress.html)
-[![Functions matched](docs/badge_functions.svg)](docs/progress.html)
+[![Code matched](docs/badge_code.svg)](https://lucaspicoli.github.io/god-hand-decomp/progress.html)
+[![Functions matched](docs/badge_functions.svg)](https://lucaspicoli.github.io/god-hand-decomp/progress.html)
 
 A work-in-progress **matching decompilation** of **God Hand** — the 2006
 PlayStation 2 brawler by **Clover Studio / Capcom** (NTSC-U, serial
@@ -25,9 +25,11 @@ function-by-function against the retail binary with [objdiff](https://github.com
 | Data matched | **83.01 %** |
 | Translation units | 1,905 |
 
-**Visual function tracker:** open [`docs/progress.html`](docs/progress.html) — a
-self-contained, offline page with a per-unit heatmap and a sortable table,
-generated from [`progress/report.json`](progress/report.json).
+**Visual function tracker:** open the
+[**live progress tracker**](https://lucaspicoli.github.io/god-hand-decomp/progress.html) —
+a self-contained page (also openable offline as `docs/progress.html`) with a
+per-module rollup, a per-unit heatmap, and a sortable table, generated from
+[`progress/report.json`](progress/report.json).
 
 Regenerate the tracker and badges after a build:
 
@@ -118,7 +120,7 @@ This repo follows the [decomp.dev](https://decomp.dev) model:
 2. The GitHub Actions workflow [`.github/workflows/progress.yml`](.github/workflows/progress.yml)
    uploads it as an artifact named `SLUS_215.03_report` on every push.
 
-The local [`docs/progress.html`](docs/progress.html) tracker and the
+The local `docs/progress.html` tracker and the
 `docs/badge_*.svg` badges need no external service — they are generated from the
 committed report by `tools/gen_progress_page.py`.
 
