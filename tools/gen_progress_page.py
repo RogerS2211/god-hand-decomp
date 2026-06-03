@@ -49,6 +49,60 @@ def color_for(pct: float) -> str:
     return chosen
 
 
+def human_bytes(n: int) -> str:
+    """Compact human-readable byte size: '88 B', '233.5 KB', '2.71 MB'."""
+    n = int(n)
+    if n < 1024:
+        return f"{n} B"
+    if n < 1024 * 1024:
+        return f"{n / 1024:.1f} KB"
+    return f"{n / 1024 / 1024:.2f} MB"
+
+
+def unit_code_bytes(unit: dict) -> tuple[int, int]:
+    """Return (matched_bytes, total_bytes) for a unit, summed from its
+    per-function ``size`` fields.  A function counts as matched only at
+    100% fuzzy.  These sums reconcile exactly to the report's headline
+    ``matched_code`` / ``total_code`` (see tests), so the tracker gets real
+    byte sizes with no toolchain or build."""
+    matched = total = 0
+    for fn in unit.get("functions") or []:
+        try:
+            size = int(fn.get("size") or 0)
+        except (TypeError, ValueError):
+            size = 0
+        total += size
+        if fn.get("fuzzy_match_percent") == 100.0:
+            matched += size
+    return matched, total
+
+
+def module_rollup(units: list[dict], categories: list[dict]) -> list[dict]:
+    """Aggregate units into modules by their assigned progress category.
+
+    Units with no category fall into an explicit ``unclassified`` bucket
+    rather than being dropped, so module code totals always conserve the
+    project total.  Once units are tagged (metadata.progress_categories /
+    category) and the report is regenerated, real modules appear here."""
+    names = {c.get("id"): c.get("name", c.get("id")) for c in (categories or [])}
+    agg: dict[str, dict] = {}
+    for u in units:
+        meta = u.get("metadata", {}) or {}
+        cat = meta.get("progress_category") or meta.get("category") or "unclassified"
+        m = u.get("measures", {}) or {}
+        mc, tc = unit_code_bytes(u)
+        bucket = agg.setdefault(cat, {
+            "id": cat,
+            "name": names.get(cat, "Unclassified" if cat == "unclassified" else cat),
+            "mc": 0, "tc": 0, "mf": 0, "tf": 0,
+        })
+        bucket["mc"] += mc
+        bucket["tc"] += tc
+        bucket["mf"] += int(m.get("matched_functions", 0) or 0)
+        bucket["tf"] += int(m.get("total_functions", 0) or 0)
+    return sorted(agg.values(), key=lambda d: d["tc"], reverse=True)
+
+
 def _text_width(s: str) -> int:
     # crude monospace-ish estimate; good enough for badge layout
     return int(len(s) * 6.5) + 10
@@ -88,20 +142,23 @@ def compact_units(units: list[dict]) -> list[dict]:
     for u in units:
         m = u.get("measures", {}) or {}
         meta = u.get("metadata", {}) or {}
+        mc, tc = unit_code_bytes(u)
         out.append({
             "n": u.get("name", "?"),
             "c": round(float(m.get("fuzzy_match_percent", 0.0)), 2),
             "mf": int(m.get("matched_functions", 0) or 0),
             "tf": int(m.get("total_functions", 0) or 0),
+            "mc": mc,
+            "tc": tc,
             "cat": meta.get("progress_category") or meta.get("category") or "",
             "auto": bool(meta.get("auto_generated", False)),
         })
-    # most-complete first, then by size
-    out.sort(key=lambda x: (-x["c"], -x["tf"]))
+    # biggest remaining gap first — surfaces the high-impact unmatched units
+    out.sort(key=lambda x: (x["tc"] - x["mc"], x["tc"]), reverse=True)
     return out
 
 
-def render_html(measures: dict, units: list[dict]) -> str:
+def render_html(measures: dict, units: list[dict], modules: list[dict]) -> str:
     fuzzy = float(measures.get("fuzzy_match_percent", 0.0))
     mfunc = int(measures.get("matched_functions", 0) or 0)
     tfunc = int(measures.get("total_functions", 0) or 0)
@@ -123,6 +180,19 @@ def render_html(measures: dict, units: list[dict]) -> str:
         card(f"{dpct:.2f}%", "data matched", dpct),
         card(f"{tunits:,}", "translation units", 100.0),
     ])
+
+    def mod_row(mod):
+        pct = 0.0 if mod["tc"] == 0 else 100.0 * mod["mc"] / mod["tc"]
+        return (
+            f'<tr><td class="name">{html.escape(mod["name"])}</td>'
+            f'<td class="pct"><span class="mini"><span style="width:{min(pct,100):.2f}%;'
+            f'background:{color_for(pct)}"></span></span> {pct:.2f}%</td>'
+            f'<td>{human_bytes(mod["mc"])} / {human_bytes(mod["tc"])}</td>'
+            f'<td>{mod["mf"]:,} / {mod["tf"]:,}</td></tr>'
+        )
+
+    modules_html = "".join(mod_row(m) for m in modules)
+    n_modules = len([m for m in modules if m["id"] != "unclassified"])
 
     return f"""<!doctype html>
 <html lang="en">
@@ -150,8 +220,11 @@ def render_html(measures: dict, units: list[dict]) -> str:
          padding:7px 10px; font-size:13px; min-width:240px; }}
   .legend {{ display:flex; gap:6px; align-items:center; color:#8b949e; font-size:12px; margin-left:auto; }}
   .legend i {{ width:14px; height:14px; border-radius:3px; display:inline-block; }}
-  .grid {{ display:grid; grid-template-columns:repeat(auto-fill,minmax(13px,1fr)); gap:3px; }}
-  .cell {{ aspect-ratio:1/1; border-radius:2px; cursor:pointer; }}
+  .grid {{ display:flex; flex-wrap:wrap; gap:3px; align-content:flex-start; }}
+  .cell {{ height:16px; border-radius:2px; cursor:pointer; flex:0 0 auto; }}
+  .h2 {{ font-size:14px; color:#e6edf3; margin:6px 0 2px; font-weight:600; }}
+  .hint {{ color:#6e7681; font-size:12px; margin:2px 0 14px; }}
+  .modtbl {{ margin:0 0 8px; }}
   table {{ width:100%; border-collapse:collapse; margin-top:22px; font-size:13px; }}
   th,td {{ text-align:left; padding:6px 10px; border-bottom:1px solid #21262d; }}
   th {{ color:#8b949e; font-weight:500; cursor:pointer; user-select:none; position:sticky; top:0; background:#0d1117; }}
@@ -168,10 +241,21 @@ def render_html(measures: dict, units: list[dict]) -> str:
   <h1>God Hand (SLUS-21503) — matching decompilation</h1>
   <div class="sub">Per–translation-unit progress, generated from
     <code>progress/report.json</code> by <code>tools/gen_progress_page.py</code>.
-    Live tracker: <a href="https://decomp.dev">decomp.dev</a>.</div>
+    Units are sorted by largest remaining gap.</div>
 </header>
 <div class="cards">{cards}</div>
 <div class="section">
+  <div class="h2">Modules</div>
+  <div class="hint">{n_modules} classified module(s) · code matched / total. Assign
+    units to categories in <code>objdiff.json</code> and regenerate to break the
+    boot ELF out by subsystem.</div>
+  <table class="modtbl">
+    <thead><tr><th>Module</th><th>Match&nbsp;%</th><th>Code (matched&nbsp;/&nbsp;total)</th><th>Funcs</th></tr></thead>
+    <tbody>{modules_html}</tbody>
+  </table>
+</div>
+<div class="section">
+  <div class="h2">Translation units</div>
   <div class="controls">
     <input id="q" type="search" placeholder="filter units by name…" autocomplete="off">
     <span id="count" class="sub"></span>
@@ -180,11 +264,13 @@ def render_html(measures: dict, units: list[dict]) -> str:
       <i style="background:#dfb317"></i><i style="background:#a4a61d"></i>
       <i style="background:#97ca00"></i><i style="background:#4c1"></i>100%</span>
   </div>
+  <div class="hint">Heat-map cells are sized by code bytes — the big red blocks are the high-impact gaps.</div>
   <div id="grid" class="grid"></div>
   <table id="tbl">
     <thead><tr>
       <th data-k="n">Unit</th><th data-k="c">Match&nbsp;%</th>
-      <th data-k="mf">Funcs&nbsp;matched</th><th data-k="tf">Funcs&nbsp;total</th>
+      <th data-k="u">Remaining</th><th data-k="tc">Code&nbsp;size</th>
+      <th data-k="mf">Funcs&nbsp;✓</th><th data-k="tf">Funcs</th>
       <th data-k="cat">Category</th>
     </tr></thead>
     <tbody></tbody>
@@ -197,11 +283,13 @@ const SCALE = [[0,"#e05d44"],[25,"#fe7d37"],[50,"#dfb317"],[75,"#a4a61d"],[90,"#
 function color(p){{let c=SCALE[0][1];for(const[t,col]of SCALE)if(p>=t)c=col;return c;}}
 const grid=document.getElementById('grid'), tb=document.querySelector('#tbl tbody'),
       q=document.getElementById('q'), count=document.getElementById('count');
-let sortK='c', sortDir=-1;
+function hb(n){{n=+n;if(n<1024)return n+' B';if(n<1048576)return (n/1024).toFixed(1)+' KB';return (n/1048576).toFixed(2)+' MB';}}
+const keyval=(u,k)=> k==='u' ? (u.tc-u.mc) : u[k];
+let sortK='u', sortDir=-1;
 function rows(){{
   const f=q.value.trim().toLowerCase();
   return UNITS.filter(u=>!f||u.n.toLowerCase().includes(f))
-    .sort((a,b)=>{{const x=a[sortK],y=b[sortK];
+    .sort((a,b)=>{{const x=keyval(a,sortK),y=keyval(b,sortK);
       if(typeof x==='number')return (x-y)*sortDir;
       return String(x).localeCompare(String(y))*sortDir;}});
 }}
@@ -213,7 +301,8 @@ function render(){{
   for(const u of r){{
     const d=document.createElement('div');
     d.className='cell'; d.style.background=color(u.c);
-    d.title=u.n+'  —  '+u.c.toFixed(2)+'%  ('+u.mf+'/'+u.tf+' funcs)';
+    d.style.width=Math.max(6,Math.min(64,Math.sqrt(u.tc)/3.5)).toFixed(0)+'px';
+    d.title=u.n+'  —  '+u.c.toFixed(2)+'%  ('+hb(u.mc)+' / '+hb(u.tc)+', '+u.mf+'/'+u.tf+' funcs)';
     gf.appendChild(d);
   }}
   grid.appendChild(gf);
@@ -223,6 +312,7 @@ function render(){{
     const tr=document.createElement('tr');
     tr.innerHTML='<td class="name">'+u.n+'</td>'+
       '<td class="pct"><span class="mini"><span style="width:'+Math.min(u.c,100)+'%;background:'+color(u.c)+'"></span></span> '+u.c.toFixed(2)+'%</td>'+
+      '<td>'+hb(u.tc-u.mc)+'</td><td>'+hb(u.tc)+'</td>'+
       '<td>'+u.mf+'</td><td>'+u.tf+'</td><td>'+(u.cat||'')+'</td>';
     tf.appendChild(tr);
   }}
@@ -247,10 +337,12 @@ def main(argv: list[str]) -> int:
         return 1
     report = json.loads(report_path.read_text())
     measures = report.get("measures", {})
-    units = compact_units(report.get("units", []))
+    raw_units = report.get("units", [])
+    modules = module_rollup(raw_units, report.get("categories", []))
+    units = compact_units(raw_units)
 
     DOCS.mkdir(exist_ok=True)
-    (DOCS / "progress.html").write_text(render_html(measures, units))
+    (DOCS / "progress.html").write_text(render_html(measures, units, modules))
 
     fuzzy = float(measures.get("fuzzy_match_percent", 0.0))
     fpct = float(measures.get("matched_functions_percent", 0.0))
