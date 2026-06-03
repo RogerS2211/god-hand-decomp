@@ -124,6 +124,33 @@ The local `docs/progress.html` tracker and the
 `docs/badge_*.svg` badges need no external service — they are generated from the
 committed report by `tools/gen_progress_page.py`.
 
+### Function categories
+
+The objdiff project defines progress categories — `engine`, `cri-middleware`,
+`sce-runtime`, `crt`, `unknown` — so progress can be reported per subsystem
+rather than as one bar. [`progress/function_categories.json`](progress/function_categories.json)
+maps game `.text` addresses to a category; `engine` (the game's own code, the
+decomp target) is the default for any address not listed.
+
+The non-engine categories cover code the game statically linked from standard
+libraries / middleware / the C runtime. These are identified — not rewritten —
+by relocation-masked instruction-signature analysis (confirmed byte-identical
+modulo relocation); no third-party source is committed. Identified so far
+(≈ **4.9 % of `.text`**, 837 functions):
+
+| category | functions | % of `.text` |
+|---|---:|---:|
+| `cri-middleware` | 363 | 1.98 % |
+| `sce-runtime` | 224 | 1.70 % |
+| `crt` | 250 | 1.24 % |
+
+The category axis is orthogonal to the matching/`permanent` axis: a function's
+category says *what subsystem it belongs to*, independent of whether it is
+matched or carried as `INCLUDE_ASM`. Populating objdiff's per-**unit** category
+bars from this map requires the per-function units to exist first (the
+monolithic `.text` is still being carved into units); until then the map is the
+source of truth for the breakdown above.
+
 ## Contributing
 
 Pick an unmatched function, make it byte-match, send a PR. The full workflow —
