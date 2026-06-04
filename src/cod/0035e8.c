@@ -13,12 +13,12 @@ INCLUDE_ASM("nonmatching", func_0035E868);
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035E968 — call-chain: jal E9E8 + branch + movz                       */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", func_0035E968);
+INCLUDE_ASM("nonmatching", isEnableAudFtr);
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035E9A8 — call-chain: jal E9E8 + branch + movz (checks 0xE0)         */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", func_0035E9A8);
+INCLUDE_ASM("nonmatching", isEnableVidFtr);
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035E9E8 — branched leaf: range checks + exact matches                 */

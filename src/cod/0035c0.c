@@ -6,7 +6,7 @@ void func_0035C1C0(char *a0, int a1, int a2, int a3);
 void func_0035C200(char *a0, int a1, int a2);
 
 /* ── INCLUDE_ASM: call-chain / loop-leaf / medium-leaf (nonmatching) ───────── */
-INCLUDE_ASM("nonmatching", func_0035C080);
+INCLUDE_ASM("nonmatching", sftrn_BuildAudio);
 INCLUDE_ASM("nonmatching", func_0035C238);
 INCLUDE_ASM("nonmatching", func_0035C2D0);
 INCLUDE_ASM("nonmatching", func_0035C3A0);

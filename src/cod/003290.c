@@ -21,8 +21,8 @@ extern int D_003D1400;   /* word-sized global; setter Obj3290_SetGlobal_D003D140
  * func_00330E70, func_00330318 ×2, func_00330580, func_00333E68, j func_00333E88 */
 INCLUDE_ASM("nonmatching", func_003290B8);
 
-/* func_003291B8: 0x5C B, branched call: lw args from *a0, jal func_00333CE0 */
-INCLUDE_ASM("nonmatching", func_003291B8);
+/* ADXPS2_LoadFcacheDvd: 0x5C B, branched call: lw args from *a0, jal func_00333CE0 */
+INCLUDE_ASM("nonmatching", ADXPS2_LoadFcacheDvd);
 
 /* func_003292D8: 0x118 B, multi-jal init; calls func_00330E70, func_00330318 ×2,
  * func_00330580, func_00335218, func_00335248, func_00333F60, j func_00333F80 */

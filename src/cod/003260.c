@@ -37,7 +37,7 @@ INCLUDE_ASM("nonmatching", func_00326008);
 INCLUDE_ASM("nonmatching", func_00326020);
 INCLUDE_ASM("nonmatching", func_00326050);
 INCLUDE_ASM("nonmatching", func_003260C8);
-INCLUDE_ASM("nonmatching", func_00326160);
+INCLUDE_ASM("nonmatching", ADXPS2_GetNumDataSjtmp);
 INCLUDE_ASM("nonmatching", func_003261A8);
 /* Obj3260_TrampChain_D2D8: call func_00338338(a0,0) + func_003382A0(a0,0) + tail-call   */
 /* func_003381B0(a0). Saves a0 in $s0 across both calls.                        */

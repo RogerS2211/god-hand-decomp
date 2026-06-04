@@ -55,7 +55,7 @@ INCLUDE_ASM("nonmatching", func_0035D0E0);
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035D110 — call-chain (jal ×2)                                        */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", func_0035D110);
+INCLUDE_ASM("nonmatching", sfuo_InitInf);
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035D188 — tail-call wrapper: Obj35D0_SetFields_0_4_8_C_D1B0(a0, 0, 0, 0, 0)          */
@@ -191,7 +191,7 @@ int Obj35D0_ReturnZero_D280(void)
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035D288 — call-chain (jal ×4)                                        */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", func_0035D288);
+INCLUDE_ASM("nonmatching", SFVOM_ExecServer);
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035D2E0 — call-chain (jal ×3)                                        */
@@ -201,7 +201,7 @@ INCLUDE_ASM("nonmatching", func_0035D2E0);
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035D360 — call-chain (jal ×2)                                        */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", func_0035D360);
+INCLUDE_ASM("nonmatching", sfvom_IsTerm);
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035D3A8 — call-chain (jal ×3)                                        */
@@ -341,7 +341,7 @@ INCLUDE_ASM("nonmatching", func_0035D530);
 /* 0x0035D5C8 — branched-leaf: INCLUDE_ASM(nonmatching)                    */
 /* -freorder-blocks inverts bgtz→blez; can't byte-match with current flags  */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", func_0035D5C8);
+INCLUDE_ASM("nonmatching", SFH_Finish);
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035D610 — PERMANENT (beql); stays in monolithic asm                  */
@@ -405,7 +405,7 @@ void Obj35D0_SetFields_1_a1_a2_D740(char *a0, int a1, int a2)
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035D758 — call-chain (jal)                                           */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", func_0035D758);
+INCLUDE_ASM("nonmatching", initLibWork);
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035D7A8 — return (*(int*)a0 == 0)                                    */
@@ -420,4 +420,4 @@ int Obj35D0_IsField0Zero_D7A8(char *a0)
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035D7B8 — call-chain (jal)                                           */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", func_0035D7B8);
+INCLUDE_ASM("nonmatching", isEffectiveVer);

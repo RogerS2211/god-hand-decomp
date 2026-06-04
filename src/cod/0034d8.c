@@ -19,8 +19,8 @@ extern void func_0034DD58(char *a0);
 extern char *D_003EE0B8;   /* set by Obj34D8_SetGlobalEE0B8_IfField48 */
 
 /* ── INCLUDE_ASM("nonmatching") — complex call-chain / jalr / odd ─────────── */
-INCLUDE_ASM("nonmatching", func_0034D820);
-INCLUDE_ASM("nonmatching", func_0034D8B8);
+INCLUDE_ASM("nonmatching", sfhds_AnlyAudio);
+INCLUDE_ASM("nonmatching", sfhds_AnlyVideo);
 INCLUDE_ASM("nonmatching", func_0034DA50);
 INCLUDE_ASM("nonmatching", func_0034DA88);
 

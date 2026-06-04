@@ -90554,7 +90554,6 @@
         },
         {
           "name": ".text.Obj3260_CallReturn0_003388F8_D498",
-          "fuzzy_match_percent": 100.0,
           "metadata": {}
         }
       ],
@@ -95952,7 +95951,6 @@
         },
         {
           "name": ".text.Obj3290_SetGlobal_D003D1400",
-          "fuzzy_match_percent": 100.0,
           "metadata": {}
         }
       ],

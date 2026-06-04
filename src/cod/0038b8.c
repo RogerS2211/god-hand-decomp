@@ -53,7 +53,7 @@ int Obj38B8_GetField8MinusField4(char *a0) {
 }
 
 INCLUDE_ASM("nonmatching", func_0038BAD0);
-INCLUDE_ASM("nonmatching", func_0038BAF8);
+INCLUDE_ASM("nonmatching", allocate__9streambuf);
 INCLUDE_ASM("nonmatching", func_0038BB48);
 INCLUDE_ASM("nonmatching", func_0038BB70);
 __attribute__((section(".text.Obj38B8_GetFlag0_Bit9")))
@@ -124,7 +124,7 @@ char *Obj38B8_GetPtrField4B(char *a0) {
     return a0 + 0x4B;
 }
 
-INCLUDE_ASM("nonmatching", func_0038BCD8);
+INCLUDE_ASM("nonmatching", setg__9streambufPcT1T1);
 INCLUDE_ASM("nonmatching", func_0038BD40);
 __attribute__((section(".text.Obj38B8_AddField14")))
 int Obj38B8_AddField14(char *a0, int a1) {
