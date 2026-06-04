@@ -129,8 +129,10 @@ that is what the retail prologue requires.
 This repo follows the [decomp.dev](https://decomp.dev) model:
 
 1. `progress/report.json` is an [objdiff](https://github.com/encounter/objdiff)
-   report describing matched code/data/functions per unit. It is committed so
-   the tracker and badges work with zero build.
+   report describing matched, fully-linked, and fuzzy code plus data/functions
+   per unit (the three axes in the table above). It is committed so the tracker
+   and badges work with zero build; `scripts/mark_complete.py` derives the
+   fully-linked (`complete_code`) axis on every report regeneration.
 2. The GitHub Actions workflow [`.github/workflows/progress.yml`](.github/workflows/progress.yml)
    uploads it as an artifact named `SLUS_215.03_report` on every push.
 
