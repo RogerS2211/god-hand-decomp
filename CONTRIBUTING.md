@@ -134,8 +134,35 @@ is 100 %. Useful helpers:
   callee-saved registers). Opt a TU in via `compile_config.json`; see existing
   entries for the format.
 
-A function is "done" only when objdiff shows it 100 % matched. Do **not** commit
-"pseudo-matches" that rely on instruction shapes the original compiler wouldn't emit.
+A function is fully matched only when objdiff shows it 100 %. Do **not** commit
+"pseudo-matches" that rely on instruction shapes the original compiler wouldn't emit
+(forced-register pins, inline `asm{}` to coerce a 100 %) — an honest partial beats a
+fake match.
+
+### Partial matches (clean C that isn't byte-exact yet)
+
+A **plausible** clean-C body that compiles to 90–99 % of the target but not byte-exact
+doesn't have to be discarded. Keep it behind a `NON_MATCHING` guard so the published
+progress credits it as a fuzzy partial, while the default build stays byte-identical
+to retail via the `INCLUDE_ASM` fallback:
+
+```c
+#ifdef NON_MATCHING
+void *func_xxxx(void *obj) { /* clean, readable C — scores 90-99 % */ }
+#else
+INCLUDE_ASM("nonmatching", func_xxxx);
+#endif
+```
+
+- The default `python compile.py` build compiles the `#else` branch, so the linked
+  ELF is unchanged and still byte-identical to retail.
+- `scripts/score_nm.sh` compiles the `#ifdef NON_MATCHING` body and scores it into
+  `progress/report.json`, so its `fuzzy_match_percent` ("decompiled" on decomp.dev)
+  credits the partial. The 100 %-exact `matched_functions` count is unaffected.
+
+The bar for a guarded body is **plausibility, not %**: it must read like source a
+human would write. A high score reached through cast-soup or phantom locals doesn't
+qualify — leave those as a plain `INCLUDE_ASM` stub.
 
 ## 4. Naming & conventions
 
@@ -154,11 +181,17 @@ A function is "done" only when objdiff shows it 100 % matched. Do **not** commit
 Run the relevant gates (all fast):
 
 ```bash
-python compile.py                                  # full build still links
+python compile.py                                  # full build still links + byte-matches retail
 python -m pytest tests/test_compile.py tests/test_carver.py
 scripts/checks/diff.sh src/cod/<addr>              # your unit is still matched
-python tools/gen_progress_page.py                  # refresh docs/ tracker + badges
+scripts/score_nm.sh                                # regenerate progress/report.json (scored build) + docs/
 ```
+
+`scripts/score_nm.sh` is what produces the **published** `progress/report.json` (the
+file decomp.dev ingests): it builds with `-DNON_MATCHING` so `#ifdef NON_MATCHING`
+partials are scored into `fuzzy_match_percent`, then refreshes `docs/`. The default
+`python compile.py` above remains the byte-identical build you verify your match
+against — the two are independent.
 
 Then:
 

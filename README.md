@@ -25,15 +25,24 @@ function-by-function against the retail binary with [objdiff](https://github.com
 | Data matched | **83.01 %** |
 | Translation units | 2,043 |
 
+> **Code matched (fuzzy)** is objdiff's `fuzzy_match_percent` — the "decompiled"
+> headline decomp.dev shows — and includes plausible clean-C bodies kept behind a
+> `NON_MATCHING` guard (the matching-decomp convention; see
+> [CONTRIBUTING](CONTRIBUTING.md)). **Functions matched** is the stricter,
+> 100 %-byte-exact count — partials never inflate it, and the default build stays
+> byte-identical to retail regardless.
+
 **Visual function tracker:** open the
 [**live progress tracker**](https://lucaspicoli.github.io/god-hand-decomp/progress.html) —
 a self-contained page (also openable offline as `docs/progress.html`) with a
 per-module rollup, a per-unit heatmap, and a sortable table, generated from
 [`progress/report.json`](progress/report.json).
 
-Regenerate the tracker and badges after a build:
+Regenerate the published report, tracker, and badges after a build:
 
 ```bash
+scripts/score_nm.sh                 # regenerate progress/report.json (scored build) + docs/
+# or, to refresh only docs/ from an existing report.json:
 python tools/gen_progress_page.py   # refreshes docs/progress.html + docs/badge_*.svg
 ```
 
