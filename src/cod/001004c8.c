@@ -705,3 +705,8 @@ void func_0012E640(int *a0, int a1) {
         func_0030F5A0(a0);
     }
 }
+
+__attribute__((section(".text.func_0031CFE0")))
+void func_0031CFE0(void) {
+    func_0030F348();
+}

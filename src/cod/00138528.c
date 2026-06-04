@@ -218,3 +218,18 @@ __attribute__((section(".text.func_00340AE8")))
 int func_00340AE8(int a0, int a1, int a2, int a3) {
     return func_0033B790(a0, a1, a2, a3);
 }
+
+/* writes both the func_002609E0 and func_002609F8 field blocks. */
+__attribute__((section(".text.func_002609A8")))
+void func_002609A8(char *a0, int a1, int a2, int a3, int t0, short t1) {
+    *(int*)((char*)a0+0x1874) = a1;
+    *(int*)((char*)a0+0x1870) = a2;
+    *(int*)((char*)a0+0x1878) = a3;
+    *(int*)((char*)a0+0x187C) = t0;
+    *(short*)((char*)a0+0x1880) = t1;
+    *(int*)((char*)a0+0x1888) = a1;
+    *(int*)((char*)a0+0x1884) = a2;
+    *(int*)((char*)a0+0x188C) = a3;
+    *(int*)((char*)a0+0x1890) = t0;
+    *(short*)((char*)a0+0x1894) = t1;
+}
