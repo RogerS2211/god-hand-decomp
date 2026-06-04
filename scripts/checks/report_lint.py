@@ -187,6 +187,48 @@ def lint_report(report) -> list[str]:
             f"100%-matched functions in detail ({detail_matched})"
         )
 
+    # complete_code ("fully linked") — optional axis. When present, re-derive
+    # it from the per-unit ``metadata.complete`` flags exactly as objdiff-cli /
+    # scripts/mark_complete.py do (sum of complete units' total_code), so a
+    # hand-patched *or* a legitimately regenerated report both pass.
+    if "complete_code" in measures:
+        cc = _to_int(measures["complete_code"])
+        if cc is None:
+            problems.append(
+                f"measures.complete_code is not an integer: "
+                f"{measures['complete_code']!r}"
+            )
+        else:
+            if "total_code" in ints and cc > ints["total_code"]:
+                problems.append(
+                    f"measures.complete_code ({cc}) exceeds "
+                    f"total_code ({ints['total_code']})"
+                )
+            derived = 0
+            for unit in units:
+                if not isinstance(unit, dict):
+                    continue
+                if (unit.get("metadata") or {}).get("complete"):
+                    derived += _to_int((unit.get("measures") or {}).get("total_code")) or 0
+            if cc != derived:
+                problems.append(
+                    f"measures.complete_code ({cc}) != sum of complete "
+                    f"units' total_code ({derived})"
+                )
+        ccp = measures.get("complete_code_percent")
+        if ccp is not None:
+            if not _in_range(ccp):
+                problems.append(
+                    f"measures.complete_code_percent out of range [0,100]: {ccp!r}"
+                )
+            elif cc is not None and "total_code" in ints:
+                want = _pct(cc, ints["total_code"])
+                if abs(ccp - want) > PCT_TOL:
+                    problems.append(
+                        f"measures.complete_code_percent ({ccp}) disagrees with "
+                        f"complete_code/total_code ({want:.4f})"
+                    )
+
     return problems
 
 

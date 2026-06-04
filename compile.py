@@ -1375,6 +1375,25 @@ def _ld_script_objects(
     return out
 
 
+def _tu_is_complete(name: str) -> bool:
+    """True iff unit ``name`` is a src/ TU built entirely from source.
+
+    A ``src/cod/<name>.{c,s}`` with no ``INCLUDE_ASM(`` line is 100% real
+    source; since the default build is byte-identical to retail it is
+    necessarily matched-and-linked, i.e. objdiff-``complete`` ("fully linked").
+    Mirror of scripts/mark_complete.py ``is_complete_tu`` — keep in sync.
+    """
+    if not name.startswith("src/"):
+        return False
+    for ext in (".c", ".s"):
+        src = ROOT / (name + ext)
+        if src.is_file():
+            return "INCLUDE_ASM(" not in src.read_text(
+                encoding="utf-8", errors="replace"
+            )
+    return False
+
+
 def _objdiff_units(cfg: Config, carve: Optional[CarveState] = None) -> list[dict]:
     """Build the per-unit list for ``objdiff.json`` from splat's linker entries.
 
@@ -1401,12 +1420,20 @@ def _objdiff_units(cfg: Config, carve: Optional[CarveState] = None) -> list[dict
     units: list[dict] = []
     for obj in _ld_script_objects(cfg, carve):
         rel = obj.relative_to(ROOT / build_root)
+        name = str(rel.with_suffix("")).replace(os.sep, "/")
+        metadata: dict = {"auto_generated": True}
+        # "fully linked" (objdiff ``complete``) axis: a src/ TU built entirely
+        # from source — no INCLUDE_ASM target bytes — is byte-identical to retail
+        # by construction, so it is complete. Mirror of scripts/mark_complete.py
+        # ``is_complete_tu``; keep the two in sync.
+        if _tu_is_complete(name):
+            metadata["complete"] = True
         units.append(
             {
-                "name": str(rel.with_suffix("")).replace(os.sep, "/"),
+                "name": name,
                 "target_path": (target_root / rel).as_posix(),
                 "base_path": (base_root / rel).as_posix(),
-                "metadata": {"auto_generated": True},
+                "metadata": metadata,
             }
         )
     # Per-REL units: one per asm part. The REL .o lives under

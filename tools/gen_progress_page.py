@@ -214,6 +214,7 @@ def library_panel(summary: dict | None) -> str:
 def render_html(measures: dict, units: list[dict], modules: list[dict],
                 lib_summary: dict | None = None) -> str:
     fuzzy = float(measures.get("fuzzy_match_percent", 0.0))
+    linked = float(measures.get("complete_code_percent", 0.0))
     mfunc = int(measures.get("matched_functions", 0) or 0)
     tfunc = int(measures.get("total_functions", 0) or 0)
     fpct = float(measures.get("matched_functions_percent", 0.0))
@@ -230,6 +231,7 @@ def render_html(measures: dict, units: list[dict], modules: list[dict],
 
     cards = "".join([
         card(f"{fuzzy:.2f}%", "code matched (fuzzy)", fuzzy),
+        card(f"{linked:.2f}%", "code fully linked", linked),
         card(f"{mfunc:,} / {tfunc:,}", f"functions ({fpct:.2f}%)", fpct),
         card(f"{dpct:.2f}%", "data matched", dpct),
         card(f"{tunits:,}", "translation units", 100.0),
@@ -407,14 +409,18 @@ def main(argv: list[str]) -> int:
         render_html(measures, units, modules, lib_summary))
 
     fuzzy = float(measures.get("fuzzy_match_percent", 0.0))
+    linked = float(measures.get("complete_code_percent", 0.0))
     fpct = float(measures.get("matched_functions_percent", 0.0))
     (DOCS / "badge_code.svg").write_text(
         make_badge("code matched", f"{fuzzy:.2f}%", color_for(fuzzy)))
+    (DOCS / "badge_linked.svg").write_text(
+        make_badge("fully linked", f"{linked:.2f}%", color_for(linked)))
     (DOCS / "badge_functions.svg").write_text(
         make_badge("functions", f"{fpct:.2f}%", color_for(fpct)))
 
     print(f"wrote {DOCS/'progress.html'}")
     print(f"wrote {DOCS/'badge_code.svg'}  (code {fuzzy:.2f}%)")
+    print(f"wrote {DOCS/'badge_linked.svg'}  (linked {linked:.2f}%)")
     print(f"wrote {DOCS/'badge_functions.svg'}  (functions {fpct:.2f}%)")
     return 0
 

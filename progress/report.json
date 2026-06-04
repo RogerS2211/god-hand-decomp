@@ -10,7 +10,9 @@
     "total_functions": 11785,
     "matched_functions": 1813,
     "matched_functions_percent": 15.383964,
-    "total_units": 2137
+    "total_units": 2137,
+    "complete_code": 77628,
+    "complete_code_percent": 2.6342901587741125
   },
   "units": [
     {
@@ -3521,7 +3523,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -4437,7 +4440,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -4554,7 +4558,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -4842,7 +4847,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -5058,7 +5064,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -5949,7 +5956,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -7368,7 +7376,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -7534,7 +7543,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -7616,7 +7626,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -7874,7 +7885,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -8148,7 +8160,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -8683,7 +8696,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -8765,7 +8779,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -9008,7 +9023,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -9096,7 +9112,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -9178,7 +9195,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -9302,7 +9320,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -9632,7 +9651,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -9912,7 +9932,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -10047,7 +10068,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -10424,7 +10446,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -10520,7 +10543,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -11033,7 +11057,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -11384,7 +11409,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -11580,7 +11606,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -12555,7 +12582,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -12854,7 +12882,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -13766,7 +13795,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -14160,7 +14190,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -14910,7 +14941,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -15178,7 +15210,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -16344,7 +16377,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -16537,7 +16571,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -16866,7 +16901,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -19564,7 +19600,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -20453,7 +20490,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -21342,7 +21380,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -22146,7 +22185,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -23485,7 +23525,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -23805,7 +23846,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -26950,7 +26992,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -27100,7 +27143,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -27955,7 +27999,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -28522,7 +28567,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -29858,7 +29904,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -30109,7 +30156,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -30407,7 +30455,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -31204,7 +31253,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -32081,7 +32131,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -32554,7 +32605,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -33227,7 +33279,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -33935,7 +33988,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -34671,7 +34725,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -34862,7 +34917,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -35396,7 +35452,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -36027,7 +36084,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -36633,7 +36691,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -42387,7 +42446,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -42559,7 +42619,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -43007,7 +43068,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -46027,7 +46089,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -53301,7 +53364,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -53433,7 +53497,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -53790,7 +53855,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -54539,7 +54605,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -55249,7 +55316,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -55459,7 +55527,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -59721,7 +59790,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -63820,7 +63890,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -63937,7 +64008,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -64457,7 +64529,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -64623,7 +64696,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -66549,7 +66623,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -67702,7 +67777,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -68090,7 +68166,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -68658,7 +68735,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -68979,7 +69057,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -69061,7 +69140,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -69189,7 +69269,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -70325,7 +70406,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -70407,7 +70489,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -74466,7 +74549,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -75621,7 +75705,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -76434,7 +76519,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -77498,7 +77584,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -78862,7 +78949,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -80162,7 +80250,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -82243,7 +82332,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -82520,7 +82610,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -82797,7 +82888,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -83053,7 +83145,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -83294,7 +83387,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -83727,7 +83821,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -84160,7 +84255,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -84593,7 +84689,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -85026,7 +85123,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -85459,7 +85557,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -85892,7 +85991,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -87357,7 +87457,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -88714,7 +88815,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -89357,7 +89459,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -89826,7 +89929,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -90259,7 +90363,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -90692,7 +90797,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -91125,7 +91231,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -91581,7 +91688,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -114007,7 +114115,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -123665,7 +123774,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -124445,7 +124555,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -125084,7 +125195,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -125610,7 +125722,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {
@@ -132956,7 +133069,8 @@
         }
       ],
       "metadata": {
-        "auto_generated": true
+        "auto_generated": true,
+        "complete": true
       }
     },
     {

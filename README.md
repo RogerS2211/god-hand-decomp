@@ -2,6 +2,7 @@
 
 [![Build](https://github.com/LucasPicoli/god-hand-decomp/actions/workflows/progress.yml/badge.svg)](https://github.com/LucasPicoli/god-hand-decomp/actions/workflows/progress.yml)
 [![Code matched](docs/badge_code.svg)](https://lucaspicoli.github.io/god-hand-decomp/progress.html)
+[![Fully linked](docs/badge_linked.svg)](https://lucaspicoli.github.io/god-hand-decomp/progress.html)
 [![Functions matched](docs/badge_functions.svg)](https://lucaspicoli.github.io/god-hand-decomp/progress.html)
 
 A work-in-progress **matching decompilation** of **God Hand** — the 2006
@@ -20,17 +21,21 @@ function-by-function against the retail binary with [objdiff](https://github.com
 
 | Metric | Value |
 | --- | --- |
-| Code matched (fuzzy) | **3.02 %** |
-| Functions matched | **1,735 / 11,199** (15.49 %) |
+| Code matched (fuzzy) | **3.14 %** |
+| Code fully linked | **2.63 %** |
+| Functions matched | **1,813 / 11,785** (15.38 %) |
 | Data matched | **83.01 %** |
-| Translation units | 2,043 |
+| Translation units | 2,137 |
 
-> **Code matched (fuzzy)** is objdiff's `fuzzy_match_percent` — the "decompiled"
-> headline decomp.dev shows — and includes plausible clean-C bodies kept behind a
-> `NON_MATCHING` guard (the matching-decomp convention; see
-> [CONTRIBUTING](CONTRIBUTING.md)). **Functions matched** is the stricter,
-> 100 %-byte-exact count — partials never inflate it, and the default build stays
-> byte-identical to retail regardless.
+> Three code axes, all from objdiff's report — the same three decomp.dev shows.
+> **Code matched (fuzzy)** is `fuzzy_match_percent` (decomp.dev's "decompiled"
+> headline); it includes plausible clean-C bodies kept behind a `NON_MATCHING`
+> guard (the matching-decomp convention; see [CONTRIBUTING](CONTRIBUTING.md)).
+> **Code fully linked** is `complete_code_percent` (decomp.dev's "fully linked") —
+> the share of `.text` in TUs built *entirely* from source, i.e. decompiled and
+> linked, not merely byte-matched in place. **Functions matched** is the strict
+> 100 %-byte-exact count. Partials never inflate the latter two, and the default
+> build stays byte-identical to retail regardless.
 
 **Visual function tracker:** open the
 [**live progress tracker**](https://lucaspicoli.github.io/god-hand-decomp/progress.html) —

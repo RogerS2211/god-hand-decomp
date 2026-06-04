@@ -50,6 +50,9 @@ if [[ $REGEN -eq 1 ]]; then
     mkdir -p "$(dirname "$REPORT")"
     "$OBJDIFF_CLI" report generate -o "$REPORT" -f json-pretty >/dev/null 2>&1 \
         || { echo "objdiff-cli report generate failed" >&2; exit 1; }
+    # Derive the "fully linked" (objdiff complete) axis into the report.
+    python3 "$ROOT/scripts/mark_complete.py" >/dev/null \
+        || { echo "mark_complete failed" >&2; exit 1; }
 fi
 
 if [[ ! -f "$REPORT" ]]; then

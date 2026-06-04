@@ -148,6 +148,83 @@ def test_function_percent_out_of_range_is_flagged(lint):
     assert problems  # some problem reported
 
 
+def _report_with_complete():
+    """A consistent report carrying the complete ("fully linked") axis.
+
+    Unit A (100 B) is flagged complete; unit B is not. complete_code therefore
+    equals A's total_code, and the percent agrees with complete_code/total_code.
+    """
+    return {
+        "version": 2,
+        "measures": {
+            "total_code": "300",
+            "matched_code": "100",
+            "matched_code_percent": 100.0 / 3,
+            "total_data": "0",
+            "matched_data": "0",
+            "matched_data_percent": 0.0,
+            "total_functions": 2,
+            "matched_functions": 1,
+            "matched_functions_percent": 50.0,
+            "total_units": 2,
+            "fuzzy_match_percent": 100.0 / 3,
+            "complete_code": 100,
+            "complete_code_percent": 100.0 / 3,
+        },
+        "units": [
+            {
+                "name": "src/cod/done",
+                "metadata": {"complete": True},
+                "measures": {"total_code": "100", "fuzzy_match_percent": 100.0},
+                "functions": [
+                    {"name": "a", "size": "100", "fuzzy_match_percent": 100.0}
+                ],
+            },
+            {
+                "name": "src/cod/wip",
+                "measures": {"total_code": "200", "fuzzy_match_percent": 0.0},
+                "functions": [
+                    {"name": "b", "size": "200", "fuzzy_match_percent": 0.0}
+                ],
+            },
+        ],
+        "categories": [],
+    }
+
+
+def test_consistent_complete_code_passes(lint):
+    assert lint.lint_report(_report_with_complete()) == []
+
+
+def test_complete_code_disagreeing_with_flagged_units_is_flagged(lint):
+    # Headline claims 250 B complete, but only one 100 B unit is flagged.
+    r = _report_with_complete()
+    r["measures"]["complete_code"] = 250
+    problems = lint.lint_report(r)
+    assert any("complete_code" in p for p in problems)
+
+
+def test_complete_code_percent_inconsistent_is_flagged(lint):
+    r = _report_with_complete()
+    r["measures"]["complete_code_percent"] = 99.0  # bytes say 100/300 = 33%
+    problems = lint.lint_report(r)
+    assert any("complete_code_percent" in p for p in problems)
+
+
+def test_complete_code_exceeding_total_is_flagged(lint):
+    r = _report_with_complete()
+    r["units"][0]["measures"]["total_code"] = "400"
+    r["measures"]["complete_code"] = 400  # > total_code (300)
+    problems = lint.lint_report(r)
+    assert any("complete_code" in p for p in problems)
+
+
+def test_report_without_complete_axis_still_passes(lint):
+    # The complete axis is optional: a report with no complete_code (older
+    # objdiff output) must not be penalised.
+    assert lint.lint_report(_good_report()) == []
+
+
 def test_committed_report_is_clean(lint):
     """The report.json actually committed to the repo must pass the lint."""
     report = json.loads((ROOT / "progress" / "report.json").read_text())
