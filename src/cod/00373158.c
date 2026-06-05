@@ -5,8 +5,8 @@ extern void func_003745C0(void *, int, float, int);
 extern void func_00373FF0(void *, int, float);
 extern char D_00754210[];
 
-__attribute__((section(".text.func_00373158")))
-int func_00373158(void *a0, int a1) {
+__attribute__((section(".text.SetSequenceEntry_373158")))
+int SetSequenceEntry_373158(void *a0, int a1) {
     char *s0 = (char*)a0;
     char *p0;
     char *p1;
@@ -45,13 +45,13 @@ int func_00373158(void *a0, int a1) {
     }
     *(int*)(s0+0x4C) = *(int*)(s0+0x4C) | 0x2;
     if (s1 == 0) {
-        func_003733C8(s0);
+        ResetNodeData_3733C8(s0);
     }
     return s1;
 }
 
-__attribute__((section(".text.func_00373298")))
-int func_00373298(void *a0, int a1) {
+__attribute__((section(".text.UpdateSequenceEntry_373298")))
+int UpdateSequenceEntry_373298(void *a0, int a1) {
     char *s0 = (char*)a0;
     char *p0;
     char *p1;
@@ -91,7 +91,7 @@ int func_00373298(void *a0, int a1) {
         s1 = func_00373F38(s0, *(int*)(s0+0x74), *(int*)(s0+0x70), s1, reset);
     }
     if (s1 == 0) {
-        func_003733C8(s0);
+        ResetNodeData_3733C8(s0);
     }
     return s1;
 }
@@ -134,7 +134,7 @@ __attribute__((section(".text.func_00373690")))
 void func_00373690(void *a0, int a1, int a2) {
     if (func_00373A50(a0)) {
         if (*(int*)((char*)a0+0x58) >= 2) {
-            func_00374820(a0, a2, a1);
+            ForwardCollectionItems_374820(a0, a2, a1);
         } else {
             func_00374120(a0, a2, a1);
         }
@@ -150,8 +150,8 @@ void func_00373708(void *a0, int a1, int a2) {
     }
 }
 
-__attribute__((section(".text.func_00373770")))
-int func_00373770(void *a0) {
+__attribute__((section(".text.GetSequenceResult_373770")))
+int GetSequenceResult_373770(void *a0) {
     if (!func_00373A50(a0)) {
         return 0;
     }
@@ -161,23 +161,23 @@ int func_00373770(void *a0) {
     return func_003748A8(a0);
 }
 
-__attribute__((section(".text.func_003737C8")))
-int func_003737C8(void *a0, int a1) {
+__attribute__((section(".text.IsSequenceFlagSet_3737C8")))
+int IsSequenceFlagSet_3737C8(void *a0, int a1) {
     if (!func_00373A50(a0)) {
         return 0;
     }
     return (*(int*)((char*)a0+0x4C) & a1) != 0;
 }
 
-__attribute__((section(".text.func_00373810")))
-void func_00373810(void *a0, int a1) {
+__attribute__((section(".text.SetSequenceFlags_373810")))
+void SetSequenceFlags_373810(void *a0, int a1) {
     if (func_00373A50(a0)) {
         *(int*)((char*)a0+0x4C) = *(int*)((char*)a0+0x4C) | a1;
     }
 }
 
-__attribute__((section(".text.func_00373938")))
-float func_00373938(void *a0, int a1) {
+__attribute__((section(".text.GetSequenceBlendWeight_373938")))
+float GetSequenceBlendWeight_373938(void *a0, int a1) {
     float r;
     if (!func_00373A50(a0)) {
         r = 0.0f;
@@ -189,8 +189,8 @@ float func_00373938(void *a0, int a1) {
     return r;
 }
 
-__attribute__((section(".text.func_003739A0")))
-void func_003739A0(void *a0, int a1, float f) {
+__attribute__((section(".text.SetSequenceBlendWeight_3739A0")))
+void SetSequenceBlendWeight_3739A0(void *a0, int a1, float f) {
     if (!func_00373A50(a0)) {
         return;
     }
@@ -207,8 +207,8 @@ void func_003739A0(void *a0, int a1, float f) {
     }
 }
 
-__attribute__((section(".text.func_00373A18")))
-void func_00373A18(void *a0, int a1) {
+__attribute__((section(".text.SetSequenceParam_373A18")))
+void SetSequenceParam_373A18(void *a0, int a1) {
     if (func_00373A50(a0)) {
         *(int *)((char *)a0 + 0x50) = a1;
     }
@@ -227,8 +227,8 @@ int func_00373B68(void *a0) {
     return *(int *)((char *)a0 + 0x10);
 }
 
-__attribute__((section(".text.func_00373D48")))
-void func_00373D48(int *a0) {
+__attribute__((section(".text.FreeSequenceNode_373D48")))
+void FreeSequenceNode_373D48(int *a0) {
     int *s0 = a0;
     if (s0[0] != 0) {
         func_003298C0(s0[0]);
@@ -236,8 +236,8 @@ void func_00373D48(int *a0) {
     }
 }
 
-__attribute__((section(".text.func_00374318")))
-void func_00374318(int *a0) {
+__attribute__((section(".text.ClearSequenceNode_374318")))
+void ClearSequenceNode_374318(int *a0) {
     int *s0 = a0;
     if (s0[0] != 0) {
         func_0032D6F0(s0[0]);

@@ -21,8 +21,8 @@ int func_00317420(void){
     return func_0017B870(s0);
 }
 
-__attribute__((section(".text.func_00317490")))
-int func_00317490(void){
+__attribute__((section(".text.Setup_0x780_17C4A8_317490")))
+int Setup_0x780_17C4A8_317490(void){
     void *s0;
     if (D_00747A34 & 0x10000) return 0;
     s0 = func_0030EE08(0x780, 0x10, D_00754C10);

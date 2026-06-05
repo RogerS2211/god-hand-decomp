@@ -17,8 +17,8 @@ void func_00170990(int a0) {
     func_002CBA48(D_005FEE00, 2, 0xC, a0, 0, 0, 0, 0);
 }
 
-__attribute__((section(".text.func_00170A08")))
-int *func_00170A08(void) {
+__attribute__((section(".text.GetOrInitSingleton785818_170A08")))
+int *GetOrInitSingleton785818_170A08(void) {
     if (D_00785818 == 0) {
         func_001C0018();
         func_0031EEA8(&D_00785818, &D_00420768, &D_00785808);
@@ -26,15 +26,15 @@ int *func_00170A08(void) {
     return &D_00785818;
 }
 
-__attribute__((section(".text.func_00170A58")))
-int func_00170A58(int a0) {
+__attribute__((section(".text.InitActorSetVtable_170A58")))
+int InitActorSetVtable_170A58(int a0) {
     func_001BFAC8(a0);
     *(int *)(a0 + 0x214) = (int)&D_00420780;
     return a0;
 }
 
-__attribute__((section(".text.func_00170A90")))
-int func_00170A90(int a0, int a1) {
+__attribute__((section(".text.FreeActorVtableState_170A90")))
+int FreeActorVtableState_170A90(int a0, int a1) {
     int v1;
     *(int *)(a0 + 0x214) = (int)&D_00420780;
     v1 = *(int *)(a0 + 0x600);
@@ -61,16 +61,16 @@ void *func_00170C98(void)
     return &D_00785828;
 }
 
-__attribute__((section(".text.func_00170CE8")))
-void *func_00170CE8(void *a0)
+__attribute__((section(".text.InitActorSetVtable2_170CE8")))
+void *InitActorSetVtable2_170CE8(void *a0)
 {
     func_001BFAC8(a0);
     *(int *)((char *)a0 + 0x214) = (int)&D_00420850;
     return a0;
 }
 
-__attribute__((section(".text.func_00170D20")))
-void func_00170D20(void *a0, void *a1)
+__attribute__((section(".text.FreeActorVtableState2_170D20")))
+void FreeActorVtableState2_170D20(void *a0, void *a1)
 {
     int v1;
     *(int *)((char *)a0 + 0x214) = (int)&D_00420850;
@@ -92,8 +92,8 @@ void *func_00170EB0(void)
     return &D_00785838;
 }
 
-__attribute__((section(".text.func_00170F00")))
-void *func_00170F00(void *a0)
+__attribute__((section(".text.InitActorBD580Vtable_170F00")))
+void *InitActorBD580Vtable_170F00(void *a0)
 {
     func_001BD580(a0);
     *(int *)((char *)a0 + 0x214) = (int)&D_00420920;

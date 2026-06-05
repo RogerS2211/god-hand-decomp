@@ -17,8 +17,8 @@ void func_00331C78(int a0) {
     D_003D847C = a0;
 }
 
-__attribute__((section(".text.func_00329F98")))
-int func_00329F98(int a0) {
+__attribute__((section(".text.GuardedCall_00329FD0_329F98")))
+int GuardedCall_00329FD0_329F98(int a0) {
     int r;
     func_0033E6A8(a0);
     r = func_00329FD0(a0);

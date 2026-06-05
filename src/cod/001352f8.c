@@ -9,8 +9,8 @@ void func_001352F8(int a0, int a1) {
     }
 }
 
-__attribute__((section(".text.func_00135328")))
-void func_00135328(void) {
+__attribute__((section(".text.Forward1352F8_135328")))
+void Forward1352F8_135328(void) {
     func_001352F8(1, 0xFFFF);
 }
 
@@ -28,7 +28,7 @@ void func_00139010(int a0, int a1) {
     }
 }
 
-__attribute__((section(".text.func_00139040")))
-void func_00139040(void) {
+__attribute__((section(".text.Forward139010_139040")))
+void Forward139010_139040(void) {
     func_00139010(1, 0xFFFF);
 }

@@ -13,20 +13,20 @@ int func_003059A8(void *a0, int a1, void *a2) {
     return 0;
 }
 
-__attribute__((section(".text.func_003733C8")))
-void func_003733C8(void *a0) {
+__attribute__((section(".text.ResetNodeData_3733C8")))
+void ResetNodeData_3733C8(void *a0) {
     if (func_00373A50(a0) != 0) {
         if (func_00373B20(a0) == 1) {
-            func_00374318(a0);
+            ClearSequenceNode_374318(a0);
         } else {
-            func_00373D48(a0);
+            FreeSequenceNode_373D48(a0);
         }
         func_003A52F0(a0, 0, 0x84);
     }
 }
 
-__attribute__((section(".text.func_0012CC00")))
-void func_0012CC00(char *a0)
+__attribute__((section(".text.ClearLinkedTarget_12CC00")))
+void ClearLinkedTarget_12CC00(char *a0)
 {
 	char *p;
 

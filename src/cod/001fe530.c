@@ -30,19 +30,19 @@ void *func_001FE5E0(void) {
     return &D_007861B8;
 }
 
-__attribute__((section(".text.func_001FE6C8")))
-void func_001FE6C8(int *a0, int a1) { int i = a0[1]; while (--i != -1) func_001FF028((void *)(a0[2] + i * 0x5C)); a0[0] = a1; }
+__attribute__((section(".text.ResetSlotArray_1FE6C8")))
+void ResetSlotArray_1FE6C8(int *a0, int a1) { int i = a0[1]; while (--i != -1) func_001FF028((void *)(a0[2] + i * 0x5C)); a0[0] = a1; }
 
-__attribute__((section(".text.func_001FE9B8")))
-int func_001FE9B8(void *a0) {
+__attribute__((section(".text.GetActiveEntry_1FE9B8")))
+int GetActiveEntry_1FE9B8(void *a0) {
     int v1 = func_001FEE00(a0);
     if (v1 >= 0)
-        return func_001FF238(*(int*)((char*)a0+8) + v1*0x5C);
+        return UpdateStateReady_1FF238(*(int*)((char*)a0+8) + v1*0x5C);
     return 0;
 }
 
-__attribute__((section(".text.func_001FEA00")))
-int func_001FEA00(void *a0) {
+__attribute__((section(".text.GetEntryParam_1FEA00")))
+int GetEntryParam_1FEA00(void *a0) {
     int r = func_001FEE00(a0);
     if (r >= 0)
         return *(int*)(*(int*)((char*)a0+8) + r*0x5C + 0x10);
@@ -69,8 +69,8 @@ int func_001FECE0(void *a0, int a1, int a2) {
     return 1;
 }
 
-__attribute__((section(".text.func_001FF238")))
-int func_001FF238(void *a0) {
+__attribute__((section(".text.UpdateStateReady_1FF238")))
+int UpdateStateReady_1FF238(void *a0) {
     int v1;
     int ret;
     if ((*(int*)((char*)a0+8) & 1) == 0) goto common;
@@ -86,7 +86,7 @@ common:
     v1 = *(int*)((char*)a0+0x20);
 check:
     if (v1 != 0xFFFF) {
-        if (func_001FF540(a0) == 0) return 0;
+        if (IsSlotArrayValid_1FF540(a0) == 0) return 0;
     }
     v1 = 2;
     *(int*)((char*)a0+0) = v1;

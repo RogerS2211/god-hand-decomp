@@ -11,8 +11,8 @@ extern void func_00297660(void);
 extern void func_00299320(void *a0, int a1);
 extern unsigned char D_00586B30[];
 
-__attribute__((section(".text.func_00297450")))
-void func_00297450(void *a0) {
+__attribute__((section(".text.LoadDisplayText_297450")))
+void LoadDisplayText_297450(void *a0) {
     unsigned char *s0 = (unsigned char *)a0;
     char buf[0x40];
     unsigned long b = *(unsigned char *)(s0 + 8);
@@ -31,8 +31,8 @@ void func_00297450(void *a0) {
     }
 }
 
-__attribute__((section(".text.func_002974F0")))
-void func_002974F0(void *a0) {
+__attribute__((section(".text.ClearDisplayText_2974F0")))
+void ClearDisplayText_2974F0(void *a0) {
     unsigned char *s0 = (unsigned char *)a0;
     unsigned long v0 = *(unsigned char *)(s0 + 8);
     if (v0 >> 7) {
@@ -41,8 +41,8 @@ void func_002974F0(void *a0) {
     }
 }
 
-__attribute__((section(".text.func_002975F8")))
-void func_002975F8(void *a0, int a1) {
+__attribute__((section(".text.InitSubState_2975F8")))
+void InitSubState_2975F8(void *a0, int a1) {
     unsigned char *s0 = (unsigned char *)a0;
     unsigned long t = *(int *)(s0 + 8);
     if (((t >> 1) & 1) == 0) {

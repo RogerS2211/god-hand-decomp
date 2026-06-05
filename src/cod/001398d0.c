@@ -46,20 +46,20 @@ void func_001BB508(void *a0) {
 
 __attribute__((section(".text.func_001D55D0")))
 void func_001D55D0(void *a0, int a1) {
-    func_001D51B8(a0, 0x21, a1);
-    func_001D51B8(a0, 0x22, 1);
+    SetFlagOnEntries7C_1D51B8(a0, 0x21, a1);
+    SetFlagOnEntries7C_1D51B8(a0, 0x22, 1);
 }
 
 __attribute__((section(".text.func_001D5610")))
 void func_001D5610(void *a0, int a1) {
-    func_001D51B8(a0, 0x7, a1);
-    func_001D51B8(a0, 0x8, 1);
+    SetFlagOnEntries7C_1D51B8(a0, 0x7, a1);
+    SetFlagOnEntries7C_1D51B8(a0, 0x8, 1);
 }
 
 __attribute__((section(".text.func_001D5650")))
 void func_001D5650(void *a0, int a1) {
-    func_001D51B8(a0, 0x5, a1);
-    func_001D51B8(a0, 0x6, 1);
+    SetFlagOnEntries7C_1D51B8(a0, 0x5, a1);
+    SetFlagOnEntries7C_1D51B8(a0, 0x6, 1);
 }
 
 __attribute__((section(".text.func_001E79A8")))
@@ -71,7 +71,7 @@ void func_001E79A8(int *a0, int a1) {
 __attribute__((section(".text.func_001E8798")))
 int func_001E8798(int a0)
 {
-    func_001E8DA8(a0);
+    InitStructAndSubfields_1E8DA8(a0);
     *(int *)(a0 + 0xC0) = 0;
     *(float *)(a0 + 0xBC) = 0.13425609469413757f;
     return a0;
@@ -86,8 +86,8 @@ int func_001F3580(int a0)
     return a0;
 }
 
-__attribute__((section(".text.func_001F6E98")))
-int func_001F6E98(int a0, int a1)
+__attribute__((section(".text.Tramp_003B4AD8_1F6E98")))
+int Tramp_003B4AD8_1F6E98(int a0, int a1)
 {
     func_003B4AD8(D_00568280, a0, a1);
     return a1;
@@ -96,7 +96,7 @@ int func_001F6E98(int a0, int a1)
 __attribute__((section(".text.func_00295CA8")))
 int func_00295CA8(int a0)
 {
-    if (func_00295978(a0) == 0) {
+    if (FindResolveActor_295978(a0) == 0) {
         return 1;
     }
     return func_0028FB38(*(int *)(a0 + 4));
@@ -108,8 +108,8 @@ void func_002A71B0(void)
     D_007474A0[0x608 / 4] = func_0031CCF0(D_007474A0[0x5AC / 4], D_0044ADD8, 0);
 }
 
-__attribute__((section(".text.func_002B8AE0")))
-int func_002B8AE0(int a0)
+__attribute__((section(".text.InitVtableEntry_2B8AE0")))
+int InitVtableEntry_2B8AE0(int a0)
 {
     func_002BA178(a0, 0x26C, 2);
     *(int *)(a0 + 0x18) = (int)&D_0044BA68;
@@ -145,10 +145,10 @@ void func_002CA518(void *a0)
 	func_002CB200(a0);
 }
 
-__attribute__((section(".text.func_002CC500")))
-void *func_002CC500(void *a0)
+__attribute__((section(".text.InitActorVtable_2CC500")))
+void *InitActorVtable_2CC500(void *a0)
 {
-	int r = func_00372C68(a0);
+	int r = Obj0000_Set_Field_80_372C68(a0);
 	*(int **)((char *)a0 + 0x80) = &D_0044CEE8;
 	func_002CC578(a0);
 	return a0;
@@ -159,7 +159,7 @@ void func_002D3710(int *a0)
 {
 	int x = *a0;
 	if (x != 0)
-		func_00345EC8(x);
+		Forward345EE0_345EC8(x);
 	func_002D40F8(a0);
 }
 
@@ -172,8 +172,8 @@ void func_002FA310(void)
 	func_00305C20(&D_007419A0);
 }
 
-__attribute__((section(".text.func_002FBD98")))
-void *func_002FBD98(void *a0) {
+__attribute__((section(".text.InitObjectVtable_2FBD98")))
+void *InitObjectVtable_2FBD98(void *a0) {
     func_002B5C20(a0, 0, 0);
     *(int **)((char *)a0 + 0xF0) = &D_0044FB60;
     return a0;

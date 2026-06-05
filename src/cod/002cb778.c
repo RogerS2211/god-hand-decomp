@@ -4,8 +4,8 @@ extern int D_00747A34;
 extern char D_00754C10[];
 extern char D_00754220[];
 
-__attribute__((section(".text.func_002CB778")))
-int func_002CB778(int a0, int a1)
+__attribute__((section(".text.IsSlotAvailable_2CB778")))
+int IsSlotAvailable_2CB778(int a0, int a1)
 {
     int *p;
     if (a1 == -1) return 1;
@@ -20,11 +20,11 @@ int func_002CB778(int a0, int a1)
  * real C match.  Reverted to INCLUDE_ASM pending an authentic re-match
  * (restructure -> decomp-permuter -> C++ TU).  Retail asm + matching
  * analysis preserved in the comments above for the retry. */
-INCLUDE_ASM("nonmatching", func_002CD6D0);
+INCLUDE_ASM("nonmatching", InitSlotContext_2CD6D0);
 
 
-__attribute__((section(".text.func_00309028")))
-void func_00309028(char *a0)
+__attribute__((section(".text.Setup_00309028_309028")))
+void Setup_00309028_309028(char *a0)
 {
     func_003A52F0((int)a0, 0, 0x2E0);
     *(char *)(a0 + 0x8D) = 6;
@@ -40,8 +40,8 @@ void func_00309028(char *a0)
     *(short *)(a0 + 0xA4) = 0;
 }
 
-__attribute__((section(".text.func_00312F00")))
-void *func_00312F00(void)
+__attribute__((section(".text.AllocAndInitSystem_312F00")))
+void *AllocAndInitSystem_312F00(void)
 {
     void *p;
     if (!(D_00747A34 & 0x10000))

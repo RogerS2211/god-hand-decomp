@@ -16,8 +16,8 @@ void func_00147BF8(int a0, int a1, int a2) {
     Tramp_func_0030A2E0_00147548(a0, a1, buf);
 }
 
-__attribute__((section(".text.func_00161780")))
-void func_00161780(int a0) {
+__attribute__((section(".text.ResetObjFields4C48_161780")))
+void ResetObjFields4C48_161780(int a0) {
     char *p;
     Obj0000_Set_D_007474A0_Fields_5D8_5E0(a0);
     func_002AA078(a0);
@@ -27,8 +27,8 @@ void func_00161780(int a0) {
     func_00161590(a0);
 }
 
-__attribute__((section(".text.func_00161CC0")))
-void func_00161CC0(int a0) {
+__attribute__((section(".text.ResetObjFields3430_161CC0")))
+void ResetObjFields3430_161CC0(int a0) {
     char *p;
     Obj0000_Set_D_007474A0_Fields_5D8_5E0(a0);
     func_002AA078(a0);
@@ -38,8 +38,8 @@ void func_00161CC0(int a0) {
     func_00161590(a0);
 }
 
-__attribute__((section(".text.func_001632A0")))
-void func_001632A0(int a0) {
+__attribute__((section(".text.ResetObjFields9820_1632A0")))
+void ResetObjFields9820_1632A0(int a0) {
     int *v1;
     Obj0000_Set_D_007474A0_Fields_5D8_5E0(a0);
     func_002AA078(a0);

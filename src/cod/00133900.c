@@ -142,8 +142,8 @@ int func_00304DF0(int a0) {
     return a0;
 }
 
-__attribute__((section(".text.func_00379EC0")))
-int func_00379EC0(int a0) {
+__attribute__((section(".text.IsActorActiveOrReady_379EC0")))
+int IsActorActiveOrReady_379EC0(int a0) {
     if (func_00379F00(a0) != 0) {
         return 1;
     }
@@ -158,8 +158,8 @@ void func_0037B620(int a0) {
     func_0037BC90(a0);
 }
 
-__attribute__((section(".text.func_00133900")))
-int *func_00133900(void)
+__attribute__((section(".text.GetOrInitSingleton_133900")))
+int *GetOrInitSingleton_133900(void)
 {
     if (D_00460D08 == 0) {
         func_0031EEC8(&D_00460D08, &D_0041D618);
@@ -167,8 +167,8 @@ int *func_00133900(void)
     return &D_00460D08;
 }
 
-__attribute__((section(".text.func_00134270")))
-int *func_00134270(void)
+__attribute__((section(".text.GetOrInit_D460D10_134270")))
+int *GetOrInit_D460D10_134270(void)
 {
     if (D_00460D10 == 0) {
         func_0031EEC8(&D_00460D10, &D_0041D830);
@@ -185,8 +185,8 @@ int *func_00138B78(void)
     return &D_00460D20;
 }
 
-__attribute__((section(".text.func_0013C758")))
-int *func_0013C758(void)
+__attribute__((section(".text.GetOrInitSingletonC_13C758")))
+int *GetOrInitSingletonC_13C758(void)
 {
     if (D_00460D28 == 0) {
         func_0031EEC8(&D_00460D28, &D_0041DD00);
@@ -210,24 +210,24 @@ void func_00145160(void *a0, int a1)
     *(int *)((char *)a0 + 0x90) |= 0x40000000;
 }
 
-__attribute__((section(".text.func_00150638")))
-void *func_00150638(void) {
+__attribute__((section(".text.GetOrInitSingletonD_150638")))
+void *GetOrInitSingletonD_150638(void) {
     if (D_00460D30 == 0) {
         func_0031EEC8(&D_00460D30, &D_0041ECB8);
     }
     return &D_00460D30;
 }
 
-__attribute__((section(".text.func_00161628")))
-void *func_00161628(void) {
+__attribute__((section(".text.GetOrInit_00460D38_161628")))
+void *GetOrInit_00460D38_161628(void) {
     if (D_00460D38 == 0) {
         func_0031EEC8(&D_00460D38, &D_0041F1D0);
     }
     return &D_00460D38;
 }
 
-__attribute__((section(".text.func_001BE8B0")))
-void *func_001BE8B0(void *a0) {
+__attribute__((section(".text.InitActorWithVtableAndTimer_1BE8B0")))
+void *InitActorWithVtableAndTimer_1BE8B0(void *a0) {
     func_001B6E90(a0);
     *(int *)((char *)a0 + 0x604) = 0x3E9;
     *(int *)((char *)a0 + 0x214) = (int)&D_00429620;

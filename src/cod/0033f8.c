@@ -4,8 +4,8 @@
 /* ── Forward declarations ───────────────────────────────────────────────── */
 extern void func_003A52F0(void *a0, int a1, int a2);
 extern void func_0033E6B8();          /* K&R: fp args, complex signature    */
-extern void func_0033B658(void);
-extern void func_0033B670(void);
+extern void Forward33B568_33B658(void);
+extern void Forward33B5C8_33B670(void);
 extern void func_0033F130(void);
 
 /* ── Extern globals ─────────────────────────────────────────────────────── */
@@ -115,13 +115,13 @@ void Obj33F8_SetFlag_D003EB850_FB68(void) {
 
 /* ── Simple tail-call trampolines (addiu; sd $ra; ld $ra; j target) ─────── */
 
-/* Obj33F8_Tramp_0033B658_FC70 → j func_0033B658 */
+/* Obj33F8_Tramp_0033B658_FC70 → j Forward33B568_33B658 */
 __attribute__((section(".text.Obj33F8_Tramp_0033B658_FC70")))
-void Obj33F8_Tramp_0033B658_FC70(void) { func_0033B658(); }
+void Obj33F8_Tramp_0033B658_FC70(void) { Forward33B568_33B658(); }
 
-/* Obj33F8_Tramp_0033B670_FC88 → j func_0033B670 */
+/* Obj33F8_Tramp_0033B670_FC88 → j Forward33B5C8_33B670 */
 __attribute__((section(".text.Obj33F8_Tramp_0033B670_FC88")))
-void Obj33F8_Tramp_0033B670_FC88(void) { func_0033B670(); }
+void Obj33F8_Tramp_0033B670_FC88(void) { Forward33B5C8_33B670(); }
 
 /* ── Obj33F8_NoOp_FCA0 — empty function (jr $ra; nop) ───────────────────────── */
 __attribute__((section(".text.Obj33F8_NoOp_FCA0")))

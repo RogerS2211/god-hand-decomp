@@ -234,8 +234,8 @@ void func_0017F9D8(unsigned char *a0)
     }
 }
 
-__attribute__((section(".text.func_001B7118")))
-int func_001B7118(int a0, int a1) {
+__attribute__((section(".text.SetActorLink_1B7118")))
+int SetActorLink_1B7118(int a0, int a1) {
     int v1;
     int p;
     short off;
@@ -679,14 +679,14 @@ int func_001004C8(int a0) {
     if (D_00747A80 & 0x200000) {
         return 1;
     }
-    return func_0014B470(a0) != 0;
+    return IsTargetVisible_14B470(a0) != 0;
 }
 
 __attribute__((section(".text.func_0012D178")))
 void func_0012D178(int *a0, int a1) {
     *(int *)((char *)a0 + 0x5C) = (int)D_0041D5A8;
     if (a1 & 1) {
-        func_0030F5A0(a0);
+        ForwardFieldNeg20_002A9680_30F5A0(a0);
     }
 }
 
@@ -694,7 +694,7 @@ __attribute__((section(".text.func_0012DC88")))
 void func_0012DC88(int *a0, int a1) {
     *(int *)((char *)a0 + 0x5C) = (int)D_0041D5A8;
     if (a1 & 1) {
-        func_0030F5A0(a0);
+        ForwardFieldNeg20_002A9680_30F5A0(a0);
     }
 }
 
@@ -702,11 +702,11 @@ __attribute__((section(".text.func_0012E640")))
 void func_0012E640(int *a0, int a1) {
     *(int *)((char *)a0 + 0x198) = (int)D_0041D540;
     if (a1 & 1) {
-        func_0030F5A0(a0);
+        ForwardFieldNeg20_002A9680_30F5A0(a0);
     }
 }
 
-__attribute__((section(".text.func_0031CFE0")))
-void func_0031CFE0(void) {
+__attribute__((section(".text.Forward30F348_31CFE0")))
+void Forward30F348_31CFE0(void) {
     func_0030F348();
 }

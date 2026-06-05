@@ -1,8 +1,8 @@
 extern int D_00747A34;
 extern char D_00754C10[];
 
-__attribute__((section(".text.func_00316230")))
-int func_00316230(void){
+__attribute__((section(".text.ForwardInitObject_316230")))
+int ForwardInitObject_316230(void){
     void *s0;
     if (D_00747A34 & 0x10000) return 0;
     s0 = func_0030EE08(0x980, 0x10, D_00754C10);
@@ -11,8 +11,8 @@ int func_00316230(void){
     return func_001B2220(s0);
 }
 
-__attribute__((section(".text.func_003162A0")))
-int func_003162A0(void){
+__attribute__((section(".text.ForwardInitObject_3162A0")))
+int ForwardInitObject_3162A0(void){
     void *s0;
     if (D_00747A34 & 0x10000) return 0;
     s0 = func_0030EE08(0x640, 0x10, D_00754C10);
@@ -21,8 +21,8 @@ int func_003162A0(void){
     return func_001B24E8(s0);
 }
 
-__attribute__((section(".text.func_00316310")))
-int func_00316310(void){
+__attribute__((section(".text.ForwardInitObject_316310")))
+int ForwardInitObject_316310(void){
     void *s0;
     if (D_00747A34 & 0x10000) return 0;
     s0 = func_0030EE08(0x770, 0x10, D_00754C10);
@@ -31,8 +31,8 @@ int func_00316310(void){
     return func_001B36E0(s0);
 }
 
-__attribute__((section(".text.func_00316380")))
-int func_00316380(void){
+__attribute__((section(".text.ForwardInitObject_316380")))
+int ForwardInitObject_316380(void){
     void *s0;
     if (D_00747A34 & 0x10000) return 0;
     s0 = func_0030EE08(0x970, 0x10, D_00754C10);
@@ -41,8 +41,8 @@ int func_00316380(void){
     return func_001B39D0(s0);
 }
 
-__attribute__((section(".text.func_003163F0")))
-int func_003163F0(void){
+__attribute__((section(".text.ForwardInitObject_3163F0")))
+int ForwardInitObject_3163F0(void){
     void *s0;
     if (D_00747A34 & 0x10000) return 0;
     s0 = func_0030EE08(0x860, 0x10, D_00754C10);
@@ -51,8 +51,8 @@ int func_003163F0(void){
     return func_001B56D8(s0);
 }
 
-__attribute__((section(".text.func_00316460")))
-int func_00316460(void){
+__attribute__((section(".text.ForwardInitObject_316460")))
+int ForwardInitObject_316460(void){
     void *s0;
     if (D_00747A34 & 0x10000) return 0;
     s0 = func_0030EE08(0x630, 0x10, D_00754C10);
@@ -61,8 +61,8 @@ int func_00316460(void){
     return func_001B6710(s0);
 }
 
-__attribute__((section(".text.func_003164D0")))
-int func_003164D0(void){
+__attribute__((section(".text.ForwardInitObject_3164D0")))
+int ForwardInitObject_3164D0(void){
     void *s0;
     if (D_00747A34 & 0x10000) return 0;
     s0 = func_0030EE08(0x610, 0x10, D_00754C10);
@@ -71,8 +71,8 @@ int func_003164D0(void){
     return func_001B8108(s0);
 }
 
-__attribute__((section(".text.func_00316540")))
-int func_00316540(void){
+__attribute__((section(".text.ForwardInitObject_316540")))
+int ForwardInitObject_316540(void){
     void *s0;
     if (D_00747A34 & 0x10000) return 0;
     s0 = func_0030EE08(0x690, 0x10, D_00754C10);
@@ -81,8 +81,8 @@ int func_00316540(void){
     return func_001C0068(s0);
 }
 
-__attribute__((section(".text.func_003165B0")))
-int func_003165B0(void){
+__attribute__((section(".text.ForwardInitObject_3165B0")))
+int ForwardInitObject_3165B0(void){
     void *s0;
     if (D_00747A34 & 0x10000) return 0;
     s0 = func_0030EE08(0x640, 0x10, D_00754C10);
@@ -91,8 +91,8 @@ int func_003165B0(void){
     return func_001B87A8(s0);
 }
 
-__attribute__((section(".text.func_00316620")))
-int func_00316620(void){
+__attribute__((section(".text.ForwardInitObject_316620")))
+int ForwardInitObject_316620(void){
     void *s0;
     if (D_00747A34 & 0x10000) return 0;
     s0 = func_0030EE08(0x630, 0x10, D_00754C10);

@@ -8,8 +8,8 @@ extern void func_00157C18(void *a0);
 extern void func_0014F9F0(void *a0, float f);
 extern void func_0014F928(void *a0, float f);
 
-__attribute__((section(".text.func_001161E0")))
-void func_001161E0(void *a0) {
+__attribute__((section(".text.UpdateAttackState2F6_1161E0")))
+void UpdateAttackState2F6_1161E0(void *a0) {
     char *s0 = (char *)a0;
     int v0;
     float one;

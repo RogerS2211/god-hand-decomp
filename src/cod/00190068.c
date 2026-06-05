@@ -6,8 +6,8 @@ extern int D_004245A8;
 extern int D_00785798;
 extern int D_004246A8;
 
-__attribute__((section(".text.func_00190068")))
-void func_00190068(void *a0) {
+__attribute__((section(".text.SetCohortStateDisabled_190068")))
+void SetCohortStateDisabled_190068(void *a0) {
     int v0;
     v0 = (*(int*)((char*)a0 + 0x5B0) & -9) | 4;
     *(int*)((char*)a0 + 0x5B0) = v0;
@@ -18,8 +18,8 @@ void func_00190068(void *a0) {
     func_001C7E08(a0);
 }
 
-__attribute__((section(".text.func_00190250")))
-void func_00190250(void *a0, void *a1) {
+__attribute__((section(".text.FreeMultiSlotResources_190250")))
+void FreeMultiSlotResources_190250(void *a0, void *a1) {
     int *p;
     int i;
     int v;
@@ -38,11 +38,11 @@ void func_00190250(void *a0, void *a1) {
         func_001FE148(&D_00574380);
         *(int *)((char *)a0 + 0x610) = 0;
     }
-    func_001B6F38(a0, a1);
+    SetField214PtrThenInit_1B6F38(a0, a1);
 }
 
-__attribute__((section(".text.func_00190BF0")))
-void func_00190BF0(void *a0) {
+__attribute__((section(".text.UpdateSlotHitCounters_190BF0")))
+void UpdateSlotHitCounters_190BF0(void *a0) {
     short *s2 = (short *)((char *)a0 + 0xF88);
     int *s1 = (int *)((char *)a0 + 0x600);
     int s3 = 0;
@@ -72,8 +72,8 @@ void func_00190BF0(void *a0) {
     } while (s3 < 4);
 }
 
-__attribute__((section(".text.func_00191860")))
-void func_00191860(void *a0, int a1) {
+__attribute__((section(".text.SetSlotEntryBitFlag_191860")))
+void SetSlotEntryBitFlag_191860(void *a0, int a1) {
     int *ebase = (int *)((char *)a0 + 0x600);
     int *base;
     if (ebase[a1] != 0) func_001FD668(ebase[a1], 0);
@@ -81,8 +81,8 @@ void func_00191860(void *a0, int a1) {
     base[(unsigned int)a1 >> 5] |= (unsigned int)0x80000000 >> (a1 & 0x1F);
 }
 
-__attribute__((section(".text.func_00192F18")))
-void *func_00192F18(void) {
+__attribute__((section(".text.GetCohortSnW12Instance_192F18")))
+void *GetCohortSnW12Instance_192F18(void) {
     if (D_00785C48[0] == 0) {
         func_001C3BE8();
         func_0031EEA8(D_00785C48, &D_004245A8, &D_00785798);
@@ -99,5 +99,5 @@ int func_00193278(char *a0, void *a1) {
         func_001FE278(&D_00574380, (void *)v1);
         *(int *)(a0 + 0x600) = 0;
     }
-    return func_001C2820(a0, a1);
+    return ResetField214FreeField180_1C2820(a0, a1);
 }

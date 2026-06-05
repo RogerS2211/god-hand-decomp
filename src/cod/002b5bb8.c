@@ -1,5 +1,5 @@
-__attribute__((section(".text.func_002B5BB8")))
-void func_002B5BB8(int a0, int a1, int a2)
+__attribute__((section(".text.FreeEntrySlot_2B5BB8")))
+void FreeEntrySlot_2B5BB8(int a0, int a1, int a2)
 {
     int *s0;
     int v0;
@@ -18,7 +18,7 @@ __attribute__((section(".text.func_002C2A48")))
 void func_002C2A48(int *a0, unsigned short a1, int a2) {
     int v0;
     if (*a0) {
-        v0 = func_002C3118(a0, a1);
+        v0 = FindEntityByShortId_2C3118(a0, a1);
         if (v0) {
             func_002C0E78(v0, a2);
         }
@@ -32,16 +32,16 @@ void func_002C8EB0(int *a0) {
     func_003A52F0((int)((char *)a0 + 0x14), 0, 0x80);
 }
 
-__attribute__((section(".text.func_002CCAC8")))
-void func_002CCAC8(void *a0) {
+__attribute__((section(".text.ClearActiveBit_2CCAC8")))
+void ClearActiveBit_2CCAC8(void *a0) {
     if (func_002CC568(a0)) {
         *(int *)((char *)a0 + 0x98) = *(int *)((char *)a0 + 0x98) & 0xFFFFFFFE;
         func_003734F0(a0);
     }
 }
 
-__attribute__((section(".text.func_00373858")))
-void func_00373858(void *a0, unsigned int a1) {
+__attribute__((section(".text.ClearFlagBits_373858")))
+void ClearFlagBits_373858(void *a0, unsigned int a1) {
     if (func_00373A50(a0)) {
         *(int *)((char *)a0 + 0x4C) = *(int *)((char *)a0 + 0x4C) & ~a1;
     }

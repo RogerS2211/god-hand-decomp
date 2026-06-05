@@ -10,5 +10,5 @@ void *func_00195CA8(void *a0, int a1) {
         func_001FE278(&D_00574380, v1);
         *(int *)((char *)a0 + 0x600) = 0;
     }
-    return func_001C2820(a0, a1);
+    return ResetField214FreeField180_1C2820(a0, a1);
 }

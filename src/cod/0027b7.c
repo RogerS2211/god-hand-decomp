@@ -1,23 +1,23 @@
 #include "include_asm.h"
 #include "godhand/vu0.h"
 
-/* Sibling init helper called from func_0027B768. */
+/* Sibling init helper called from InitObjVtable_27B768. */
 extern void func_0028EB00(void *obj);
 
-/* Vtable pointer (loaded into obj+0x214 by func_0027B768).
+/* Vtable pointer (loaded into obj+0x214 by InitObjVtable_27B768).
  * Lives in .rodata at 0x004481A8 as a sequence of `.word`
  * function pointers.  Declared `extern int` (matches the
  * `int **` LHS cast convention used by `src/cod/001b0b70.c`
  * for the same vtable-pointer-store shape — see
- * `func_001B0B70`).  See asm/data/cod/31B580.rodata.s.
+ * `InitPilotVtable_1B0B70`).  See asm/data/cod/31B580.rodata.s.
  */
 extern int D_004481A8;
 
-/* Type-name string (loaded into obj+0x4AC by func_0027B768).
+/* Type-name string (loaded into obj+0x4AC by InitObjVtable_27B768).
  * Lives in .rodata at 0x004480E0 as `.asciz "cEm63"`. */
 extern int D_004480E0;
 
-/* func_0027B768 — object constructor; calls init helper, sets
+/* InitObjVtable_27B768 — object constructor; calls init helper, sets
  * vtable + 6 quadword zero-inits + type-name pointer, returns
  * the object.  See file-level comment for the VU0 idiom and
  * the empirical findings on ee-as nop behaviour.
@@ -51,8 +51,8 @@ extern int D_004480E0;
  * default (byte-identical) build exact. scripts/score_nm.sh compiles this body and
  * scores it as a fuzzy partial in the published progress report. */
 #ifdef NON_MATCHING
-__attribute__((section(".text.func_0027B768")))
-void *func_0027B768(void *obj) {
+__attribute__((section(".text.InitObjVtable_27B768")))
+void *InitObjVtable_27B768(void *obj) {
     int *vtable;
     int *type_name;
     func_0028EB00(obj);
@@ -69,6 +69,6 @@ void *func_0027B768(void *obj) {
     return obj;
 }
 #else
-INCLUDE_ASM("nonmatching", func_0027B768);
+INCLUDE_ASM("nonmatching", InitObjVtable_27B768);
 #endif
 

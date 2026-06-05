@@ -10,8 +10,8 @@ extern int D_00785798;
 extern int D_004244D8;
 extern int D_004245C0;
 
-__attribute__((section(".text.func_00192960")))
-void *func_00192960(void) {
+__attribute__((section(".text.GetOrInit_D_00785C28_192960")))
+void *GetOrInit_D_00785C28_192960(void) {
     if (D_00785C28 == 0) {
         func_001B8058();
         func_0031EEA8(&D_00785C28, D_004243D8, D_00785878);
@@ -25,8 +25,8 @@ void *func_00192960(void) {
 
 
 
-__attribute__((section(".text.func_001929B0")))
-void *func_001929B0(void *a0) {
+__attribute__((section(".text.Obj1929_Setup_1929B0")))
+void *Obj1929_Setup_1929B0(void *a0) {
     char *p;
     int i = 5;
     int end;
@@ -56,11 +56,11 @@ void *func_00192A38(void *a0, void *a1) {
             *(int *)((char *)a0 + 0x600) = 0;
         }
     }
-    func_001C2820(a0, a1);
+    ResetField214FreeField180_1C2820(a0, a1);
 }
 
-__attribute__((section(".text.func_00192BE8")))
-void *func_00192BE8(void) {
+__attribute__((section(".text.GetObjSingleton_192BE8")))
+void *GetObjSingleton_192BE8(void) {
     if (D_00785C38 == 0) {
         func_001C3BE8();
         func_0031EEA8(&D_00785C38, &D_004244C0, &D_00785798);
@@ -74,8 +74,8 @@ void *func_00192BE8(void) {
 
 
 
-__attribute__((section(".text.func_00192C38")))
-void *func_00192C38(void *a0) {
+__attribute__((section(".text.InitObjSlots_192C38")))
+void *InitObjSlots_192C38(void *a0) {
     char *s0 = (char *)a0 + 0x620;
     int i;
     func_001C27E8(a0);
@@ -102,7 +102,7 @@ void *func_00192CC0(void *a0, void *a1) {
             *(int *)((char *)a0 + 0x600) = 0;
         }
     }
-    func_001C2820(a0, a1);
+    ResetField214FreeField180_1C2820(a0, a1);
 }
 
 #include "godhand/vu0.h"
@@ -111,8 +111,8 @@ void *func_00192CC0(void *a0, void *a1) {
 
 
 
-__attribute__((section(".text.func_00192F68")))
-void *func_00192F68(void *a0) {
+__attribute__((section(".text.InitObjSlots_192F68")))
+void *InitObjSlots_192F68(void *a0) {
     char *p;
     int i;
     func_001C27E8(a0);
@@ -139,5 +139,5 @@ void *func_00192FF0(void *a0, int a1) {
         func_001FE278(&D_00574380, v1);
         *(int *)((char *)a0 + 0x600) = 0;
     }
-    return func_001C2820(a0, a1);
+    return ResetField214FreeField180_1C2820(a0, a1);
 }

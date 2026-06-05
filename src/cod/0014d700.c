@@ -1,8 +1,8 @@
 extern unsigned char D_004292F0[];
 extern unsigned char D_00574380[];
 
-__attribute__((section(".text.func_0014D700")))
-void func_0014D700(char *a0, int a1, int a2) {
+__attribute__((section(".text.ForwardToAllNodes_14D700")))
+void ForwardToAllNodes_14D700(char *a0, int a1, int a2) {
     char *node;
     node = func_0014B6F8(a0, 0);
     while (node != 0) {
@@ -11,8 +11,8 @@ void func_0014D700(char *a0, int a1, int a2) {
     }
 }
 
-__attribute__((section(".text.func_0014D768")))
-void func_0014D768(char *a0, int a1, int a2) {
+__attribute__((section(".text.ForwardNodeUpdate_14D768")))
+void ForwardNodeUpdate_14D768(char *a0, int a1, int a2) {
     char *node;
     node = func_0014B6F8(a0, 0);
     while (node != 0) {
@@ -21,8 +21,8 @@ void func_0014D768(char *a0, int a1, int a2) {
     }
 }
 
-__attribute__((section(".text.func_001BBF00")))
-void func_001BBF00(int a0, int a1)
+__attribute__((section(".text.ResetActorState_1BBF00")))
+void ResetActorState_1BBF00(int a0, int a1)
 {
     int v1;
     *(int *)(a0 + 0x214) = (int)D_004292F0;
@@ -32,7 +32,7 @@ void func_001BBF00(int a0, int a1)
         *(int *)(a0 + 0x600) = 0;
     }
     func_001BD3F0(a0);
-    func_001B6F38(a0, a1);
+    SetField214PtrThenInit_1B6F38(a0, a1);
 }
 
 __attribute__((section(".text.func_001F4C40")))

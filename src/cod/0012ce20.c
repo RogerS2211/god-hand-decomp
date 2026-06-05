@@ -1,7 +1,7 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
 extern void func_0012CE60(char *a0, float *a1);
-extern int func_0015F2A8(char *a0, int x, float f1, int a2, int a3);
+extern int NoOp_15F2A8(char *a0, int x, float f1, int a2, int a3);
 
 __attribute__((section(".text.func_0012CE20")))
 void func_0012CE20(char *a0, float *a1, float a2) {
@@ -45,7 +45,7 @@ void func_0012CE60(char *a0, float *a1) {
     }
 }
 
-__attribute__((section(".text.func_00133B28")))
-void func_00133B28(char *a0, int a1) {
-    func_0015F2A8(a0 + 0x60, a1, *(float*)(a0 + 0x70), 1, 1);
+__attribute__((section(".text.Forward15F2A8_133B28")))
+void Forward15F2A8_133B28(char *a0, int a1) {
+    NoOp_15F2A8(a0 + 0x60, a1, *(float*)(a0 + 0x70), 1, 1);
 }

@@ -11,17 +11,17 @@ extern char D_00583F20[];
 extern int D_003C3CF0;
 extern void func_003A6C58(void *a0, void *a1, void *a2);
 
-__attribute__((section(".text.func_00296458")))
-void func_00296458(void *a0) {
+__attribute__((section(".text.InitGameState_296458")))
+void InitGameState_296458(void *a0) {
     void *v0;
     float *v1;
     float *p;
     unsigned long b;
-    func_002975F8(a0);
+    InitSubState_2975F8(a0);
     D_00747A84 = D_00747A84 | 0x20000000;
     *(char*)((char*)a0+0x34) = 0;
     *(int*)((char*)a0+8) = *(int*)((char*)a0+8) | 1;
-    v0 = func_002DB6B0();
+    v0 = Obj0000_Get_D_00747A94_2DB6B0();
     v1 = *(float**)((char*)v0+0xF0);
     p = (float*)((char*)a0+0x20);
     if (p != v1) {
@@ -41,8 +41,8 @@ void func_00296458(void *a0) {
     }
 }
 
-__attribute__((section(".text.func_00297378")))
-void func_00297378(void *a0) {
+__attribute__((section(".text.LoadResourceEntry_297378")))
+void LoadResourceEntry_297378(void *a0) {
     char *s = (char*)a0;
     unsigned long b = *(unsigned char*)(s + 8);
     int buf[16];
@@ -53,5 +53,5 @@ void func_00297378(void *a0) {
         func_003A6C58(buf, D_0044A958, D_0044A940);
     }
     *(int*)(s + 0x10) = 0;
-    *(int*)(s + 0xC) = func_00200CB0(D_00583F20, buf, s + 0x10, D_003C3CF0, 0, 0, 0, 0);
+    *(int*)(s + 0xC) = SetupSlotFromField78_200CB0(D_00583F20, buf, s + 0x10, D_003C3CF0, 0, 0, 0, 0);
 }

@@ -19,8 +19,8 @@ void func_002BB1F0(void *a0)
     (*(void (**)(void *))((char *)v0 + 0x4C))(s0 + *(short *)((char *)v0 + 0x48));
 }
 
-__attribute__((section(".text.func_002BED60")))
-int func_002BED60(void *a0, int a1, int a2)
+__attribute__((section(".text.ForwardCheckedRequest_2BED60")))
+int ForwardCheckedRequest_2BED60(void *a0, int a1, int a2)
 {
     int *s1 = (int *)a0;
     int s2 = a2;
@@ -37,8 +37,8 @@ int func_002BED60(void *a0, int a1, int a2)
     return v0;
 }
 
-__attribute__((section(".text.func_002C33D8")))
-void func_002C33D8(void *a0)
+__attribute__((section(".text.ClearInputState_2C33D8")))
+void ClearInputState_2C33D8(void *a0)
 {
     unsigned char *s0 = (unsigned char *)a0;
     int (*v0)();
@@ -58,8 +58,8 @@ void func_002C33D8(void *a0)
     }
 }
 
-__attribute__((section(".text.func_002CB638")))
-int func_002CB638(void *a0, void *a1, void *a2)
+__attribute__((section(".text.LoadFileStripExt_2CB638")))
+int LoadFileStripExt_2CB638(void *a0, void *a1, void *a2)
 {
     char *v0 = func_003A54D8(a2, 0x2E);
     if (v0 != 0) {
@@ -74,8 +74,8 @@ int func_002CB638(void *a0, void *a1, void *a2)
 
 
 
-__attribute__((section(".text.func_002F61C8")))
-void *func_002F61C8(void *obj) {
+__attribute__((section(".text.Setup_Field_2B0_2F61C8")))
+void *Setup_Field_2B0_2F61C8(void *obj) {
     func_002FBCC8(obj);
     *(int *)((char *)obj + 0x2B0) = 0;
     *(float *)((char *)obj + 0x2D4) = 1.0f;
@@ -98,8 +98,8 @@ void *func_002F61C8(void *obj) {
 
 
 
-__attribute__((section(".text.func_002F7110")))
-void *func_002F7110(void *obj) {
+__attribute__((section(".text.InitObjectFields_2F7110")))
+void *InitObjectFields_2F7110(void *obj) {
     func_002FBCC8(obj);
     *(int *)((char *)obj + 0x2B0) = 0;
     *(float *)((char *)obj + 0x2D4) = 1.0f;

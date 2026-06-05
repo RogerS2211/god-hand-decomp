@@ -15,8 +15,8 @@ int func_00313D70(void)
     return func_00188F80(s0);
 }
 
-__attribute__((section(".text.func_00313DE0")))
-int func_00313DE0(void)
+__attribute__((section(".text.ForwardInitBuffer_313DE0")))
+int ForwardInitBuffer_313DE0(void)
 {
     void *s0;
 
@@ -29,8 +29,8 @@ int func_00313DE0(void)
     return func_0018A598(s0);
 }
 
-__attribute__((section(".text.func_00313EC0")))
-int func_00313EC0(void)
+__attribute__((section(".text.ForwardInitBuffer_313EC0")))
+int ForwardInitBuffer_313EC0(void)
 {
     void *s0;
 

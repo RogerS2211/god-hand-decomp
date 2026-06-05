@@ -17,8 +17,8 @@ extern int D_00424C18;
 extern int D_00785878;
 extern int D_00424C30;
 
-__attribute__((section(".text.func_00193948")))
-void *func_00193948(void) {
+__attribute__((section(".text.GetCohortSnW11BInstance_193948")))
+void *GetCohortSnW11BInstance_193948(void) {
     if (D_00785C88 == 0) {
         func_001C3BE8();
         func_0031EEA8(&D_00785C88, &D_00424948, &D_00785798);
@@ -32,8 +32,8 @@ void *func_00193948(void) {
 
 
 
-__attribute__((section(".text.func_00193998")))
-void *func_00193998(void *a0) {
+__attribute__((section(".text.InitCohortSlotVu0Data_193998")))
+void *InitCohortSlotVu0Data_193998(void *a0) {
     char *p = (char *)a0 + 0x620;
     int i;
     func_001C27E8(a0);
@@ -59,11 +59,11 @@ int func_00193A20(void *a0, int a1) {
         func_001FE278(&D_00574380, v1);
         *(int *)((char*)a0 + 0x600) = 0;
     }
-    return func_001C2820(a0, a1);
+    return ResetField214FreeField180_1C2820(a0, a1);
 }
 
-__attribute__((section(".text.func_00193BD0")))
-void *func_00193BD0(void) {
+__attribute__((section(".text.GetCohortSnW11CInstance_193BD0")))
+void *GetCohortSnW11CInstance_193BD0(void) {
     if (D_00785C98 == 0) {
         func_001C3BE8();
         func_0031EEA8(&D_00785C98, &D_00424A30, &D_00785798);
@@ -80,11 +80,11 @@ int func_00193CA8(void *a0, int a1) {
         func_001FE278(&D_00574380, v1);
         *(int *)((char*)a0 + 0x600) = 0;
     }
-    return func_001C2820(a0, a1);
+    return ResetField214FreeField180_1C2820(a0, a1);
 }
 
-__attribute__((section(".text.func_00193E58")))
-void *func_00193E58(void) {
+__attribute__((section(".text.GetCohortSnW11DInstance_193E58")))
+void *GetCohortSnW11DInstance_193E58(void) {
     if (D_00785CA8 == 0) {
         func_001C3BE8();
         func_0031EEA8(&D_00785CA8, &D_00424B18, &D_00785798);
@@ -92,8 +92,8 @@ void *func_00193E58(void) {
     return &D_00785CA8;
 }
 
-__attribute__((section(".text.func_00193FD8")))
-void func_00193FD8(void *a0, int a1) {
+__attribute__((section(".text.FreeCohortMultiResource_193FD8")))
+void FreeCohortMultiResource_193FD8(void *a0, int a1) {
     int v1;
     int v5;
     *(int *)((char *)a0 + 0x214) = (int)&D_00424B68;
@@ -113,7 +113,7 @@ void func_00193FD8(void *a0, int a1) {
         *(int *)((char *)a0 + 0x614) = 0;
     }
     func_00305778(&D_007419A0, 0x177);
-    func_001B6F38(a0, a1);
+    SetField214PtrThenInit_1B6F38(a0, a1);
 }
 
 __attribute__((section(".text.func_00195BD0")))
@@ -132,8 +132,8 @@ void *func_00195BD0(void) {
 
 
 
-__attribute__((section(".text.func_00195C20")))
-void *func_00195C20(void *a0) {
+__attribute__((section(".text.InitCohortSlotVu0DataB_195C20")))
+void *InitCohortSlotVu0DataB_195C20(void *a0) {
     char *s0 = (char *)a0 + 0x620;
     int i;
     func_001C27E8(a0);

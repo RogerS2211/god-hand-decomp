@@ -2,8 +2,8 @@
 
 extern unsigned short D_0076A790;
 
-__attribute__((section(".text.func_00376E38")))
-void func_00376E38(void) {
+__attribute__((section(".text.ClearPendingFlagEvents_376E38")))
+void ClearPendingFlagEvents_376E38(void) {
     unsigned short *p = &D_0076A790;
     unsigned short v;
     v = *(unsigned short*)((char*)p + 0x22);
@@ -18,8 +18,8 @@ void func_00376E38(void) {
     }
 }
 
-__attribute__((section(".text.func_00377378")))
-void func_00377378(char *a0, char *a1) {
+__attribute__((section(".text.CopyChannelParams_377378")))
+void CopyChannelParams_377378(char *a0, char *a1) {
     char *s1 = a1 + 0x26;
     char *s3 = a0 + 0x38;
     char *s0 = a0 + 0x3E;
@@ -40,8 +40,8 @@ void func_00377378(char *a0, char *a1) {
     *(unsigned short*)(a0 + 0) = *(unsigned short*)(a0 + 0) | 0x10;
 }
 
-__attribute__((section(".text.func_00377598")))
-void func_00377598(void *a0) {
+__attribute__((section(".text.UpdateSoundNodeState_377598")))
+void UpdateSoundNodeState_377598(void *a0) {
     unsigned short v = *(unsigned short*)a0;
     if ((v & 0x8000) == 0) {
         if ((v & 0x8) != 0) {
@@ -50,7 +50,7 @@ void func_00377598(void *a0) {
         }
         func_003775F0(a0);
     }
-    func_00377700(a0);
+    UpdateChannelOutputLevels_377700(a0);
 }
 
 __attribute__((section(".text.func_003775F0")))
@@ -74,8 +74,8 @@ void func_003775F0(void *a0) {
     }
 }
 
-__attribute__((section(".text.func_00377700")))
-void func_00377700(void *a0) {
+__attribute__((section(".text.UpdateChannelOutputLevels_377700")))
+void UpdateChannelOutputLevels_377700(void *a0) {
     unsigned short f = *(unsigned short*)((char*)a0 + 0x10);
     if ((f & 1) != 0) {
         short *s3 = (short*)((char*)a0 + 0x68);

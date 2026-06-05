@@ -6,7 +6,7 @@ extern void func_002DBE98(void);
 extern unsigned int D_00747A78;
 extern void func_00139180(int a0);
 extern char D_0041DCC8[];
-extern void func_0030F5A0(void *a0);
+extern void ForwardFieldNeg20_002A9680_30F5A0(void *a0);
 
 __attribute__((section(".text.func_0012C758")))
 int func_0012C758(char *a0) {
@@ -19,7 +19,7 @@ int func_0012C758(char *a0) {
     if (*(int*)(a0 + 0x6A0) != 0) {
         return 0;
     }
-    if (func_002C2568(&D_005FEA60, *(int*)(a0 + 0xF0), 0) == 1) {
+    if (FindNodeByType_2C2568(&D_005FEA60, *(int*)(a0 + 0xF0), 0) == 1) {
         func_002DBE98();
         return 1;
     }
@@ -39,7 +39,7 @@ void func_0013D338(void *a0, int a1)
 {
     *(char **)((char *)a0 + 0x80) = D_0041DCC8;
     if (a1 & 1) {
-        func_0030F5A0(a0);
+        ForwardFieldNeg20_002A9680_30F5A0(a0);
     }
 }
 
@@ -48,7 +48,7 @@ void func_0013E300(void *a0, int a1)
 {
     *(char **)((char *)a0 + 0x80) = D_0041DCC8;
     if (a1 & 1) {
-        func_0030F5A0(a0);
+        ForwardFieldNeg20_002A9680_30F5A0(a0);
     }
 }
 
@@ -57,7 +57,7 @@ void func_0013E750(void *a0, int a1)
 {
     *(char **)((char *)a0 + 0x80) = D_0041DCC8;
     if (a1 & 1) {
-        func_0030F5A0(a0);
+        ForwardFieldNeg20_002A9680_30F5A0(a0);
     }
 }
 
@@ -66,6 +66,6 @@ void func_0013EC50(void *a0, int a1)
 {
     *(char **)((char *)a0 + 0x80) = D_0041DCC8;
     if (a1 & 1) {
-        func_0030F5A0(a0);
+        ForwardFieldNeg20_002A9680_30F5A0(a0);
     }
 }

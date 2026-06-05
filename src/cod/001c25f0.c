@@ -35,8 +35,8 @@ void func_001C25F0(void *a0) {
         *(unsigned char *)((char *)a0 + 0x676) | 2;
 }
 
-__attribute__((section(".text.func_001E7960")))
-void *func_001E7960(void *a0) {
+__attribute__((section(".text.InitStructZeroedFields_1E7960")))
+void *InitStructZeroedFields_1E7960(void *a0) {
     func_003A52F0(a0, 0, 0x54);
     *(int *)((char *)a0 + 0x54) = 0;
     *(int *)((char *)a0 + 0x4) = 0;
@@ -45,8 +45,8 @@ void *func_001E7960(void *a0) {
     return a0;
 }
 
-__attribute__((section(".text.func_001E8DA8")))
-void *func_001E8DA8(void *a0) {
+__attribute__((section(".text.InitStructAndSubfields_1E8DA8")))
+void *InitStructAndSubfields_1E8DA8(void *a0) {
     func_003A52F0(a0, 0, 0x54);
     func_001E8E88(a0);
     func_001E8EB8(a0);
@@ -98,8 +98,8 @@ int func_001FFA28(int a0) {
     return func_001FFD98(a0, v);
 }
 
-__attribute__((section(".text.func_0027F170")))
-void func_0027F170(void *a0) {
+__attribute__((section(".text.ForwardDispatchByMode_27F170")))
+void ForwardDispatchByMode_27F170(void *a0) {
     func_001347E8(D_00462FC0, a0);
     func_00306200(a0, 1, 2);
 }
@@ -136,8 +136,8 @@ void *func_002BAFA0(void) {
     return &D_00460D68;
 }
 
-__attribute__((section(".text.func_002CB6A0")))
-int func_002CB6A0(int a0, int a1, int a2) {
+__attribute__((section(".text.Forward2CF6F8_2CB6A0")))
+int Forward2CF6F8_2CB6A0(int a0, int a1, int a2) {
     return func_002CF6F8(func_002CC4B8(a0), a1, a2);
 }
 
@@ -157,8 +157,8 @@ void *func_002D5BF8(void) {
     return &D_00460D80;
 }
 
-__attribute__((section(".text.func_002D9EC8")))
-void *func_002D9EC8(void) {
+__attribute__((section(".text.GetOrInit_D00460D88_2D9EC8")))
+void *GetOrInit_D00460D88_2D9EC8(void) {
     if (D_00460D88 == 0) {
         func_0031EEC8(&D_00460D88, &D_0044D3A0);
     }

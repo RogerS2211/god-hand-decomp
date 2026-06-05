@@ -44,11 +44,11 @@ extern void func_001C3BE8(void);
 extern void func_0028FDD0(void);
 extern void func_002B6528(void);
 extern void func_002EFA60(void);
-extern void func_00300148(void);
+extern void GetOrInitGlobal7863C8_300148(void);
 extern void func_0031EEA8(void *a, void *b, void *c);
 
-__attribute__((section(".text.func_0017C450")))
-int *func_0017C450(void) {
+__attribute__((section(".text.GetSingleton785978_17C450")))
+int *GetSingleton785978_17C450(void) {
     if (D_00785978 == 0) {
         func_001B8058();
         func_0031EEA8(&D_00785978, &D_00421C68, &D_00785878);
@@ -56,8 +56,8 @@ int *func_0017C450(void) {
     return &D_00785978;
 }
 
-__attribute__((section(".text.func_001832F0")))
-int *func_001832F0(void) {
+__attribute__((section(".text.GetSingleton785A98_1832F0")))
+int *GetSingleton785A98_1832F0(void) {
     if (D_00785A98 == 0) {
         func_001B8058();
         func_0031EEA8(&D_00785A98, &D_00422B30, &D_00785878);
@@ -65,8 +65,8 @@ int *func_001832F0(void) {
     return &D_00785A98;
 }
 
-__attribute__((section(".text.func_001A4298")))
-int *func_001A4298(void) {
+__attribute__((section(".text.GetSingleton785F58_1A4298")))
+int *GetSingleton785F58_1A4298(void) {
     if (D_00785F58 == 0) {
         func_001C3BE8();
         func_0031EEA8(&D_00785F58, &D_00427218, &D_00785798);
@@ -74,8 +74,8 @@ int *func_001A4298(void) {
     return &D_00785F58;
 }
 
-__attribute__((section(".text.func_001A7738")))
-int *func_001A7738(void) {
+__attribute__((section(".text.GetSingleton785F98_1A7738")))
+int *GetSingleton785F98_1A7738(void) {
     if (D_00785F98 == 0) {
         func_001B8058();
         func_0031EEA8(&D_00785F98, &D_00427580, &D_00785878);
@@ -83,8 +83,8 @@ int *func_001A7738(void) {
     return &D_00785F98;
 }
 
-__attribute__((section(".text.func_001A9638")))
-int *func_001A9638(void) {
+__attribute__((section(".text.GetSingleton785FE8_1A9638")))
+int *GetSingleton785FE8_1A9638(void) {
     if (D_00785FE8 == 0) {
         func_001B8058();
         func_0031EEA8(&D_00785FE8, &D_00427B08, &D_00785878);
@@ -92,8 +92,8 @@ int *func_001A9638(void) {
     return &D_00785FE8;
 }
 
-__attribute__((section(".text.func_001B3680")))
-int *func_001B3680(void) {
+__attribute__((section(".text.GetSingleton786098_1B3680")))
+int *GetSingleton786098_1B3680(void) {
     if (D_00786098 == 0) {
         func_001B8058();
         func_0031EEA8(&D_00786098, &D_00428638, &D_00785878);
@@ -101,8 +101,8 @@ int *func_001B3680(void) {
     return &D_00786098;
 }
 
-__attribute__((section(".text.func_0027DD38")))
-int *func_0027DD38(void) {
+__attribute__((section(".text.GetSingleton786248_27DD38")))
+int *GetSingleton786248_27DD38(void) {
     if (D_00786248 == 0) {
         func_0028FDD0();
         func_0031EEA8(&D_00786248, &D_00448298, &D_007861D8);
@@ -110,8 +110,8 @@ int *func_0027DD38(void) {
     return &D_00786248;
 }
 
-__attribute__((section(".text.func_002E6318")))
-int *func_002E6318(void) {
+__attribute__((section(".text.GetSingleton7863E8_2E6318")))
+int *GetSingleton7863E8_2E6318(void) {
     if (D_007863E8 == 0) {
         func_002EFA60();
         func_0031EEA8(&D_007863E8, &D_0044E398, &D_007863F8);
@@ -119,35 +119,35 @@ int *func_002E6318(void) {
     return &D_007863E8;
 }
 
-__attribute__((section(".text.func_002F3DC0")))
-int *func_002F3DC0(void) {
+__attribute__((section(".text.GetSingleton7864C8_2F3DC0")))
+int *GetSingleton7864C8_2F3DC0(void) {
     if (D_007864C8 == 0) {
-        func_00300148();
+        GetOrInitGlobal7863C8_300148();
         func_0031EEA8(&D_007864C8, &D_0044F030, &D_007863C8);
     }
     return &D_007864C8;
 }
 
-__attribute__((section(".text.func_002F5358")))
-int *func_002F5358(void) {
+__attribute__((section(".text.GetSingleton786508_2F5358")))
+int *GetSingleton786508_2F5358(void) {
     if (D_00786508 == 0) {
-        func_00300148();
+        GetOrInitGlobal7863C8_300148();
         func_0031EEA8(&D_00786508, &D_0044F398, &D_007863C8);
     }
     return &D_00786508;
 }
 
-__attribute__((section(".text.func_002F7090")))
-int *func_002F7090(void) {
+__attribute__((section(".text.GetSingleton786558_2F7090")))
+int *GetSingleton786558_2F7090(void) {
     if (D_00786558 == 0) {
-        func_00300148();
+        GetOrInitGlobal7863C8_300148();
         func_0031EEA8(&D_00786558, &D_0044F6C0, &D_007863C8);
     }
     return &D_00786558;
 }
 
-__attribute__((section(".text.func_002F9CE0")))
-int *func_002F9CE0(void) {
+__attribute__((section(".text.GetSingleton786578_2F9CE0")))
+int *GetSingleton786578_2F9CE0(void) {
     if (D_00786578 == 0) {
         func_002EFA60();
         func_0031EEA8(&D_00786578, &D_0044F868, &D_007863F8);
@@ -155,8 +155,8 @@ int *func_002F9CE0(void) {
     return &D_00786578;
 }
 
-__attribute__((section(".text.func_003000F8")))
-int *func_003000F8(void) {
+__attribute__((section(".text.GetSingleton786598_3000F8")))
+int *GetSingleton786598_3000F8(void) {
     if (D_00786598 == 0) {
         func_002B6528();
         func_0031EEA8(&D_00786598, &D_0044FBA8, &D_00460D58);
@@ -164,8 +164,8 @@ int *func_003000F8(void) {
     return &D_00786598;
 }
 
-__attribute__((section(".text.func_00304E38")))
-int *func_00304E38(void) {
+__attribute__((section(".text.GetSingletonD007865A8_304E38")))
+int *GetSingletonD007865A8_304E38(void) {
     if (D_007865A8 == 0) {
         func_002B6528();
         func_0031EEA8(&D_007865A8, &D_0044FDB8, &D_00460D58);
@@ -175,8 +175,8 @@ int *func_00304E38(void) {
 
 /* moved from src/cod/002810.c (cygnus catch-all): this is an sq-prologue
  * singleton getter and needs the SN pin. */
-__attribute__((section(".text.func_002815E8")))
-int *func_002815E8(void) {
+__attribute__((section(".text.GetClassDescB_2815E8")))
+int *GetClassDescB_2815E8(void) {
     if (D_00786268 == 0) {
         func_0028FDD0();
         func_0031EEA8(&D_00786268, &D_00448688, &D_007861D8);
@@ -184,8 +184,8 @@ int *func_002815E8(void) {
     return &D_00786268;
 }
 
-__attribute__((section(".text.func_00318788")))
-int *func_00318788(void) {
+__attribute__((section(".text.GetSingletonD00786618_318788")))
+int *GetSingletonD00786618_318788(void) {
     if (D_00786618 == 0) {
         func_0014FD20();
         func_0031EEA8(&D_00786618, &D_00450CA8, &D_007854F8);

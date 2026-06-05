@@ -12,7 +12,7 @@ int func_003137B0(void)
     if (p == 0)
         return 0;
     func_003A52F0(p, 0, 0x15B0);
-    return func_00279CE8(p);
+    return Init_Vtable214_TypeName4AC_279CE8(p);
 }
 
 __attribute__((section(".text.func_00313820")))
@@ -48,7 +48,7 @@ void *func_00313900(void) {
         s0 = func_0030EE08(0x1660, 0x10, D_00754220);
         if (s0 != 0) {
             func_003A52F0(s0, 0, 0x1660);
-            return func_0028B0F0(s0);
+            return Obj28B0_Setup_Field_214_Field_4AC_28B0F0(s0);
         }
     }
     return 0;
@@ -61,7 +61,7 @@ void *func_00313970(void) {
         s0 = func_0030EE08(0x1560, 0x10, D_00754220);
         if (s0 != 0) {
             func_003A52F0(s0, 0, 0x1560);
-            return func_0028E018(s0);
+            return Setup_0028E018_28E018(s0);
         }
     }
     return 0;

@@ -9,7 +9,7 @@ extern int D_004483A8;
 /* Type-name string (loaded into obj+0x4AC). Lives in .rodata at 0x004482B0. */
 extern int D_004482B0;
 
-/* func_0027DD88 — sq + VU0 object constructor with loop tail (140 B / 35 insns); see file header.
+/* Setup_27DD88 — sq + VU0 object constructor with loop tail (140 B / 35 insns); see file header.
  *
  * Retail (asm/cod/000000.s, 0x0027DD88..0x0027DE13, 140 B):
  *
@@ -54,8 +54,8 @@ extern int D_004482B0;
  * default (byte-identical) build exact. scripts/score_nm.sh compiles this body and
  * scores it as a fuzzy partial in the published progress report. */
 #ifdef NON_MATCHING
-__attribute__((section(".text.func_0027DD88")))
-void *func_0027DD88(void *obj) {
+__attribute__((section(".text.Setup_27DD88")))
+void *Setup_27DD88(void *obj) {
     int *vtable;
     int *type_name;
     char *p;
@@ -85,6 +85,6 @@ void *func_0027DD88(void *obj) {
     return obj;
 }
 #else
-INCLUDE_ASM("nonmatching", func_0027DD88);
+INCLUDE_ASM("nonmatching", Setup_27DD88);
 #endif
 

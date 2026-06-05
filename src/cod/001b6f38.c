@@ -14,8 +14,8 @@ extern void func_002A9680(int, int *);
 extern void func_001FA820(void *);
 extern int D_00747A34;
 
-__attribute__((section(".text.func_001B6F38")))
-void func_001B6F38(char *a0, char *a1) {
+__attribute__((section(".text.SetField214PtrThenInit_1B6F38")))
+void SetField214PtrThenInit_1B6F38(char *a0, char *a1) {
     *(int*)(a0 + 0x214) = (int)&D_00428A20;
     func_001331B8(D_005CAE50, *(long*)(a0 + 0x540), 0);
     func_001347E8(D_00462FC0, a0);
@@ -24,8 +24,8 @@ void func_001B6F38(char *a0, char *a1) {
     func_002A73C8(a0, a1);
 }
 
-__attribute__((section(".text.func_0026B1E8")))
-void func_0026B1E8(void *a0)
+__attribute__((section(".text.ReleaseField6ECByTag564_26B1E8")))
+void ReleaseField6ECByTag564_26B1E8(void *a0)
 {
     int x = *(int *)((char *)a0 + 0x6EC);
     if (x != 0) {
@@ -39,8 +39,8 @@ void func_0026B1E8(void *a0)
     }
 }
 
-__attribute__((section(".text.func_001F7858")))
-void func_001F7858(int a0, int a1, int a2, int a3, int t0, int t1, int t2)
+__attribute__((section(".text.LookupSlotPopulateFieldsAndDispatch_1F7858")))
+void LookupSlotPopulateFieldsAndDispatch_1F7858(int a0, int a1, int a2, int a3, int t0, int t1, int t2)
 {
     int *p = func_001F7798(a0);
     if (p != 0) {
@@ -55,15 +55,15 @@ void func_001F7858(int a0, int a1, int a2, int a3, int t0, int t1, int t2)
     }
 }
 
-__attribute__((section(".text.func_0030F5A0")))
-void func_0030F5A0(int *a0) {
+__attribute__((section(".text.ForwardFieldNeg20_002A9680_30F5A0")))
+void ForwardFieldNeg20_002A9680_30F5A0(int *a0) {
     if (a0) {
         func_002A9680(*(int*)((char*)a0 - 0x20), a0);
     }
 }
 
-__attribute__((section(".text.func_001FA750")))
-void func_001FA750(int *a0, int a1, int a2) {
+__attribute__((section(".text.PushField28AddField20Clamped_1FA750")))
+void PushField28AddField20Clamped_1FA750(int *a0, int a1, int a2) {
     int *v1;
     int idx;
     int *arr;

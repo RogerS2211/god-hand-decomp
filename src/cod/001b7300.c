@@ -68,14 +68,14 @@ void func_002A9680(int a0, struct node *a1) {
     }
 }
 
-__attribute__((section(".text.func_002ABBE8")))
-void func_002ABBE8(void *a0) {
+__attribute__((section(".text.Forward2ABA78ThenSetByte1C_2ABBE8")))
+void Forward2ABA78ThenSetByte1C_2ABBE8(void *a0) {
     func_002ABA78(a0);
     *(char *)((char *)a0 + 0x1C) = 1;
 }
 
-__attribute__((section(".text.func_001B7300")))
-void func_001B7300(int a0, int a1, int a2) {
+__attribute__((section(".text.SetField380Bit2000ForTag_1B7300")))
+void SetField380Bit2000ForTag_1B7300(int a0, int a1, int a2) {
     char *p = (char *)func_0014B6F8(a0, 0);
     if (p != 0) {
         do {

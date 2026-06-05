@@ -1,27 +1,27 @@
 #include "godhand/vu0.h"
 
 #include "include_asm.h"
-/* Sibling init helper called from func_0028B0F0.  Same helper used by
- * func_0027B768 (see src/cod/0027b7.c).  Declared `extern void` to
+/* Sibling init helper called from Obj28B0_Setup_Field_214_Field_4AC_28B0F0.  Same helper used by
+ * InitObjVtable_27B768 (see src/cod/0027b7.c).  Declared `extern void` to
  * accept any single-arg object pointer.
  */
 extern void func_0028EB00(void *obj);
 
-/* Vtable pointer (loaded into obj+0x214 by func_0028B0F0).
+/* Vtable pointer (loaded into obj+0x214 by Obj28B0_Setup_Field_214_Field_4AC_28B0F0).
  * Lives in .rodata at 0x0044A408 as a sequence of `.word` function
  * pointers (asm/data/cod/31B580.rodata.s line 222913).  Declared as
  * `extern int` matching the project's vtable-pointer-store convention
- * (the `int **` LHS cast pattern from src/cod/001b0b70.c::func_001B0B70
- * + src/cod/0027b7.c::func_0027B768).
+ * (the `int **` LHS cast pattern from src/cod/001b0b70.c::InitPilotVtable_1B0B70
+ * + src/cod/0027b7.c::InitObjVtable_27B768).
  */
 extern int D_0044A408;
 
-/* Type-name string (loaded into obj+0x4AC by func_0028B0F0).
+/* Type-name string (loaded into obj+0x4AC by Obj28B0_Setup_Field_214_Field_4AC_28B0F0).
  * Lives in .rodata at 0x00448F30 as `.asciz "cEma6"` (6 bytes incl. NUL).
  */
 extern int D_00448F30;
 
-/* func_0028B0F0 — object constructor (88 B / 22 insns); see file header.
+/* Obj28B0_Setup_Field_214_Field_4AC_28B0F0 — object constructor (88 B / 22 insns); see file header.
  *
  * Retail (asm/cod/000000.s, 0x0028B0F0..0x0028B147, 88 B):
  *
@@ -52,8 +52,8 @@ extern int D_00448F30;
  * default (byte-identical) build exact. scripts/score_nm.sh compiles this body and
  * scores it as a fuzzy partial in the published progress report. */
 #ifdef NON_MATCHING
-__attribute__((section(".text.func_0028B0F0")))
-void *func_0028B0F0(void *obj) {
+__attribute__((section(".text.Obj28B0_Setup_Field_214_Field_4AC_28B0F0")))
+void *Obj28B0_Setup_Field_214_Field_4AC_28B0F0(void *obj) {
     int *vtable;
     int *type_name;
     unsigned char *p;
@@ -71,6 +71,6 @@ void *func_0028B0F0(void *obj) {
     return obj;
 }
 #else
-INCLUDE_ASM("nonmatching", func_0028B0F0);
+INCLUDE_ASM("nonmatching", Obj28B0_Setup_Field_214_Field_4AC_28B0F0);
 #endif
 

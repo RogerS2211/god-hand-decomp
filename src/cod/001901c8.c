@@ -22,8 +22,8 @@ extern char D_004242A0[];
 
 
 
-__attribute__((section(".text.func_001901C8")))
-void *func_001901C8(char *a0) {
+__attribute__((section(".text.InitObjSlots_1901C8")))
+void *InitObjSlots_1901C8(char *a0) {
     char *p;
     int i;
     func_001B6E90(a0);
@@ -59,8 +59,8 @@ void *func_00191A60(void) {
 
 
 
-__attribute__((section(".text.func_00191AB0")))
-void *func_00191AB0(void *a0) {
+__attribute__((section(".text.InitObjSlots_191AB0")))
+void *InitObjSlots_191AB0(void *a0) {
     void *p;
     int i;
     func_001C27E8(a0);
@@ -87,11 +87,11 @@ void func_00191B38(void *a0, int a1) {
         func_001FE278(&D_00574380, v1);
         *(int*)((char*)a0+0x600) = 0;
     }
-    func_001C2820(a0, a1);
+    ResetField214FreeField180_1C2820(a0, a1);
 }
 
-__attribute__((section(".text.func_00191CE8")))
-void *func_00191CE8(void) {
+__attribute__((section(".text.GetObjSingleton_191CE8")))
+void *GetObjSingleton_191CE8(void) {
     if (D_00785BF8 == 0) {
         func_001C3BE8();
         func_0031EEA8(&D_00785BF8, &D_00424110, &D_00785798);
@@ -105,8 +105,8 @@ void *func_00191CE8(void) {
 
 
 
-__attribute__((section(".text.func_00191D38")))
-void *func_00191D38(void *a0) {
+__attribute__((section(".text.InitObjSlots_191D38")))
+void *InitObjSlots_191D38(void *a0) {
     void *p;
     int i;
     func_001BBEB8(a0);
@@ -124,8 +124,8 @@ void *func_00191D38(void *a0) {
     return a0;
 }
 
-__attribute__((section(".text.func_00191F50")))
-void *func_00191F50(void) {
+__attribute__((section(".text.GetObjSingleton_191F50")))
+void *GetObjSingleton_191F50(void) {
     if (D_00785C08 == 0) {
         func_001BD528();
         func_0031EEA8(&D_00785C08, D_004241D8, D_007859B8);
@@ -139,8 +139,8 @@ void *func_00191F50(void) {
 
 
 
-__attribute__((section(".text.func_00191FA0")))
-void *func_00191FA0(void *a0) {
+__attribute__((section(".text.InitObjSlots_191FA0")))
+void *InitObjSlots_191FA0(void *a0) {
     void *s0 = (char *)a0 + 0x650;
     int s2 = 0;
     func_001BBEB8(a0);
@@ -158,8 +158,8 @@ void *func_00191FA0(void *a0) {
     return a0;
 }
 
-__attribute__((section(".text.func_001921B8")))
-void *func_001921B8(void) {
+__attribute__((section(".text.GetOrInit_D785C18_1921B8")))
+void *GetOrInit_D785C18_1921B8(void) {
     if (D_00785C18 == 0) {
         func_001BD528();
         func_0031EEA8(&D_00785C18, D_004242A0, D_007859B8);

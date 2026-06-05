@@ -21,8 +21,8 @@ extern void func_0031EEA8(void *a, void *b, void *c);
 extern int D_00425EE0;
 extern void func_001BFAC8(void *a0);
 
-__attribute__((section(".text.func_0019D1E8")))
-void func_0019D1E8(void *a0) {
+__attribute__((section(".text.ResetObjState_19D1E8")))
+void ResetObjState_19D1E8(void *a0) {
     int tmp;
     int sub;
     tmp = (*(int *)((char *)a0 + 0x5B0) & -9) | 4;
@@ -50,8 +50,8 @@ void *func_0019D2F0(void) {
 
 
 
-__attribute__((section(".text.func_0019D340")))
-void *func_0019D340(void *a0) {
+__attribute__((section(".text.InitObjVu0Fields_19D340")))
+void *InitObjVu0Fields_19D340(void *a0) {
     char *p;
     int i;
     func_001BBEB8(a0);
@@ -69,8 +69,8 @@ void *func_0019D340(void *a0) {
     return a0;
 }
 
-__attribute__((section(".text.func_0019D558")))
-void *func_0019D558(void) {
+__attribute__((section(".text.GetObjTypeDesc_19D558")))
+void *GetObjTypeDesc_19D558(void) {
     if (D_00785DF8 == 0) {
         func_001BD528();
         func_0031EEA8(&D_00785DF8, D_00425DF8, D_007859B8);
@@ -78,15 +78,15 @@ void *func_0019D558(void) {
     return &D_00785DF8;
 }
 
-__attribute__((section(".text.func_0019D5A8")))
-void *func_0019D5A8(void *a0) {
+__attribute__((section(".text.InitObjVtable_19D5A8")))
+void *InitObjVtable_19D5A8(void *a0) {
     func_001BFAC8(a0);
     *(char **)((char *)a0 + 0x214) = D_00425E10;
     return a0;
 }
 
-__attribute__((section(".text.func_0019D5E0")))
-void func_0019D5E0(void *a0, void *a1) {
+__attribute__((section(".text.FreeObjResource_19D5E0")))
+void FreeObjResource_19D5E0(void *a0, void *a1) {
     int v1;
     *(unsigned int *)((char *)a0 + 0x214) = (unsigned int)&D_00425E10;
     v1 = *(int *)((char *)a0 + 0x600);
@@ -97,8 +97,8 @@ void func_0019D5E0(void *a0, void *a1) {
     func_001BFB00(a0, a1);
 }
 
-__attribute__((section(".text.func_0019D760")))
-int func_0019D760(void) {
+__attribute__((section(".text.GetClassTypeInfo_19D760")))
+int GetClassTypeInfo_19D760(void) {
     if (D_00785E08 == 0) {
         func_001C0018();
         func_0031EEA8(&D_00785E08, &D_00425EC8, &D_00785808);
@@ -106,8 +106,8 @@ int func_0019D760(void) {
     return (int)&D_00785E08;
 }
 
-__attribute__((section(".text.func_0019D7B0")))
-void *func_0019D7B0(void *a0) {
+__attribute__((section(".text.SetObjVtable_19D7B0")))
+void *SetObjVtable_19D7B0(void *a0) {
     func_001BFAC8(a0);
     *(unsigned int *)((char *)a0 + 0x214) = (unsigned int)&D_00425EE0;
     return a0;

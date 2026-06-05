@@ -6,13 +6,13 @@ extern int D_00754200;
 extern int D_00580D40;
 extern int D_00747A78[];
 
-__attribute__((section(".text.func_001FF540")))
-int func_001FF540(int *a0) {
+__attribute__((section(".text.IsSlotArrayValid_1FF540")))
+int IsSlotArrayValid_1FF540(int *a0) {
     int *p;
     int i;
     p = a0 + 9;
     for (i = 0; i < 10; i++) {
-        if (func_002CB778(&D_005FEE00, p[0]) == 0) return 0;
+        if (IsSlotAvailable_2CB778(&D_005FEE00, p[0]) == 0) return 0;
         p++;
     }
     return 1;
@@ -33,8 +33,8 @@ void func_001FF5B8(int *a0) {
     }
 }
 
-__attribute__((section(".text.func_001FF800")))
-int *func_001FF800(int *a0) {
+__attribute__((section(".text.InitSlotTable_1FF800")))
+int *InitSlotTable_1FF800(int *a0) {
     a0[3] = 0xC00;
     a0[0] = 0;
     a0[2] = 0;
@@ -72,8 +72,8 @@ int func_001FFD00(int a0, int a1, int a2) {
     return func_00323A70(s0);
 }
 
-__attribute__((section(".text.func_001FFE60")))
-void func_001FFE60(int a0, int a1, int a2, int a3, int t0) {
+__attribute__((section(".text.SetColorRgba_1FFE60")))
+void SetColorRgba_1FFE60(int a0, int a1, int a2, int a3, int t0) {
     if (func_002004C8(a0, a1 & 0xFF, a2 & 0xFF, a3 & 0xFF, 0, t0 & 0xFF) == 1)
         func_001FFF80(a0);
 }
@@ -82,5 +82,5 @@ __attribute__((section(".text.func_00200658")))
 void func_00200658(void) {
     func_003A52F0(&D_00747A78, 0, 8);
     D_00747A78[2] = D_00747A78[2] & ~0x100000;
-    *(float*)((char*)func_002DB6B0() + 0x54C) = 30.0f;
+    *(float*)((char*)Obj0000_Get_D_00747A94_2DB6B0() + 0x54C) = 30.0f;
 }

@@ -8,14 +8,14 @@ extern int *PTR_DAT_003c2f84;
 __attribute__((section(".text.func_00171020")))
 void *func_00171020(void) {
     if (D_00785848 == 0) {
-        func_001BDE00();
+        GetPilotClassDesc_1BDE00();
         func_0031EEA8(&D_00785848, &D_004209D0, &D_00785858);
     }
     return &D_00785848;
 }
 
-__attribute__((section(".text.func_00295978")))
-int func_00295978(unsigned char *a0)
+__attribute__((section(".text.FindResolveActor_295978")))
+int FindResolveActor_295978(unsigned char *a0)
 {
     int v0 = func_00290868(D_005864F0, *a0);
     *(int *)((char *)a0 + 4) = v0;
@@ -25,7 +25,7 @@ int func_00295978(unsigned char *a0)
 __attribute__((section(".text.func_002959B0")))
 int func_002959B0(int *a0, int a1)
 {
-    if (func_00295978(a0)) {
+    if (FindResolveActor_295978(a0)) {
         int a2 = *(int *)((char *)a0 + 4);
         int v0 = *(int *)(a2 + 0x214);
         short off = *(short *)(v0 + 0x70);
@@ -40,7 +40,7 @@ struct vec4 { int a; float b; int c; float d; };
 __attribute__((section(".text.func_00295A08")))
 void func_00295A08(int *a0, int a1, float f12)
 {
-    if (func_00295978(a0)) {
+    if (FindResolveActor_295978(a0)) {
         int s0 = *(int *)((char *)a0 + 4);
         int v0 = *(int *)(s0 + 0x214);
         short off = *(short *)(v0 + 0x70);
@@ -60,14 +60,14 @@ void func_00295A08(int *a0, int a1, float f12)
     }
 }
 
-__attribute__((section(".text.func_00295AF8")))
-int *func_00295AF8(int *a0)
+__attribute__((section(".text.GetActorFieldPtr_295AF8")))
+int *GetActorFieldPtr_295AF8(int *a0)
 {
-    return func_00295978(a0) ? (int *)(*(int *)((char *)a0 + 4) + 0x100) : D_00747B00;
+    return FindResolveActor_295978(a0) ? (int *)(*(int *)((char *)a0 + 4) + 0x100) : D_00747B00;
 }
 
-__attribute__((section(".text.func_00295860")))
-int func_00295860(char *a0)
+__attribute__((section(".text.UpdateSlotCurValues_295860")))
+int UpdateSlotCurValues_295860(char *a0)
 {
     int *v1 = PTR_DAT_003c2f84;
     int s3;
@@ -102,7 +102,7 @@ __attribute__((section(".text.func_00295B38")))
 int func_00295B38(void *a0)
 {
     int v;
-    if (func_00295978(a0) == 0) {
+    if (FindResolveActor_295978(a0) == 0) {
         return 0;
     }
     v = *(int *)((char *)a0 + 4);
@@ -112,10 +112,10 @@ int func_00295B38(void *a0)
     return 0;
 }
 
-__attribute__((section(".text.func_00295B80")))
-void func_00295B80(void *a0, float f)
+__attribute__((section(".text.SetVia4_Float_54C_295B80")))
+void SetVia4_Float_54C_295B80(void *a0, float f)
 {
-    if (func_00295978(a0)) {
+    if (FindResolveActor_295978(a0)) {
         char *p = *(char **)((char *)a0 + 4);
         *(float *)(p + 0x54C) = f;
     }
@@ -124,7 +124,7 @@ void func_00295B80(void *a0, float f)
 __attribute__((section(".text.func_00295BC0")))
 void func_00295BC0(void *a0, int a1)
 {
-    if (func_00295978(a0)) {
+    if (FindResolveActor_295978(a0)) {
         char *a2 = *(char **)((char *)a0 + 4);
         char *v0 = *(char **)(a2 + 0x214);
         int off = *(short *)(v0 + 0x60);

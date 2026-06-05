@@ -3,8 +3,8 @@
 extern void func_00296CA8(void *a0);
 extern void func_00296EF0(void *a0);
 
-__attribute__((section(".text.func_00296C28")))
-int func_00296C28(void *a0) {
+__attribute__((section(".text.UpdateSequenceState_296C28")))
+int UpdateSequenceState_296C28(void *a0) {
     char *s = (char*)a0;
     switch (*(char*)(s + 5)) {
     case 0:

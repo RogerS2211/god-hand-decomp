@@ -1,7 +1,7 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
-__attribute__((section(".text.func_001FD530")))
-int func_001FD530(void *a0, int a1, int a2) {
+__attribute__((section(".text.SetTarget_1FD530")))
+int SetTarget_1FD530(void *a0, int a1, int a2) {
     if (*(char*)((char*)a0+0x49) == 0) {
         return 1;
     }
@@ -36,22 +36,22 @@ void func_001FD888(void *a0, void *a1) {
     }
 }
 
-__attribute__((section(".text.func_001FDFA8")))
-void func_001FDFA8(void *a0) {
-    func_001FE188(a0);
-    func_001FE2B8(a0);
+__attribute__((section(".text.InitPools_1FDFA8")))
+void InitPools_1FDFA8(void *a0) {
+    InitEntryPool_1FE188(a0);
+    InitNodePool_1FE2B8(a0);
 }
 
-__attribute__((section(".text.func_001FE0E8")))
-int func_001FE0E8(int a0, int a1, int a2) {
+__attribute__((section(".text.AllocSlot_1FE0E8")))
+int AllocSlot_1FE0E8(int a0, int a1, int a2) {
     int p = func_001FE1E0(a0);
     if (p == 0) return 0;
     if (func_001FD2C0(p, a1, a2) == 0) p = 0;
     return p;
 }
 
-__attribute__((section(".text.func_001FE188")))
-void func_001FE188(int a0) {
+__attribute__((section(".text.InitEntryPool_1FE188")))
+void InitEntryPool_1FE188(int a0) {
     char *p = (char *)a0;
     char *end = (char *)a0 + 0x3C00;
     do {
@@ -60,16 +60,16 @@ void func_001FE188(int a0) {
     } while (p < end);
 }
 
-__attribute__((section(".text.func_001FE218")))
-int func_001FE218(int a0, int a1, int a2) {
+__attribute__((section(".text.AllocActiveSlot_1FE218")))
+int AllocActiveSlot_1FE218(int a0, int a1, int a2) {
     int p = func_001FE310(a0);
     if (p == 0) return 0;
-    if (func_001FD530(p, a1, a2) == 0) p = 0;
+    if (SetTarget_1FD530(p, a1, a2) == 0) p = 0;
     return p;
 }
 
-__attribute__((section(".text.func_001FE2B8")))
-void func_001FE2B8(int a0) {
+__attribute__((section(".text.InitNodePool_1FE2B8")))
+void InitNodePool_1FE2B8(int a0) {
     char *p = (char *)a0 + 0x3C00;
     unsigned int i = 0;
     do {

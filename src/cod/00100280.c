@@ -47,8 +47,8 @@ void func_001002C0(void *a0, void *a1) {
     func_002A73C8(a0, a1);
 }
 
-__attribute__((section(".text.func_00100328")))
-void *func_00100328(void) {
+__attribute__((section(".text.GetOrInitSingleton_100328")))
+void *GetOrInitSingleton_100328(void) {
     if (D_007854C8 == 0) {
         func_002A9300();
         func_0031EEA8(&D_007854C8, &D_0041B638, &D_007854D8);
@@ -56,8 +56,8 @@ void *func_00100328(void) {
     return &D_007854C8;
 }
 
-__attribute__((section(".text.func_00101E48")))
-void *func_00101E48(void) {
+__attribute__((section(".text.GetOrInitSingletonAlt_101E48")))
+void *GetOrInitSingletonAlt_101E48(void) {
     if (D_007854E8 == 0) {
         func_0014FD20();
         func_0031EEA8(&D_007854E8, &D_0041B710, &D_007854F8);
@@ -67,7 +67,7 @@ void *func_00101E48(void) {
 
 __attribute__((section(".text.func_00102BD8")))
 void func_00102BD8(void *a0) {
-    void *r = func_002DB6B0();
+    void *r = Obj0000_Get_D_00747A94_2DB6B0();
     switch (*(unsigned char *)((char *)a0 + 0x2F6)) {
     case 0: {
         void *p = *(void **)((char *)a0 + 0x304);

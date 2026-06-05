@@ -11,8 +11,8 @@ extern int D_00785C78;
 extern int D_00424860;
 extern int D_00424878;
 
-__attribute__((section(".text.func_001931A0")))
-void *func_001931A0(void) {
+__attribute__((section(".text.GetObjSingleton_1931A0")))
+void *GetObjSingleton_1931A0(void) {
     if (D_00785C58 == 0) {
         func_001C3BE8();
         func_0031EEA8(&D_00785C58, D_00424690, D_00785798);
@@ -26,8 +26,8 @@ void *func_001931A0(void) {
 
 
 
-__attribute__((section(".text.func_001931F0")))
-void *func_001931F0(void *a0) {
+__attribute__((section(".text.Obj1930_Setup_1931F0")))
+void *Obj1930_Setup_1931F0(void *a0) {
     char *p;
     int i;
     func_001C27E8(a0);
@@ -45,8 +45,8 @@ void *func_001931F0(void *a0) {
     return a0;
 }
 
-__attribute__((section(".text.func_00193418")))
-void *func_00193418(void) {
+__attribute__((section(".text.GetOrInit_785C68_193418")))
+void *GetOrInit_785C68_193418(void) {
     if (D_00785C68 == 0) {
         func_001C3BE8();
         func_0031EEA8(&D_00785C68, D_00424778, D_00785798);
@@ -60,8 +60,8 @@ void *func_00193418(void) {
 
 
 
-__attribute__((section(".text.func_00193468")))
-void *func_00193468(void *a0) {
+__attribute__((section(".text.Setup_Ptr_214_VU0Array_620_193468")))
+void *Setup_Ptr_214_VU0Array_620_193468(void *a0) {
     char *s0;
     int i;
     func_001C27E8(a0);
@@ -88,11 +88,11 @@ void func_001934F0(void *a0, int a1) {
         func_001FE278(D_00574380, v1);
         *(int*)((char*)a0 + 0x600) = 0;
     }
-    func_001C2820(a0, a1);
+    ResetField214FreeField180_1C2820(a0, a1);
 }
 
-__attribute__((section(".text.func_001936C8")))
-void *func_001936C8(void) {
+__attribute__((section(".text.GetCohortSnW11Instance_1936C8")))
+void *GetCohortSnW11Instance_1936C8(void) {
     if (D_00785C78 == 0) {
         func_001C3BE8();
         func_0031EEA8(&D_00785C78, &D_00424860, &D_00785798);
@@ -106,8 +106,8 @@ void *func_001936C8(void) {
 
 
 
-__attribute__((section(".text.func_00193718")))
-void *func_00193718(void *a0) {
+__attribute__((section(".text.Setup_Field_214_Obj0000Array_620_193718")))
+void *Setup_Field_214_Obj0000Array_620_193718(void *a0) {
     char *p = (char *)a0 + 0x620;
     int i;
     func_001C27E8(a0);
@@ -124,8 +124,8 @@ void *func_00193718(void *a0) {
     return a0;
 }
 
-__attribute__((section(".text.func_001937A0")))
-void func_001937A0(void *a0, void *a1) {
+__attribute__((section(".text.ClearCohortSlotResources_1937A0")))
+void ClearCohortSlotResources_1937A0(void *a0, void *a1) {
     int v1;
     *(int *)((char *)a0 + 0x214) = (int)&D_00424878;
     v1 = *(int *)((char *)a0 + 0x600);
@@ -133,5 +133,5 @@ void func_001937A0(void *a0, void *a1) {
         func_001FE278(&D_00574380, v1);
         *(int *)((char *)a0 + 0x600) = 0;
     }
-    func_001C2820(a0, a1);
+    ResetField214FreeField180_1C2820(a0, a1);
 }

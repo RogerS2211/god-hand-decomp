@@ -3,7 +3,7 @@
 extern char D_00429C80[];
 extern char D_00574380[];
 extern void func_001FE278(char *, int);
-extern void func_001B6F38(int *, int);
+extern void SetField214PtrThenInit_1B6F38(int *, int);
 extern int D_00785798;
 extern int D_00429D50;
 extern int D_00785878;
@@ -19,8 +19,8 @@ extern int SignalSema(int sema);
 extern int SleepThread(void);
 extern void func_002A7498(char *a0, int a1, float f12);
 
-__attribute__((section(".text.func_001C2820")))
-void func_001C2820(int *a0, int a1) {
+__attribute__((section(".text.ResetField214FreeField180_1C2820")))
+void ResetField214FreeField180_1C2820(int *a0, int a1) {
     *(char **)((char *)a0 + 0x214) = D_00429C80;
     if (a0[0x180] != 0) {
         func_001FE278(D_00574380, a0[0x180]);
@@ -30,7 +30,7 @@ void func_001C2820(int *a0, int a1) {
         func_001FE278(D_00574380, a0[0x180]);
         a0[0x180] = 0;
     }
-    func_001B6F38(a0, a1);
+    SetField214PtrThenInit_1B6F38(a0, a1);
 }
 
 __attribute__((section(".text.func_001C3BE8")))
@@ -43,8 +43,8 @@ void *func_001C3BE8(void)
     return &D_00785798;
 }
 
-__attribute__((section(".text.func_00300148")))
-void *func_00300148(void)
+__attribute__((section(".text.GetOrInitGlobal7863C8_300148")))
+void *GetOrInitGlobal7863C8_300148(void)
 {
     if (D_007863C8 == 0) {
         if (D_00786598 == 0) {
@@ -56,8 +56,8 @@ void *func_00300148(void)
     return &D_007863C8;
 }
 
-__attribute__((section(".text.func_002D5AA0")))
-void func_002D5AA0(char *a0, int a1)
+__attribute__((section(".text.SetFieldsCESignalSemaSleep_2D5AA0")))
+void SetFieldsCESignalSemaSleep_2D5AA0(char *a0, int a1)
 {
     *(short *)(a0 + 0xC) = 1;
     *(short *)(a0 + 0xE) = (short)a1;
@@ -65,8 +65,8 @@ void func_002D5AA0(char *a0, int a1)
     SleepThread();
 }
 
-__attribute__((section(".text.func_00124E68")))
-void func_00124E68(char *a0, float f12)
+__attribute__((section(".text.InvokeVirtualAtField214AndForward_124E68")))
+void InvokeVirtualAtField214AndForward_124E68(char *a0, float f12)
 {
     char *a1 = *(char **)(a0 + 0x640);
     if (a1 != 0) {

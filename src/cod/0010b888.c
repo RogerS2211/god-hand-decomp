@@ -10,8 +10,8 @@ extern void func_0014A038(void *a0);
 extern void func_001CF3A8(void *a0);
 extern void func_001269E0(void *a0, int a1, int a2);
 
-__attribute__((section(".text.func_0010B888")))
-void func_0010B888(void *a0, int a1) {
+__attribute__((section(".text.SetEnemyActiveState_10B888")))
+void SetEnemyActiveState_10B888(void *a0, int a1) {
     char *s0 = (char *)a0;
     int v0;
     if (a1 != 0) {
@@ -42,8 +42,8 @@ void func_0010B888(void *a0, int a1) {
     }
 }
 
-__attribute__((section(".text.func_0010B980")))
-void func_0010B980(void *a0, int a1) {
+__attribute__((section(".text.InitStateFields2F4_10B980")))
+void InitStateFields2F4_10B980(void *a0, int a1) {
     char *s0 = (char *)a0;
     func_001269E0(s0, a1, 1);
     *(unsigned char *)(s0 + 0x2F4) = 5;

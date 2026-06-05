@@ -3,7 +3,7 @@
 extern char *PTR_DAT_003c2f84;
 extern char *PTR_DAT_003c23a4;
 extern void func_002C4150(char *a0, int a1, int a2, int a3, int t0, int t1);
-extern void func_002D5A48(int a0);
+extern void ExitDeleteThreadAndSignalSema_2D5A48(int a0);
 extern void func_002C1D68(int a0, int a1, int a2);
 extern void func_002C0E78(int a0, int a1);
 extern void func_002D56A8(void *a0);
@@ -31,11 +31,11 @@ void func_002C2368(char *a0) {
         v1 = func_002AEB50(PTR_DAT_003c23a4, *(unsigned short*)(a0 + 0x5C), v1);
     }
     func_002C4150(PTR_DAT_003c2f84, v1, *(int*)(s1 + 0xC), 0, 0, 1);
-    func_002D5A48(*(int*)(PTR_DAT_003c2f84 + 0x20));
+    ExitDeleteThreadAndSignalSema_2D5A48(*(int*)(PTR_DAT_003c2f84 + 0x20));
 }
 
-__attribute__((section(".text.func_002C2490")))
-int func_002C2490(int a0, int a1, float *a2) {
+__attribute__((section(".text.FindNodeByHit_2C2490")))
+int FindNodeByHit_2C2490(int a0, int a1, float *a2) {
     int s0;
     int sp[12];
     s0 = func_002C30C0(a0);
@@ -55,8 +55,8 @@ int func_002C2490(int a0, int a1, float *a2) {
     return 0;
 }
 
-__attribute__((section(".text.func_002C2568")))
-int func_002C2568(int a0, int a1, float *a2) {
+__attribute__((section(".text.FindNodeByType_2C2568")))
+int FindNodeByType_2C2568(int a0, int a1, float *a2) {
     int s0;
     int sp[12];
     s0 = func_002C30C0(a0);
@@ -76,8 +76,8 @@ int func_002C2568(int a0, int a1, float *a2) {
     return 0;
 }
 
-__attribute__((section(".text.func_002C2638")))
-int func_002C2638(int a0, int a1, int a2, float *a3) {
+__attribute__((section(".text.FindEntityAtPosition_2C2638")))
+int FindEntityAtPosition_2C2638(int a0, int a1, int a2, float *a3) {
     int s0;
     int buf[12];
     s0 = func_002C30C0(a0);
@@ -93,8 +93,8 @@ int func_002C2638(int a0, int a1, int a2, float *a3) {
     return 0;
 }
 
-__attribute__((section(".text.func_002C28F8")))
-int func_002C28F8(int *a0, int a1) {
+__attribute__((section(".text.ClearEntityIfActive_2C28F8")))
+int ClearEntityIfActive_2C28F8(int *a0, int a1) {
     if (*a0 == 0) return 0;
     if (a1 == 0) return 0;
     if (func_002C0E68(a1) != 0) return 1;
@@ -102,17 +102,17 @@ int func_002C28F8(int *a0, int a1) {
     return 1;
 }
 
-__attribute__((section(".text.func_002C2950")))
-int func_002C2950(int *a0, unsigned short a1) {
+__attribute__((section(".text.ClearEntityById_2C2950")))
+int ClearEntityById_2C2950(int *a0, unsigned short a1) {
     int v0;
     if (*a0 == 0) return 0;
-    v0 = func_002C3118((int)a0, a1);
+    v0 = FindEntityByShortId_2C3118((int)a0, a1);
     if (v0 == 0) return 0;
-    return func_002C28F8((int)a0, v0);
+    return ClearEntityIfActive_2C28F8((int)a0, v0);
 }
 
-__attribute__((section(".text.func_002C29A0")))
-int func_002C29A0(int *a0, int a1) {
+__attribute__((section(".text.ResetEntityActiveState_2C29A0")))
+int ResetEntityActiveState_2C29A0(int *a0, int a1) {
     if (*a0 == 0) return 0;
     if (a1 == 0) return 0;
     if (func_002C0E68(a1) != 0) {
@@ -121,13 +121,13 @@ int func_002C29A0(int *a0, int a1) {
     return 1;
 }
 
-__attribute__((section(".text.func_002C29F8")))
-int func_002C29F8(int a0, int a1) {
+__attribute__((section(".text.ResetEntityStateById_2C29F8")))
+int ResetEntityStateById_2C29F8(int a0, int a1) {
     int r;
     if (*(int*)a0 == 0) return 0;
-    r = func_002C3118(a0, a1 & 0xFFFF);
+    r = FindEntityByShortId_2C3118(a0, a1 & 0xFFFF);
     if (r == 0) return 0;
-    return func_002C29A0(a0, r);
+    return ResetEntityActiveState_2C29A0(a0, r);
 }
 
 __attribute__((section(".text.func_002C2AE0")))
@@ -142,8 +142,8 @@ int func_002C2AE0(int a0, int a1) {
     return 0;
 }
 
-__attribute__((section(".text.func_002C3118")))
-int func_002C3118(int a0, int a1) {
+__attribute__((section(".text.FindEntityByShortId_2C3118")))
+int FindEntityByShortId_2C3118(int a0, int a1) {
     int e;
     if (a1 == 0xFFFFF) return 0;
     e = func_002C30C0(a0);
@@ -159,8 +159,8 @@ void func_002C32C0(void *a0) {
     *(char*)((char*)a0 + 0x14) = 0;
 }
 
-__attribute__((section(".text.func_002C3440")))
-void func_002C3440(void *a0) {
+__attribute__((section(".text.ResetActorState_2C3440")))
+void ResetActorState_2C3440(void *a0) {
     int v0;
     char *b = D_007474A0;
     *(unsigned short*)((char*)a0 + 0x112) = 0xFFFF;

@@ -11,7 +11,7 @@ extern int D_00447E68;
  * 0x00447E50 as the per-rep type-info asciz label. */
 extern int D_00447E50;
 
-/* func_00279CE8 — sq + VU0 object constructor (84 B / 21 insns); see file header.
+/* Init_Vtable214_TypeName4AC_279CE8 — sq + VU0 object constructor (84 B / 21 insns); see file header.
  *
  * Retail (asm/cod/000000.s, 0x00279CE8..0x00279D3B, 84 B):
  *
@@ -41,8 +41,8 @@ extern int D_00447E50;
  * default (byte-identical) build exact. scripts/score_nm.sh compiles this body and
  * scores it as a fuzzy partial in the published progress report. */
 #ifdef NON_MATCHING
-__attribute__((section(".text.func_00279CE8")))
-void *func_00279CE8(void *obj) {
+__attribute__((section(".text.Init_Vtable214_TypeName4AC_279CE8")))
+void *Init_Vtable214_TypeName4AC_279CE8(void *obj) {
     int *vtable;
     int *type_name;
 
@@ -59,6 +59,6 @@ void *func_00279CE8(void *obj) {
     return obj;
 }
 #else
-INCLUDE_ASM("nonmatching", func_00279CE8);
+INCLUDE_ASM("nonmatching", Init_Vtable214_TypeName4AC_279CE8);
 #endif
 

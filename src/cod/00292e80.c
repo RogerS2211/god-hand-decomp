@@ -31,8 +31,8 @@ void func_002982A0(int a0)
     }
 }
 
-__attribute__((section(".text.func_002CB830")))
-int func_002CB830(int a0, int a1)
+__attribute__((section(".text.IsSlotUsable_2CB830")))
+int IsSlotUsable_2CB830(int a0, int a1)
 {
 	int s2;
 
@@ -46,8 +46,8 @@ int func_002CB830(int a0, int a1)
 	return s2;
 }
 
-__attribute__((section(".text.func_002CC050")))
-int func_002CC050(int a0)
+__attribute__((section(".text.FindActiveSlot_2CC050")))
+int FindActiveSlot_2CC050(int a0)
 {
 	int s0;
 
@@ -64,8 +64,8 @@ int func_002CC050(int a0)
 
 
 
-__attribute__((section(".text.func_002F56C0")))
-void *func_002F56C0(void *a0)
+__attribute__((section(".text.Setup_Fields_2B0_2F56C0")))
+void *Setup_Fields_2B0_2F56C0(void *a0)
 {
 	func_002FBCC8(a0);
 

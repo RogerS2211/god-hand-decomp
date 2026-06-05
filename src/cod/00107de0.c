@@ -1,7 +1,7 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
 extern int D_0041DCC8[];
-extern void func_0030F5A0(void);
+extern void ForwardFieldNeg20_002A9680_30F5A0(void);
 extern int D_004615F0[];
 extern void func_0012C418(void);
 
@@ -9,7 +9,7 @@ __attribute__((section(".text.func_00144AD0")))
 void func_00144AD0(void *a0, int a1) {
     *(int **)((char *)a0 + 0x80) = D_0041DCC8;
     if (a1 & 1) {
-        func_0030F5A0();
+        ForwardFieldNeg20_002A9680_30F5A0();
     }
 }
 
@@ -25,8 +25,8 @@ void func_00107DE0(int a0, int a1) {
     }
 }
 
-__attribute__((section(".text.func_0010BCC0")))
-void func_0010BCC0(void *a0, int a1) {
+__attribute__((section(".text.SetActionState_10BCC0")))
+void SetActionState_10BCC0(void *a0, int a1) {
     if (a1) {
         *(unsigned char*)((char*)a0+0x2F4) = 6;
         *(float*)((char*)a0+0x54C) = 5.0f;

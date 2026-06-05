@@ -23,8 +23,8 @@ void func_001C2D60(void *a0)
     }
 }
 
-__attribute__((section(".text.func_001D57A0")))
-void func_001D57A0(void *a0, int a1, int a2)
+__attribute__((section(".text.SetBlendField5B4_1D57A0")))
+void SetBlendField5B4_1D57A0(void *a0, int a1, int a2)
 {
     if (a1) {
         int b;
@@ -36,8 +36,8 @@ void func_001D57A0(void *a0, int a1, int a2)
     }
 }
 
-__attribute__((section(".text.func_001D5848")))
-void func_001D5848(void *a0, int a1, int a2)
+__attribute__((section(".text.SetBlendField4BC_1D5848")))
+void SetBlendField4BC_1D5848(void *a0, int a1, int a2)
 {
     if (a1) {
         int b;
@@ -49,8 +49,8 @@ void func_001D5848(void *a0, int a1, int a2)
     }
 }
 
-__attribute__((section(".text.func_001D58F0")))
-void func_001D58F0(void *a0, int a1, int a2)
+__attribute__((section(".text.SetBlendField6AC_1D58F0")))
+void SetBlendField6AC_1D58F0(void *a0, int a1, int a2)
 {
     if (a1) {
         int b;
@@ -62,8 +62,8 @@ void func_001D58F0(void *a0, int a1, int a2)
     }
 }
 
-__attribute__((section(".text.func_001D5998")))
-void func_001D5998(void *a0, int a1, int a2)
+__attribute__((section(".text.SetBlendField105C_1D5998")))
+void SetBlendField105C_1D5998(void *a0, int a1, int a2)
 {
     if (a1) {
         int b;
@@ -75,8 +75,8 @@ void func_001D5998(void *a0, int a1, int a2)
     }
 }
 
-__attribute__((section(".text.func_001D5A40")))
-void func_001D5A40(void *a0, int a1, int a2)
+__attribute__((section(".text.SetBlendField3C4_1D5A40")))
+void SetBlendField3C4_1D5A40(void *a0, int a1, int a2)
 {
     if (a1) {
         int b;
@@ -88,8 +88,8 @@ void func_001D5A40(void *a0, int a1, int a2)
     }
 }
 
-__attribute__((section(".text.func_001D5AE8")))
-void func_001D5AE8(void *a0, int a1, int a2)
+__attribute__((section(".text.SetBlendField2CC_1D5AE8")))
+void SetBlendField2CC_1D5AE8(void *a0, int a1, int a2)
 {
     if (a1) {
         int b;
@@ -101,8 +101,8 @@ void func_001D5AE8(void *a0, int a1, int a2)
     }
 }
 
-__attribute__((section(".text.func_001D5B90")))
-void func_001D5B90(void *a0, int a1, int a2)
+__attribute__((section(".text.SetBlendField820_1D5B90")))
+void SetBlendField820_1D5B90(void *a0, int a1, int a2)
 {
     if (a1) {
         int b;
@@ -114,8 +114,8 @@ void func_001D5B90(void *a0, int a1, int a2)
     }
 }
 
-__attribute__((section(".text.func_001DDB10")))
-void func_001DDB10(void *a0, int a1, int a2)
+__attribute__((section(".text.SetBlendField1D4_1DDB10")))
+void SetBlendField1D4_1DDB10(void *a0, int a1, int a2)
 {
     if (a1) {
         int b;
@@ -127,8 +127,8 @@ void func_001DDB10(void *a0, int a1, int a2)
     }
 }
 
-__attribute__((section(".text.func_001DDBB8")))
-void func_001DDBB8(void *a0, int a1, int a2)
+__attribute__((section(".text.SetBlendField348_1DDBB8")))
+void SetBlendField348_1DDBB8(void *a0, int a1, int a2)
 {
     if (a1) {
         int b;
@@ -153,8 +153,8 @@ void func_001DDC60(void *a0, int a1, int a2)
     }
 }
 
-__attribute__((section(".text.func_001DDD08")))
-void func_001DDD08(void *a0, int a1, int a2)
+__attribute__((section(".text.SetBlendField630_1DDD08")))
+void SetBlendField630_1DDD08(void *a0, int a1, int a2)
 {
     if (a1) {
         int b;

@@ -8,8 +8,8 @@ extern int D_005CAE50;
 
 
 
-__attribute__((section(".text.func_001A0D68")))
-void *func_001A0D68(void *a0)
+__attribute__((section(".text.InitObjSlots_1A0D68")))
+void *InitObjSlots_1A0D68(void *a0)
 {
     char *s0 = (char *)a0 + 0x610;
     int i;
@@ -28,8 +28,8 @@ void *func_001A0D68(void *a0)
     return a0;
 }
 
-__attribute__((section(".text.func_00199C68")))
-void func_00199C68(void *a0)
+__attribute__((section(".text.ClearObjActiveFlag_199C68")))
+void ClearObjActiveFlag_199C68(void *a0)
 {
     int v0;
     v0 = (*(int*)((char*)a0 + 0x5B0) & -9) | 4;

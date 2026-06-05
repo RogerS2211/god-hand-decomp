@@ -1,5 +1,5 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
-/* src/cod/0026af.c — func_0026AF20: 11-way effect-parameter loader.
+/* src/cod/0026af.c — SetOrientByType_26AF20: 11-way effect-parameter loader.
  *
  * switch(a2) over a small set (0..10, case 0 == default) fills a 7-word stack
  * buffer (2x sqc2 $vf0 zero at 0x0/0x10) with per-case float literals (decoded
@@ -21,8 +21,8 @@
 extern int func_001CF160();
 
 #ifdef NON_MATCHING
-__attribute__((section(".text.func_0026AF20")))
-void func_0026AF20(void *a0, int a1, unsigned int a2) {
+__attribute__((section(".text.SetOrientByType_26AF20")))
+void SetOrientByType_26AF20(void *a0, int a1, unsigned int a2) {
     void *a3 = a0;
     float buf[7];   /* sp[0..0x18] */
     int count;
@@ -132,7 +132,7 @@ void func_0026AF20(void *a0, int a1, unsigned int a2) {
     func_001CF160(a1, a3, count, buf, (char *)buf + 0x10);
 }
 #else
-INCLUDE_ASM("nonmatching", func_0026AF20);
+INCLUDE_ASM("nonmatching", SetOrientByType_26AF20);
 /* Re-export the switch jump-table head label the .rodata table references
  * across the .o boundary (the labels.inc-assembled carve marks jlabels
  * local).  --strip-all => no effect on the final ELF bytes / sha256. */

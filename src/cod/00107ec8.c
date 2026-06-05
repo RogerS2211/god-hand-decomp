@@ -32,15 +32,15 @@ void func_0013F510(char *a0) {
     *(char *)(a0 + 0x384) = 0;
 }
 
-__attribute__((section(".text.func_00107EC8")))
-void func_00107EC8(void *a0, void *a1) {
+__attribute__((section(".text.InitActorWithVtable_107EC8")))
+void InitActorWithVtable_107EC8(void *a0, void *a1) {
     *(int **)((char*)a0+0x214) = D_0041D220;
     func_001347E8(D_00462FC0, a0);
     func_001002C0(a0, a1);
 }
 
-__attribute__((section(".text.func_0010B780")))
-void func_0010B780(void *a0) {
+__attribute__((section(".text.UpdateBossPhase_10B780")))
+void UpdateBossPhase_10B780(void *a0) {
     int st;
     int base;
     *(float*)((char*)a0 + 0x54C) = 5.0f;

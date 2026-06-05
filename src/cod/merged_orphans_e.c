@@ -1,15 +1,15 @@
-/* func_002D0630: `func_002D0658(0.0f)` — forwarding call with a float arg. */
+/* Forward2D0658_2D0630: `func_002D0658(0.0f)` — forwarding call with a float arg. */
 extern void func_002D0658(float);
-__attribute__((section(".text.func_002D0630")))
-void func_002D0630(void) { func_002D0658(0.0f); }
+__attribute__((section(".text.Forward2D0658_2D0630")))
+void Forward2D0658_2D0630(void) { func_002D0658(0.0f); }
 
-/* func_002C2A98: chain — alloc via func_002C3118(a0,a1); if non-null,
+/* func_002C2A98: chain — alloc via FindEntityByShortId_2C3118(a0,a1); if non-null,
  * tail-process via func_002C0ED0(obj, a2); else return 0. */
-extern void *func_002C3118(void *a0, void *a1);
+extern void *FindEntityByShortId_2C3118(void *a0, void *a1);
 extern void *func_002C0ED0(void *obj, void *a2);
 __attribute__((section(".text.func_002C2A98")))
 void *func_002C2A98(void *a0, void *a1, void *a2) {
-    void *v0 = func_002C3118(a0, a1);
+    void *v0 = FindEntityByShortId_2C3118(a0, a1);
     if (v0 == 0) return 0;
     return func_002C0ED0(v0, a2);
 }
@@ -31,13 +31,13 @@ int func_00297C20(signed char *a0) {
     return a0[4] == 3;
 }
 
-/* func_00295AB8: getter with a guard call.  If func_00295978(a0) is 0,
+/* func_00295AB8: getter with a guard call.  If FindResolveActor_295978(a0) is 0,
  * return &D_00747B00; else return obj->field_4->field_F0. */
 extern int D_00747B00;
-extern int func_00295978(void *a0);
+extern int FindResolveActor_295978(void *a0);
 __attribute__((section(".text.func_00295AB8")))
 void *func_00295AB8(void *a0) {
-    if (func_00295978(a0) == 0)
+    if (FindResolveActor_295978(a0) == 0)
         return &D_00747B00;
     return *(void **)(*(char **)((char *)a0 + 4) + 0xF0);
 }

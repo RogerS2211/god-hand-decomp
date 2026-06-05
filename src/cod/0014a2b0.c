@@ -6,8 +6,8 @@ extern void func_002D6490(void *a0, int a1);
 extern void func_001B6E90(void *a0);
 extern int D_00429C80;
 
-__attribute__((section(".text.func_002CA718")))
-void func_002CA718(void *a0)
+__attribute__((section(".text.OrChildField98AndSelfFieldB0AC_2CA718")))
+void OrChildField98AndSelfFieldB0AC_2CA718(void *a0)
 {
     char *p = (char *)a0;
     char *s0 = *(char **)(p + 0x18);
@@ -35,8 +35,8 @@ int func_002CB968(void *a0, int a1, short a2, int a3, int a4, int a5)
     return func_002CDE28(p, (short)a1, a2, a3, a4, a5);
 }
 
-__attribute__((section(".text.func_0014A2B0")))
-void func_0014A2B0(void *a0)
+__attribute__((section(".text.CopyVec3From110To120_14A2B0")))
+void CopyVec3From110To120_14A2B0(void *a0)
 {
     char *s0 = (char *)a0;
     char *s1;
@@ -85,8 +85,8 @@ int func_00262A10(char *a0)
     return 0;
 }
 
-__attribute__((section(".text.func_001D51B8")))
-void func_001D51B8(char *base, int idx, int flag) {
+__attribute__((section(".text.SetFlagOnEntries7C_1D51B8")))
+void SetFlagOnEntries7C_1D51B8(char *base, int idx, int flag) {
     int i;
     if (flag != 0) {
         if (idx == 0x2D) {

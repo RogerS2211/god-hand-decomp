@@ -28,8 +28,8 @@ int func_003749D8(short a0, struct rec *a1) {
     return 0;
 }
 
-__attribute__((section(".text.func_00374D98")))
-void func_00374D98(short a0, short a1, short *a2)
+__attribute__((section(".text.InitSoundBlock_374D98")))
+void InitSoundBlock_374D98(short a0, short a1, short *a2)
 {
     func_003A52F0(a2, 0, 0x30);
     a2[1] = a1;
@@ -66,8 +66,8 @@ int func_00374DF8(void *a0, int a1) {
     return *(int *)(p + 0x4);
 }
 
-__attribute__((section(".text.func_00374F30")))
-int func_00374F30(int a0, void *a1) {
+__attribute__((section(".text.AddSoundEntry_374F30")))
+int AddSoundEntry_374F30(int a0, void *a1) {
     char *p = func_0037D170();
     if (p == 0) return -1;
     *(short *)(p + 0x0) = 1;
@@ -105,8 +105,8 @@ int func_00375128(short a0) {
     return 0;
 }
 
-__attribute__((section(".text.func_003751B8")))
-int func_003751B8(void *a0, short a1) {
+__attribute__((section(".text.UpdateEntryVolume_3751B8")))
+int UpdateEntryVolume_3751B8(void *a0, short a1) {
     unsigned short local;
     char *s0 = (char *)a0;
     int s1 = a1;
@@ -132,8 +132,8 @@ int func_003751B8(void *a0, short a1) {
     return 0;
 }
 
-__attribute__((section(".text.func_003752A0")))
-int func_003752A0(void *a0, int a1) {
+__attribute__((section(".text.UpdateEntryParams_3752A0")))
+int UpdateEntryParams_3752A0(void *a0, int a1) {
     int v1 = 0;
     short s1 = (short)a1;
     unsigned char buf[0x10];
@@ -149,8 +149,8 @@ int func_003752A0(void *a0, int a1) {
     return v1;
 }
 
-__attribute__((section(".text.func_00375B90")))
-void func_00375B90(short a0, short a1, void *a2)
+__attribute__((section(".text.InitSoundEntry_375B90")))
+void InitSoundEntry_375B90(short a0, short a1, void *a2)
 {
     func_003A52F0(a2, 0, 0x30);
     *(short *)((char *)a2 + 0x2) = a1;
@@ -163,8 +163,8 @@ struct s_data { char d[0x30]; };
 
 
 
-__attribute__((section(".text.func_00375BF0")))
-int func_00375BF0(void *a0)
+__attribute__((section(".text.BuildSoundEvent_375BF0")))
+int BuildSoundEvent_375BF0(void *a0)
 {
     char *p;
     if (*(unsigned short *)((char *)a0 + 0xE) & 0x8000) {
@@ -187,8 +187,8 @@ struct s_data_cd0 { char d[0x30]; };
 
 
 
-__attribute__((section(".text.func_00375CD0")))
-int func_00375CD0(int a0, void *a1)
+__attribute__((section(".text.BuildSoundEventCd0_375CD0")))
+int BuildSoundEventCd0_375CD0(int a0, void *a1)
 {
     char *p;
     p = (char *)func_00376978();
@@ -204,14 +204,14 @@ int func_00375CD0(int a0, void *a1)
     return 0;
 }
 
-__attribute__((section(".text.func_00375DE0")))
-int func_00375DE0(short a0, short a1)
+__attribute__((section(".text.ForwardSoundEventAll_375DE0")))
+int ForwardSoundEventAll_375DE0(short a0, short a1)
 {
     int e = (int)D_00770850;
     int end = (int)D_00770850 + 0x2A00;
     do {
         if (*(unsigned short *)(e + 0x0) != 0) {
-            if (func_00375E78(*(int *)(e + 0x4), a0, a1) == -1) {
+            if (BuildSoundEventEntry_375E78(*(int *)(e + 0x4), a0, a1) == -1) {
                 return -1;
             }
         }
@@ -220,8 +220,8 @@ int func_00375DE0(short a0, short a1)
     return 0;
 }
 
-__attribute__((section(".text.func_00375E78")))
-int func_00375E78(int a0, short a1, short a2)
+__attribute__((section(".text.BuildSoundEventEntry_375E78")))
+int BuildSoundEventEntry_375E78(int a0, short a1, short a2)
 {
     short *p;
     p = (short *)func_00376978();

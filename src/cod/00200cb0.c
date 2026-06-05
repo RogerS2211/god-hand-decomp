@@ -4,8 +4,8 @@ extern char D_00580D40[];
 extern void func_00201228(char *a0, char *a1);
 extern void func_00201290(char *a0);
 
-__attribute__((section(".text.func_00200CB0")))
-int func_00200CB0(char *a0, char *a1, int *a2, int a3, int t0, int t1, int t2, int t3)
+__attribute__((section(".text.SetupSlotFromField78_200CB0")))
+int SetupSlotFromField78_200CB0(char *a0, char *a1, int *a2, int a3, int t0, int t1, int t2, int t3)
 {
     char *s0;
 
@@ -59,8 +59,8 @@ void func_00299868(char *a0, long a1, long a2) {
     *(int*)(base + 0x10) = *(int*)(base + 0x10) + 1;
 }
 
-__attribute__((section(".text.func_002B61B0")))
-int func_002B61B0(int a0) {
+__attribute__((section(".text.CallThenReturnPlusB0_002B6420_2B61B0")))
+int CallThenReturnPlusB0_002B6420_2B61B0(int a0) {
     func_002B6420(a0);
     return a0 + 0xB0;
 }

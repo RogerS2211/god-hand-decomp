@@ -13,8 +13,8 @@ extern int D_00426D50;
 extern int D_00785F18;
 extern int D_00426E20;
 
-__attribute__((section(".text.func_001A05B8")))
-int *func_001A05B8(void)
+__attribute__((section(".text.GetTypeDescriptorD_1A05B8")))
+int *GetTypeDescriptorD_1A05B8(void)
 {
     if (D_00785EE8 == 0) {
         func_001C3BE8();
@@ -29,8 +29,8 @@ int *func_001A05B8(void)
 
 
 
-__attribute__((section(".text.func_001A0608")))
-void *func_001A0608(void *a0)
+__attribute__((section(".text.InitVu0SlotArray5B_1A0608")))
+void *InitVu0SlotArray5B_1A0608(void *a0)
 {
     char *p;
     int i;
@@ -50,19 +50,19 @@ void *func_001A0608(void *a0)
     return a0;
 }
 
-__attribute__((section(".text.func_001A0690")))
-void func_001A0690(void *a0, void *a1)
+__attribute__((section(".text.FreeActorResourcesE_1A0690")))
+void FreeActorResourcesE_1A0690(void *a0, void *a1)
 {
     *(int *)((char *)a0 + 0x214) = (int)&D_00426B80;
     if (*(int *)((char *)a0 + 0x600) != 0) {
         func_001FE278(&D_00574380, *(int *)((char *)a0 + 0x600));
         *(int *)((char *)a0 + 0x600) = 0;
     }
-    func_001C2820(a0, a1);
+    ResetField214FreeField180_1C2820(a0, a1);
 }
 
-__attribute__((section(".text.func_001A0830")))
-void *func_001A0830(void)
+__attribute__((section(".text.GetTypeDescriptorE_1A0830")))
+void *GetTypeDescriptorE_1A0830(void)
 {
 	if (D_00785EF8 == 0) {
 		func_001C3BE8();
@@ -77,8 +77,8 @@ void *func_001A0830(void)
 
 
 
-__attribute__((section(".text.func_001A0880")))
-void *func_001A0880(void *a0)
+__attribute__((section(".text.InitVu0SlotArray4B_1A0880")))
+void *InitVu0SlotArray4B_1A0880(void *a0)
 {
 	char *p;
 	int i;
@@ -98,8 +98,8 @@ void *func_001A0880(void *a0)
 	return a0;
 }
 
-__attribute__((section(".text.func_001A0908")))
-void func_001A0908(void *a0, void *a1)
+__attribute__((section(".text.FreeActorResourcesF_1A0908")))
+void FreeActorResourcesF_1A0908(void *a0, void *a1)
 {
 	int v1;
 	*(int **)((char *)a0 + 0x214) = &D_00426C68;
@@ -108,11 +108,11 @@ void func_001A0908(void *a0, void *a1)
 		func_001FE278(&D_00574380, (void *)v1);
 		*(int *)((char *)a0 + 0x600) = 0;
 	}
-	func_001C2820(a0, a1);
+	ResetField214FreeField180_1C2820(a0, a1);
 }
 
-__attribute__((section(".text.func_001A0AA0")))
-void *func_001A0AA0(void)
+__attribute__((section(".text.GetTypeDescriptorF_1A0AA0")))
+void *GetTypeDescriptorF_1A0AA0(void)
 {
 	if (D_00785F08 == 0) {
 		func_001C3BE8();
@@ -127,8 +127,8 @@ void *func_001A0AA0(void)
 
 
 
-__attribute__((section(".text.func_001A0AF0")))
-void *func_001A0AF0(void *a0)
+__attribute__((section(".text.InitObjSlots_1A0AF0")))
+void *InitObjSlots_1A0AF0(void *a0)
 {
 	char *p;
 	int i;
@@ -148,8 +148,8 @@ void *func_001A0AF0(void *a0)
 	return a0;
 }
 
-__attribute__((section(".text.func_001A0D18")))
-void *func_001A0D18(void)
+__attribute__((section(".text.GetObjSingleton_1A0D18")))
+void *GetObjSingleton_1A0D18(void)
 {
     if (D_00785F18 == 0) {
         func_001C3BE8();

@@ -1,7 +1,7 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
 extern int D_00785508;
-extern void func_00100328(void);
+extern void GetOrInitSingleton_100328(void);
 extern void func_0031EEA8(void *a0, void *a1, void *a2);
 extern char D_0041B7D0[];
 extern char D_007854C8[];
@@ -11,19 +11,19 @@ extern char D_00462FC0[];
 extern void func_0014F9F0(void *a0, float f);
 extern void func_0014F928(void *a0, float f);
 
-__attribute__((section(".text.func_00103880")))
-void *func_00103880(void) {
+__attribute__((section(".text.GetOrInitSubSingleton_103880")))
+void *GetOrInitSubSingleton_103880(void) {
     void *p = (void *)&D_00785508;
     if (D_00785508 == 0) {
-        func_00100328();
+        GetOrInitSingleton_100328();
         func_0031EEA8(p, D_0041B7D0, D_007854C8);
     }
     return p;
 }
 
-__attribute__((section(".text.func_00102EE0")))
-void func_00102EE0(void *a0) {
-    int s1 = func_002DB6B0();
+__attribute__((section(".text.ForwardAndSyncPosition_102EE0")))
+void ForwardAndSyncPosition_102EE0(void *a0) {
+    int s1 = Obj0000_Get_D_00747A94_2DB6B0();
     int g;
     int p0, p1;
     func_001351D8(D_00462FC0, a0, 0);
@@ -82,8 +82,8 @@ void func_00102FE8(void *a0) {
     }
 }
 
-__attribute__((section(".text.func_00138210")))
-void func_00138210(char *a0) {
+__attribute__((section(".text.ForwardVtableCall_138210")))
+void ForwardVtableCall_138210(char *a0) {
     int *p;
     void (*fn)();
     p = *(int **)(a0 + 0x35C);

@@ -11,7 +11,7 @@ void *func_00313510(void)
         if (p != 0)
         {
             func_003A52F0(p, 0, 0x1570);
-            return func_002772A8(p);
+            return InitObjVtableAndType_2772A8(p);
         }
     }
     return 0;
@@ -27,7 +27,7 @@ void *func_00313580(void)
         if (p != 0)
         {
             func_003A52F0(p, 0, 0x15B0);
-            return func_00278068(p);
+            return Setup_278068(p);
         }
     }
     return 0;
@@ -43,7 +43,7 @@ void *func_003135F0(void)
         if (p != 0)
         {
             func_003A52F0(p, 0, 0x15E0);
-            return func_0027B768(p);
+            return InitObjVtable_27B768(p);
         }
     }
     return 0;
@@ -59,7 +59,7 @@ int func_00313660(void)
     if (p == 0)
         return 0;
     func_003A52F0(p, 0, 0x31B0);
-    return func_0027DD88(p);
+    return Setup_27DD88(p);
 }
 
 __attribute__((section(".text.func_003136D0")))
@@ -72,7 +72,7 @@ int func_003136D0(void)
     if (p == 0)
         return 0;
     func_003A52F0(p, 0, 0x15C0);
-    return func_0027EE68(p);
+    return InitObjVtableAndTypeFull_27EE68(p);
 }
 
 __attribute__((section(".text.func_00313740")))

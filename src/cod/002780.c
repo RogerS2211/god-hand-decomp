@@ -5,7 +5,7 @@
  * func_0028EB00 instance). */
 extern void func_0028EB00(void *obj);
 
-/* Vtable pointer (loaded into obj+0x214 by func_00278068).
+/* Vtable pointer (loaded into obj+0x214 by Setup_278068).
  * Lives in .rodata at 0x00447D48 as a sequence of `.word` function
  * pointers.  Declared `extern int` per the vtable-pointer-store
  * convention (the `int **` LHS cast pattern from R-VU0 / R-VU0-2 /
@@ -13,13 +13,13 @@ extern void func_0028EB00(void *obj);
  */
 extern int D_00447D48;
 
-/* Type-name string (loaded into obj+0x4AC by func_00278068).
+/* Type-name string (loaded into obj+0x4AC by Setup_278068).
  * Lives in .rodata at 0x00447CB0; the per-rep type-info asciz
  * label (typical 5-7 byte name + NUL).
  */
 extern int D_00447CB0;
 
-/* func_00278068 — sq + VU0 object constructor (84 B / 21 insns); see file header.
+/* Setup_278068 — sq + VU0 object constructor (84 B / 21 insns); see file header.
  *
  * Retail (asm/cod/000000.s, 0x00278068..0x002780BB, 84 B):
  *
@@ -49,8 +49,8 @@ extern int D_00447CB0;
  * default (byte-identical) build exact. scripts/score_nm.sh compiles this body and
  * scores it as a fuzzy partial in the published progress report. */
 #ifdef NON_MATCHING
-__attribute__((section(".text.func_00278068")))
-void *func_00278068(void *obj) {
+__attribute__((section(".text.Setup_278068")))
+void *Setup_278068(void *obj) {
     int *vtable;
     int *type_name;
 
@@ -67,6 +67,6 @@ void *func_00278068(void *obj) {
     return obj;
 }
 #else
-INCLUDE_ASM("nonmatching", func_00278068);
+INCLUDE_ASM("nonmatching", Setup_278068);
 #endif
 

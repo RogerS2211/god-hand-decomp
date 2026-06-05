@@ -20,8 +20,8 @@ extern int D_004251C0;
 
 
 
-__attribute__((section(".text.func_00197680")))
-void *func_00197680(void *a0) {
+__attribute__((section(".text.InitObjSlotArrayB_197680")))
+void *InitObjSlotArrayB_197680(void *a0) {
     char *s0 = (char *)a0 + 0x610;
     int i = 9;
     func_001B6E90(a0);
@@ -40,8 +40,8 @@ void *func_00197680(void *a0) {
     return a0;
 }
 
-__attribute__((section(".text.func_00197708")))
-void *func_00197708(void *a0, void *a1) {
+__attribute__((section(".text.FreeObjSlotArrayB_197708")))
+void *FreeObjSlotArrayB_197708(void *a0, void *a1) {
     int *p = (int *)((char *)a0 + 0x600);
     int i = 0;
     *(int **)((char *)a0 + 0x214) = &D_00424F28;
@@ -57,11 +57,11 @@ void *func_00197708(void *a0, void *a1) {
         func_001FE148(&D_00574380, *(int *)((char *)a0 + 0x604));
         *(int *)((char *)a0 + 0x604) = 0;
     }
-    return func_001B6F38(a0, a1);
+    return SetField214PtrThenInit_1B6F38(a0, a1);
 }
 
-__attribute__((section(".text.func_00197EC8")))
-void func_00197EC8(void *a0) {
+__attribute__((section(".text.UpdateSlotTimerStateB_197EC8")))
+void UpdateSlotTimerStateB_197EC8(void *a0) {
     short *q = (short *)((char *)a0 + 0x9D8);
     int *p = (int *)((char *)a0 + 0x600);
     int i = 0;
@@ -90,8 +90,8 @@ void func_00197EC8(void *a0) {
     } while (++i <= 0);
 }
 
-__attribute__((section(".text.func_00198A58")))
-void func_00198A58(int a0, unsigned int a1) {
+__attribute__((section(".text.SetSlotDeadBitB_198A58")))
+void SetSlotDeadBitB_198A58(int a0, unsigned int a1) {
     int *p = (int *)(a0 + a1 * 4 + 0x600);
     if (*p != 0) {
         func_001FD668(*p, 0);
@@ -111,15 +111,15 @@ void *func_00198C58(void) {
     return &D_00785CF8;
 }
 
-__attribute__((section(".text.func_00198CA8")))
-void *func_00198CA8(void *a0) {
+__attribute__((section(".text.InitObjVtableC_198CA8")))
+void *InitObjVtableC_198CA8(void *a0) {
     func_001BFAC8(a0);
     *(int **)((char *)a0 + 0x214) = &D_00425000;
     return a0;
 }
 
-__attribute__((section(".text.func_00198CE0")))
-void *func_00198CE0(void *a0, int a1) {
+__attribute__((section(".text.FreeObjSlotC_198CE0")))
+void *FreeObjSlotC_198CE0(void *a0, int a1) {
     *(int **)((char *)a0 + 0x214) = &D_00425000;
     if (*(int *)((char *)a0 + 0x600) != 0) {
         func_001FE278(&D_00574380, *(int *)((char *)a0 + 0x600));
@@ -128,8 +128,8 @@ void *func_00198CE0(void *a0, int a1) {
     return func_001BFB00(a0, a1);
 }
 
-__attribute__((section(".text.func_00198F68")))
-int *func_00198F68(void) {
+__attribute__((section(".text.GetCohortSnW12InstanceD_198F68")))
+int *GetCohortSnW12InstanceD_198F68(void) {
     if (D_00785D08 == 0) {
         func_001C0018();
         func_0031EEA8(&D_00785D08, &D_004250B8, &D_00785808);
@@ -141,8 +141,8 @@ int *func_00198F68(void) {
 
 
 
-__attribute__((section(".text.func_00198FB8")))
-void *func_00198FB8(void *a0) {
+__attribute__((section(".text.InitObjSlotArrayD_198FB8")))
+void *InitObjSlotArrayD_198FB8(void *a0) {
     char *s0;
     int i;
     func_001C7D98(a0);
@@ -158,8 +158,8 @@ void *func_00198FB8(void *a0) {
     return a0;
 }
 
-__attribute__((section(".text.func_00199040")))
-void func_00199040(void *a0, int a1) {
+__attribute__((section(".text.FreeObjSlotD_199040")))
+void FreeObjSlotD_199040(void *a0, int a1) {
     int v1;
     *(int **)((char*)a0 + 0x214) = &D_004250F0;
     v1 = *(int *)((char*)a0 + 0x650);
@@ -170,8 +170,8 @@ void func_00199040(void *a0, int a1) {
     func_001C7DE0(a0, a1);
 }
 
-__attribute__((section(".text.func_001993C8")))
-void func_001993C8(void *a0) {
+__attribute__((section(".text.UpdateSlotHpState_1993C8")))
+void UpdateSlotHpState_1993C8(void *a0) {
     int v1;
     v1 = func_001B7380(a0, *(int *)((char*)a0 + 0x650));
     if (v1 == 1) {
@@ -200,15 +200,15 @@ void *func_00199D70(void) {
     return &D_00785D18;
 }
 
-__attribute__((section(".text.func_00199DC0")))
-void *func_00199DC0(void *a0) {
+__attribute__((section(".text.InitObjVtableE_199DC0")))
+void *InitObjVtableE_199DC0(void *a0) {
     func_001BFAC8(a0);
     *(int *)((char *)a0 + 0x214) = (int)&D_004251C0;
     return a0;
 }
 
-__attribute__((section(".text.func_00199DF8")))
-void func_00199DF8(void *a0, void *a1) {
+__attribute__((section(".text.FreeObjSlotE_199DF8")))
+void FreeObjSlotE_199DF8(void *a0, void *a1) {
     int v1;
     *(int *)((char *)a0 + 0x214) = (int)&D_004251C0;
     v1 = *(int *)((char *)a0 + 0x600);

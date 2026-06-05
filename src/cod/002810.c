@@ -151,7 +151,7 @@ INCLUDE_ASM("nonmatching", func_002815D0);
 
 /* ── Call-chain (INCLUDE_ASM nonmatching — T1 will match) ── */
 
-/* func_002815E8 moved to src/cod/merged_orphans_b.c (matched, SN pin). */
+/* GetClassDescB_2815E8 moved to src/cod/merged_orphans_b.c (matched, SN pin). */
 INCLUDE_ASM("nonmatching", func_00281638);
 INCLUDE_ASM("nonmatching", func_00281690);
 

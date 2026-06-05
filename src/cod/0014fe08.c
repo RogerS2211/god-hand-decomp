@@ -2,8 +2,8 @@ extern int D_00754200;
 extern int D_00569B70;
 extern char D_005FEE00[];
 
-__attribute__((section(".text.func_0014FE08")))
-void func_0014FE08(unsigned char *a0, int a1) {
+__attribute__((section(".text.InitAllocBuffer_14FE08")))
+void InitAllocBuffer_14FE08(unsigned char *a0, int a1) {
     int n = a1 << 4;
     void *p = func_0030EE08(n, 0x80, &D_00754200);
     *(void **)(a0 + 0x0) = p;
@@ -23,8 +23,8 @@ void func_001B18B8(unsigned char *a0) {
     func_001FD668(*(unsigned char **)(a0 + 0x670), 1);
 }
 
-__attribute__((section(".text.func_001FC020")))
-int func_001FC020(int *a0) {
+__attribute__((section(".text.FindFreeSlot_1FC020")))
+int FindFreeSlot_1FC020(int *a0) {
     unsigned int s0;
     if (*a0 == 0) {
         return 0;
@@ -39,8 +39,8 @@ int func_001FC020(int *a0) {
     return (signed char)s0;
 }
 
-__attribute__((section(".text.func_001FEF30")))
-void func_001FEF30(unsigned char *a0) {
+__attribute__((section(".text.ClearAllEntries_1FEF30")))
+void ClearAllEntries_1FEF30(unsigned char *a0) {
     int i = *(int *)(a0 + 0x4);
     i--;
     while (i != -1) {
@@ -49,8 +49,8 @@ void func_001FEF30(unsigned char *a0) {
     }
 }
 
-__attribute__((section(".text.func_001FF4D0")))
-void func_001FF4D0(int a0, int a1)
+__attribute__((section(".text.AddQueueEntry_1FF4D0")))
+void AddQueueEntry_1FF4D0(int a0, int a1)
 {
     int *s0 = (int *)a0;
     int new_var;
@@ -73,8 +73,8 @@ void func_001FF4D0(int a0, int a1)
     }
 }
 
-__attribute__((section(".text.func_002018F0")))
-void func_002018F0(int a0)
+__attribute__((section(".text.FreeObjectSlot_2018F0")))
+void FreeObjectSlot_2018F0(int a0)
 {
     int *s0 = (int *)a0;
     int *v0;

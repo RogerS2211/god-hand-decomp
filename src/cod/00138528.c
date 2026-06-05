@@ -160,21 +160,21 @@ void func_001FC0D8(unsigned char **a0, unsigned int a1) {
     a0[0][0xAE] = (unsigned char)a1;
 }
 
-__attribute__((section(".text.func_00322AD0")))
-int func_00322AD0(int a0, int a1, int a2, int a3) {
+__attribute__((section(".text.Forward322BD8_322AD0")))
+int Forward322BD8_322AD0(int a0, int a1, int a2, int a3) {
     return func_00322BD8(a0, a1, a2, a3, ((unsigned int)&D_003C532F) & -0x40, 0x800);
 }
 
-__attribute__((section(".text.func_00322B60")))
-int func_00322B60(int a0, int a1, int a2, int a3) {
+__attribute__((section(".text.Forward322C18_322B60")))
+int Forward322C18_322B60(int a0, int a1, int a2, int a3) {
     return func_00322C18(a0, a1, a2, a3, ((unsigned int)&D_003C532F) & -0x40, 0x800);
 }
 
-__attribute__((section(".text.func_00323038")))
-void func_00323038(void) { func_00323050(); }
+__attribute__((section(".text.Forward323050_323038")))
+void Forward323050_323038(void) { func_00323050(); }
 
-__attribute__((section(".text.func_00324880")))
-void func_00324880(void) { func_0033E6A8(); }
+__attribute__((section(".text.Forward33E6A8_324880")))
+void Forward33E6A8_324880(void) { func_0033E6A8(); }
 
 __attribute__((section(".text.func_00324898")))
 void func_00324898(void) { func_0033E6B0(); }
@@ -184,29 +184,29 @@ void func_0033D578(short *a0, int a1, int a2, int a3) {
     func_0033D4D8(a0, a0 + a1, a3);
 }
 
-__attribute__((section(".text.func_0033E678")))
-int func_0033E678(int a0, int a1, int a2, int a3) {
-    return func_0033B658(a0, a1, a2, a3);
+__attribute__((section(".text.Forward33B658_33E678")))
+int Forward33B658_33E678(int a0, int a1, int a2, int a3) {
+    return Forward33B568_33B658(a0, a1, a2, a3);
 }
 
 __attribute__((section(".text.func_0033E690")))
 int func_0033E690(int a0, int a1, int a2, int a3) {
-    return func_0033B670(a0, a1, a2, a3);
+    return Forward33B5C8_33B670(a0, a1, a2, a3);
 }
 
-__attribute__((section(".text.func_0033F3D0")))
-int func_0033F3D0(int a0, int a1, int a2, int a3) {
+__attribute__((section(".text.Forward3B0640_33F3D0")))
+int Forward3B0640_33F3D0(int a0, int a1, int a2, int a3) {
     return func_003B0640(a0, a0 + a1 - 1, a2, a3);
 }
 
-__attribute__((section(".text.func_003403C8")))
-int func_003403C8(int a0, int a1, int a2, int a3) {
-    return func_0033B658(a0, a1, a2, a3);
+__attribute__((section(".text.Forward33B658_3403C8")))
+int Forward33B658_3403C8(int a0, int a1, int a2, int a3) {
+    return Forward33B568_33B658(a0, a1, a2, a3);
 }
 
 __attribute__((section(".text.func_003403E0")))
 int func_003403E0(int a0, int a1, int a2, int a3) {
-    return func_0033B670(a0, a1, a2, a3);
+    return Forward33B5C8_33B670(a0, a1, a2, a3);
 }
 
 __attribute__((section(".text.func_003406B0")))
@@ -214,8 +214,8 @@ int func_003406B0(int a0, int a1, int a2, int a3) {
     return func_003A52F0(a0, 0, 0x2C, a3);
 }
 
-__attribute__((section(".text.func_00340AE8")))
-int func_00340AE8(int a0, int a1, int a2, int a3) {
+__attribute__((section(".text.Forward33B790_340AE8")))
+int Forward33B790_340AE8(int a0, int a1, int a2, int a3) {
     return func_0033B790(a0, a1, a2, a3);
 }
 

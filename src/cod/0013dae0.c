@@ -37,35 +37,35 @@ void func_0013DAE0(void *a0)
 	func_002AAC28(a0);
 }
 
-__attribute__((section(".text.func_0016F438")))
-void func_0016F438(int *a0, int a1) {
+__attribute__((section(".text.SetStateEntry0x258_16F438")))
+void SetStateEntry0x258_16F438(int *a0, int a1) {
     *(int *)((char *)a0 + 0x214) = (int)&D_00420070;
     if (*(int *)((char *)a0 + 0x600) != 0) {
         func_001FE278(D_00574380, *(int *)((char *)a0 + 0x600));
         *(int *)((char *)a0 + 0x600) = 0;
     }
     func_00305778(D_007419A0, 0x258);
-    func_001C2820(a0, a1);
+    ResetField214FreeField180_1C2820(a0, a1);
 }
 
-__attribute__((section(".text.func_0016F720")))
-void func_0016F720(int *a0, int a1) {
+__attribute__((section(".text.SetStateEntry0x259_16F720")))
+void SetStateEntry0x259_16F720(int *a0, int a1) {
     *(int *)((char *)a0 + 0x214) = (int)&D_00420158;
     if (*(int *)((char *)a0 + 0x600) != 0) {
         func_001FE278(D_00574380, *(int *)((char *)a0 + 0x600));
         *(int *)((char *)a0 + 0x600) = 0;
     }
     func_00305778(D_007419A0, 0x259);
-    func_001C2820(a0, a1);
+    ResetField214FreeField180_1C2820(a0, a1);
 }
 
-__attribute__((section(".text.func_0016FA10")))
-void func_0016FA10(int *a0, int a1) {
+__attribute__((section(".text.SetStateEntry0x25A_16FA10")))
+void SetStateEntry0x25A_16FA10(int *a0, int a1) {
     *(int *)((char *)a0 + 0x214) = (int)&D_00420240;
     if (*(int *)((char *)a0 + 0x600) != 0) {
         func_001FE278(D_00574380, *(int *)((char *)a0 + 0x600));
         *(int *)((char *)a0 + 0x600) = 0;
     }
     func_00305778(D_007419A0, 0x25A);
-    func_001C2820(a0, a1);
+    ResetField214FreeField180_1C2820(a0, a1);
 }

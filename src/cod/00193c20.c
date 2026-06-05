@@ -15,8 +15,8 @@ extern int D_00424EC8;
 
 
 
-__attribute__((section(".text.func_00193C20")))
-void *func_00193C20(void *a0) {
+__attribute__((section(".text.InitCohortSlotVu0DataC_193C20")))
+void *InitCohortSlotVu0DataC_193C20(void *a0) {
     void *s0;
     int i = 3;
     func_001C27E8(a0);
@@ -34,8 +34,8 @@ void *func_00193C20(void *a0) {
     return a0;
 }
 
-__attribute__((section(".text.func_00195E78")))
-void *func_00195E78(void) {
+__attribute__((section(".text.GetCohortSnW12BInstance_195E78")))
+void *GetCohortSnW12BInstance_195E78(void) {
     int *p = &D_00785CC8;
     if (*p == 0) {
         func_001C3BE8();
@@ -44,8 +44,8 @@ void *func_00195E78(void) {
     return p;
 }
 
-__attribute__((section(".text.func_00196008")))
-void *func_00196008(void) {
+__attribute__((section(".text.GetCohortSnW12Instance_196008")))
+void *GetCohortSnW12Instance_196008(void) {
     int *p = &D_00785CD8;
     if (*p == 0) {
         func_001B8058();
@@ -58,8 +58,8 @@ void *func_00196008(void) {
 
 
 
-__attribute__((section(".text.func_00196058")))
-void *func_00196058(void *a0) {
+__attribute__((section(".text.InitObjSlotArray_196058")))
+void *InitObjSlotArray_196058(void *a0) {
     char *s0;
     int i;
     func_001B6E90(a0);
@@ -80,8 +80,8 @@ void *func_00196058(void *a0) {
     return a0;
 }
 
-__attribute__((section(".text.func_001960E0")))
-void func_001960E0(void *a0, int a1) {
+__attribute__((section(".text.FreeObjSlotArray_1960E0")))
+void FreeObjSlotArray_1960E0(void *a0, int a1) {
     int *s0;
     int i;
     *(int **)((char*)a0 + 0x214) = &D_00424E18;
@@ -103,11 +103,11 @@ void func_001960E0(void *a0, int a1) {
             *(int*)((char*)a0 + 0x604) = 0;
         }
     }
-    func_001B6F38(a0, a1);
+    SetField214PtrThenInit_1B6F38(a0, a1);
 }
 
-__attribute__((section(".text.func_001968A0")))
-void func_001968A0(void *a0) {
+__attribute__((section(".text.UpdateSlotTimerState_1968A0")))
+void UpdateSlotTimerState_1968A0(void *a0) {
     unsigned short *p9D8;
     int *p600;
     int i;
@@ -140,8 +140,8 @@ void func_001968A0(void *a0) {
     } while (i <= 0);
 }
 
-__attribute__((section(".text.func_00197430")))
-void func_00197430(int *a0, unsigned int a1) {
+__attribute__((section(".text.SetSlotDeadBit_197430")))
+void SetSlotDeadBit_197430(int *a0, unsigned int a1) {
     int v = *(int *)((char *)a0 + (a1 << 2) + 0x600);
     int *p;
     if (v != 0) {

@@ -99,56 +99,56 @@ void func_002833C0(char *a0, char a1) {
     a0[0x2F7] = a1;
 }
 
-__attribute__((section(".text.func_003248D8")))
-int func_003248D8(int a0, int a1) { return func_0033F130(a1); }
+__attribute__((section(".text.Forward33F130_3248D8")))
+int Forward33F130_3248D8(int a0, int a1) { return func_0033F130(a1); }
 
 __attribute__((section(".text.func_00324C78")))
 int func_00324C78(int a0) { return func_00335A18(a0); }
 
-__attribute__((section(".text.func_00324E70")))
-int func_00324E70(void) { return func_00324D88(D_003C814C, D_003C80C8); }
+__attribute__((section(".text.Forward324D88_324E70")))
+int Forward324D88_324E70(void) { return func_00324D88(D_003C814C, D_003C80C8); }
 
 __attribute__((section(".text.func_003252E0")))
 int func_003252E0(void) { return SleepThread(); }
 
-__attribute__((section(".text.func_00325C60")))
-int func_00325C60(int a0) { return func_0033B658(a0); }
+__attribute__((section(".text.Forward33B658_325C60")))
+int Forward33B658_325C60(int a0) { return Forward33B568_33B658(a0); }
 
 __attribute__((section(".text.func_00325C78")))
-int func_00325C78(int a0) { return func_0033B670(a0); }
+int func_00325C78(int a0) { return Forward33B5C8_33B670(a0); }
 
-__attribute__((section(".text.func_00325DC0")))
-int func_00325DC0(int a0) { return func_00325C98(a0); }
+__attribute__((section(".text.Forward325C98_325DC0")))
+int Forward325C98_325DC0(int a0) { return func_00325C98(a0); }
 
 __attribute__((section(".text.func_00325DD8")))
 int func_00325DD8(int a0) { return func_0033F690(a0); }
 
-__attribute__((section(".text.func_00325EF8")))
-int func_00325EF8(void) {
+__attribute__((section(".text.SetFlagAndForward_325EF8")))
+int SetFlagAndForward_325EF8(void) {
   D_003C80FC = 1;
   return func_003252E0();
 }
 
-__attribute__((section(".text.func_00327800")))
-int func_00327800(char *a0) { return Obj33C8_GetShort_24(*(int*)(a0 + 4)); }
+__attribute__((section(".text.GetVia4_Obj33C8_GetShort_24_327800")))
+int GetVia4_Obj33C8_GetShort_24_327800(char *a0) { return Obj33C8_GetShort_24(*(int*)(a0 + 4)); }
 
-__attribute__((section(".text.func_00327818")))
-int func_00327818(char *a0) { return Obj33C8_GetField_28(*(int*)(a0 + 4)); }
+__attribute__((section(".text.GetVia4_Obj33C8_GetField_28_7818_327818")))
+int GetVia4_Obj33C8_GetField_28_7818_327818(char *a0) { return Obj33C8_GetField_28(*(int*)(a0 + 4)); }
 
-__attribute__((section(".text.func_00327860")))
-int func_00327860(char *a0) { return Obj33C8_GetField_30(*(int*)(a0 + 4)); }
+__attribute__((section(".text.GetVia4_Obj33C8_GetField_30_7860_327860")))
+int GetVia4_Obj33C8_GetField_30_7860_327860(char *a0) { return Obj33C8_GetField_30(*(int*)(a0 + 4)); }
 
-__attribute__((section(".text.func_00327878")))
-int func_00327878(char *a0) { return Obj33C8_GetField_34(*(int*)(a0 + 4)); }
+__attribute__((section(".text.GetVia4_Obj33C8_GetField_34_7878_327878")))
+int GetVia4_Obj33C8_GetField_34_7878_327878(char *a0) { return Obj33C8_GetField_34(*(int*)(a0 + 4)); }
 
-__attribute__((section(".text.func_00327950")))
-int func_00327950(char *a0) { return Obj33C8_GetByte_D(*(int*)(a0 + 4)); }
+__attribute__((section(".text.GetVia4_Obj33C8_GetByte_D_327950")))
+int GetVia4_Obj33C8_GetByte_D_327950(char *a0) { return Obj33C8_GetByte_D(*(int*)(a0 + 4)); }
 
-__attribute__((section(".text.func_00327970")))
-int func_00327970(int *a0) { return func_0033CFB8(a0[1]); }
+__attribute__((section(".text.Forward33CFB8_327970")))
+int Forward33CFB8_327970(int *a0) { return func_0033CFB8(a0[1]); }
 
-__attribute__((section(".text.func_00327988")))
-int func_00327988(int *a0) { return func_0033CFF8(a0[1]); }
+__attribute__((section(".text.Forward33CFF8_327988")))
+int Forward33CFF8_327988(int *a0) { return func_0033CFF8(a0[1]); }
 
 __attribute__((section(".text.func_00328C58")))
 int func_00328C58(void) { return func_00330C88(); }

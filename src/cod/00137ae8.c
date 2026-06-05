@@ -5,7 +5,7 @@ extern void func_002A9790(void *p);
 extern void func_00149550(int a0, int a1);
 extern int D_00747A80;
 extern int D_00747AA8;
-extern void func_00137AA0(void);
+extern void InitStructDefaults_137AA0(void);
 extern void *memcpy(void *, const void *, unsigned int);
 
 __attribute__((section(".text.func_00149350")))
@@ -20,13 +20,13 @@ void func_00149550(int a0, int a1) {
     }
 }
 
-__attribute__((section(".text.func_00149580")))
-void func_00149580(void) {
+__attribute__((section(".text.Forward149550_149580")))
+void Forward149550_149580(void) {
     func_00149550(1, 0xFFFF);
 }
 
-__attribute__((section(".text.func_0014B470")))
-int func_0014B470(int a0) {
+__attribute__((section(".text.IsTargetVisible_14B470")))
+int IsTargetVisible_14B470(int a0) {
     int v1;
     if (D_00747A80 & 0x800000) {
         return 1;
@@ -41,8 +41,8 @@ int func_0014B470(int a0) {
     return func_001F8AD8((int*)(a0 + 0x260), (int*)(a0 + 0x80)) == 0;
 }
 
-__attribute__((section(".text.func_0014B5D8")))
-int func_0014B5D8(int a0, int a1) {
+__attribute__((section(".text.ForwardAttackByMode_14B5D8")))
+int ForwardAttackByMode_14B5D8(int a0, int a1) {
     if (*(int*)(*(int*)(a1 + 0x414) + 0x34) & 0x200000) {
         int a2 = D_00747AA8;
         if (a2) {
@@ -52,8 +52,8 @@ int func_0014B5D8(int a0, int a1) {
     return func_00148D30(a1, *(int*)(a0 + 0x2C4));
 }
 
-__attribute__((section(".text.func_00137AE8")))
-int func_00137AE8(int a0, int a1)
+__attribute__((section(".text.LoadAcdBlock_137AE8")))
+int LoadAcdBlock_137AE8(int a0, int a1)
 {
     if (a1 == 0) goto fail;
     memcpy((void *)(a0 + 4), (void *)a1, 0x2C);
@@ -66,6 +66,6 @@ int func_00137AE8(int a0, int a1)
     }
     return 1;
 fail:
-    func_00137AA0();
+    InitStructDefaults_137AA0();
     return 0;
 }

@@ -1,7 +1,7 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
 extern char D_0041DCC8[];
-extern void func_0030F5A0(void);
+extern void ForwardFieldNeg20_002A9680_30F5A0(void);
 extern void func_002AAC28(void *);
 
 __attribute__((section(".text.func_001471A8")))
@@ -39,7 +39,7 @@ __attribute__((section(".text.func_00146748")))
 void func_00146748(void *a0, int a1) {
     *(char **)((char *)a0 + 0x80) = D_0041DCC8;
     if (a1 & 1) {
-        func_0030F5A0();
+        ForwardFieldNeg20_002A9680_30F5A0();
     }
 }
 
@@ -59,7 +59,7 @@ __attribute__((section(".text.func_00146E70")))
 void func_00146E70(void *a0, int a1) {
     *(char **)((char *)a0 + 0x80) = D_0041DCC8;
     if (a1 & 1) {
-        func_0030F5A0();
+        ForwardFieldNeg20_002A9680_30F5A0();
     }
 }
 
@@ -67,6 +67,6 @@ __attribute__((section(".text.func_00146F98")))
 void func_00146F98(void *a0, int a1) {
     *(char **)((char *)a0 + 0x80) = D_0041DCC8;
     if (a1 & 1) {
-        func_0030F5A0();
+        ForwardFieldNeg20_002A9680_30F5A0();
     }
 }

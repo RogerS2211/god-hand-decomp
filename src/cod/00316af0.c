@@ -1,68 +1,68 @@
 extern int D_00747A34;
 extern char D_00754C10[];
 
-__attribute__((section(".text.func_00316AF0")))
-int func_00316AF0(void){
+__attribute__((section(".text.AllocZeroedAndForward_316AF0")))
+int AllocZeroedAndForward_316AF0(void){
     void *s0;
     if (D_00747A34 & 0x10000) return 0;
     s0 = func_0030EE08(0x920, 0x10, D_00754C10);
     if (s0 == 0) return 0;
     func_003A52F0(s0, 0, 0x920);
-    return func_00170250(s0);
+    return InitObjVU0Fields8Slots_170250(s0);
 }
 
-__attribute__((section(".text.func_00316B60")))
-int func_00316B60(void){
+__attribute__((section(".text.AllocZeroedAndForward_316B60")))
+int AllocZeroedAndForward_316B60(void){
     void *s0;
     if (D_00747A34 & 0x10000) return 0;
     s0 = func_0030EE08(0x610, 0x10, D_00754C10);
     if (s0 == 0) return 0;
     func_003A52F0(s0, 0, 0x610);
-    return func_00170538(s0);
+    return InitObjSetVtable4205E0_170538(s0);
 }
 
-__attribute__((section(".text.func_00316BD0")))
-int func_00316BD0(void){
+__attribute__((section(".text.AllocZeroedAndForward_316BD0")))
+int AllocZeroedAndForward_316BD0(void){
     void *s0;
     if (D_00747A34 & 0x10000) return 0;
     s0 = func_0030EE08(0x610, 0x10, D_00754C10);
     if (s0 == 0) return 0;
     func_003A52F0(s0, 0, 0x610);
-    return func_001707C8(s0);
+    return InitObjSetVtable4206B0_1707C8(s0);
 }
 
-__attribute__((section(".text.func_00316C40")))
-int func_00316C40(void){
+__attribute__((section(".text.AllocZeroedAndForward_316C40")))
+int AllocZeroedAndForward_316C40(void){
     void *s0;
     if (D_00747A34 & 0x10000) return 0;
     s0 = func_0030EE08(0x610, 0x10, D_00754C10);
     if (s0 == 0) return 0;
     func_003A52F0(s0, 0, 0x610);
-    return func_00170A58(s0);
+    return InitActorSetVtable_170A58(s0);
 }
 
-__attribute__((section(".text.func_00316CB0")))
-int func_00316CB0(void){
+__attribute__((section(".text.AllocZeroedAndForward_316CB0")))
+int AllocZeroedAndForward_316CB0(void){
     void *s0;
     if (D_00747A34 & 0x10000) return 0;
     s0 = func_0030EE08(0x610, 0x10, D_00754C10);
     if (s0 == 0) return 0;
     func_003A52F0(s0, 0, 0x610);
-    return func_00170CE8(s0);
+    return InitActorSetVtable2_170CE8(s0);
 }
 
-__attribute__((section(".text.func_00316D20")))
-int func_00316D20(void){
+__attribute__((section(".text.AllocZeroedAndForward_316D20")))
+int AllocZeroedAndForward_316D20(void){
     void *s0;
     if (D_00747A34 & 0x10000) return 0;
     s0 = func_0030EE08(0x780, 0x10, D_00754C10);
     if (s0 == 0) return 0;
     func_003A52F0(s0, 0, 0x780);
-    return func_00170F00(s0);
+    return InitActorBD580Vtable_170F00(s0);
 }
 
-__attribute__((section(".text.func_00316D90")))
-int func_00316D90(void){
+__attribute__((section(".text.AllocZeroedAndForward_316D90")))
+int AllocZeroedAndForward_316D90(void){
     void *s0;
     if (D_00747A34 & 0x10000) return 0;
     s0 = func_0030EE08(0x2B10, 0x10, D_00754C10);
@@ -71,8 +71,8 @@ int func_00316D90(void){
     return func_00171070(s0);
 }
 
-__attribute__((section(".text.func_00316E00")))
-int func_00316E00(void){
+__attribute__((section(".text.AllocZeroedAndForward_316E00")))
+int AllocZeroedAndForward_316E00(void){
     void *s0;
     if (D_00747A34 & 0x10000) return 0;
     s0 = func_0030EE08(0x780, 0x10, D_00754C10);
@@ -81,8 +81,8 @@ int func_00316E00(void){
     return func_00171B10(s0);
 }
 
-__attribute__((section(".text.func_00316E70")))
-int func_00316E70(void){
+__attribute__((section(".text.AllocZeroedAndForward_316E70")))
+int AllocZeroedAndForward_316E70(void){
     void *s0;
     if (D_00747A34 & 0x10000) return 0;
     s0 = func_0030EE08(0xDB0, 0x10, D_00754C10);
@@ -91,8 +91,8 @@ int func_00316E70(void){
     return func_00171C90(s0);
 }
 
-__attribute__((section(".text.func_00316EE0")))
-int func_00316EE0(void){
+__attribute__((section(".text.AllocZeroedAndForward_316EE0")))
+int AllocZeroedAndForward_316EE0(void){
     void *s0;
     if (D_00747A34 & 0x10000) return 0;
     s0 = func_0030EE08(0x8A0, 0x10, D_00754C10);

@@ -29,8 +29,8 @@ int func_00100508(void *a0) {
     return func_0014EA28(a0);
 }
 
-__attribute__((section(".text.func_00101E98")))
-int func_00101E98(void) {
+__attribute__((section(".text.Forward100FB8_101E98")))
+int Forward100FB8_101E98(void) {
     return func_00100FB8(1, 0xFFFF);
 }
 
@@ -40,15 +40,15 @@ int func_00102128(void *a0) {
     return func_001002C0(a0);
 }
 
-__attribute__((section(".text.func_001267F8")))
-void func_001267F8(char *a0) {
+__attribute__((section(".text.FreeFieldObject_1267F8")))
+void FreeFieldObject_1267F8(char *a0) {
     if (*(int*)(a0 + 0x165C)) {
         func_001F6EE0(*(int*)(a0 + 0x165C));
     }
 }
 
-__attribute__((section(".text.func_0012E800")))
-void func_0012E800(int *a0) {
+__attribute__((section(".text.InitZeroAndSetup_12E800")))
+void InitZeroAndSetup_12E800(int *a0) {
     int *v0 = a0;
     v0[0] = 0;
     v0[1] = 0;
