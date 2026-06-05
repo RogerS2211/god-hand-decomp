@@ -68,3 +68,4 @@ __pycache__/
 # ── Local tool caches ────────────────────────────────────────────────────────
 .osgrep/
 .osgrep
+.claude/

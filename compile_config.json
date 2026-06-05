@@ -722,6 +722,102 @@
     {
       "path": "src/cod/00147460.c",
       "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/00124e68.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/00124f60.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/0012ac28.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/001351d8.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/00147c40.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/0014a2b0.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/0014b6f8.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/001b6f38.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/001b7300.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/001fac00.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/001fd308.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/00200cb0.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/00292030.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/00292ef0.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/00292f38.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/00292f50.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/002b62e0.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/002d5a48.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/002d6548.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/00306200.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/0031eea8.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/00346828.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/00348be0.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/0035a1c8.c",
+      "compiler": "cygnus-2.96"
     }
   ],
   "_carved_funcs_doc": [
@@ -14949,6 +15045,489 @@
       "vaddr": "0x00149310",
       "size": 64,
       "tu": "src/cod/00147460.c"
+    },
+    {
+      "name": "func_00124E68",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00124E68",
+      "size": 88,
+      "tu": "src/cod/00124e68.c"
+    },
+    {
+      "name": "func_001C2820",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001C2820",
+      "size": 124,
+      "tu": "src/cod/00124e68.c"
+    },
+    {
+      "name": "func_001C3BE8",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001C3BE8",
+      "size": 80,
+      "tu": "src/cod/00124e68.c"
+    },
+    {
+      "name": "func_002D5AA0",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002D5AA0",
+      "size": 52,
+      "tu": "src/cod/00124e68.c"
+    },
+    {
+      "name": "func_00300148",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00300148",
+      "size": 136,
+      "tu": "src/cod/00124e68.c"
+    },
+    {
+      "name": "func_00124F60",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00124F60",
+      "size": 100,
+      "tu": "src/cod/00124f60.c"
+    },
+    {
+      "name": "func_00147C60",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00147C60",
+      "size": 36,
+      "tu": "src/cod/00124f60.c"
+    },
+    {
+      "name": "func_001B7280",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001B7280",
+      "size": 128,
+      "tu": "src/cod/00124f60.c"
+    },
+    {
+      "name": "func_0031D000",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0031D000",
+      "size": 28,
+      "tu": "src/cod/00124f60.c"
+    },
+    {
+      "name": "func_0012AC28",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0012AC28",
+      "size": 56,
+      "tu": "src/cod/0012ac28.c"
+    },
+    {
+      "name": "func_001B6E90",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001B6E90",
+      "size": 164,
+      "tu": "src/cod/0012ac28.c"
+    },
+    {
+      "name": "func_001B79B0",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001B79B0",
+      "size": 28,
+      "tu": "src/cod/0012ac28.c"
+    },
+    {
+      "name": "func_001B8058",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001B8058",
+      "size": 80,
+      "tu": "src/cod/0012ac28.c"
+    },
+    {
+      "name": "func_001351D8",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001351D8",
+      "size": 52,
+      "tu": "src/cod/001351d8.c"
+    },
+    {
+      "name": "func_0014F928",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0014F928",
+      "size": 196,
+      "tu": "src/cod/001351d8.c"
+    },
+    {
+      "name": "func_0014F9F0",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0014F9F0",
+      "size": 112,
+      "tu": "src/cod/001351d8.c"
+    },
+    {
+      "name": "func_001FD668",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001FD668",
+      "size": 76,
+      "tu": "src/cod/001351d8.c"
+    },
+    {
+      "name": "func_002A7498",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002A7498",
+      "size": 72,
+      "tu": "src/cod/001351d8.c"
+    },
+    {
+      "name": "func_00147C40",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00147C40",
+      "size": 28,
+      "tu": "src/cod/00147c40.c"
+    },
+    {
+      "name": "func_00158288",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00158288",
+      "size": 24,
+      "tu": "src/cod/00147c40.c"
+    },
+    {
+      "name": "func_0014A2B0",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0014A2B0",
+      "size": 120,
+      "tu": "src/cod/0014a2b0.c"
+    },
+    {
+      "name": "func_001C27E8",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001C27E8",
+      "size": 52,
+      "tu": "src/cod/0014a2b0.c"
+    },
+    {
+      "name": "func_001D51B8",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001D51B8",
+      "size": 232,
+      "tu": "src/cod/0014a2b0.c"
+    },
+    {
+      "name": "func_00262A10",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00262A10",
+      "size": 148,
+      "tu": "src/cod/0014a2b0.c"
+    },
+    {
+      "name": "func_002CA718",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002CA718",
+      "size": 128,
+      "tu": "src/cod/0014a2b0.c"
+    },
+    {
+      "name": "func_002CB968",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002CB968",
+      "size": 224,
+      "tu": "src/cod/0014a2b0.c"
+    },
+    {
+      "name": "func_0014B6F8",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0014B6F8",
+      "size": 56,
+      "tu": "src/cod/0014b6f8.c"
+    },
+    {
+      "name": "func_00173908",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00173908",
+      "size": 44,
+      "tu": "src/cod/0014b6f8.c"
+    },
+    {
+      "name": "func_00173938",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00173938",
+      "size": 44,
+      "tu": "src/cod/0014b6f8.c"
+    },
+    {
+      "name": "func_00173968",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00173968",
+      "size": 44,
+      "tu": "src/cod/0014b6f8.c"
+    },
+    {
+      "name": "func_002B6160",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002B6160",
+      "size": 80,
+      "tu": "src/cod/0014b6f8.c"
+    },
+    {
+      "name": "func_001B6F38",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001B6F38",
+      "size": 128,
+      "tu": "src/cod/001b6f38.c"
+    },
+    {
+      "name": "func_001F7858",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001F7858",
+      "size": 168,
+      "tu": "src/cod/001b6f38.c"
+    },
+    {
+      "name": "func_001FA750",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001FA750",
+      "size": 204,
+      "tu": "src/cod/001b6f38.c"
+    },
+    {
+      "name": "func_0026B1E8",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0026B1E8",
+      "size": 84,
+      "tu": "src/cod/001b6f38.c"
+    },
+    {
+      "name": "func_0030F5A0",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0030F5A0",
+      "size": 36,
+      "tu": "src/cod/001b6f38.c"
+    },
+    {
+      "name": "func_001B7300",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001B7300",
+      "size": 128,
+      "tu": "src/cod/001b7300.c"
+    },
+    {
+      "name": "func_001B7908",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001B7908",
+      "size": 168,
+      "tu": "src/cod/001b7300.c"
+    },
+    {
+      "name": "func_002A9680",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002A9680",
+      "size": 64,
+      "tu": "src/cod/001b7300.c"
+    },
+    {
+      "name": "func_002A9EA0",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002A9EA0",
+      "size": 144,
+      "tu": "src/cod/001b7300.c"
+    },
+    {
+      "name": "func_002ABBE8",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002ABBE8",
+      "size": 44,
+      "tu": "src/cod/001b7300.c"
+    },
+    {
+      "name": "func_001FAC00",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001FAC00",
+      "size": 88,
+      "tu": "src/cod/001fac00.c"
+    },
+    {
+      "name": "func_002D6490",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002D6490",
+      "size": 64,
+      "tu": "src/cod/001fac00.c"
+    },
+    {
+      "name": "func_001FD308",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001FD308",
+      "size": 44,
+      "tu": "src/cod/001fd308.c"
+    },
+    {
+      "name": "func_0031CEF8",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0031CEF8",
+      "size": 48,
+      "tu": "src/cod/001fd308.c"
+    },
+    {
+      "name": "func_00200CB0",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00200CB0",
+      "size": 328,
+      "tu": "src/cod/00200cb0.c"
+    },
+    {
+      "name": "func_00299868",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00299868",
+      "size": 52,
+      "tu": "src/cod/00200cb0.c"
+    },
+    {
+      "name": "func_002B61B0",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002B61B0",
+      "size": 40,
+      "tu": "src/cod/00200cb0.c"
+    },
+    {
+      "name": "func_00292030",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00292030",
+      "size": 24,
+      "tu": "src/cod/00292030.c"
+    },
+    {
+      "name": "func_0033E6A8",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0033E6A8",
+      "size": 8,
+      "tu": "src/cod/00292030.c"
+    },
+    {
+      "name": "func_0033E6B0",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0033E6B0",
+      "size": 8,
+      "tu": "src/cod/00292030.c"
+    },
+    {
+      "name": "func_00292EF0",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00292EF0",
+      "size": 24,
+      "tu": "src/cod/00292ef0.c"
+    },
+    {
+      "name": "func_00329F98",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00329F98",
+      "size": 56,
+      "tu": "src/cod/00292ef0.c"
+    },
+    {
+      "name": "func_00331C78",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00331C78",
+      "size": 32,
+      "tu": "src/cod/00292ef0.c"
+    },
+    {
+      "name": "func_00292F38",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00292F38",
+      "size": 24,
+      "tu": "src/cod/00292f38.c"
+    },
+    {
+      "name": "func_002FBE50",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002FBE50",
+      "size": 56,
+      "tu": "src/cod/00292f38.c"
+    },
+    {
+      "name": "func_003A7CC0",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x003A7CC0",
+      "size": 72,
+      "tu": "src/cod/00292f38.c"
+    },
+    {
+      "name": "func_00292F50",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00292F50",
+      "size": 20,
+      "tu": "src/cod/00292f50.c"
+    },
+    {
+      "name": "func_0031D020",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0031D020",
+      "size": 44,
+      "tu": "src/cod/00292f50.c"
+    },
+    {
+      "name": "func_002B62E0",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002B62E0",
+      "size": 24,
+      "tu": "src/cod/002b62e0.c"
+    },
+    {
+      "name": "func_002D5A48",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002D5A48",
+      "size": 88,
+      "tu": "src/cod/002d5a48.c"
+    },
+    {
+      "name": "func_002D6548",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002D6548",
+      "size": 20,
+      "tu": "src/cod/002d6548.c"
+    },
+    {
+      "name": "func_00306200",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00306200",
+      "size": 168,
+      "tu": "src/cod/00306200.c"
+    },
+    {
+      "name": "func_0030EE08",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0030EE08",
+      "size": 92,
+      "tu": "src/cod/00306200.c"
+    },
+    {
+      "name": "func_0030FA98",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0030FA98",
+      "size": 48,
+      "tu": "src/cod/00306200.c"
+    },
+    {
+      "name": "func_0031EEA8",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0031EEA8",
+      "size": 32,
+      "tu": "src/cod/0031eea8.c"
+    },
+    {
+      "name": "func_00346828",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00346828",
+      "size": 20,
+      "tu": "src/cod/00346828.c"
+    },
+    {
+      "name": "func_00348BE0",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00348BE0",
+      "size": 148,
+      "tu": "src/cod/00348be0.c"
+    },
+    {
+      "name": "func_0035A1C8",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0035A1C8",
+      "size": 16,
+      "tu": "src/cod/0035a1c8.c"
     }
   ],
   "build_dir": "build",
