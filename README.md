@@ -21,9 +21,9 @@ function-by-function against the retail binary with [objdiff](https://github.com
 
 | Metric | Value |
 | --- | --- |
-| Code matched (fuzzy) | **3.09 %** |
-| Code fully linked | **2.61 %** |
-| Functions matched | **1,843 / 12,374** (14.89 %) |
+| Code matched (fuzzy) | **3.35 %** |
+| Code fully linked | **2.82 %** |
+| Functions matched | **1,843 / 11,199** (16.46 %) |
 | Data matched | **83.01 %** |
 | Translation units | 2,185 |
 
