@@ -30,7 +30,7 @@ void func_00180648(void *a0) {
 
 __attribute__((section(".text.func_001B1B38")))
 void *func_001B1B38(void *a0) {
-    func_001B6E90(a0);
+    InitFields_1B6E90(a0);
     *(int *)((char *)a0 + 0x600) = 0;
     *(int *)((char *)a0 + 0x214) = (int)&D_004283D8;
     *(short *)((char *)a0 + 0x604) = 0;
@@ -154,8 +154,8 @@ void *InitActorVtable_2CC500(void *a0)
 	return a0;
 }
 
-__attribute__((section(".text.func_002D3710")))
-void func_002D3710(int *a0)
+__attribute__((section(".text.FreeResourceNode_2D3710")))
+void FreeResourceNode_2D3710(int *a0)
 {
 	int x = *a0;
 	if (x != 0)

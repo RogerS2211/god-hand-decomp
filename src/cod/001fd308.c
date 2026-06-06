@@ -2,8 +2,8 @@
 
 extern unsigned int D_00747B10;
 
-__attribute__((section(".text.func_0031CEF8")))
-int func_0031CEF8(void)
+__attribute__((section(".text.AdvanceState5ByteSwap_31CEF8")))
+int AdvanceState5ByteSwap_31CEF8(void)
 {
     unsigned int v0 = (unsigned short)D_00747B10 * 5;
     v0 = ((v0 & 0xFF) << 8) + ((v0 & 0xFF00) >> 8);
@@ -11,8 +11,8 @@ int func_0031CEF8(void)
     return (unsigned char)D_00747B10;
 }
 
-__attribute__((section(".text.func_001FD308")))
-void func_001FD308(char *a0, float *a1)
+__attribute__((section(".text.CopyVec3At10_FD308")))
+void CopyVec3At10_FD308(char *a0, float *a1)
 {
     float *v0 = (float *)(a0 + 0x10);
     if (v0 != a1) {

@@ -9,7 +9,7 @@ extern int D_007854C8;
 extern int D_0041B638;
 extern int D_007854D8;
 extern void func_002A9300(void);
-extern void func_0031EEA8(void *, void *, void *);
+extern void SetField_0_4_8_31EEA8(void *, void *, void *);
 extern int D_007854E8;
 extern int D_0041B710;
 extern int D_007854F8;
@@ -17,7 +17,7 @@ extern void func_0014FD20(void);
 extern float D_003BC7C0;
 extern void func_002A8578(void *, void *, void *, int, int, int, float);
 extern void func_0014F9F0(void *, float);
-extern void func_0014F928(void *, float);
+extern void AddScaledXfmVecToField_F0_14F928(void *, float);
 
 __attribute__((section(".text.func_0010B5F0")))
 int func_0010B5F0(unsigned char *a0) {
@@ -51,7 +51,7 @@ __attribute__((section(".text.GetOrInitSingleton_100328")))
 void *GetOrInitSingleton_100328(void) {
     if (D_007854C8 == 0) {
         func_002A9300();
-        func_0031EEA8(&D_007854C8, &D_0041B638, &D_007854D8);
+        SetField_0_4_8_31EEA8(&D_007854C8, &D_0041B638, &D_007854D8);
     }
     return &D_007854C8;
 }
@@ -60,7 +60,7 @@ __attribute__((section(".text.GetOrInitSingletonAlt_101E48")))
 void *GetOrInitSingletonAlt_101E48(void) {
     if (D_007854E8 == 0) {
         func_0014FD20();
-        func_0031EEA8(&D_007854E8, &D_0041B710, &D_007854F8);
+        SetField_0_4_8_31EEA8(&D_007854E8, &D_0041B710, &D_007854F8);
     }
     return &D_007854E8;
 }
@@ -84,7 +84,7 @@ void func_00102BD8(void *a0) {
             *(unsigned char *)((char *)a0 + 0x2F7) = 0;
         }
         func_0014F9F0(a0, 1.0f);
-        func_0014F928(a0, 1.0f);
+        AddScaledXfmVecToField_F0_14F928(a0, 1.0f);
         break;
     default:
         break;

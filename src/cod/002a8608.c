@@ -1,5 +1,5 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
-/* src/cod/002a86.c — func_002A8608: 6-arg actor-spawn / move setup wrapper.
+/* src/cod/002a86.c — InitRenderStruct_2A8608: 6-arg actor-spawn / move setup wrapper.
  *
  * Builds a 0x7C-byte stack descriptor (3x sqc2 $vf0 zero-quads at 0x10/0x20/
  * 0x60, floats initialised to 1.0, sentinel bytes, scratch ints cleared),
@@ -48,8 +48,8 @@ typedef struct {
     int   i78;      /* 0x78 */
 } S;
 
-__attribute__((section(".text.func_002A8608")))
-void func_002A8608(void *a0, int a1, void *a2, int a3, int t0, void *t1) {
+__attribute__((section(".text.InitRenderStruct_2A8608")))
+void InitRenderStruct_2A8608(void *a0, int a1, void *a2, int a3, int t0, void *t1) {
     S s;
     s.f00 = 1.0f;
     s.f04 = 1.0f;
@@ -92,5 +92,5 @@ void func_002A8608(void *a0, int a1, void *a2, int a3, int t0, void *t1) {
     }
 }
 #else
-INCLUDE_ASM("nonmatching", func_002A8608);
+INCLUDE_ASM("nonmatching", InitRenderStruct_2A8608);
 #endif

@@ -15,11 +15,11 @@ extern int D_00424EC8;
 
 
 
-__attribute__((section(".text.InitCohortSlotVu0DataC_193C20")))
-void *InitCohortSlotVu0DataC_193C20(void *a0) {
+__attribute__((section(".text.InitSlotVu0DataC_193C20")))
+void *InitSlotVu0DataC_193C20(void *a0) {
     void *s0;
     int i = 3;
-    func_001C27E8(a0);
+    InitVtable214_429C80_1C27E8(a0);
     *(int **)((char*)a0 + 0x214) = &D_00424A48;
     s0 = (char *)a0 + 0x620;
     do {
@@ -34,22 +34,22 @@ void *InitCohortSlotVu0DataC_193C20(void *a0) {
     return a0;
 }
 
-__attribute__((section(".text.GetCohortSnW12BInstance_195E78")))
-void *GetCohortSnW12BInstance_195E78(void) {
+__attribute__((section(".text.GetBInstance_195E78")))
+void *GetBInstance_195E78(void) {
     int *p = &D_00785CC8;
     if (*p == 0) {
-        func_001C3BE8();
-        func_0031EEA8(p, &D_00424D00, &D_00785798);
+        GetOrInitGlobal785798_1C3BE8();
+        SetField_0_4_8_31EEA8(p, &D_00424D00, &D_00785798);
     }
     return p;
 }
 
-__attribute__((section(".text.GetCohortSnW12Instance_196008")))
-void *GetCohortSnW12Instance_196008(void) {
+__attribute__((section(".text.GetInstance_196008")))
+void *GetInstance_196008(void) {
     int *p = &D_00785CD8;
     if (*p == 0) {
-        func_001B8058();
-        func_0031EEA8(p, &D_00424DC8, &D_00785878);
+        GetOrInitGlobal785878_1B8058();
+        SetField_0_4_8_31EEA8(p, &D_00424DC8, &D_00785878);
     }
     return p;
 }
@@ -62,7 +62,7 @@ __attribute__((section(".text.InitObjSlotArray_196058")))
 void *InitObjSlotArray_196058(void *a0) {
     char *s0;
     int i;
-    func_001B6E90(a0);
+    InitFields_1B6E90(a0);
     *(int **)((char*)a0 + 0x214) = &D_00424E18;
     s0 = (char*)a0 + 0x610;
     i = 9;
@@ -145,18 +145,18 @@ void SetSlotDeadBit_197430(int *a0, unsigned int a1) {
     int v = *(int *)((char *)a0 + (a1 << 2) + 0x600);
     int *p;
     if (v != 0) {
-        func_001FD668(v, 0);
+        SetOrClearBit1OnListField_3C_1FD668(v, 0);
     }
     v = a1 >> 5;
     p = a0 + 0x274;
     p[v] = p[v] | (0x80000000U >> (a1 & 0x1F));
 }
 
-__attribute__((section(".text.func_00197630")))
-void *func_00197630(void) {
+__attribute__((section(".text.GetInstanceB_197630")))
+void *GetInstanceB_197630(void) {
     if (D_00785CE8 == 0) {
-        func_001B8058();
-        func_0031EEA8(&D_00785CE8, &D_00424EC8, &D_00785878);
+        GetOrInitGlobal785878_1B8058();
+        SetField_0_4_8_31EEA8(&D_00785CE8, &D_00424EC8, &D_00785878);
     }
     return &D_00785CE8;
 }

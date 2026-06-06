@@ -95,7 +95,7 @@ int func_001FFA28(int a0) {
     if (v == 0) {
         return 0;
     }
-    return func_001FFD98(a0, v);
+    return BuildPackedAddr_1FFD98(a0, v);
 }
 
 __attribute__((section(".text.ForwardDispatchByMode_27F170")))
@@ -128,8 +128,8 @@ void *func_002BAD40(void) {
     return &D_00460D60;
 }
 
-__attribute__((section(".text.func_002BAFA0")))
-void *func_002BAFA0(void) {
+__attribute__((section(".text.GetOrInit_460D68_2BAFA0")))
+void *GetOrInit_460D68_2BAFA0(void) {
     if (D_00460D68 == 0) {
         func_0031EEC8(&D_00460D68, &D_0044BF60);
     }
@@ -191,8 +191,8 @@ int func_003071A0(void) {
     return (int)&D_00460D98;
 }
 
-__attribute__((section(".text.func_003BAFF8")))
-int func_003BAFF8(void) {
+__attribute__((section(".text.Get_460D70_3BAFF8")))
+int Get_460D70_3BAFF8(void) {
     if (D_00460D70 == 0) {
         func_0031EEC8(&D_00460D70, &D_0045A5F8);
     }

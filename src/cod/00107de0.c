@@ -38,8 +38,8 @@ void SetActionState_10BCC0(void *a0, int a1) {
     }
 }
 
-__attribute__((section(".text.func_0012CD90")))
-void func_0012CD90(void *a0, float *a1, float f12) {
+__attribute__((section(".text.SetTargetVecAndState_12CD90")))
+void SetTargetVecAndState_12CD90(void *a0, float *a1, float f12) {
     float *v0 = (float*)((char*)a0+0x660);
     if (v0 != a1) {
         *v0 = *a1;
@@ -53,8 +53,8 @@ void func_0012CD90(void *a0, float *a1, float f12) {
     *(unsigned char*)((char*)a0+0x2F7) = 0;
 }
 
-__attribute__((section(".text.func_0012CDF0")))
-void func_0012CDF0(char *a0, float *a1) {
+__attribute__((section(".text.StoreVec3Field_12CDF0")))
+void StoreVec3Field_12CDF0(char *a0, float *a1) {
     float *p = (float*)(a0 + 0x650);
     if (p == a1) return;
     *(float*)(a0 + 0x650) = a1[0];

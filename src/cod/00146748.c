@@ -4,8 +4,8 @@ extern char D_0041DCC8[];
 extern void ForwardFieldNeg20_002A9680_30F5A0(void);
 extern void func_002AAC28(void *);
 
-__attribute__((section(".text.func_001471A8")))
-void func_001471A8(int a0, unsigned short a1) {
+__attribute__((section(".text.SetLinkedObjFlags_1471A8")))
+void SetLinkedObjFlags_1471A8(int a0, unsigned short a1) {
     if (*(int *)((char*)a0 + 0xB0)) {
         int *p1;
         int *p2;
@@ -18,8 +18,8 @@ void func_001471A8(int a0, unsigned short a1) {
     }
 }
 
-__attribute__((section(".text.func_0014A398")))
-void func_0014A398(int a0, int a1, int a2) {
+__attribute__((section(".text.SetListNodeBitByKey_14A398")))
+void SetListNodeBitByKey_14A398(int a0, int a1, int a2) {
     int v1 = *(int *)((char*)a0 + 0x25C);
     if (v1 == 0) return;
     do {

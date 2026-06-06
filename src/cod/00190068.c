@@ -6,16 +6,16 @@ extern int D_004245A8;
 extern int D_00785798;
 extern int D_004246A8;
 
-__attribute__((section(".text.SetCohortStateDisabled_190068")))
-void SetCohortStateDisabled_190068(void *a0) {
+__attribute__((section(".text.SetStateDisabled_190068")))
+void SetStateDisabled_190068(void *a0) {
     int v0;
     v0 = (*(int*)((char*)a0 + 0x5B0) & -9) | 4;
     *(int*)((char*)a0 + 0x5B0) = v0;
     if (*(int*)((char*)a0 + 0x654) != 0) {
-        func_001FD668(*(int*)((char*)a0 + 0x654), 0);
+        SetOrClearBit1OnListField_3C_1FD668(*(int*)((char*)a0 + 0x654), 0);
     }
     func_001331B8((int)&D_005CAE50, *(double*)((char*)a0 + 0x540), 0);
-    func_001C7E08(a0);
+    ClearStateAndFlag_1C7E08(a0);
 }
 
 __attribute__((section(".text.FreeMultiSlotResources_190250")))
@@ -76,16 +76,16 @@ __attribute__((section(".text.SetSlotEntryBitFlag_191860")))
 void SetSlotEntryBitFlag_191860(void *a0, int a1) {
     int *ebase = (int *)((char *)a0 + 0x600);
     int *base;
-    if (ebase[a1] != 0) func_001FD668(ebase[a1], 0);
+    if (ebase[a1] != 0) SetOrClearBit1OnListField_3C_1FD668(ebase[a1], 0);
     base = (int *)((char *)a0 + 0xF80);
     base[(unsigned int)a1 >> 5] |= (unsigned int)0x80000000 >> (a1 & 0x1F);
 }
 
-__attribute__((section(".text.GetCohortSnW12Instance_192F18")))
-void *GetCohortSnW12Instance_192F18(void) {
+__attribute__((section(".text.GetInstance_192F18")))
+void *GetInstance_192F18(void) {
     if (D_00785C48[0] == 0) {
-        func_001C3BE8();
-        func_0031EEA8(D_00785C48, &D_004245A8, &D_00785798);
+        GetOrInitGlobal785798_1C3BE8();
+        SetField_0_4_8_31EEA8(D_00785C48, &D_004245A8, &D_00785798);
     }
     return D_00785C48;
 }

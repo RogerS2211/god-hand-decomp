@@ -9,7 +9,7 @@ __attribute__((section(".text.func_00171020")))
 void *func_00171020(void) {
     if (D_00785848 == 0) {
         GetPilotClassDesc_1BDE00();
-        func_0031EEA8(&D_00785848, &D_004209D0, &D_00785858);
+        SetField_0_4_8_31EEA8(&D_00785848, &D_004209D0, &D_00785858);
     }
     return &D_00785848;
 }

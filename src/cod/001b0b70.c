@@ -17,40 +17,40 @@ void *InitPilotVtable_1B0B70(void *a) {
 }
 
 /* GetPilotClassDesc_1BDE00: lazy-init singleton getter for &D_00785858; calls
- *                func_001B8058() + func_0031EEA8(&D_00785858, &D_004294D0,
+ *                GetOrInitGlobal785878_1B8058() + SetField_0_4_8_31EEA8(&D_00785858, &D_004294D0,
  *                &D_00785878) when the underlying word is 0.
  *                20 insns, 80 B. */
 extern int D_00785858;
 extern int D_004294D0;
 extern int D_00785878;
-extern void func_001B8058(void);
-extern void func_0031EEA8(void *, void *, void *);
+extern void GetOrInitGlobal785878_1B8058(void);
+extern void SetField_0_4_8_31EEA8(void *, void *, void *);
 
 __attribute__((section(".text.GetPilotClassDesc_1BDE00")))
 void *GetPilotClassDesc_1BDE00(void) {
     if (D_00785858 == 0) {
-        func_001B8058();
-        func_0031EEA8(&D_00785858, &D_004294D0, &D_00785878);
+        GetOrInitGlobal785878_1B8058();
+        SetField_0_4_8_31EEA8(&D_00785858, &D_004294D0, &D_00785878);
     }
     return &D_00785858;
 }
 
 /* GetPilotClassDesc2_2BA948: lazy-init singleton getter for &D_00786358; structurally
- *                identical to GetPilotClassDesc_1BDE00 — calls func_002BAFA0() +
- *                func_0031EEA8(&D_00786358, &D_0044BE48, &D_00460D68) when
+ *                identical to GetPilotClassDesc_1BDE00 — calls GetOrInit_460D68_2BAFA0() +
+ *                SetField_0_4_8_31EEA8(&D_00786358, &D_0044BE48, &D_00460D68) when
  *                the underlying word is 0.
  *                20 insns, 80 B. */
 extern int D_00786358;
 extern int D_0044BE48;
 extern int D_00460D68;
-extern void func_002BAFA0(void);
-extern void func_0031EEA8(void *, void *, void *);
+extern void GetOrInit_460D68_2BAFA0(void);
+extern void SetField_0_4_8_31EEA8(void *, void *, void *);
 
 __attribute__((section(".text.GetPilotClassDesc2_2BA948")))
 void *GetPilotClassDesc2_2BA948(void) {
     if (D_00786358 == 0) {
-        func_002BAFA0();
-        func_0031EEA8(&D_00786358, &D_0044BE48, &D_00460D68);
+        GetOrInit_460D68_2BAFA0();
+        SetField_0_4_8_31EEA8(&D_00786358, &D_0044BE48, &D_00460D68);
     }
     return &D_00786358;
 }

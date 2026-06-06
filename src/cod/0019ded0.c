@@ -1,7 +1,7 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
 extern int D_00426180;
-extern void func_001C27E8(void *a);
+extern void InitVtable214_429C80_1C27E8(void *a);
 extern void Obj0000_Set_Byte_54(void *a, int b);
 extern int D_00574380;
 extern void func_001FE278(void *a, void *b);
@@ -9,7 +9,7 @@ extern void ResetField214FreeField180_1C2820(void *a, int b);
 extern int D_00785E48;
 extern int D_00426250;
 extern int D_00785798;
-extern void func_001C3BE8(void);
+extern void GetOrInitGlobal785798_1C3BE8(void);
 extern int D_00426268;
 extern int D_00785E58;
 extern int D_00426338;
@@ -25,7 +25,7 @@ __attribute__((section(".text.InitVu0ObjData_19DED0")))
 void *InitVu0ObjData_19DED0(void *a0) {
     char *s0;
     int i;
-    func_001C27E8(a0);
+    InitVtable214_429C80_1C27E8(a0);
     s0 = (char*)a0 + 0x620;
     *(int*)((char*)a0 + 0x214) = (int)&D_00426180;
     for (i = 5; i != -1; i--) {
@@ -55,8 +55,8 @@ void ClearObjVu0Resource_19DF58(void *a0, int a1) {
 __attribute__((section(".text.GetTypeRegistry_19E170")))
 int *GetTypeRegistry_19E170(void) {
     if (D_00785E48 == 0) {
-        func_001C3BE8();
-        func_0031EEA8(&D_00785E48, &D_00426250, &D_00785798);
+        GetOrInitGlobal785798_1C3BE8();
+        SetField_0_4_8_31EEA8(&D_00785E48, &D_00426250, &D_00785798);
     }
     return &D_00785E48;
 }
@@ -71,7 +71,7 @@ __attribute__((section(".text.InitObjVu0Array_19E1C0")))
 void *InitObjVu0Array_19E1C0(void *a0) {
     char *s0;
     int i;
-    func_001C27E8(a0);
+    InitVtable214_429C80_1C27E8(a0);
     *(int **)((char *)a0 + 0x214) = &D_00426268;
     i = 3;
     s0 = (char *)a0 + 0x620;
@@ -103,8 +103,8 @@ void ResetObjVtableAndFree_19E248(void *a0, int a1) {
 __attribute__((section(".text.GetObjW17ClassDesc_19E3F8")))
 int *GetObjW17ClassDesc_19E3F8(void) {
     if (D_00785E58 == 0) {
-        func_001C3BE8();
-        func_0031EEA8(&D_00785E58, &D_00426338, &D_00785798);
+        GetOrInitGlobal785798_1C3BE8();
+        SetField_0_4_8_31EEA8(&D_00785E58, &D_00426338, &D_00785798);
     }
     return &D_00785E58;
 }
@@ -119,7 +119,7 @@ __attribute__((section(".text.InitObjW17Slots_19E448")))
 void *InitObjW17Slots_19E448(void *a0) {
     char *s0;
     int i;
-    func_001C27E8(a0);
+    InitVtable214_429C80_1C27E8(a0);
     *(int **)((char *)a0 + 0x214) = &D_00426350;
     i = 9;
     s0 = (char *)a0 + 0x620;

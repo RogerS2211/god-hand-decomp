@@ -14,7 +14,7 @@ void *func_001FE530(void) {
         if (D_00460D48 == 0) {
             func_0031EEC8(&D_00460D48, D_0042C4F8);
         }
-        func_0031EEA8(&D_007861A8, D_0042C508, &D_00460D48);
+        SetField_0_4_8_31EEA8(&D_007861A8, D_0042C508, &D_00460D48);
     }
     return &D_007861A8;
 }
@@ -25,7 +25,7 @@ void *func_001FE5E0(void) {
         if (D_00460D48 == 0) {
             func_0031EEC8(&D_00460D48, D_0042C4F8);
         }
-        func_0031EEA8(&D_007861B8, D_0042C518, &D_00460D48);
+        SetField_0_4_8_31EEA8(&D_007861B8, D_0042C518, &D_00460D48);
     }
     return &D_007861B8;
 }
@@ -49,8 +49,8 @@ int GetEntryParam_1FEA00(void *a0) {
     return 0;
 }
 
-__attribute__((section(".text.func_001FEC90")))
-int func_001FEC90(void *a0, int a1) {
+__attribute__((section(".text.FreeActiveEntry_1FEC90")))
+int FreeActiveEntry_1FEC90(void *a0, int a1) {
     int v1 = func_001FEE00(a0);
     if (v1 < 0) return 0;
     func_001FF028(*(int*)((char*)a0+8) + v1*0x5C);
@@ -61,7 +61,7 @@ __attribute__((section(".text.func_001FECE0")))
 int func_001FECE0(void *a0, int a1, int a2) {
     int v0 = func_001FEE00(a0);
     if (v0 >= 0)
-        func_001FEC90(a0, a1);
+        FreeActiveEntry_1FEC90(a0, a1);
     v0 = func_001FEEA0(a0);
     if (v0 < 0) return 0;
     func_001FF470(*(int*)((char*)a0+8) + v0*0x5C, a1, a2);

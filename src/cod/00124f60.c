@@ -25,7 +25,7 @@ void func_00124F60(void *a0, int a1, int a2) {
 
 __attribute__((section(".text.func_001B7280")))
 void func_001B7280(void *a0, int a1, int a2) {
-    char *v1 = (char *)func_0014B6F8(a0, 0);
+    char *v1 = (char *)GetListNodeAt404_Field25C_14B6F8(a0, 0);
     if (v1 != 0) {
         do {
             if (*(unsigned char *)(v1 + 0x40C) == a1) {

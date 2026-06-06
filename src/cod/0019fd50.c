@@ -18,16 +18,16 @@ void func_0019FD50(void *a0) {
     int v0 = *(int*)((char*)a0 + 0x5B0);
     int x = *(int*)((char*)a0 + 0x650);
     *(int*)((char*)a0 + 0x5B0) = (v0 & -9) | 4;
-    if (x != 0) func_001FD668(x, 0);
+    if (x != 0) SetOrClearBit1OnListField_3C_1FD668(x, 0);
     func_001331B8(D_005CAE50, *(double*)((char*)a0 + 0x540), 0);
-    func_001C7E08(a0);
+    ClearStateAndFlag_1C7E08(a0);
 }
 
-__attribute__((section(".text.func_0019FE58")))
-void *func_0019FE58(void) {
+__attribute__((section(".text.GetTypeDescriptor_19FE58")))
+void *GetTypeDescriptor_19FE58(void) {
     if (D_00785EB8 == 0) {
         func_001C8F30();
-        func_0031EEA8(&D_00785EB8, &D_004268B0, &D_007858B8);
+        SetField_0_4_8_31EEA8(&D_00785EB8, &D_004268B0, &D_007858B8);
     }
     return &D_00785EB8;
 }
@@ -42,7 +42,7 @@ __attribute__((section(".text.Setup_Field_214_Field_620_19FEA8")))
 void *Setup_Field_214_Field_620_19FEA8(void *a0) {
     char *p;
     int i;
-    func_001C27E8(a0);
+    InitVtable214_429C80_1C27E8(a0);
     *(int **)((char*)a0 + 0x214) = &D_004268C8;
     p = (char*)a0 + 0x620;
     for (i = 5; i != -1; i--) {
@@ -72,8 +72,8 @@ void FreeActorResources_19FF30(void *a0, int a1) {
 __attribute__((section(".text.GetTypeDescriptorB_1A00D0")))
 void *GetTypeDescriptorB_1A00D0(void) {
     if (D_00785EC8 == 0) {
-        func_001C3BE8();
-        func_0031EEA8(&D_00785EC8, D_00426998, D_00785798);
+        GetOrInitGlobal785798_1C3BE8();
+        SetField_0_4_8_31EEA8(&D_00785EC8, D_00426998, D_00785798);
     }
     return &D_00785EC8;
 }
@@ -90,7 +90,7 @@ void *InitVu0SlotArray4_1A0120(void *obj)
     char *p;
     int i;
 
-    func_001C27E8(obj);
+    InitVtable214_429C80_1C27E8(obj);
     p = (char *)obj + 0x620;
     *(int **)((char *)obj + 0x214) = &D_004269B0;
     for (i = 4; i != -1; i--) {
@@ -120,8 +120,8 @@ void FreeActorResourcesC_1A01A8(void *a0, void *a1) {
 __attribute__((section(".text.GetTypeDescriptorC_1A0340")))
 void *GetTypeDescriptorC_1A0340(void) {
     if (D_00785ED8 == 0) {
-        func_001C3BE8();
-        func_0031EEA8(&D_00785ED8, D_00426A80, D_00785798);
+        GetOrInitGlobal785798_1C3BE8();
+        SetField_0_4_8_31EEA8(&D_00785ED8, D_00426A80, D_00785798);
     }
     return &D_00785ED8;
 }
@@ -138,7 +138,7 @@ void *InitVu0SlotArray5_1A0390(void *obj)
     char *p;
     int i;
 
-    func_001C27E8(obj);
+    InitVtable214_429C80_1C27E8(obj);
     p = (char *)obj + 0x620;
     *(int **)((char *)obj + 0x214) = &D_00426A98;
     for (i = 5; i != -1; i--) {

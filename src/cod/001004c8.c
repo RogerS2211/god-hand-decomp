@@ -23,50 +23,50 @@ void func_001A7A08(int a0) {
     }
 }
 
-__attribute__((section(".text.func_001FE348")))
-void func_001FE348(int a0, int a1) {
+__attribute__((section(".text.SetField_ACD0_1FE348")))
+void SetField_ACD0_1FE348(int a0, int a1) {
     *(int*)(a0 + 0xACD0) = a1;
 }
 
-__attribute__((section(".text.func_001FE358")))
-int func_001FE358(int a0) {
+__attribute__((section(".text.IsFieldActive_1FE358")))
+int IsFieldActive_1FE358(int a0) {
     return *(int*)(a0 + 0xACD0) != 0;
 }
 
-__attribute__((section(".text.func_0010B5C8")))
-int func_0010B5C8(char *a0) {
+__attribute__((section(".text.IsStateVal6_10B5C8")))
+int IsStateVal6_10B5C8(char *a0) {
     if (*(unsigned char*)((char*)a0+0x2F4) != 0) {
         return 0;
     }
     return *(unsigned char*)((char*)a0+0x2F5) == 0x6;
 }
 
-__attribute__((section(".text.func_0010B620")))
-int func_0010B620(char *a0) {
+__attribute__((section(".text.IsStateVal3_10B620")))
+int IsStateVal3_10B620(char *a0) {
     if (*(unsigned char*)((char*)a0+0x2F4) != 0) {
         return 0;
     }
     return *(unsigned char*)((char*)a0+0x2F5) == 0x3;
 }
 
-__attribute__((section(".text.func_0010B648")))
-int func_0010B648(char *a0) {
+__attribute__((section(".text.IsStateVal17_10B648")))
+int IsStateVal17_10B648(char *a0) {
     if (*(unsigned char*)((char*)a0+0x2F4) != 0) {
         return 0;
     }
     return *(unsigned char*)((char*)a0+0x2F5) == 0x11;
 }
 
-__attribute__((section(".text.func_0010B670")))
-int func_0010B670(char *a0) {
+__attribute__((section(".text.IsByte2F5Eq7_WhenByte2F4Zero_10B670")))
+int IsByte2F5Eq7_WhenByte2F4Zero_10B670(char *a0) {
     if (*(unsigned char*)((char*)a0+0x2F4) != 0) {
         return 0;
     }
     return *(unsigned char*)((char*)a0+0x2F5) == 0x7;
 }
 
-__attribute__((section(".text.func_001268B0")))
-void func_001268B0(int a0, int a1) {
+__attribute__((section(".text.SetFirstFreeSlot_Field_1644_1268B0")))
+void SetFirstFreeSlot_Field_1644_1268B0(int a0, int a1) {
     unsigned int i = 0;
     int k = 15;
     int *p = (int *)((char *)a0 + 0x1644);
@@ -82,8 +82,8 @@ void func_001268B0(int a0, int a1) {
     } while (i < 5);
 }
 
-__attribute__((section(".text.func_00134608")))
-void func_00134608(int a0, int a1) {
+__attribute__((section(".text.SetNodeListFlag_134608")))
+void SetNodeListFlag_134608(int a0, int a1) {
     int *node = *(int **)((char *)a0 + 4);
     if (node == 0) {
         return;
@@ -120,8 +120,8 @@ void func_00138F40(int *a0) {
     *(int *)((char *)a0 + 0xFF0) = a3;
 }
 
-__attribute__((section(".text.func_0013F2F8")))
-void func_0013F2F8(int *a0) {
+__attribute__((section(".text.ClearFields_A0_250_358_13F2F8")))
+void ClearFields_A0_250_358_13F2F8(int *a0) {
     char *a2 = (char *)a0 + 0x250;
     unsigned short i;
     *(int *)((char *)a0 + 0xA0) = 0;
@@ -133,8 +133,8 @@ void func_0013F2F8(int *a0) {
     *(char *)((char *)a0 + 0x358) = 0;
 }
 
-__attribute__((section(".text.func_0015B0F0")))
-int func_0015B0F0(int a0) {
+__attribute__((section(".text.PostInc_D_00566E10_0015B0F0_15B0F0")))
+int PostInc_D_00566E10_0015B0F0_15B0F0(int a0) {
     char *cur = D_00566E10;
     char *newp = cur + a0;
     char *limit = D_00506E10 + (D_007476B0 & 1) * 0x60000;
@@ -143,8 +143,8 @@ int func_0015B0F0(int a0) {
     return (int)cur;
 }
 
-__attribute__((section(".text.func_00167EE8")))
-void func_00167EE8(int a0)
+__attribute__((section(".text.SetFlagOnChildren_167EE8")))
+void SetFlagOnChildren_167EE8(int a0)
 {
     int **p = (int **)((char *)a0 + 0x80);
     unsigned int i = 0;
@@ -156,8 +156,8 @@ void func_00167EE8(int a0)
     } while (i < 16);
 }
 
-__attribute__((section(".text.func_0016EDE0")))
-int func_0016EDE0(int a0)
+__attribute__((section(".text.GetTypeDefaultValue_16EDE0")))
+int GetTypeDefaultValue_16EDE0(int a0)
 {
     int v0;
     switch (*(unsigned char *)((char *)a0 + 0x64)) {
@@ -287,8 +287,8 @@ void func_001BDC20(int a0) {
     }
 }
 
-__attribute__((section(".text.func_001C24A0")))
-int func_001C24A0(void *a0) {
+__attribute__((section(".text.IsSpecialAnim_1C24A0")))
+int IsSpecialAnim_1C24A0(void *a0) {
     switch (*(unsigned short *)((char *)a0 + 0x2FE)) {
     case 0x3BC:
     case 0x3D9:
@@ -298,8 +298,8 @@ int func_001C24A0(void *a0) {
     return 0;
 }
 
-__attribute__((section(".text.func_001C25A0")))
-void func_001C25A0(void *a0, int a1) {
+__attribute__((section(".text.SetBit_Byte676_4_1C25A0")))
+void SetBit_Byte676_4_1C25A0(void *a0, int a1) {
     if (a1 == 1) {
         *(unsigned char *)((char *)a0 + 0x676) = *(unsigned char *)((char *)a0 + 0x676) | 0x4;
     } else {
@@ -307,8 +307,8 @@ void func_001C25A0(void *a0, int a1) {
     }
 }
 
-__attribute__((section(".text.func_001C25C8")))
-void func_001C25C8(void *a0, int a1) {
+__attribute__((section(".text.SetClearBit0_Byte_676_1C25C8")))
+void SetClearBit0_Byte_676_1C25C8(void *a0, int a1) {
     if (a1 == 1) {
         *(unsigned char *)((char *)a0 + 0x676) = *(unsigned char *)((char *)a0 + 0x676) | 0x1;
     } else {
@@ -316,8 +316,8 @@ void func_001C25C8(void *a0, int a1) {
     }
 }
 
-__attribute__((section(".text.func_001D0B08")))
-int func_001D0B08(void *a0) {
+__attribute__((section(".text.Obj1D00_IsSet_Byte_2F4_EqFour_Byte_2F5_1D0B08")))
+int Obj1D00_IsSet_Byte_2F4_EqFour_Byte_2F5_1D0B08(void *a0) {
     if (*(unsigned char *)((char *)a0 + 0x2F4) != 0) return 0;
     return (*(unsigned char *)((char *)a0 + 0x2F5) ^ 4) == 0;
 }
@@ -359,8 +359,8 @@ void func_001F6EE0(unsigned char *a0)
     }
 }
 
-__attribute__((section(".text.func_001F7AE8")))
-void func_001F7AE8(int a0)
+__attribute__((section(".text.Setup_1F7AE8")))
+void Setup_1F7AE8(int a0)
 {
     char *p = (char *)a0;
     unsigned int mask = 0xFFFFFFFE;
@@ -423,8 +423,8 @@ void func_001F9C88(int **a0) {
     *(short *)((char *)*a0 + 0xE) = D_007474A0[0x2DB];
 }
 
-__attribute__((section(".text.func_001F9E00")))
-void func_001F9E00(int **a0) {
+__attribute__((section(".text.UpdateActiveFlag_1F9E00")))
+void UpdateActiveFlag_1F9E00(int **a0) {
     if (a0[0][0x174 / 4]) {
         D_005E85F8 = 1;
     } else {
@@ -434,8 +434,8 @@ void func_001F9E00(int **a0) {
 
 struct S001FA690 { char pad[0x10]; unsigned short f10; };
 struct W001FA690 { struct S001FA690 *p; };
-__attribute__((section(".text.func_001FA690")))
-void func_001FA690(struct W001FA690 *a0, unsigned short a1) {
+__attribute__((section(".text.Set_p_Field_10_Clamp63_1FA690")))
+void Set_p_Field_10_Clamp63_1FA690(struct W001FA690 *a0, unsigned short a1) {
     if (a0->p != 0) {
         a0->p->f10 = a1;
         if (a0->p->f10 >= 0x64) {
@@ -445,8 +445,8 @@ void func_001FA690(struct W001FA690 *a0, unsigned short a1) {
 }
 
 struct S001FA710 { char pad[0x20]; int f20; };
-__attribute__((section(".text.func_001FA710")))
-int func_001FA710(struct S001FA710 **a0) {
+__attribute__((section(".text.GetTimerValue_1FA710")))
+int GetTimerValue_1FA710(struct S001FA710 **a0) {
     struct S001FA710 *p = *a0;
     if (p == 0) {
         return 0;
@@ -458,8 +458,8 @@ int func_001FA710(struct S001FA710 **a0) {
 }
 
 struct S001FA8E0 { char pad[0x20]; int f20; };
-__attribute__((section(".text.func_001FA8E0")))
-int func_001FA8E0(struct S001FA8E0 **a0) {
+__attribute__((section(".text.IsTimerExpired_1FA8E0")))
+int IsTimerExpired_1FA8E0(struct S001FA8E0 **a0) {
     struct S001FA8E0 *p = *a0;
     if (p == 0) {
         return 0;
@@ -503,8 +503,8 @@ int func_001FAEE0(int **a0) {
     return *((unsigned char *)*a0 + 0x156);
 }
 
-__attribute__((section(".text.func_001FAF20")))
-void func_001FAF20(int **a0, int a1, int a2)
+__attribute__((section(".text.SetByte_B0_1FAF20")))
+void SetByte_B0_1FAF20(int **a0, int a1, int a2)
 {
     char v = (char)a2;
     if (*a0) {
@@ -516,8 +516,8 @@ void func_001FAF20(int **a0, int a1, int a2)
     }
 }
 
-__attribute__((section(".text.func_001FAF58")))
-int func_001FAF58(char **a0, int a1)
+__attribute__((section(".text.GetByte_B0_1FAF58")))
+int GetByte_B0_1FAF58(char **a0, int a1)
 {
     char *p;
     p = *a0;
@@ -530,8 +530,8 @@ int func_001FAF58(char **a0, int a1)
     return *(char *)(p + a1 + 0xB0);
 }
 
-__attribute__((section(".text.func_001FAFA8")))
-void func_001FAFA8(int **a0)
+__attribute__((section(".text.InitSlotTable_1FAFA8")))
+void InitSlotTable_1FAFA8(int **a0)
 {
     unsigned int i;
     unsigned int val;
@@ -561,8 +561,8 @@ unsigned char func_001FBD60(unsigned char **a0) {
     return q[0x8A];
 }
 
-__attribute__((section(".text.func_001FBDD0")))
-void func_001FBDD0(int **a0) {
+__attribute__((section(".text.ClearField46Array_1FBDD0")))
+void ClearField46Array_1FBDD0(int **a0) {
     unsigned int i;
     if (*a0 != 0) {
         i = 0;
@@ -574,8 +574,8 @@ void func_001FBDD0(int **a0) {
     }
 }
 
-__attribute__((section(".text.func_001FBE08")))
-short func_001FBE08(int **a0, int a1) {
+__attribute__((section(".text.GetField46Entry_1FBE08")))
+short GetField46Entry_1FBE08(int **a0, int a1) {
     short *p = (short *)*a0;
     short *q;
     if (p == 0) return 0;
@@ -585,8 +585,8 @@ short func_001FBE08(int **a0, int a1) {
     return q[0x46];
 }
 
-__attribute__((section(".text.func_001FBEE8")))
-void func_001FBEE8(int **a0) {
+__attribute__((section(".text.AddHitCounters_1FBEE8")))
+void AddHitCounters_1FBEE8(int **a0) {
     int *p;
     int *q;
     p = *a0;
@@ -609,8 +609,8 @@ void func_001FBF18(int **a0) {
     }
 }
 
-__attribute__((section(".text.func_001FBFD0")))
-int func_001FBFD0(int **a0, unsigned int a1) {
+__attribute__((section(".text.IsSet_Field_A4_1FBFD0")))
+int IsSet_Field_A4_1FBFD0(int **a0, unsigned int a1) {
     int *p;
     int v1;
     p = a0[0];
@@ -631,8 +631,8 @@ int func_001FBFD0(int **a0, unsigned int a1) {
     return 1;
 }
 
-__attribute__((section(".text.func_001FC170")))
-void func_001FC170(unsigned char **a0, unsigned int a1, unsigned int a2) {
+__attribute__((section(".text.SetSlotField98_1FC170")))
+void SetSlotField98_1FC170(unsigned char **a0, unsigned int a1, unsigned int a2) {
     unsigned char *p;
     unsigned int idx;
     p = *a0;
@@ -643,8 +643,8 @@ void func_001FC170(unsigned char **a0, unsigned int a1, unsigned int a2) {
     }
 }
 
-__attribute__((section(".text.func_001FC1C8")))
-int func_001FC1C8(unsigned char **a0, unsigned int a1) {
+__attribute__((section(".text.IsValueInField_98_1FC1C8")))
+int IsValueInField_98_1FC1C8(unsigned char **a0, unsigned int a1) {
     unsigned char *base;
     unsigned int i;
     if (*a0 == 0) {
@@ -659,8 +659,8 @@ int func_001FC1C8(unsigned char **a0, unsigned int a1) {
     return 0;
 }
 
-__attribute__((section(".text.func_001FC360")))
-int func_001FC360(int **a0, int a1) {
+__attribute__((section(".text.IsFlagBitSet_1FC360")))
+int IsFlagBitSet_1FC360(int **a0, int a1) {
     int *p;
     int v1;
     p = a0[0];

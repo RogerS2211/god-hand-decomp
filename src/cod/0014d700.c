@@ -4,7 +4,7 @@ extern unsigned char D_00574380[];
 __attribute__((section(".text.ForwardToAllNodes_14D700")))
 void ForwardToAllNodes_14D700(char *a0, int a1, int a2) {
     char *node;
-    node = func_0014B6F8(a0, 0);
+    node = GetListNodeAt404_Field25C_14B6F8(a0, 0);
     while (node != 0) {
         func_00155D98(node, a1, a2);
         node = *(char **)(node + 0x404);
@@ -14,7 +14,7 @@ void ForwardToAllNodes_14D700(char *a0, int a1, int a2) {
 __attribute__((section(".text.ForwardNodeUpdate_14D768")))
 void ForwardNodeUpdate_14D768(char *a0, int a1, int a2) {
     char *node;
-    node = func_0014B6F8(a0, 0);
+    node = GetListNodeAt404_Field25C_14B6F8(a0, 0);
     while (node != 0) {
         func_00155D60(node, a1, a2);
         node = *(char **)(node + 0x404);
@@ -42,7 +42,7 @@ void func_001F4C40(int a0, unsigned short a1, int a2, int a3)
     int off;
     if (s0 < 7) {
         off = s0 * 0x7C + 0xC00;
-        func_002D6548(a0 + off, a2);
+        SetField84Via4_2D6548(a0 + off, a2);
         func_001F4778(a0, (int)(s0 + 0x18), a3);
     }
 }
@@ -54,13 +54,13 @@ void func_001F5210(int a0, unsigned short a1, int a2, int a3)
     int off;
     if (s0 < 7) {
         off = s0 * 0x7C + 0x2058;
-        func_002D6548(a0 + off, a2);
+        SetField84Via4_2D6548(a0 + off, a2);
         func_001F4778(a0, (int)(s0 + 0x42), a3);
     }
 }
 
-__attribute__((section(".text.func_001FF9C0")))
-int func_001FF9C0(int a0, int a1, int *a2)
+__attribute__((section(".text.FindEntryValue_1FF9C0")))
+int FindEntryValue_1FF9C0(int a0, int a1, int *a2)
 {
     int s0;
     if (a2 != 0) {
@@ -71,7 +71,7 @@ int func_001FF9C0(int a0, int a1, int *a2)
         return -1;
     }
     if (a2 != 0) {
-        *a2 = func_001FFD98(a0, s0);
+        *a2 = BuildPackedAddr_1FFD98(a0, s0);
     }
     return *(int *)(s0 + 8);
 }

@@ -1,10 +1,10 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
-extern void func_0012CE60(char *a0, float *a1);
+extern void SetPositionMulti_12CE60(char *a0, float *a1);
 extern int NoOp_15F2A8(char *a0, int x, float f1, int a2, int a3);
 
-__attribute__((section(".text.func_0012CE20")))
-void func_0012CE20(char *a0, float *a1, float a2) {
+__attribute__((section(".text.SetVecAndAction_12CE20")))
+void SetVecAndAction_12CE20(char *a0, float *a1, float a2) {
     float *p = (float*)(a0 + 0x660);
     int r = 0x35;
     if (p != a1) {
@@ -19,8 +19,8 @@ void func_0012CE20(char *a0, float *a1, float a2) {
     *(char*)(a0 + 0x2F7) = 0;
 }
 
-__attribute__((section(".text.func_0012CE60")))
-void func_0012CE60(char *a0, float *a1) {
+__attribute__((section(".text.SetPositionMulti_12CE60")))
+void SetPositionMulti_12CE60(char *a0, float *a1) {
     float *q = *(float**)(a0 + 0xF0);
     float *p;
     if (q != a1) {

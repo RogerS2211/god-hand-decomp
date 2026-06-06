@@ -13,8 +13,8 @@ extern int D_004245C0;
 __attribute__((section(".text.GetOrInit_D_00785C28_192960")))
 void *GetOrInit_D_00785C28_192960(void) {
     if (D_00785C28 == 0) {
-        func_001B8058();
-        func_0031EEA8(&D_00785C28, D_004243D8, D_00785878);
+        GetOrInitGlobal785878_1B8058();
+        SetField_0_4_8_31EEA8(&D_00785C28, D_004243D8, D_00785878);
     }
     return &D_00785C28;
 }
@@ -30,7 +30,7 @@ void *Obj1929_Setup_1929B0(void *a0) {
     char *p;
     int i = 5;
     int end;
-    func_001C27E8(a0);
+    InitVtable214_429C80_1C27E8(a0);
     p = (char*)a0 + 0x620;
     end = -1;
     *(void**)((char*)a0 + 0x214) = D_004243F0;
@@ -62,8 +62,8 @@ void *func_00192A38(void *a0, void *a1) {
 __attribute__((section(".text.GetObjSingleton_192BE8")))
 void *GetObjSingleton_192BE8(void) {
     if (D_00785C38 == 0) {
-        func_001C3BE8();
-        func_0031EEA8(&D_00785C38, &D_004244C0, &D_00785798);
+        GetOrInitGlobal785798_1C3BE8();
+        SetField_0_4_8_31EEA8(&D_00785C38, &D_004244C0, &D_00785798);
     }
     return &D_00785C38;
 }
@@ -78,7 +78,7 @@ __attribute__((section(".text.InitObjSlots_192C38")))
 void *InitObjSlots_192C38(void *a0) {
     char *s0 = (char *)a0 + 0x620;
     int i;
-    func_001C27E8(a0);
+    InitVtable214_429C80_1C27E8(a0);
     *(int **)((char *)a0 + 0x214) = &D_004244D8;
     for (i = 5; i != -1; i--) {
         VU0_SQC2_VF0(s0, 0x0);
@@ -115,7 +115,7 @@ __attribute__((section(".text.InitObjSlots_192F68")))
 void *InitObjSlots_192F68(void *a0) {
     char *p;
     int i;
-    func_001C27E8(a0);
+    InitVtable214_429C80_1C27E8(a0);
     *(int **)((char *)a0 + 0x214) = &D_004245C0;
     p = (char *)a0 + 0x620;
     for (i = 4; i != -1; i--) {

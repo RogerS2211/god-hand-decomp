@@ -130,8 +130,8 @@ int ResetEntityStateById_2C29F8(int a0, int a1) {
     return ResetEntityActiveState_2C29A0(a0, r);
 }
 
-__attribute__((section(".text.func_002C2AE0")))
-int func_002C2AE0(int a0, int a1) {
+__attribute__((section(".text.FindEntityByTypeIndex_2C2AE0")))
+int FindEntityByTypeIndex_2C2AE0(int a0, int a1) {
     int e;
     e = func_002C30C0(a0);
     while ((e = func_002C30C8(a0, e)) != 0) {

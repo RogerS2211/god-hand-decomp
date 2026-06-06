@@ -5,8 +5,8 @@ extern char D_0041B730[];
 extern void func_001F6EE0(int x);
 extern void func_0012ECF0(void *p);
 
-__attribute__((section(".text.func_001451E0")))
-short func_001451E0(char *a0) {
+__attribute__((section(".text.GetNextAnimIndex_1451E0")))
+short GetNextAnimIndex_1451E0(char *a0) {
     int idx;
     int bound;
     if (*(short*)(a0+0x41E) == 3 && *(short*)(a0+0x420) == 0) {

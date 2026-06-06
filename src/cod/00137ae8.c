@@ -8,8 +8,8 @@ extern int D_00747AA8;
 extern void InitStructDefaults_137AA0(void);
 extern void *memcpy(void *, const void *, unsigned int);
 
-__attribute__((section(".text.func_00149350")))
-int func_00149350(int a0) {
+__attribute__((section(".text.Forward1494F8_149350")))
+int Forward1494F8_149350(int a0) {
     return func_001494F8(D_00466448, a0);
 }
 

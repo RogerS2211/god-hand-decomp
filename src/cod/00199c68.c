@@ -13,7 +13,7 @@ void *InitObjSlots_1A0D68(void *a0)
 {
     char *s0 = (char *)a0 + 0x610;
     int i;
-    func_001B6E90(a0);
+    InitFields_1B6E90(a0);
     *(int **)((char *)a0 + 0x214) = &D_00426E78;
     for (i = 0x13; i != -1; i--) {
         VU0_SQC2_VF0(s0, 0x0);
@@ -35,8 +35,8 @@ void ClearObjActiveFlag_199C68(void *a0)
     v0 = (*(int*)((char*)a0 + 0x5B0) & -9) | 4;
     *(int*)((char*)a0 + 0x5B0) = v0;
     if (*(int*)((char*)a0 + 0x650) != 0) {
-        func_001FD668(*(int*)((char*)a0 + 0x650), 0);
+        SetOrClearBit1OnListField_3C_1FD668(*(int*)((char*)a0 + 0x650), 0);
     }
     func_001331B8((int)&D_005CAE50, *(double*)((char*)a0 + 0x540), 0);
-    func_001C7E08(a0);
+    ClearStateAndFlag_1C7E08(a0);
 }

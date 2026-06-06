@@ -7,8 +7,8 @@ extern int D_0076DF10[];
 extern char D_00770850[];
 
 struct rec { unsigned short f0; unsigned short f2; unsigned short f4; unsigned short f6; unsigned short f8; unsigned short fA; int fC; };
-__attribute__((section(".text.func_003749D8")))
-int func_003749D8(short a0, struct rec *a1) {
+__attribute__((section(".text.StoreSoundEntry_3749D8")))
+int StoreSoundEntry_3749D8(short a0, struct rec *a1) {
     short *dst = (short *)&D_0076A7D4[(int)a0 * 0x10];
     int n = 0;
     unsigned int f0;

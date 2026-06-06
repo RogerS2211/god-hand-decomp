@@ -18,8 +18,8 @@ int IsSlotArrayValid_1FF540(int *a0) {
     return 1;
 }
 
-__attribute__((section(".text.func_001FF5B8")))
-void func_001FF5B8(int *a0) {
+__attribute__((section(".text.ClearSlotArray_1FF5B8")))
+void ClearSlotArray_1FF5B8(int *a0) {
     int *p;
     int i;
     p = a0 + 9;
@@ -61,7 +61,7 @@ int func_001FFD00(int a0, int a1, int a2) {
     int sp0;
     int v0;
     int s0;
-    v0 = func_001FF9C0(&D_00580D40, a1, &sp0, 0);
+    v0 = FindEntryValue_1FF9C0(&D_00580D40, a1, &sp0, 0);
     if (v0 < 0)
         return v0;
     s0 = func_00323918(0, v0);

@@ -1,7 +1,7 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
-__attribute__((section(".text.func_0013C930")))
-void func_0013C930(char *a0) {
+__attribute__((section(".text.ResetBlendFields_13C930")))
+void ResetBlendFields_13C930(char *a0) {
     *(float *)(a0 + 0xA4) = 1.0f;
     *(int *)(a0 + 0x94) = 0;
     *(int *)(a0 + 0x9C) = 0;
@@ -9,8 +9,8 @@ void func_0013C930(char *a0) {
     *(int *)(a0 + 0xB8) = 0;
 }
 
-__attribute__((section(".text.func_001476D0")))
-void func_001476D0(float *a0, float *a1) {
+__attribute__((section(".text.BuildTranslationMatrix_1476D0")))
+void BuildTranslationMatrix_1476D0(float *a0, float *a1) {
     a0[1] = 0.0f;
     a0[0] = 1.0f;
     a0[2] = 0.0f;

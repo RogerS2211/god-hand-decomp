@@ -17,8 +17,8 @@ __attribute__((section(".text.GetTypeDescriptorD_1A05B8")))
 int *GetTypeDescriptorD_1A05B8(void)
 {
     if (D_00785EE8 == 0) {
-        func_001C3BE8();
-        func_0031EEA8(&D_00785EE8, &D_00426B68, &D_00785798);
+        GetOrInitGlobal785798_1C3BE8();
+        SetField_0_4_8_31EEA8(&D_00785EE8, &D_00426B68, &D_00785798);
     }
     return &D_00785EE8;
 }
@@ -35,7 +35,7 @@ void *InitVu0SlotArray5B_1A0608(void *a0)
     char *p;
     int i;
 
-    func_001C27E8(a0);
+    InitVtable214_429C80_1C27E8(a0);
     *(int *)((char *)a0 + 0x214) = (int)&D_00426B80;
     p = (char *)a0 + 0x620;
     for (i = 5; i != -1; i--) {
@@ -65,8 +65,8 @@ __attribute__((section(".text.GetTypeDescriptorE_1A0830")))
 void *GetTypeDescriptorE_1A0830(void)
 {
 	if (D_00785EF8 == 0) {
-		func_001C3BE8();
-		func_0031EEA8(&D_00785EF8, &D_00426C50, &D_00785798);
+		GetOrInitGlobal785798_1C3BE8();
+		SetField_0_4_8_31EEA8(&D_00785EF8, &D_00426C50, &D_00785798);
 	}
 	return &D_00785EF8;
 }
@@ -83,7 +83,7 @@ void *InitVu0SlotArray4B_1A0880(void *a0)
 	char *p;
 	int i;
 
-	func_001C27E8(a0);
+	InitVtable214_429C80_1C27E8(a0);
 	p = (char *)a0 + 0x620;
 	*(int **)((char *)a0 + 0x214) = &D_00426C68;
 	for (i = 4; i != -1; i--) {
@@ -115,8 +115,8 @@ __attribute__((section(".text.GetTypeDescriptorF_1A0AA0")))
 void *GetTypeDescriptorF_1A0AA0(void)
 {
 	if (D_00785F08 == 0) {
-		func_001C3BE8();
-		func_0031EEA8(&D_00785F08, &D_00426D38, &D_00785798);
+		GetOrInitGlobal785798_1C3BE8();
+		SetField_0_4_8_31EEA8(&D_00785F08, &D_00426D38, &D_00785798);
 	}
 	return &D_00785F08;
 }
@@ -133,7 +133,7 @@ void *InitObjSlots_1A0AF0(void *a0)
 	char *p;
 	int i;
 
-	func_001C27E8(a0);
+	InitVtable214_429C80_1C27E8(a0);
 	p = (char *)a0 + 0x620;
 	*(int **)((char *)a0 + 0x214) = &D_00426D50;
 	for (i = 5; i != -1; i--) {
@@ -152,8 +152,8 @@ __attribute__((section(".text.GetObjSingleton_1A0D18")))
 void *GetObjSingleton_1A0D18(void)
 {
     if (D_00785F18 == 0) {
-        func_001C3BE8();
-        func_0031EEA8(&D_00785F18, &D_00426E20, &D_00785798);
+        GetOrInitGlobal785798_1C3BE8();
+        SetField_0_4_8_31EEA8(&D_00785F18, &D_00426E20, &D_00785798);
     }
     return &D_00785F18;
 }

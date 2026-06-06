@@ -24,7 +24,7 @@ __attribute__((section(".text.InitObjSlotArrayB_197680")))
 void *InitObjSlotArrayB_197680(void *a0) {
     char *s0 = (char *)a0 + 0x610;
     int i = 9;
-    func_001B6E90(a0);
+    InitFields_1B6E90(a0);
     *(int **)((char *)a0 + 0x214) = &D_00424F28;
     do {
         VU0_SQC2_VF0(s0, 0x0);
@@ -94,7 +94,7 @@ __attribute__((section(".text.SetSlotDeadBitB_198A58")))
 void SetSlotDeadBitB_198A58(int a0, unsigned int a1) {
     int *p = (int *)(a0 + a1 * 4 + 0x600);
     if (*p != 0) {
-        func_001FD668(*p, 0);
+        SetOrClearBit1OnListField_3C_1FD668(*p, 0);
     }
     {
         unsigned int *base = (unsigned int *)(a0 + 0x9D0);
@@ -102,11 +102,11 @@ void SetSlotDeadBitB_198A58(int a0, unsigned int a1) {
     }
 }
 
-__attribute__((section(".text.func_00198C58")))
-void *func_00198C58(void) {
+__attribute__((section(".text.GetInstanceC_198C58")))
+void *GetInstanceC_198C58(void) {
     if (D_00785CF8 == 0) {
-        func_001B8058();
-        func_0031EEA8(&D_00785CF8, &D_00424FD8, &D_00785878);
+        GetOrInitGlobal785878_1B8058();
+        SetField_0_4_8_31EEA8(&D_00785CF8, &D_00424FD8, &D_00785878);
     }
     return &D_00785CF8;
 }
@@ -128,11 +128,11 @@ void *FreeObjSlotC_198CE0(void *a0, int a1) {
     return func_001BFB00(a0, a1);
 }
 
-__attribute__((section(".text.GetCohortSnW12InstanceD_198F68")))
-int *GetCohortSnW12InstanceD_198F68(void) {
+__attribute__((section(".text.GetInstanceD_198F68")))
+int *GetInstanceD_198F68(void) {
     if (D_00785D08 == 0) {
         func_001C0018();
-        func_0031EEA8(&D_00785D08, &D_004250B8, &D_00785808);
+        SetField_0_4_8_31EEA8(&D_00785D08, &D_004250B8, &D_00785808);
     }
     return &D_00785D08;
 }
@@ -191,11 +191,11 @@ void UpdateSlotHpState_1993C8(void *a0) {
     }
 }
 
-__attribute__((section(".text.func_00199D70")))
-void *func_00199D70(void) {
+__attribute__((section(".text.GetInstanceE_199D70")))
+void *GetInstanceE_199D70(void) {
     if (D_00785D18 == 0) {
         func_001C8F30();
-        func_0031EEA8(&D_00785D18, &D_004251A8, &D_007858B8);
+        SetField_0_4_8_31EEA8(&D_00785D18, &D_004251A8, &D_007858B8);
     }
     return &D_00785D18;
 }

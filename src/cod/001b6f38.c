@@ -9,8 +9,8 @@ extern void func_001347E8(char *a0, char *a1);
 extern void func_00312708(char *a0);
 extern void func_001FE370(char *a0, char *a1);
 extern void func_002A73C8(char *a0, char *a1);
-extern void func_001F7800(int a0, int a1, int *a2);
-extern void func_002A9680(int, int *);
+extern void Obj0000_Swap_Field_4_In_Scaled_A1_Entry_1F7800(int a0, int a1, int *a2);
+extern void UnlinkAndCoalesceNode_2A9680(int, int *);
 extern void func_001FA820(void *);
 extern int D_00747A34;
 
@@ -51,14 +51,14 @@ void LookupSlotPopulateFieldsAndDispatch_1F7858(int a0, int a1, int a2, int a3, 
         p[5] = t1;
         p[9] = t2;
         p[6] = a1;
-        func_001F7800(a0, a1, p);
+        Obj0000_Swap_Field_4_In_Scaled_A1_Entry_1F7800(a0, a1, p);
     }
 }
 
 __attribute__((section(".text.ForwardFieldNeg20_002A9680_30F5A0")))
 void ForwardFieldNeg20_002A9680_30F5A0(int *a0) {
     if (a0) {
-        func_002A9680(*(int*)((char*)a0 - 0x20), a0);
+        UnlinkAndCoalesceNode_2A9680(*(int*)((char*)a0 - 0x20), a0);
     }
 }
 

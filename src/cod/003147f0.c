@@ -8,7 +8,7 @@ int ForwardInitBuffer_3147F0(void){
     s0 = func_0030EE08(0x800, 0x10, D_00754C10);
     if (s0 == 0) return 0;
     func_003A52F0(s0, 0, 0x800);
-    return InitCohortSlotVu0DataB_195C20(s0);
+    return InitSlotVu0DataB_195C20(s0);
 }
 
 __attribute__((section(".text.AllocZeroAndInit_9E0_314860")))

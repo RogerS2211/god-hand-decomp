@@ -2,8 +2,8 @@
 
 extern char D_00450FD8[];
 
-__attribute__((section(".text.func_0031EEA8")))
-void func_0031EEA8(int *a0, int a1, int a2) {
+__attribute__((section(".text.SetField_0_4_8_31EEA8")))
+void SetField_0_4_8_31EEA8(int *a0, int a1, int a2) {
     if (a0 == 0) {
         return;
     }

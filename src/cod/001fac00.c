@@ -2,8 +2,8 @@
 
 extern int D_00747A2C;
 
-__attribute__((section(".text.func_002D6490")))
-void func_002D6490(int *a0, int a1) {
+__attribute__((section(".text.SetOrClearField4Bit2C_29_2D6490")))
+void SetOrClearField4Bit2C_29_2D6490(int *a0, int a1) {
     int *p = (int *)a0[1];
     if (p != 0) {
         if ((a1 ^ 1) != 0) {
@@ -14,8 +14,8 @@ void func_002D6490(int *a0, int a1) {
     }
 }
 
-__attribute__((section(".text.func_001FAC00")))
-void func_001FAC00(int *a0) {
+__attribute__((section(".text.ShiftDownBytesA8_FAC00")))
+void ShiftDownBytesA8_FAC00(int *a0) {
     unsigned int i;
     if ((D_00747A2C & 0x80000) == 0) {
         i = 0;

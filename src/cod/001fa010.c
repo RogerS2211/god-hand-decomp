@@ -1,5 +1,5 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
-/* src/cod/001fa0.c — func_001FA010: score-band classifier (LEAF).
+/* src/cod/001fa0.c — GetScoreLevel_1FA010: score-band classifier (LEAF).
  *
  * Reads *(s16*)((*arg0) + 0x1C) and bisects it against the 5-int threshold
  * table D_003BF160 = {1000, 3000, 4000, 4000, 5000}, returning a band 1..5
@@ -17,8 +17,8 @@
 extern int D_003BF160[];
 
 #ifdef NON_MATCHING
-__attribute__((section(".text.func_001FA010")))
-int func_001FA010(void **arg0)
+__attribute__((section(".text.GetScoreLevel_1FA010")))
+int GetScoreLevel_1FA010(void **arg0)
 {
     int *p; int new_var3; int i; int r;
     if (*arg0 == 0) return 0;
@@ -35,5 +35,5 @@ loop:
     return r + 1;
 }
 #else
-INCLUDE_ASM("nonmatching", func_001FA010);
+INCLUDE_ASM("nonmatching", GetScoreLevel_1FA010);
 #endif

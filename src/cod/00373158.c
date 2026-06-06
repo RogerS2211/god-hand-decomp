@@ -214,8 +214,8 @@ void SetSequenceParam_373A18(void *a0, int a1) {
     }
 }
 
-__attribute__((section(".text.func_00373B68")))
-int func_00373B68(void *a0) {
+__attribute__((section(".text.GetSequenceHandle_373B68")))
+int GetSequenceHandle_373B68(void *a0) {
     int t;
     if (!func_00373A50(a0)) {
         return 0;

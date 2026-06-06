@@ -15,7 +15,7 @@ int SetupSlotFromField78_200CB0(char *a0, char *a1, int *a2, int a3, int t0, int
         return 0;
 
     {
-        int v0 = func_001FF9C0(D_00580D40, a1, s0 + 0x78, s0 + 0xC);
+        int v0 = FindEntryValue_1FF9C0(D_00580D40, a1, s0 + 0x78, s0 + 0xC);
         *(int *)(s0 + 0x8) = v0;
         *(int *)(s0 + 0x7C) = a3;
         *(int *)(s0 + 0x74) = (unsigned int)(*(int *)(s0 + 0x78) + 0x7FF) >> 11;
@@ -50,8 +50,8 @@ int SetupSlotFromField78_200CB0(char *a0, char *a1, int *a2, int a3, int t0, int
     return *(int *)(s0 + 0x4);
 }
 
-__attribute__((section(".text.func_00299868")))
-void func_00299868(char *a0, long a1, long a2) {
+__attribute__((section(".text.PushEntryAtField10000_299868")))
+void PushEntryAtField10000_299868(char *a0, long a1, long a2) {
     char *base = a0 + 0x10000;
     *(long*)(*(long**)(base + 0)) = a2;
     *(long*)((char*)*(long**)(base + 0) + 8) = a1;

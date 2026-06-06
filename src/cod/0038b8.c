@@ -11,7 +11,7 @@ extern void func_0038E490(char *a0);
 extern void func_0038E3F0(char *a0);
 extern void func_0038C3A0(char *a0, int a1, int a2, int a3);
 extern int *func_0038C168(void);
-extern void func_0031EEA8(void *a0, void *a1, void *a2);
+extern void SetField_0_4_8_31EEA8(void *a0, void *a1, void *a2);
 extern void func_0038AFB0(int a0);
 extern int *func_0038BE98(void);
 

@@ -52,8 +52,8 @@ struct node {
     int d;               /* 0x10 */
 };
 
-__attribute__((section(".text.func_002A9680")))
-void func_002A9680(int a0, struct node *a1) {
+__attribute__((section(".text.UnlinkAndCoalesceNode_2A9680")))
+void UnlinkAndCoalesceNode_2A9680(int a0, struct node *a1) {
     struct node *p;
     struct node *q;
     if (a1 != 0) {
@@ -76,7 +76,7 @@ void Forward2ABA78ThenSetByte1C_2ABBE8(void *a0) {
 
 __attribute__((section(".text.SetField380Bit2000ForTag_1B7300")))
 void SetField380Bit2000ForTag_1B7300(int a0, int a1, int a2) {
-    char *p = (char *)func_0014B6F8(a0, 0);
+    char *p = (char *)GetListNodeAt404_Field25C_14B6F8(a0, 0);
     if (p != 0) {
         do {
             if (*(unsigned char *)(p + 0x40C) == a1) {

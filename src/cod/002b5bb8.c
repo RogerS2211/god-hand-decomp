@@ -8,7 +8,7 @@ void FreeEntrySlot_2B5BB8(int a0, int a1, int a2)
     v0 = s0[0];
     v1 = s0[1];
     if (v0 != 0) {
-        func_002A9680(v1, v0);
+        UnlinkAndCoalesceNode_2A9680(v1, v0);
     }
     s0[0] = 0;
     s0[1] = 0;
@@ -25,8 +25,8 @@ void func_002C2A48(int *a0, unsigned short a1, int a2) {
     }
 }
 
-__attribute__((section(".text.func_002C8EB0")))
-void func_002C8EB0(int *a0) {
+__attribute__((section(".text.ClearStructFields_2C8EB0")))
+void ClearStructFields_2C8EB0(int *a0) {
     a0[0] = 0;
     func_003A52F0((int)((char *)a0 + 0x4), 0, 0xC);
     func_003A52F0((int)((char *)a0 + 0x14), 0, 0x80);

@@ -2,21 +2,21 @@
 
 extern int D_00785508;
 extern void GetOrInitSingleton_100328(void);
-extern void func_0031EEA8(void *a0, void *a1, void *a2);
+extern void SetField_0_4_8_31EEA8(void *a0, void *a1, void *a2);
 extern char D_0041B7D0[];
 extern char D_007854C8[];
 extern void func_001351D8(void *a0, void *a1, int a2);
 extern void func_002A8578(void *a0, void *a1, void *a2, float f, int a3, int t0, int t1);
 extern char D_00462FC0[];
 extern void func_0014F9F0(void *a0, float f);
-extern void func_0014F928(void *a0, float f);
+extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
 
 __attribute__((section(".text.GetOrInitSubSingleton_103880")))
 void *GetOrInitSubSingleton_103880(void) {
     void *p = (void *)&D_00785508;
     if (D_00785508 == 0) {
         GetOrInitSingleton_100328();
-        func_0031EEA8(p, D_0041B7D0, D_007854C8);
+        SetField_0_4_8_31EEA8(p, D_0041B7D0, D_007854C8);
     }
     return p;
 }
@@ -77,7 +77,7 @@ void func_00102FE8(void *a0) {
             *(unsigned char *)((char *)a0 + 0x2F7) = 0;
         }
         func_0014F9F0(a0, 1.0f);
-        func_0014F928(a0, 1.0f);
+        AddScaledXfmVecToField_F0_14F928(a0, 1.0f);
         break;
     }
 }
@@ -91,8 +91,8 @@ void ForwardVtableCall_138210(char *a0) {
     fn(a0 + *(short *)((char *)p + 8));
 }
 
-__attribute__((section(".text.func_00140C58")))
-int func_00140C58(char *a0) {
+__attribute__((section(".text.FindFreeSlotIndex_140C58")))
+int FindFreeSlotIndex_140C58(char *a0) {
     int v1 = 0;
     a0 += 0x22F4;
     while (1) {

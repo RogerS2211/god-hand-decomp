@@ -8,7 +8,7 @@ extern int D_00785878;
 extern int D_00428AD0;
 extern int D_007854D8;
 extern void func_002A9300(void);
-extern void func_0031EEA8(void *a0, void *a1, void *a2);
+extern void SetField_0_4_8_31EEA8(void *a0, void *a1, void *a2);
 
 #include "godhand/vu0.h"
 
@@ -17,8 +17,8 @@ extern void func_0031EEA8(void *a0, void *a1, void *a2);
 
 
 
-__attribute__((section(".text.func_001B6E90")))
-char *func_001B6E90(char *a0) {
+__attribute__((section(".text.InitFields_1B6E90")))
+char *InitFields_1B6E90(char *a0) {
     char *p490;
     char *p5D0;
     func_002A7338(a0);
@@ -61,11 +61,11 @@ void func_0012AC28(char *a0) {
 __attribute__((section(".text.func_001B79B0")))
 void func_001B79B0(void) { func_00312708(); }
 
-__attribute__((section(".text.func_001B8058")))
-void *func_001B8058(void) {
+__attribute__((section(".text.GetOrInitGlobal785878_1B8058")))
+void *GetOrInitGlobal785878_1B8058(void) {
     if (D_00785878 == 0) {
         func_002A9300();
-        func_0031EEA8(&D_00785878, &D_00428AD0, &D_007854D8);
+        SetField_0_4_8_31EEA8(&D_00785878, &D_00428AD0, &D_007854D8);
     }
     return &D_00785878;
 }

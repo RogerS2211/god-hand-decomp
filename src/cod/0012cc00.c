@@ -69,7 +69,7 @@ void func_00147A48(void *a0, int a1, int a2, int a3, int t0)
 	unsigned char e;
 
 	e = t0;
-	func_001476D0(a0);
+	BuildTranslationMatrix_1476D0(a0);
 	func_00147B60(a0, a0, a2, e);
 	func_00147BF8(a0, a0, a3);
 }

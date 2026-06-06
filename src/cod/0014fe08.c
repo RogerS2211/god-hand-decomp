@@ -17,10 +17,10 @@ void func_001B18B8(unsigned char *a0) {
     int v = 0x32;
     *(short *)(*(unsigned char **)(a0 + 0x66C) + 0x46) = 0x30;
     *(int *)(*(unsigned char **)(a0 + 0x66C) + 0x4C) = v;
-    func_001FD668(*(unsigned char **)(a0 + 0x66C), 1);
+    SetOrClearBit1OnListField_3C_1FD668(*(unsigned char **)(a0 + 0x66C), 1);
     *(short *)(*(unsigned char **)(a0 + 0x670) + 0x46) = 0x48;
     *(int *)(*(unsigned char **)(a0 + 0x670) + 0x4C) = v;
-    func_001FD668(*(unsigned char **)(a0 + 0x670), 1);
+    SetOrClearBit1OnListField_3C_1FD668(*(unsigned char **)(a0 + 0x670), 1);
 }
 
 __attribute__((section(".text.FindFreeSlot_1FC020")))
@@ -31,7 +31,7 @@ int FindFreeSlot_1FC020(int *a0) {
     }
     s0 = 1;
     while (s0 < 8) {
-        if (func_001FBFD0(&D_00569B70, s0) == 0) {
+        if (IsSet_Field_A4_1FBFD0(&D_00569B70, s0) == 0) {
             break;
         }
         s0 = (s0 + 1) & 0xFF;

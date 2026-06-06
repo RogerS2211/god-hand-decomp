@@ -8,13 +8,13 @@ extern int D_00785518;
 extern int D_0041D2C0;
 extern int D_007854C8;
 extern void GetOrInitSingleton_100328(void);
-extern void func_0031EEA8(void *a, void *b, void *c);
+extern void SetField_0_4_8_31EEA8(void *a, void *b, void *c);
 
 __attribute__((section(".text.GetOrInit_785518_12CF08")))
 int *GetOrInit_785518_12CF08(void) {
     if (D_00785518 == 0) {
         GetOrInitSingleton_100328();
-        func_0031EEA8(&D_00785518, &D_0041D2C0, &D_007854C8);
+        SetField_0_4_8_31EEA8(&D_00785518, &D_0041D2C0, &D_007854C8);
     }
     return &D_00785518;
 }

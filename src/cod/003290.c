@@ -2,10 +2,10 @@
 
 /* ── External forward declarations ──────────────────────────────────────── */
 extern void Forward33B658_33E678(void);   /* target of Obj3290_Tramp_0033E678_9028 trampoline     */
-extern void func_0033E690(void);   /* target of Obj3290_Tramp_0033E690_9040 trampoline     */
+extern void Forward33B670_33E690(void);   /* target of Obj3290_Tramp_0033E690_9040 trampoline     */
 extern void func_0033BF18(void);   /* target of Obj3290_Tramp_0033BF18_9058 trampoline     */
-extern void func_0033E6A8(void);   /* target of Obj3290_Tramp_0033E6A8_9070 trampoline     */
-extern void func_0033E6B0(void);   /* target of Obj3290_Tramp_0033E6B0_9088 trampoline     */
+extern void NoOp_33E6A8(void);   /* target of Obj3290_Tramp_0033E6A8_9070 trampoline     */
+extern void NoOp_33E6B0(void);   /* target of Obj3290_Tramp_0033E6B0_9088 trampoline     */
 extern void func_0033F130(void *a0); /* target of Obj3290_TrampViaA1_0033F130_90A0 (arg-reroute)*/
 extern void Obj0000_Set_D_003D8488_3313F0(void);   /* target of Obj3290_Tramp_003313F0_9278 trampoline     */
 extern void func_003313E0(void);   /* target of Obj3290_Tramp_003313E0_9298 trampoline     */
@@ -25,13 +25,13 @@ INCLUDE_ASM("nonmatching", func_003290B8);
 INCLUDE_ASM("nonmatching", ADXPS2_LoadFcacheDvd);
 
 /* func_003292D8: 0x118 B, multi-jal init; calls func_00330E70, func_00330318 ×2,
- * func_00330580, func_00335218, func_00335248, func_00333F60, j func_00333F80 */
+ * func_00330580, func_00335218, func_00335248, Forward331C98_333F60, j func_00333F80 */
 INCLUDE_ASM("nonmatching", func_003292D8);
 
-/* func_00329438: 0x58 B, wraps func_0033E6A8 + func_00329490 + func_0033E6B0 */
+/* func_00329438: 0x58 B, wraps NoOp_33E6A8 + func_00329490 + NoOp_33E6B0 */
 INCLUDE_ASM("nonmatching", func_00329438);
 
-/* func_003297A8: 0x48 B, wraps func_0033E6A8 + func_003297F0 + func_0033E6B0 */
+/* func_003297A8: 0x48 B, wraps NoOp_33E6A8 + func_003297F0 + NoOp_33E6B0 */
 INCLUDE_ASM("nonmatching", func_003297A8);
 
 /* func_003297F0: 0x54 B, call func_00329490 then func_00336BA8 if result non-null */
@@ -66,21 +66,21 @@ INCLUDE_ASM("nonmatching", func_003293F0);
 __attribute__((section(".text.Obj3290_Tramp_0033E678_9028")))
 void Obj3290_Tramp_0033E678_9028(void) { Forward33B658_33E678(); }
 
-/* Obj3290_Tramp_0033E690_9040: addiu sp,-0x10; sd ra; ld ra; j func_0033E690; addiu sp,+0x10 */
+/* Obj3290_Tramp_0033E690_9040: addiu sp,-0x10; sd ra; ld ra; j Forward33B670_33E690; addiu sp,+0x10 */
 __attribute__((section(".text.Obj3290_Tramp_0033E690_9040")))
-void Obj3290_Tramp_0033E690_9040(void) { func_0033E690(); }
+void Obj3290_Tramp_0033E690_9040(void) { Forward33B670_33E690(); }
 
 /* Obj3290_Tramp_0033BF18_9058: addiu sp,-0x10; sd ra; ld ra; j func_0033BF18; addiu sp,+0x10 */
 __attribute__((section(".text.Obj3290_Tramp_0033BF18_9058")))
 void Obj3290_Tramp_0033BF18_9058(void) { func_0033BF18(); }
 
-/* Obj3290_Tramp_0033E6A8_9070: addiu sp,-0x10; sd ra; ld ra; j func_0033E6A8; addiu sp,+0x10 */
+/* Obj3290_Tramp_0033E6A8_9070: addiu sp,-0x10; sd ra; ld ra; j NoOp_33E6A8; addiu sp,+0x10 */
 __attribute__((section(".text.Obj3290_Tramp_0033E6A8_9070")))
-void Obj3290_Tramp_0033E6A8_9070(void) { func_0033E6A8(); }
+void Obj3290_Tramp_0033E6A8_9070(void) { NoOp_33E6A8(); }
 
-/* Obj3290_Tramp_0033E6B0_9088: addiu sp,-0x10; sd ra; ld ra; j func_0033E6B0; addiu sp,+0x10 */
+/* Obj3290_Tramp_0033E6B0_9088: addiu sp,-0x10; sd ra; ld ra; j NoOp_33E6B0; addiu sp,+0x10 */
 __attribute__((section(".text.Obj3290_Tramp_0033E6B0_9088")))
-void Obj3290_Tramp_0033E6B0_9088(void) { func_0033E6B0(); }
+void Obj3290_Tramp_0033E6B0_9088(void) { NoOp_33E6B0(); }
 
 /* Obj3290_TrampViaA1_0033F130_90A0: addiu sp,-0x10; daddu $a0,$a1,$zero; sd ra; ld ra;
  *               j func_0033F130; addiu sp,+0x10

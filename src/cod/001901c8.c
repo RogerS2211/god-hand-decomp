@@ -26,7 +26,7 @@ __attribute__((section(".text.InitObjSlots_1901C8")))
 void *InitObjSlots_1901C8(char *a0) {
     char *p;
     int i;
-    func_001B6E90(a0);
+    InitFields_1B6E90(a0);
     *(void **)(a0 + 0x214) = (void*)D_00423F58;
     p = a0 + 0x620;
     i = 0x18;
@@ -44,11 +44,11 @@ void *InitObjSlots_1901C8(char *a0) {
     return a0;
 }
 
-__attribute__((section(".text.func_00191A60")))
-void *func_00191A60(void) {
+__attribute__((section(".text.GetObjSingleton_191A60")))
+void *GetObjSingleton_191A60(void) {
     if (D_00785BE8 == 0) {
-        func_001B8058();
-        func_0031EEA8(&D_00785BE8, &D_00424008, &D_00785878);
+        GetOrInitGlobal785878_1B8058();
+        SetField_0_4_8_31EEA8(&D_00785BE8, &D_00424008, &D_00785878);
     }
     return &D_00785BE8;
 }
@@ -63,7 +63,7 @@ __attribute__((section(".text.InitObjSlots_191AB0")))
 void *InitObjSlots_191AB0(void *a0) {
     void *p;
     int i;
-    func_001C27E8(a0);
+    InitVtable214_429C80_1C27E8(a0);
     *(int*)((char*)a0+0x214) = (int)&D_00424040;
     p = (char*)a0 + 0x620;
     for (i = 5; i != -1; i--) {
@@ -93,8 +93,8 @@ void func_00191B38(void *a0, int a1) {
 __attribute__((section(".text.GetObjSingleton_191CE8")))
 void *GetObjSingleton_191CE8(void) {
     if (D_00785BF8 == 0) {
-        func_001C3BE8();
-        func_0031EEA8(&D_00785BF8, &D_00424110, &D_00785798);
+        GetOrInitGlobal785798_1C3BE8();
+        SetField_0_4_8_31EEA8(&D_00785BF8, &D_00424110, &D_00785798);
     }
     return &D_00785BF8;
 }
@@ -128,7 +128,7 @@ __attribute__((section(".text.GetObjSingleton_191F50")))
 void *GetObjSingleton_191F50(void) {
     if (D_00785C08 == 0) {
         func_001BD528();
-        func_0031EEA8(&D_00785C08, D_004241D8, D_007859B8);
+        SetField_0_4_8_31EEA8(&D_00785C08, D_004241D8, D_007859B8);
     }
     return &D_00785C08;
 }
@@ -162,7 +162,7 @@ __attribute__((section(".text.GetOrInit_D785C18_1921B8")))
 void *GetOrInit_D785C18_1921B8(void) {
     if (D_00785C18 == 0) {
         func_001BD528();
-        func_0031EEA8(&D_00785C18, D_004242A0, D_007859B8);
+        SetField_0_4_8_31EEA8(&D_00785C18, D_004242A0, D_007859B8);
     }
     return &D_00785C18;
 }

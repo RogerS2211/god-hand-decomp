@@ -8,15 +8,15 @@ extern int D_00785E18;
 extern int D_00425F98;
 extern int D_00785808;
 extern void func_001C0018(void);
-extern void func_0031EEA8(void *a, void *b, void *c);
+extern void SetField_0_4_8_31EEA8(void *a, void *b, void *c);
 extern int D_00425FB0;
-extern void func_001C27E8(void *a0);
+extern void InitVtable214_429C80_1C27E8(void *a0);
 extern void Obj0000_Set_Byte_54(void *a0, int a1);
 extern void ResetField214FreeField180_1C2820(void *a, void *b);
 extern int D_00785E28;
 extern int D_00426080;
 extern int D_00785798;
-extern void func_001C3BE8(void);
+extern void GetOrInitGlobal785798_1C3BE8(void);
 extern int D_00426098;
 extern int D_00785E38;
 extern int D_00426168;
@@ -37,7 +37,7 @@ __attribute__((section(".text.GetTypeInstance_19D970")))
 int *GetTypeInstance_19D970(void) {
     if (D_00785E18 == 0) {
         func_001C0018();
-        func_0031EEA8(&D_00785E18, &D_00425F98, &D_00785808);
+        SetField_0_4_8_31EEA8(&D_00785E18, &D_00425F98, &D_00785808);
     }
     return &D_00785E18;
 }
@@ -53,7 +53,7 @@ void *InitObjVu0Block_19D9C0(void *a0)
 {
     char *p;
     int i;
-    func_001C27E8(a0);
+    InitVtable214_429C80_1C27E8(a0);
     p = (char *)a0 + 0x620;
     *(int **)((char *)a0 + 0x214) = &D_00425FB0;
     for (i = 4; i != -1; i--) {
@@ -84,8 +84,8 @@ void ClearObjSlot_19DA48(void *a0, void *a1)
 __attribute__((section(".text.GetClassDescriptor_19DBF8")))
 int *GetClassDescriptor_19DBF8(void) {
     if (D_00785E28 == 0) {
-        func_001C3BE8();
-        func_0031EEA8(&D_00785E28, &D_00426080, &D_00785798);
+        GetOrInitGlobal785798_1C3BE8();
+        SetField_0_4_8_31EEA8(&D_00785E28, &D_00426080, &D_00785798);
     }
     return &D_00785E28;
 }
@@ -101,7 +101,7 @@ void *InitVu0ObjBlock_19DC48(void *a0)
 {
     char *p;
     int i;
-    func_001C27E8(a0);
+    InitVtable214_429C80_1C27E8(a0);
     p = (char *)a0 + 0x620;
     *(int **)((char *)a0 + 0x214) = &D_00426098;
     for (i = 5; i != -1; i--) {
@@ -131,8 +131,8 @@ void ResetObjSlotResource_19DCD0(void *a0, int a1) {
 __attribute__((section(".text.GetSubclassDescriptor_19DE80")))
 int *GetSubclassDescriptor_19DE80(void) {
     if (D_00785E38 == 0) {
-        func_001C3BE8();
-        func_0031EEA8(&D_00785E38, &D_00426168, &D_00785798);
+        GetOrInitGlobal785798_1C3BE8();
+        SetField_0_4_8_31EEA8(&D_00785E38, &D_00426168, &D_00785798);
     }
     return &D_00785E38;
 }

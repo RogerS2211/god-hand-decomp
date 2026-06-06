@@ -30,13 +30,13 @@ int Forward155AE8_148F00(int a0, int a1) {
     return func_00155AE8(a0, a1, D_007476B0 & 1);
 }
 
-__attribute__((section(".text.func_001492C8")))
-int func_001492C8(void) {
+__attribute__((section(".text.Forward149378_1492C8")))
+int Forward149378_1492C8(void) {
     return func_00149378(D_00466448);
 }
 
-__attribute__((section(".text.func_001492E8")))
-int func_001492E8(int a0) {
+__attribute__((section(".text.Forward149400_1492E8")))
+int Forward149400_1492E8(int a0) {
     return func_00149400(D_00466448, a0);
 }
 

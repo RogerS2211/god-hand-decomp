@@ -17,7 +17,7 @@ extern int D_00785E08;
 extern int D_00425EC8;
 extern int D_00785808;
 extern void func_001C0018(void);
-extern void func_0031EEA8(void *a, void *b, void *c);
+extern void SetField_0_4_8_31EEA8(void *a, void *b, void *c);
 extern int D_00425EE0;
 extern void func_001BFAC8(void *a0);
 
@@ -29,17 +29,17 @@ void ResetObjState_19D1E8(void *a0) {
     sub = *(int *)((char *)a0 + 0x650);
     *(int *)((char *)a0 + 0x5B0) = tmp;
     if (sub != 0) {
-        func_001FD668(sub, 0);
+        SetOrClearBit1OnListField_3C_1FD668(sub, 0);
     }
     func_001331B8(D_005CAE50, *(long *)((char *)a0 + 0x540), 0);
-    func_001C7E08(a0);
+    ClearStateAndFlag_1C7E08(a0);
 }
 
-__attribute__((section(".text.func_0019D2F0")))
-void *func_0019D2F0(void) {
+__attribute__((section(".text.GetTypeDesc_19D2F0")))
+void *GetTypeDesc_19D2F0(void) {
     if (D_00785DE8 == 0) {
         func_001C8F30();
-        func_0031EEA8(&D_00785DE8, D_00425D30, D_007858B8);
+        SetField_0_4_8_31EEA8(&D_00785DE8, D_00425D30, D_007858B8);
     }
     return &D_00785DE8;
 }
@@ -73,7 +73,7 @@ __attribute__((section(".text.GetObjTypeDesc_19D558")))
 void *GetObjTypeDesc_19D558(void) {
     if (D_00785DF8 == 0) {
         func_001BD528();
-        func_0031EEA8(&D_00785DF8, D_00425DF8, D_007859B8);
+        SetField_0_4_8_31EEA8(&D_00785DF8, D_00425DF8, D_007859B8);
     }
     return &D_00785DF8;
 }
@@ -101,7 +101,7 @@ __attribute__((section(".text.GetClassTypeInfo_19D760")))
 int GetClassTypeInfo_19D760(void) {
     if (D_00785E08 == 0) {
         func_001C0018();
-        func_0031EEA8(&D_00785E08, &D_00425EC8, &D_00785808);
+        SetField_0_4_8_31EEA8(&D_00785E08, &D_00425EC8, &D_00785808);
     }
     return (int)&D_00785E08;
 }

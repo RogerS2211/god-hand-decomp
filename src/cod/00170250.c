@@ -21,7 +21,7 @@ __attribute__((section(".text.InitObjVU0Fields8Slots_170250")))
 void *InitObjVU0Fields8Slots_170250(void *a0) {
     unsigned char *p;
     int i;
-    func_001C27E8(a0);
+    InitVtable214_429C80_1C27E8(a0);
     *(int **)((char *)a0 + 0x214) = &D_004204F8;
     p = (unsigned char *)a0 + 0x620;
     for (i = 7; i != -1; i--) {
@@ -57,8 +57,8 @@ void func_00170470(void *a0) {
 __attribute__((section(".text.GetOrInitSingleton7857E8_1704E8")))
 void *GetOrInitSingleton7857E8_1704E8(void) {
     if (D_007857E8 == 0) {
-        func_001C3BE8();
-        func_0031EEA8(&D_007857E8, &D_004205C8, &D_00785798);
+        GetOrInitGlobal785798_1C3BE8();
+        SetField_0_4_8_31EEA8(&D_007857E8, &D_004205C8, &D_00785798);
     }
     return &D_007857E8;
 }
@@ -92,7 +92,7 @@ __attribute__((section(".text.GetOrInit_D_007857F8_170778")))
 int GetOrInit_D_007857F8_170778(void) {
     if (D_007857F8 == 0) {
         func_001C0018();
-        func_0031EEA8(&D_007857F8, &D_00420698, &D_00785808);
+        SetField_0_4_8_31EEA8(&D_007857F8, &D_00420698, &D_00785808);
     }
     return (int)&D_007857F8;
 }

@@ -14,8 +14,8 @@ extern int D_00424878;
 __attribute__((section(".text.GetObjSingleton_1931A0")))
 void *GetObjSingleton_1931A0(void) {
     if (D_00785C58 == 0) {
-        func_001C3BE8();
-        func_0031EEA8(&D_00785C58, D_00424690, D_00785798);
+        GetOrInitGlobal785798_1C3BE8();
+        SetField_0_4_8_31EEA8(&D_00785C58, D_00424690, D_00785798);
     }
     return &D_00785C58;
 }
@@ -30,7 +30,7 @@ __attribute__((section(".text.Obj1930_Setup_1931F0")))
 void *Obj1930_Setup_1931F0(void *a0) {
     char *p;
     int i;
-    func_001C27E8(a0);
+    InitVtable214_429C80_1C27E8(a0);
     *(int **)((char *)a0 + 0x214) = &D_004246A8;
     p = (char *)a0 + 0x620;
     for (i = 3; i != -1; i--) {
@@ -48,8 +48,8 @@ void *Obj1930_Setup_1931F0(void *a0) {
 __attribute__((section(".text.GetOrInit_785C68_193418")))
 void *GetOrInit_785C68_193418(void) {
     if (D_00785C68 == 0) {
-        func_001C3BE8();
-        func_0031EEA8(&D_00785C68, D_00424778, D_00785798);
+        GetOrInitGlobal785798_1C3BE8();
+        SetField_0_4_8_31EEA8(&D_00785C68, D_00424778, D_00785798);
     }
     return &D_00785C68;
 }
@@ -64,7 +64,7 @@ __attribute__((section(".text.Setup_Ptr_214_VU0Array_620_193468")))
 void *Setup_Ptr_214_VU0Array_620_193468(void *a0) {
     char *s0;
     int i;
-    func_001C27E8(a0);
+    InitVtable214_429C80_1C27E8(a0);
     *(int**)((char*)a0 + 0x214) = D_00424790;
     s0 = (char*)a0 + 0x620;
     for (i = 4; i != -1; i--) {
@@ -91,11 +91,11 @@ void func_001934F0(void *a0, int a1) {
     ResetField214FreeField180_1C2820(a0, a1);
 }
 
-__attribute__((section(".text.GetCohortSnW11Instance_1936C8")))
-void *GetCohortSnW11Instance_1936C8(void) {
+__attribute__((section(".text.GetInstance_1936C8")))
+void *GetInstance_1936C8(void) {
     if (D_00785C78 == 0) {
-        func_001C3BE8();
-        func_0031EEA8(&D_00785C78, &D_00424860, &D_00785798);
+        GetOrInitGlobal785798_1C3BE8();
+        SetField_0_4_8_31EEA8(&D_00785C78, &D_00424860, &D_00785798);
     }
     return &D_00785C78;
 }
@@ -110,7 +110,7 @@ __attribute__((section(".text.Setup_Field_214_Obj0000Array_620_193718")))
 void *Setup_Field_214_Obj0000Array_620_193718(void *a0) {
     char *p = (char *)a0 + 0x620;
     int i;
-    func_001C27E8(a0);
+    InitVtable214_429C80_1C27E8(a0);
     *(int *)((char *)a0 + 0x214) = (int)&D_00424878;
     for (i = 4; i != -1; i--) {
         VU0_SQC2_VF0(p, 0x0);
@@ -124,8 +124,8 @@ void *Setup_Field_214_Obj0000Array_620_193718(void *a0) {
     return a0;
 }
 
-__attribute__((section(".text.ClearCohortSlotResources_1937A0")))
-void ClearCohortSlotResources_1937A0(void *a0, void *a1) {
+__attribute__((section(".text.ClearSlotResources_1937A0")))
+void ClearSlotResources_1937A0(void *a0, void *a1) {
     int v1;
     *(int *)((char *)a0 + 0x214) = (int)&D_00424878;
     v1 = *(int *)((char *)a0 + 0x600);

@@ -17,11 +17,11 @@ extern int D_00424C18;
 extern int D_00785878;
 extern int D_00424C30;
 
-__attribute__((section(".text.GetCohortSnW11BInstance_193948")))
-void *GetCohortSnW11BInstance_193948(void) {
+__attribute__((section(".text.GetBInstance_193948")))
+void *GetBInstance_193948(void) {
     if (D_00785C88 == 0) {
-        func_001C3BE8();
-        func_0031EEA8(&D_00785C88, &D_00424948, &D_00785798);
+        GetOrInitGlobal785798_1C3BE8();
+        SetField_0_4_8_31EEA8(&D_00785C88, &D_00424948, &D_00785798);
     }
     return &D_00785C88;
 }
@@ -32,11 +32,11 @@ void *GetCohortSnW11BInstance_193948(void) {
 
 
 
-__attribute__((section(".text.InitCohortSlotVu0Data_193998")))
-void *InitCohortSlotVu0Data_193998(void *a0) {
+__attribute__((section(".text.InitSlotVu0Data_193998")))
+void *InitSlotVu0Data_193998(void *a0) {
     char *p = (char *)a0 + 0x620;
     int i;
-    func_001C27E8(a0);
+    InitVtable214_429C80_1C27E8(a0);
     *(int *)((char *)a0 + 0x214) = (int)&D_00424960;
     for (i = 4; i != -1; i--) {
         VU0_SQC2_VF0(p, 0x0);
@@ -62,11 +62,11 @@ int func_00193A20(void *a0, int a1) {
     return ResetField214FreeField180_1C2820(a0, a1);
 }
 
-__attribute__((section(".text.GetCohortSnW11CInstance_193BD0")))
-void *GetCohortSnW11CInstance_193BD0(void) {
+__attribute__((section(".text.GetCInstance_193BD0")))
+void *GetCInstance_193BD0(void) {
     if (D_00785C98 == 0) {
-        func_001C3BE8();
-        func_0031EEA8(&D_00785C98, &D_00424A30, &D_00785798);
+        GetOrInitGlobal785798_1C3BE8();
+        SetField_0_4_8_31EEA8(&D_00785C98, &D_00424A30, &D_00785798);
     }
     return &D_00785C98;
 }
@@ -83,17 +83,17 @@ int func_00193CA8(void *a0, int a1) {
     return ResetField214FreeField180_1C2820(a0, a1);
 }
 
-__attribute__((section(".text.GetCohortSnW11DInstance_193E58")))
-void *GetCohortSnW11DInstance_193E58(void) {
+__attribute__((section(".text.GetDInstance_193E58")))
+void *GetDInstance_193E58(void) {
     if (D_00785CA8 == 0) {
-        func_001C3BE8();
-        func_0031EEA8(&D_00785CA8, &D_00424B18, &D_00785798);
+        GetOrInitGlobal785798_1C3BE8();
+        SetField_0_4_8_31EEA8(&D_00785CA8, &D_00424B18, &D_00785798);
     }
     return &D_00785CA8;
 }
 
-__attribute__((section(".text.FreeCohortMultiResource_193FD8")))
-void FreeCohortMultiResource_193FD8(void *a0, int a1) {
+__attribute__((section(".text.FreeMultiResource_193FD8")))
+void FreeMultiResource_193FD8(void *a0, int a1) {
     int v1;
     int v5;
     *(int *)((char *)a0 + 0x214) = (int)&D_00424B68;
@@ -116,12 +116,12 @@ void FreeCohortMultiResource_193FD8(void *a0, int a1) {
     SetField214PtrThenInit_1B6F38(a0, a1);
 }
 
-__attribute__((section(".text.func_00195BD0")))
-void *func_00195BD0(void) {
+__attribute__((section(".text.GetEInstance_195BD0")))
+void *GetEInstance_195BD0(void) {
     void *p = &D_00785CB8;
     if (D_00785CB8 == 0) {
-        func_001B8058();
-        func_0031EEA8(p, &D_00424C18, &D_00785878);
+        GetOrInitGlobal785878_1B8058();
+        SetField_0_4_8_31EEA8(p, &D_00424C18, &D_00785878);
     }
     return p;
 }
@@ -132,11 +132,11 @@ void *func_00195BD0(void) {
 
 
 
-__attribute__((section(".text.InitCohortSlotVu0DataB_195C20")))
-void *InitCohortSlotVu0DataB_195C20(void *a0) {
+__attribute__((section(".text.InitSlotVu0DataB_195C20")))
+void *InitSlotVu0DataB_195C20(void *a0) {
     char *s0 = (char *)a0 + 0x620;
     int i;
-    func_001C27E8(a0);
+    InitVtable214_429C80_1C27E8(a0);
     *(int *)((char *)a0 + 0x214) = (int)&D_00424C30;
     for (i = 4; i != -1; i--) {
         VU0_SQC2_VF0(s0, 0x0);

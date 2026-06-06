@@ -12,8 +12,8 @@ int SetTarget_1FD530(void *a0, int a1, int a2) {
     return 1;
 }
 
-__attribute__((section(".text.func_001FD820")))
-void func_001FD820(void *a0, void *a1) {
+__attribute__((section(".text.ForwardEventToList_1FD820")))
+void ForwardEventToList_1FD820(void *a0, void *a1) {
     int *s0 = *(int **)((char*)a0 + 0x3C);
     while (s0) {
         char *v1 = *(char **)((char*)s0 + 0x28);
@@ -26,8 +26,8 @@ void func_001FD820(void *a0, void *a1) {
     }
 }
 
-__attribute__((section(".text.func_001FD888")))
-void func_001FD888(void *a0, void *a1) {
+__attribute__((section(".text.UpdateListNodes_1FD888")))
+void UpdateListNodes_1FD888(void *a0, void *a1) {
     int *s0 = *(int **)((char*)a0 + 0x3C);
     while (s0) {
         void *v0 = *(void **)((char*)s0 + 0x28);

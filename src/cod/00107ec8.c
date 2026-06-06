@@ -5,11 +5,11 @@ extern int D_00462FC0[];
 extern void func_001347E8(void *a0, void *a1);
 extern void func_001002C0(void *a0, void *a1);
 extern void func_001351D8(void *a0, void *a1, int a2);
-extern float func_00158288(void *a0, float f);
+extern float SetField444SignedByFlag434_158288(void *a0, float f);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 
-__attribute__((section(".text.func_0013F238")))
-void func_0013F238(char *a0, unsigned short a1, unsigned char a2, float f12, float f13) {
+__attribute__((section(".text.SetAnimSlotIfFree_13F238")))
+void SetAnimSlotIfFree_13F238(char *a0, unsigned short a1, unsigned char a2, float f12, float f13) {
     if (*(int *)(a0 + 0x9C) == 0xFFFF) {
         *(int *)(a0 + 0x9C) = a1;
         *(float *)(*(char **)(a0 + 0x90) + 0x38) = f12;
@@ -18,8 +18,8 @@ void func_0013F238(char *a0, unsigned short a1, unsigned char a2, float f12, flo
     }
 }
 
-__attribute__((section(".text.func_0013F510")))
-void func_0013F510(char *a0) {
+__attribute__((section(".text.ResetAnimSlotArray_13F510")))
+void ResetAnimSlotArray_13F510(char *a0) {
     short i;
     for (i = 4; i >= 0; i--) {
         char *v1 = a0 + 0xB8 - (4 - i) * 4;
@@ -47,7 +47,7 @@ void UpdateBossPhase_10B780(void *a0) {
     func_001351D8(D_00462FC0, a0, 0);
     *(int*)((char*)a0 + 0x15F4) = *(int*)((char*)a0 + 0x15F4) | 0x2000;
     *(float*)((char*)a0 + 0x5A8) = 1.0f;
-    func_00158288(a0, 1.0f);
+    SetField444SignedByFlag434_158288(a0, 1.0f);
     st = *(unsigned char*)((char*)a0 + 0x2F6);
     switch (st) {
     case 0:

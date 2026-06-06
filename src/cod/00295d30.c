@@ -30,7 +30,7 @@ int func_00295F28(void *a0){
  char *p;
  if(!FindResolveActor_295978(a0)) return 0;
  p=*(char**)((char*)a0+4);
- return func_003A5678(D_0044A870,*(int*)(p+0x4AC))?0:func_0026ECC0(*(void**)((char*)a0+4));
+ return func_003A5678(D_0044A870,*(int*)(p+0x4AC))?0:Obj0000_IsSet_Field_16D0_Bit_1_26ECC0(*(void**)((char*)a0+4));
 }
 
 __attribute__((section(".text.func_00295F80")))
@@ -66,7 +66,7 @@ void ForwardE7A8Call_296070(void *a0, int a1) {
 
 __attribute__((section(".text.ResetObjectState_2962B0")))
 void ResetObjectState_2962B0(void *a0) {
-    *(int *)((char *)a0 + 0x38) = func_001F9FF0(&D_00569B70);
+    *(int *)((char *)a0 + 0x38) = GetSubObjAt180_1F9FF0(&D_00569B70);
     func_00297660(a0);
     *(char *)((char *)a0 + 0x34) = 0;
     *(int *)((char *)a0 + 0) = 0;

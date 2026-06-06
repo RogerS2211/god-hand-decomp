@@ -23,8 +23,8 @@ void func_003A7CC0(int a0) {
     func_003A80A8(PTR_DAT_003fa62c);
 }
 
-__attribute__((section(".text.func_00292F38")))
-void func_00292F38(void *a0, float f12) {
+__attribute__((section(".text.SetField548AndGlobals_292F38")))
+void SetField548AndGlobals_292F38(void *a0, float f12) {
     *(float*)((char*)a0 + 0x548) = f12;
     D_00741DC0 = f12;
     D_00754C48 = f12;

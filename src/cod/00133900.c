@@ -176,8 +176,8 @@ int *GetOrInit_D460D10_134270(void)
     return &D_00460D10;
 }
 
-__attribute__((section(".text.func_00138B78")))
-int *func_00138B78(void)
+__attribute__((section(".text.GetOrInitSingletonB_138B78")))
+int *GetOrInitSingletonB_138B78(void)
 {
     if (D_00460D20 == 0) {
         func_0031EEC8(&D_00460D20, &D_0041D8D8);
@@ -194,8 +194,8 @@ int *GetOrInitSingletonC_13C758(void)
     return &D_00460D28;
 }
 
-__attribute__((section(".text.func_0013D3C0")))
-void func_0013D3C0(void *a0)
+__attribute__((section(".text.SetupFields10And14_13D3C0")))
+void SetupFields10And14_13D3C0(void *a0)
 {
     func_002A9EA0(a0, 1, 3);
     func_002A9EA0((char *)a0 + 0xD0, 1, 0x20);
@@ -228,7 +228,7 @@ void *GetOrInit_00460D38_161628(void) {
 
 __attribute__((section(".text.InitActorWithVtableAndTimer_1BE8B0")))
 void *InitActorWithVtableAndTimer_1BE8B0(void *a0) {
-    func_001B6E90(a0);
+    InitFields_1B6E90(a0);
     *(int *)((char *)a0 + 0x604) = 0x3E9;
     *(int *)((char *)a0 + 0x214) = (int)&D_00429620;
     *(int *)((char *)a0 + 0x600) = 0;

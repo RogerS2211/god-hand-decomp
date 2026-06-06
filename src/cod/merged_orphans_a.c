@@ -1,4 +1,4 @@
-extern void func_0031EEA8(void *a, void *b, void *c);
+extern void SetField_0_4_8_31EEA8(void *a, void *b, void *c);
 extern void func_0031EEC8(void *a, void *b);
 
 /* GetOrInit_460D00_1337A0 — 2-arg variant (no pre-init call). */
@@ -11,14 +11,14 @@ int *GetOrInit_460D00_1337A0(void) {
     return &D_00460D00;
 }
 
-/* GetSingleton785868_171AB8 — pre-init func_001B8058() + 3-arg registration. */
+/* GetSingleton785868_171AB8 — pre-init GetOrInitGlobal785878_1B8058() + 3-arg registration. */
 extern int D_00785868, D_00420D50, D_00785878;
-extern void func_001B8058(void);
+extern void GetOrInitGlobal785878_1B8058(void);
 __attribute__((section(".text.GetSingleton785868_171AB8")))
 int *GetSingleton785868_171AB8(void) {
     if (D_00785868 == 0) {
-        func_001B8058();
-        func_0031EEA8(&D_00785868, &D_00420D50, &D_00785878);
+        GetOrInitGlobal785878_1B8058();
+        SetField_0_4_8_31EEA8(&D_00785868, &D_00420D50, &D_00785878);
     }
     return &D_00785868;
 }
@@ -28,8 +28,8 @@ extern int D_00786178, D_0042AB48;
 __attribute__((section(".text.GetSingleton786178_1D0C28")))
 int *GetSingleton786178_1D0C28(void) {
     if (D_00786178 == 0) {
-        func_001B8058();
-        func_0031EEA8(&D_00786178, &D_0042AB48, &D_00785878);
+        GetOrInitGlobal785878_1B8058();
+        SetField_0_4_8_31EEA8(&D_00786178, &D_0042AB48, &D_00785878);
     }
     return &D_00786178;
 }
@@ -41,7 +41,7 @@ __attribute__((section(".text.GetSingleton7861C8_276790")))
 int *GetSingleton7861C8_276790(void) {
     if (D_007861C8 == 0) {
         func_0028FDD0();
-        func_0031EEA8(&D_007861C8, &D_00447AB8, &D_007861D8);
+        SetField_0_4_8_31EEA8(&D_007861C8, &D_00447AB8, &D_007861D8);
     }
     return &D_007861C8;
 }

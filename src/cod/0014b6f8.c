@@ -3,8 +3,8 @@
 extern void func_002B6420(void *a0);
 extern void func_00147C60(void *a0, void *a1);
 
-__attribute__((section(".text.func_00173908")))
-void func_00173908(char *a0, float *a1) {
+__attribute__((section(".text.CopyVec3ToField20_173908")))
+void CopyVec3ToField20_173908(char *a0, float *a1) {
     float *v0 = (float *)(a0 + 0x20);
     if (v0 != a1) {
         *(float *)(a0 + 0x20) = a1[0];
@@ -13,8 +13,8 @@ void func_00173908(char *a0, float *a1) {
     }
 }
 
-__attribute__((section(".text.func_00173938")))
-void func_00173938(char *a0, float *a1) {
+__attribute__((section(".text.CopyVec3ToField30_173938")))
+void CopyVec3ToField30_173938(char *a0, float *a1) {
     float *v0 = (float *)(a0 + 0x30);
     if (v0 != a1) {
         *(float *)(a0 + 0x30) = a1[0];
@@ -23,8 +23,8 @@ void func_00173938(char *a0, float *a1) {
     }
 }
 
-__attribute__((section(".text.func_00173968")))
-void func_00173968(char *a0, float *a1) {
+__attribute__((section(".text.CopyVec3ToField40_173968")))
+void CopyVec3ToField40_173968(char *a0, float *a1) {
     float *v0 = (float *)(a0 + 0x40);
     if (v0 != a1) {
         *(float *)(a0 + 0x40) = a1[0];
@@ -33,8 +33,8 @@ void func_00173968(char *a0, float *a1) {
     }
 }
 
-__attribute__((section(".text.func_0014B6F8")))
-int func_0014B6F8(char *a0, int a1) {
+__attribute__((section(".text.GetListNodeAt404_Field25C_14B6F8")))
+int GetListNodeAt404_Field25C_14B6F8(char *a0, int a1) {
     int v1 = a1 - 1;
     int v0 = *(int *)(a0 + 0x25C);
     if (a1 != 0) {

@@ -7,7 +7,7 @@ extern void func_001FCDB8(void *a0);
 extern unsigned char D_0042C498[];
 extern void func_001FCDE8(void *a0);
 extern void func_001FF0B0(void *);
-extern void func_001FF5B8(void *);
+extern void ClearSlotArray_1FF5B8(void *);
 extern void func_0032A6D0(void *a0, void *a1, void *a2);
 extern void ClearSlotRefs_376AE0(void *a0, int a1);
 extern void func_00378020(void *a0);
@@ -64,7 +64,7 @@ int ResetSlotState_1FF2E0(void *a0, int a1) {
     if (*(int*)((char*)a0+4)) {
         v0 = 3;
     } else {
-        func_001FF5B8(a0);
+        ClearSlotArray_1FF5B8(a0);
         v0 = 5;
     }
     *(int*)((char*)a0+0) = v0;

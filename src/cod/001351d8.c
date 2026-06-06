@@ -3,7 +3,7 @@
 extern unsigned int D_00747A84;
 extern void func_00150830(void *a0, void *a1, void *a2, int a3);
 extern void func_001F7DA0(float *p);
-extern void func_00134608(void *a0, int a1);
+extern void SetNodeListFlag_134608(void *a0, int a1);
 extern float D_007479FC;
 extern float func_002DA038(int a0, float f12, float f13);
 extern float func_001F7D48(float f12);
@@ -13,8 +13,8 @@ extern float func_001F7D48(float f12);
 
 
 
-__attribute__((section(".text.func_0014F928")))
-void func_0014F928(char *a0, float f12) {
+__attribute__((section(".text.AddScaledXfmVecToField_F0_14F928")))
+void AddScaledXfmVecToField_F0_14F928(char *a0, float f12) {
     float v[4];
     if (!(D_00747A84 & 0x20000000)) {
         VU0_SQC2_VF0(v, 0);
@@ -42,12 +42,12 @@ __attribute__((section(".text.func_001351D8")))
 void func_001351D8(int a0, int a1, int a2) {
     void *v0 = func_001346C8(a0, a1);
     if (v0 != 0) {
-        func_00134608(v0, a2);
+        SetNodeListFlag_134608(v0, a2);
     }
 }
 
-__attribute__((section(".text.func_001FD668")))
-void func_001FD668(int a0, int a1) {
+__attribute__((section(".text.SetOrClearBit1OnListField_3C_1FD668")))
+void SetOrClearBit1OnListField_3C_1FD668(int a0, int a1) {
     int node = *(int*)(a0 + 0x3C);
     if (node == 0) return;
     do {
@@ -61,8 +61,8 @@ void func_001FD668(int a0, int a1) {
     } while (node != 0);
 }
 
-__attribute__((section(".text.func_002A7498")))
-void func_002A7498(int a0, float f12) {
+__attribute__((section(".text.AddScaledDeltaToField_104_2A7498")))
+void AddScaledDeltaToField_104_2A7498(int a0, float f12) {
     int s0 = a0;
     float r = func_002DA038(*(int*)(s0 + 0xF0), *(float*)(s0 + 0x104), f12 * D_007479FC);
     *(float*)(s0 + 0x104) = func_001F7D48(*(float*)(s0 + 0x104) + r);

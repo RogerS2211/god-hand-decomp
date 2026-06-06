@@ -8,7 +8,7 @@ int ForwardInitBuffer_314390(void){
     s0 = func_0030EE08(0x600, 0x10, D_00754C10);
     if (s0 == 0) return 0;
     func_003A52F0(s0, 0, 0x600);
-    return func_001B6E90(s0);
+    return InitFields_1B6E90(s0);
 }
 
 __attribute__((section(".text.ForwardInitBuffer_314400")))
@@ -78,7 +78,7 @@ int ForwardInitBuffer_3146A0(void){
     s0 = func_0030EE08(0x800, 0x10, D_00754C10);
     if (s0 == 0) return 0;
     func_003A52F0(s0, 0, 0x800);
-    return InitCohortSlotVu0Data_193998(s0);
+    return InitSlotVu0Data_193998(s0);
 }
 
 __attribute__((section(".text.ForwardInitBuffer_314710")))
@@ -88,7 +88,7 @@ int ForwardInitBuffer_314710(void){
     s0 = func_0030EE08(0x7A0, 0x10, D_00754C10);
     if (s0 == 0) return 0;
     func_003A52F0(s0, 0, 0x7A0);
-    return InitCohortSlotVu0DataC_193C20(s0);
+    return InitSlotVu0DataC_193C20(s0);
 }
 
 __attribute__((section(".text.ForwardInitBuffer_314780")))

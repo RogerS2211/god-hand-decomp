@@ -8,8 +8,8 @@ extern void func_00139180(int a0);
 extern char D_0041DCC8[];
 extern void ForwardFieldNeg20_002A9680_30F5A0(void *a0);
 
-__attribute__((section(".text.func_0012C758")))
-int func_0012C758(char *a0) {
+__attribute__((section(".text.IsSpecialConditionMet_12C758")))
+int IsSpecialConditionMet_12C758(char *a0) {
     if (D_00747A50 != 0x608) {
         return 0;
     }

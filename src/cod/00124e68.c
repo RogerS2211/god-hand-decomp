@@ -7,8 +7,8 @@ extern void SetField214PtrThenInit_1B6F38(int *, int);
 extern int D_00785798;
 extern int D_00429D50;
 extern int D_00785878;
-extern void func_001B8058(void);
-extern void func_0031EEA8(void *a, void *b, void *c);
+extern void GetOrInitGlobal785878_1B8058(void);
+extern void SetField_0_4_8_31EEA8(void *a, void *b, void *c);
 extern int D_007863C8;
 extern int D_00786598;
 extern int D_0044FBA8;
@@ -17,7 +17,7 @@ extern int D_0044FBB8;
 extern void func_002B6528(void);
 extern int SignalSema(int sema);
 extern int SleepThread(void);
-extern void func_002A7498(char *a0, int a1, float f12);
+extern void AddScaledDeltaToField_104_2A7498(char *a0, int a1, float f12);
 
 __attribute__((section(".text.ResetField214FreeField180_1C2820")))
 void ResetField214FreeField180_1C2820(int *a0, int a1) {
@@ -33,12 +33,12 @@ void ResetField214FreeField180_1C2820(int *a0, int a1) {
     SetField214PtrThenInit_1B6F38(a0, a1);
 }
 
-__attribute__((section(".text.func_001C3BE8")))
-void *func_001C3BE8(void)
+__attribute__((section(".text.GetOrInitGlobal785798_1C3BE8")))
+void *GetOrInitGlobal785798_1C3BE8(void)
 {
     if (D_00785798 == 0) {
-        func_001B8058();
-        func_0031EEA8(&D_00785798, &D_00429D50, &D_00785878);
+        GetOrInitGlobal785878_1B8058();
+        SetField_0_4_8_31EEA8(&D_00785798, &D_00429D50, &D_00785878);
     }
     return &D_00785798;
 }
@@ -49,9 +49,9 @@ void *GetOrInitGlobal7863C8_300148(void)
     if (D_007863C8 == 0) {
         if (D_00786598 == 0) {
             func_002B6528();
-            func_0031EEA8(&D_00786598, &D_0044FBA8, &D_00460D58);
+            SetField_0_4_8_31EEA8(&D_00786598, &D_0044FBA8, &D_00460D58);
         }
-        func_0031EEA8(&D_007863C8, &D_0044FBB8, &D_00786598);
+        SetField_0_4_8_31EEA8(&D_007863C8, &D_0044FBB8, &D_00786598);
     }
     return &D_007863C8;
 }
@@ -74,6 +74,6 @@ void InvokeVirtualAtField214AndForward_124E68(char *a0, float f12)
         short off = *(short *)(v1 + 0x68);
         int (*fn)(char *) = *(int (**)(char *))(v1 + 0x6C);
         int r = fn(a1 + off);
-        func_002A7498(a0, r, f12);
+        AddScaledDeltaToField_104_2A7498(a0, r, f12);
     }
 }
