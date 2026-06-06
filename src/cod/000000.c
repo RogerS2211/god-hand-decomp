@@ -254,34 +254,14 @@ unsigned char GetField_601_17B810(unsigned char *a0) {
     return a0[0x601];
 }
 
-__attribute__((section(".text.Obj0000_Get_Byte_600_17B818")))
-int Obj0000_Get_Byte_600_17B818(char *a0) {
-    return (unsigned char)a0[0x600];
-}
-
 __attribute__((section(".text.NoOp_17E2F0")))
 void NoOp_17E2F0(void) {}
-
-__attribute__((section(".text.GetField_601_17E7D0")))
-unsigned char GetField_601_17E7D0(unsigned char *a0) {
-    return a0[0x601];
-}
 
 __attribute__((section(".text.NoOp_17EDC8")))
 void NoOp_17EDC8(void) {}
 
 __attribute__((section(".text.NoOp_17F1C8")))
 void NoOp_17F1C8(void) {
-}
-
-__attribute__((section(".text.GetField_600_17F218")))
-unsigned char GetField_600_17F218(unsigned char *a0) {
-    return a0[0x600];
-}
-
-__attribute__((section(".text.GetField_764_17FAF0")))
-unsigned char GetField_764_17FAF0(unsigned char *a0) {
-    return a0[0x764];
 }
 
 __attribute__((section(".text.NoOp_17FD78")))
@@ -2276,12 +2256,6 @@ void Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_10BD08(char *a0, unsigned char a1) {
     *(unsigned char*)(a0 + 0x2F5) = 0;
 }
 
-__attribute__((section(".text.Obj0000_IsSet_Field_15F4_Bit1_124FC8")))
-int Obj0000_IsSet_Field_15F4_Bit1_124FC8(char *a0) {
-    int v = *(int*)(a0 + 0x15F4) & 0x2;
-    return v != 0;
-}
-
 __attribute__((section(".text.Obj0000_Set_Bytes_2F4_2F5_2F6_2F7_12C0D8")))
 void Obj0000_Set_Bytes_2F4_2F5_2F6_2F7_12C0D8(char *a0) {
     *(unsigned char*)(a0 + 0x2F4) = 0;
@@ -2300,14 +2274,6 @@ __attribute__((section(".text.Obj0000_IsSet_Field_15F4_Bit_100000_12CA48")))
 int Obj0000_IsSet_Field_15F4_Bit_100000_12CA48(char *a0) {
     int v = *(int*)(a0 + 0x15F4) & 0x100000;
     return v != 0;
-}
-
-__attribute__((section(".text.Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_Zero_36_Zero_Zero_12CDD0")))
-void Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_Zero_36_Zero_Zero_12CDD0(char *a0) {
-    *(unsigned char*)(a0 + 0x2F4) = 0;
-    *(unsigned char*)(a0 + 0x2F5) = 0x36;
-    *(unsigned char*)(a0 + 0x2F6) = 0;
-    *(unsigned char*)(a0 + 0x2F7) = 0;
 }
 
 __attribute__((section(".text.Obj0000_IsSet_Field_15F4_Bit_1000000_12CED8")))

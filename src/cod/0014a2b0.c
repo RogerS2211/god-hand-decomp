@@ -2,7 +2,7 @@
 
 extern void func_002CD4A8(void *a0, float f12);
 extern void MtxInitCoord(void *a0, int a1, void *a2, void *a3, int t0);
-extern void SetOrClearField4Bit2C_29_2D6490(void *a0, int a1);
+extern void CustomIDWork_SetDisp(void *a0, int a1);
 extern void InitFields_1B6E90(void *a0);
 extern int D_00429C80;
 
@@ -77,21 +77,21 @@ void SetFlagOnEntries7C_1D51B8(char *base, int idx, int flag) {
         if (idx == 0x2D) {
             for (i = 0; i < 0x2D; i++) {
                 if (i != 0) {
-                    SetOrClearField4Bit2C_29_2D6490(base + 0x60 + i * 0x7C, 1);
+                    CustomIDWork_SetDisp(base + 0x60 + i * 0x7C, 1);
                 }
             }
         } else if (idx != 0) {
-            SetOrClearField4Bit2C_29_2D6490(base + (idx * 0x7C + 0x60), 1);
+            CustomIDWork_SetDisp(base + (idx * 0x7C + 0x60), 1);
         }
     } else {
         if (idx == 0x2D) {
             for (i = 0; i < 0x2D; i++) {
                 if (i != 0) {
-                    SetOrClearField4Bit2C_29_2D6490(base + 0x60 + i * 0x7C, 0);
+                    CustomIDWork_SetDisp(base + 0x60 + i * 0x7C, 0);
                 }
             }
         } else if (idx != 0) {
-            SetOrClearField4Bit2C_29_2D6490(base + (idx * 0x7C + 0x60), 0);
+            CustomIDWork_SetDisp(base + (idx * 0x7C + 0x60), 0);
         }
     }
 }

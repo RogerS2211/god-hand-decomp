@@ -13,7 +13,7 @@ names.
 - Functions not yet attributed to a recovered class live in **address-bucket files**
   `src/cod/<addr>.c`, named by the lowest carved address they contain.
 - Subsystem **families** group related classes:
-  `battle camera casino enemy event gfx id object sound system ui`.
+  `battle camera casino enemy event gfx id object player sound system ui`.
 - Each recovered-class file opens with a one-line banner:
   `/* TU: <Class> [<family>] - recovered C++ class. */`.
 

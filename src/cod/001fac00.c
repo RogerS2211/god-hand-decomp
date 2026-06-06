@@ -2,18 +2,6 @@
 
 extern int D_00747A2C;
 
-__attribute__((section(".text.SetOrClearField4Bit2C_29_2D6490")))
-void SetOrClearField4Bit2C_29_2D6490(int *a0, int a1) {
-    int *p = (int *)a0[1];
-    if (p != 0) {
-        if ((a1 ^ 1) != 0) {
-            *(int *)((char *)p + 0x2C) |= 0x20000000;
-        } else {
-            *(int *)((char *)p + 0x2C) &= 0xDFFFFFFF;
-        }
-    }
-}
-
 __attribute__((section(".text.ShiftDownBytesA8_FAC00")))
 void ShiftDownBytesA8_FAC00(int *a0) {
     unsigned int i;

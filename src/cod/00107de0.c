@@ -25,34 +25,6 @@ void func_00107DE0(int a0, int a1) {
     }
 }
 
-__attribute__((section(".text.SetActionState_10BCC0")))
-void SetActionState_10BCC0(void *a0, int a1) {
-    if (a1) {
-        *(unsigned char*)((char*)a0+0x2F4) = 6;
-        *(float*)((char*)a0+0x54C) = 5.0f;
-        *(unsigned char*)((char*)a0+0x2F5) = 0;
-        *(unsigned char*)((char*)a0+0x2F6) = 0;
-        *(unsigned char*)((char*)a0+0x2F7) = 0;
-    } else {
-        func_0012C418();
-    }
-}
-
-__attribute__((section(".text.SetTargetVecAndState_12CD90")))
-void SetTargetVecAndState_12CD90(void *a0, float *a1, float f12) {
-    float *v0 = (float*)((char*)a0+0x660);
-    if (v0 != a1) {
-        *v0 = *a1;
-        v0[1] = a1[1];
-        v0[2] = a1[2];
-    }
-    *(float*)((char*)a0+0x670) = f12;
-    *(unsigned char*)((char*)a0+0x2F5) = 0x34;
-    *(unsigned char*)((char*)a0+0x2F4) = 0;
-    *(unsigned char*)((char*)a0+0x2F6) = 0;
-    *(unsigned char*)((char*)a0+0x2F7) = 0;
-}
-
 __attribute__((section(".text.StoreVec3Field_12CDF0")))
 void StoreVec3Field_12CDF0(char *a0, float *a1) {
     float *p = (float*)(a0 + 0x650);

@@ -176,64 +176,6 @@ int GetTypeDefaultValue_16EDE0(int a0)
     return v0;
 }
 
-__attribute__((section(".text.func_0017B6E8")))
-void func_0017B6E8(unsigned char *a0)
-{
-    unsigned char v = a0[0x601];
-    if (v == 1) {
-        a0[0x600] = v;
-        a0[0x2F4] = 2;
-        a0[0x2F5] = 0;
-        a0[0x2F6] = 0;
-        a0[0x2F7] = 0;
-    }
-}
-
-__attribute__((section(".text.func_0017E678")))
-void func_0017E678(unsigned char *a0)
-{
-    if (a0[0x601] == 0) {
-        a0[0x2F7] = 0;
-        a0[0x600] = 1;
-        a0[0x2F5] = 0;
-        a0[0x2F6] = 0;
-        a0[0x2F4] = 1;
-    }
-}
-
-__attribute__((section(".text.func_0017F1F0")))
-void func_0017F1F0(unsigned char *a0)
-{
-    if (a0[0x600] == 0) {
-        a0[0x2F7] = 0;
-        a0[0x2F5] = 0;
-        a0[0x2F6] = 0;
-        a0[0x2F4] = 1;
-    }
-}
-
-__attribute__((section(".text.func_0017F9B0")))
-void func_0017F9B0(unsigned char *a0)
-{
-    if (a0[0x764] == 0) {
-        a0[0x2F7] = 0;
-        a0[0x2F5] = 0;
-        a0[0x2F6] = 0;
-        a0[0x2F4] = 1;
-    }
-}
-
-__attribute__((section(".text.func_0017F9D8")))
-void func_0017F9D8(unsigned char *a0)
-{
-    if (a0[0x764] == 1) {
-        a0[0x2F7] = 0;
-        a0[0x2F5] = 0;
-        a0[0x2F6] = 0;
-        a0[0x2F4] = 2;
-    }
-}
-
 __attribute__((section(".text.SetActorLink_1B7118")))
 int SetActorLink_1B7118(int a0, int a1) {
     int v1;
