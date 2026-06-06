@@ -99,7 +99,7 @@ void FreeObjSlotArray_1960E0(void *a0, int a1) {
     {
         int w = *(int*)((char*)a0 + 0x604);
         if (w != 0) {
-            func_001FE148(&D_00574380, w);
+            cDamageManage_ReleaseDamageGive(&D_00574380, w);
             *(int*)((char*)a0 + 0x604) = 0;
         }
     }
@@ -145,7 +145,7 @@ void SetSlotDeadBit_197430(int *a0, unsigned int a1) {
     int v = *(int *)((char *)a0 + (a1 << 2) + 0x600);
     int *p;
     if (v != 0) {
-        SetOrClearBit1OnListField_3C_1FD668(v, 0);
+        cDamageUnit_SetDamageCollActive(v, 0);
     }
     v = a1 >> 5;
     p = a0 + 0x274;

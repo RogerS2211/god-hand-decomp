@@ -3044,7 +3044,7 @@ block_61:
                             temp_v1_96 = (*(s32 *)((u8 *)(arg0) + 0x304));
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_96) + 0x234)) + temp_v1_96;
                         }
-                        if (((u8) (*(u8 *)((u8 *)(arg0) + 0x186B)) >= 5U) && (AdvanceState5ByteSwap_31CEF8() & 1)) {
+                        if (((u8) (*(u8 *)((u8 *)(arg0) + 0x186B)) >= 5U) && (Rnd() & 1)) {
                             if (Forward30F348_31CFE0() & 1) {
                                 StoreMotionParamsBoth_2609A8(arg0, 0x14, 0, 0x37);
                                 temp_v0_155 = (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -3276,7 +3276,7 @@ block_740:
         }
         if (func_00157C18(arg0) == 0) {
             (*(f32 *)((u8 *)(arg0) + 0x338)) = (f32) ((*(f32 *)((u8 *)(arg0) + 0x338)) * (*(f32 *)((u8 *)(arg0) + 0x608)));
-            func_0014F9F0(arg0, 0x3F800000);
+            AddScaledVecToField_100_14F9F0(arg0, 0x3F800000);
             AddScaledXfmVecToField_F0_14F928(arg0, 0x3F800000);
         default:                                    /* switch 1 */
             if ((*(s32 *)((u8 *)(arg0) + 0x5F4)) == 0) {
@@ -3411,7 +3411,7 @@ block_810:
                 }
             }
         } else {
-            func_0014F9F0(arg0, 0x3F800000);
+            AddScaledVecToField_100_14F9F0(arg0, 0x3F800000);
             AddScaledXfmVecToField_F0_14F928(arg0, 0x3F800000);
             if (Obj0000_IsSet_Field_15F4_Bit_1000_12C530(temp_fp) == 0) {
                 func_002705D8(arg0);

@@ -4,7 +4,7 @@ extern unsigned char D_00574380[];
 __attribute__((section(".text.ForwardToAllNodes_14D700")))
 void ForwardToAllNodes_14D700(char *a0, int a1, int a2) {
     char *node;
-    node = GetListNodeAt404_Field25C_14B6F8(a0, 0);
+    node = cModel_getMeshPtr(a0, 0);
     while (node != 0) {
         func_00155D98(node, a1, a2);
         node = *(char **)(node + 0x404);
@@ -14,7 +14,7 @@ void ForwardToAllNodes_14D700(char *a0, int a1, int a2) {
 __attribute__((section(".text.ForwardNodeUpdate_14D768")))
 void ForwardNodeUpdate_14D768(char *a0, int a1, int a2) {
     char *node;
-    node = GetListNodeAt404_Field25C_14B6F8(a0, 0);
+    node = cModel_getMeshPtr(a0, 0);
     while (node != 0) {
         func_00155D60(node, a1, a2);
         node = *(char **)(node + 0x404);

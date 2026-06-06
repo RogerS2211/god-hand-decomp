@@ -57,10 +57,10 @@ void *GetPilotClassDesc2_2BA948(void) {
 
 /* ─────────────────────────── medium picks ─────────────────────────────── */
 
-/* func_001F5EF8: jal Forward2ABA78ThenSetByte1C_2ABBE8 + 4-arg jal func_00307208 + 1-arg jal
+/* func_001F5EF8: jal cIDBase_restartAnim + 4-arg jal func_00307208 + 1-arg jal
  *                SetFieldsCESignalSemaSleep_2D5AA0 via vtable; sets bytes 0..3 of $a0 struct;
  *                29 insns, 116 B. */
-extern void Forward2ABA78ThenSetByte1C_2ABBE8(void *);
+extern void cIDBase_restartAnim(void *);
 extern void func_00307208(void *p, int b, int c, int d, unsigned int e, int f, int g);
 extern void SetFieldsCESignalSemaSleep_2D5AA0(void *p, int a);
 extern int D_00747470;
@@ -68,7 +68,7 @@ extern void *PTR_DAT_003c2f84;
 
 __attribute__((section(".text.func_001F5EF8")))
 void func_001F5EF8(unsigned char *this) {
-    Forward2ABA78ThenSetByte1C_2ABBE8(this + 0x30);
+    cIDBase_restartAnim(this + 0x30);
     this[0] = 1;
     this[1] = 1;
     this[2] = 0;
@@ -80,7 +80,7 @@ void func_001F5EF8(unsigned char *this) {
 /* AllocZeroedBlock_313E50: 28 insns, 112 B — sq-prologue, no VU0, no jumptable. */
 extern int D_00747A34;
 extern int D_00754C10;
-extern void *func_0030EE08(int size, int align, void *region);
+extern void *EnsureInitThenForward_2A9538_30EE08(int size, int align, void *region);
 extern void func_003A52F0(void *p, int v, int size);
 extern int func_0018B290(void *p);
 
@@ -90,7 +90,7 @@ int AllocZeroedBlock_313E50(void) {
     if (D_00747A34 & 0x10000) {
         return 0;
     }
-    p = func_0030EE08(0x9C0, 0x10, &D_00754C10);
+    p = EnsureInitThenForward_2A9538_30EE08(0x9C0, 0x10, &D_00754C10);
     if (p == (void *)0) {
         return 0;
     }

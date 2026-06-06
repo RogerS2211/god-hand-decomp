@@ -5,7 +5,7 @@ extern char D_005FEE00[];
 __attribute__((section(".text.InitAllocBuffer_14FE08")))
 void InitAllocBuffer_14FE08(unsigned char *a0, int a1) {
     int n = a1 << 4;
-    void *p = func_0030EE08(n, 0x80, &D_00754200);
+    void *p = EnsureInitThenForward_2A9538_30EE08(n, 0x80, &D_00754200);
     *(void **)(a0 + 0x0) = p;
     func_003A52F0(p, 0, n);
     *(int *)(a0 + 0x20) = a1;
@@ -17,10 +17,10 @@ void func_001B18B8(unsigned char *a0) {
     int v = 0x32;
     *(short *)(*(unsigned char **)(a0 + 0x66C) + 0x46) = 0x30;
     *(int *)(*(unsigned char **)(a0 + 0x66C) + 0x4C) = v;
-    SetOrClearBit1OnListField_3C_1FD668(*(unsigned char **)(a0 + 0x66C), 1);
+    cDamageUnit_SetDamageCollActive(*(unsigned char **)(a0 + 0x66C), 1);
     *(short *)(*(unsigned char **)(a0 + 0x670) + 0x46) = 0x48;
     *(int *)(*(unsigned char **)(a0 + 0x670) + 0x4C) = v;
-    SetOrClearBit1OnListField_3C_1FD668(*(unsigned char **)(a0 + 0x670), 1);
+    cDamageUnit_SetDamageCollActive(*(unsigned char **)(a0 + 0x670), 1);
 }
 
 __attribute__((section(".text.FindFreeSlot_1FC020")))
@@ -37,16 +37,6 @@ int FindFreeSlot_1FC020(int *a0) {
         s0 = (s0 + 1) & 0xFF;
     }
     return (signed char)s0;
-}
-
-__attribute__((section(".text.ClearAllEntries_1FEF30")))
-void ClearAllEntries_1FEF30(unsigned char *a0) {
-    int i = *(int *)(a0 + 0x4);
-    i--;
-    while (i != -1) {
-        func_001FF448(*(unsigned char **)(a0 + 0x8) + i * 0x5C);
-        i--;
-    }
 }
 
 __attribute__((section(".text.AddQueueEntry_1FF4D0")))

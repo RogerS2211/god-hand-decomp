@@ -41,14 +41,6 @@ int GetActiveEntry_1FE9B8(void *a0) {
     return 0;
 }
 
-__attribute__((section(".text.GetEntryParam_1FEA00")))
-int GetEntryParam_1FEA00(void *a0) {
-    int r = func_001FEE00(a0);
-    if (r >= 0)
-        return *(int*)(*(int*)((char*)a0+8) + r*0x5C + 0x10);
-    return 0;
-}
-
 __attribute__((section(".text.FreeActiveEntry_1FEC90")))
 int FreeActiveEntry_1FEC90(void *a0, int a1) {
     int v1 = func_001FEE00(a0);

@@ -12,8 +12,8 @@ extern int *D_003C2384;
 extern void func_002A9DF8(int a0);
 extern void func_002ABA78(int a0);
 
-__attribute__((section(".text.func_001B7908")))
-void func_001B7908(int a0)
+__attribute__((section(".text.SetField5B0Bit2ClearBit8_1B7908")))
+void SetField5B0Bit2ClearBit8_1B7908(int a0)
 {
     long v = *(unsigned int*)(a0 + 0x5B8);
     if ((v >> 9 & 1) == 0) {
@@ -26,22 +26,6 @@ void func_001B7908(int a0)
     func_001347E8(D_00462FC0, (void*)a0);
     func_001B7BB8((void*)a0);
     *(int*)(a0 + 0x5B0) = (*(int*)(a0 + 0x5B0) | 2) & ~8;
-}
-
-__attribute__((section(".text.func_002A9EA0")))
-int func_002A9EA0(int a0, int a1, int a2)
-{
-    int r;
-    func_002A9DF8(a0);
-    *(int*)(a0 + 0x10) = a2;
-    *(char*)(a0 + 0x46) = 6;
-    *(int*)(a0 + 0x14) = a1;
-    r = func_002ACD78(*D_003C2384, a1, a2 + 1);
-    if (r == 0)
-        return 0;
-    if (func_002AA0D0(a0, r) != 0)
-        func_002ABA78(a0);
-    return 1;
 }
 
 struct node {
@@ -68,15 +52,9 @@ void UnlinkAndCoalesceNode_2A9680(int a0, struct node *a1) {
     }
 }
 
-__attribute__((section(".text.Forward2ABA78ThenSetByte1C_2ABBE8")))
-void Forward2ABA78ThenSetByte1C_2ABBE8(void *a0) {
-    func_002ABA78(a0);
-    *(char *)((char *)a0 + 0x1C) = 1;
-}
-
 __attribute__((section(".text.SetField380Bit2000ForTag_1B7300")))
 void SetField380Bit2000ForTag_1B7300(int a0, int a1, int a2) {
-    char *p = (char *)GetListNodeAt404_Field25C_14B6F8(a0, 0);
+    char *p = (char *)cModel_getMeshPtr(a0, 0);
     if (p != 0) {
         do {
             if (*(unsigned char *)(p + 0x40C) == a1) {

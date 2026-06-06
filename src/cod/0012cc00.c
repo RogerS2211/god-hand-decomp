@@ -63,8 +63,8 @@ void func_0012ECF0(char *a0)
 	}
 }
 
-__attribute__((section(".text.func_00147A48")))
-void func_00147A48(void *a0, int a1, int a2, int a3, int t0)
+__attribute__((section(".text.MtxInitCoord")))
+void MtxInitCoord(void *a0, int a1, int a2, int a3, int t0)
 {
 	unsigned char e;
 

@@ -25,16 +25,6 @@ extern int D_00450098;
 extern int D_00460D70;
 extern int D_0045A5F8;
 
-__attribute__((section(".text.func_001C25F0")))
-void func_001C25F0(void *a0) {
-    int *vt = *(int **)((char *)a0 + 0x214);
-    short off = *(short *)((char *)vt + 0x70);
-    void (*fp)(void *) = *(void (**)(void *))((char *)vt + 0x74);
-    fp((char *)a0 + off);
-    *(unsigned char *)((char *)a0 + 0x676) =
-        *(unsigned char *)((char *)a0 + 0x676) | 2;
-}
-
 __attribute__((section(".text.InitStructZeroedFields_1E7960")))
 void *InitStructZeroedFields_1E7960(void *a0) {
     func_003A52F0(a0, 0, 0x54);
@@ -59,16 +49,6 @@ int *func_001F7C88(void) {
         func_0031EEC8(&D_00460D40, &D_0042C348);
     }
     return &D_00460D40;
-}
-
-__attribute__((section(".text.func_001FE148")))
-int func_001FE148(int a0, int a1) {
-    if (a1 == 0) {
-        return 0;
-    }
-    func_001FD580(a1);
-    func_001FCDB8(a1);
-    return 1;
 }
 
 __attribute__((section(".text.func_001FE278")))
@@ -101,7 +81,7 @@ int func_001FFA28(int a0) {
 __attribute__((section(".text.ForwardDispatchByMode_27F170")))
 void ForwardDispatchByMode_27F170(void *a0) {
     func_001347E8(D_00462FC0, a0);
-    func_00306200(a0, 1, 2);
+    KillEffect(a0, 1, 2);
 }
 
 __attribute__((section(".text.func_002A9D60")))

@@ -11,11 +11,11 @@ extern void func_001390B8(void *a0, int a1, int a2, int a3, float f12, int t0, i
 extern void func_00138600(void *a0);
 extern void func_0013B9B8(void *a0, int a1);
 extern void func_00138D40(void *a0, int a1);
-extern void func_00124F60(int a0, int a1, int a2);
+extern void ClearField15F4Bit1_124F60(int a0, int a1, int a2);
 extern int *PTR_DAT_003c2f84;
 extern int PTR_DAT_003c23a4;
 extern void ClearSoundSlot_2C4390(char *a0);
-extern void func_002AEC40(int a0, int a1);
+extern void cMessage_deleteMessNo(int a0, int a1);
 extern void func_0031C7E0(void *p, float w);
 
 __attribute__((section(".text.func_002C3858")))
@@ -23,20 +23,6 @@ void func_002C3858(void *a0) {
     ForwardStoredCallback_2C4DE0(a0);
     func_002C3820(a0);
     func_002D56A8((char *)a0 + 0x1C);
-}
-
-__attribute__((section(".text.func_002C3E88")))
-void func_002C3E88(void *a0) {
-    char *s0 = (char *)a0;
-    char *s1 = s0 + 0x1C;
-    while (func_002C3E40(s0) == 0) {
-        SetFieldsCESignalSemaSleep_2D5AA0(*(int *)(s1 + 4), 1);
-    }
-}
-
-__attribute__((section(".text.Forward2C3F10_2C3ED8")))
-int Forward2C3F10_2C3ED8(void *a0, int a1) {
-    return LoadScreenOverlay_2C3F10(a0, func_0031CE38(a1));
 }
 
 __attribute__((section(".text.LoadScreenOverlay_2C3F10")))
@@ -65,7 +51,7 @@ void func_002C3FC0(void *a0) {
         func_0013B9B8(s0, 0);
     }
     func_00138D40(s0, 0);
-    func_00124F60(Obj0000_Get_D_00747A94_2DB6B0(), 0, 1);
+    ClearField15F4Bit1_124F60(Obj0000_Get_D_00747A94_2DB6B0(), 0, 1);
     *(char *)((char *)a0 + 0x111) = 0;
 }
 
@@ -100,7 +86,7 @@ void SetSoundSlot_2C42E0(char *a0, int a1) {
 __attribute__((section(".text.ClearSoundSlot_2C4390")))
 void ClearSoundSlot_2C4390(char *a0) {
     if (*(unsigned short*)(a0 + 0x112) != 0xFFFF) {
-        func_002AEC40(PTR_DAT_003c23a4, *(unsigned short*)(a0 + 0x112));
+        cMessage_deleteMessNo(PTR_DAT_003c23a4, *(unsigned short*)(a0 + 0x112));
         *(unsigned short*)(a0 + 0x112) = 0xFFFF;
     }
 }

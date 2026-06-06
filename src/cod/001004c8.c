@@ -267,26 +267,6 @@ int func_001B76B0(int a0) {
     return v0;
 }
 
-__attribute__((section(".text.func_001BDBF8")))
-void func_001BDBF8(int a0) {
-    if (*(unsigned char*)((char*)a0 + 0x774) == 0) {
-        *(unsigned char*)((char*)a0 + 0x2F4) = 1;
-        *(unsigned char*)((char*)a0 + 0x2F5) = 0;
-        *(unsigned char*)((char*)a0 + 0x2F6) = 0;
-        *(unsigned char*)((char*)a0 + 0x2F7) = 0;
-    }
-}
-
-__attribute__((section(".text.func_001BDC20")))
-void func_001BDC20(int a0) {
-    if (*(unsigned char*)((char*)a0 + 0x774) == 1) {
-        *(unsigned char*)((char*)a0 + 0x2F4) = 2;
-        *(unsigned char*)((char*)a0 + 0x2F5) = 0;
-        *(unsigned char*)((char*)a0 + 0x2F6) = 0;
-        *(unsigned char*)((char*)a0 + 0x2F7) = 0;
-    }
-}
-
 __attribute__((section(".text.IsSpecialAnim_1C24A0")))
 int IsSpecialAnim_1C24A0(void *a0) {
     switch (*(unsigned short *)((char *)a0 + 0x2FE)) {
@@ -296,24 +276,6 @@ int IsSpecialAnim_1C24A0(void *a0) {
         return 1;
     }
     return 0;
-}
-
-__attribute__((section(".text.SetBit_Byte676_4_1C25A0")))
-void SetBit_Byte676_4_1C25A0(void *a0, int a1) {
-    if (a1 == 1) {
-        *(unsigned char *)((char *)a0 + 0x676) = *(unsigned char *)((char *)a0 + 0x676) | 0x4;
-    } else {
-        *(unsigned char *)((char *)a0 + 0x676) = *(unsigned char *)((char *)a0 + 0x676) & 0xFB;
-    }
-}
-
-__attribute__((section(".text.SetClearBit0_Byte_676_1C25C8")))
-void SetClearBit0_Byte_676_1C25C8(void *a0, int a1) {
-    if (a1 == 1) {
-        *(unsigned char *)((char *)a0 + 0x676) = *(unsigned char *)((char *)a0 + 0x676) | 0x1;
-    } else {
-        *(unsigned char *)((char *)a0 + 0x676) = *(unsigned char *)((char *)a0 + 0x676) & 0xFE;
-    }
 }
 
 __attribute__((section(".text.Obj1D00_IsSet_Byte_2F4_EqFour_Byte_2F5_1D0B08")))

@@ -35,7 +35,7 @@ void ClearObjActiveFlag_199C68(void *a0)
     v0 = (*(int*)((char*)a0 + 0x5B0) & -9) | 4;
     *(int*)((char*)a0 + 0x5B0) = v0;
     if (*(int*)((char*)a0 + 0x650) != 0) {
-        SetOrClearBit1OnListField_3C_1FD668(*(int*)((char*)a0 + 0x650), 0);
+        cDamageUnit_SetDamageCollActive(*(int*)((char*)a0 + 0x650), 0);
     }
     func_001331B8((int)&D_005CAE50, *(double*)((char*)a0 + 0x540), 0);
     ClearStateAndFlag_1C7E08(a0);

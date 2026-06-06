@@ -42,12 +42,6 @@ int GetObjVtabPtr_2A9458(void *obj) { return *(int *)((char *)obj + 0xF0); }
 /* Source order is swapped vs the asm: SN -O2 schedules the second store
  * into the jr delay slot, so writing 0x3A then 0x54 yields the retail
  * `sb a2,0x54 ; jr ; sb a1,0x3A` order. */
-__attribute__((section(".text.func_002C0DD8")))
-void func_002C0DD8(char *obj, int a1, int a2) {
-    obj[0x3A] = a1;
-    obj[0x54] = a2;
-}
-
 /* ── 3. store-then-init constructor variants ────────────────────────
  * Like batch C (store a struct/vtable pointer, then call an init helper
  * with obj) but with a non-0xF0 store offset, or a 2-arg registration.

@@ -14,17 +14,6 @@ void FreeEntrySlot_2B5BB8(int a0, int a1, int a2)
     s0[1] = 0;
 }
 
-__attribute__((section(".text.func_002C2A48")))
-void func_002C2A48(int *a0, unsigned short a1, int a2) {
-    int v0;
-    if (*a0) {
-        v0 = FindEntityByShortId_2C3118(a0, a1);
-        if (v0) {
-            func_002C0E78(v0, a2);
-        }
-    }
-}
-
 __attribute__((section(".text.ClearStructFields_2C8EB0")))
 void ClearStructFields_2C8EB0(int *a0) {
     a0[0] = 0;

@@ -104,7 +104,7 @@
     "for all 735 currently-matched TUs) or 'sn-2.95.3-136' (opt-in SN",
     "ee-gcc for the `sq`-prologue family).  TUs not",
     "named here use the default compiler; the override is at TU",
-    "granularity (not per-function \u2014 that's a later task if needed).",
+    "granularity (not per-function — that's a later task if needed).",
     "Documentation entries (path starting with `_`) are ignored.",
     "",
     "Wired through `compile.py::discover` -> CompileUnit.compiler ->",
@@ -818,6 +818,70 @@
     {
       "path": "src/cod/0035a1c8.c",
       "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/battle/cDamageManage.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/battle/cDamageUnit.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/system/cDataManager.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/system/cDvd.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/event/cEvent.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/id/cIDBase.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/ui/cMessage.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/gfx/cModel.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/object/cOmBase.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/object/cOmDoor2.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/object/cOmItem.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/event/cSceAtManager.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/event/cSceAtUnit.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/event/cScenario.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/sound/cSnd.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/system/cTaskWork.c",
+      "compiler": "sn-2.95.3-136"
     }
   ],
   "_carved_funcs_doc": [
@@ -832,7 +896,7 @@
     "the TU's INCLUDE_ASM macro pulls the carved .s into its own .text,",
     "so the standalone build/asm/nonmatching/<name>.o is NOT built or",
     "linked when `tu` is set.  Without `tu`, the",
-    "standalone .o is linked directly \u2014 useful for asm-only carves",
+    "standalone .o is linked directly — useful for asm-only carves",
     "with no C wrapper yet.",
     "",
     "Mechanism: each carve splits the monolithic at the",
@@ -968,11 +1032,11 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "NoOp_138238",
+      "name": "cCamera_setMode",
       "unit": "asm/cod/000000",
       "vaddr": "0x00138238",
       "size": 8,
-      "tu": "src/cod/000000.c"
+      "tu": "src/cod/camera/cCamera.c"
     },
     {
       "name": "Obj0000_Clear_Fields_50_To_7C_13C5C8",
@@ -996,11 +1060,11 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "NoOp_13E2F8",
+      "name": "cCockGetPoint_setData",
       "unit": "asm/cod/000000",
       "vaddr": "0x0013E2F8",
       "size": 8,
-      "tu": "src/cod/000000.c"
+      "tu": "src/cod/casino/cCockGetPoint.c"
     },
     {
       "name": "NoOp_1415E0",
@@ -1073,7 +1137,7 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "_comment": "first-TU group \u2014 accessor family @ 0x002930A8 \u2013 0x00293C40. 17 carve-eligible funcs (2 Ghidra mis-boundary fragments at 0x002930C8 / 0x00293748 stay in the monolithic)."
+      "_comment": "first-TU group — accessor family @ 0x002930A8 – 0x00293C40. 17 carve-eligible funcs (2 Ghidra mis-boundary fragments at 0x002930C8 / 0x00293748 stay in the monolithic)."
     },
     {
       "name": "Obj293_PostIncCounter_55C",
@@ -1139,7 +1203,7 @@
       "tu": "src/cod/000293.c"
     },
     {
-      "_comment": "func_00293138 (fp+bnel, 1500 B) stays in monolithic asm/cod/000000 \u2014 PERMANENT; no carve needed."
+      "_comment": "func_00293138 (fp+bnel, 1500 B) stays in monolithic asm/cod/000000 — PERMANENT; no carve needed."
     },
     {
       "name": "Obj293_OrByte_5A3",
@@ -1170,13 +1234,13 @@
       "tu": "src/cod/000293.c"
     },
     {
-      "_comment": "func_00293760 (jump-table, 96 B) stays in monolithic \u2014 carving would leak local .L00293794/.L00293A14/.L002941C0/.L00294308 labels referenced by rodata jump table at 0x44A7B0. PERMANENT under new jump-table class."
+      "_comment": "func_00293760 (jump-table, 96 B) stays in monolithic — carving would leak local .L00293794/.L00293A14/.L002941C0/.L00294308 labels referenced by rodata jump table at 0x44A7B0. PERMANENT under new jump-table class."
     },
     {
-      "_comment": "func_002937C0 (fp+bnel, 1152 B) stays in monolithic \u2014 PERMANENT; no carve needed."
+      "_comment": "func_002937C0 (fp+bnel, 1152 B) stays in monolithic — PERMANENT; no carve needed."
     },
     {
-      "_comment": "func_00293C40 (fp+bnel, 2116 B) stays in monolithic \u2014 PERMANENT; no carve needed."
+      "_comment": "func_00293C40 (fp+bnel, 2116 B) stays in monolithic — PERMANENT; no carve needed."
     },
     {
       "name": "EESyscall_0x00",
@@ -2145,11 +2209,11 @@
       "tu": "src/cod/eesyscalls.s"
     },
     {
-      "name": "SetField_140_150128",
+      "name": "cParts_setRotationOrder",
       "unit": "asm/cod/000000",
       "vaddr": "0x00150128",
       "size": 8,
-      "tu": "src/cod/000000.c"
+      "tu": "src/cod/cParts.c"
     },
     {
       "name": "Obj0000_Set_Field_424_1595E8",
@@ -4055,7 +4119,7 @@
       "tu": "src/cod/0035d0.c"
     },
     {
-      "name": "func_0030E5C0",
+      "name": "Set_bg_mode",
       "unit": "asm/cod/000000",
       "vaddr": "0x0030E5C0",
       "size": 156,
@@ -5355,7 +5419,7 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "func_002DB6C0",
+      "name": "GetJacket",
       "unit": "asm/cod/000000",
       "vaddr": "0x002DB6C0",
       "size": 12,
@@ -5460,11 +5524,11 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "GetField_A28_180690",
+      "name": "cOl2b_isActive",
       "unit": "asm/cod/000000",
       "vaddr": "0x00180690",
       "size": 8,
-      "tu": "src/cod/000000.c"
+      "tu": "src/cod/object/cOl2b.c"
     },
     {
       "name": "NoOp_1812B0",
@@ -5481,25 +5545,25 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "GetField_770_1815D0",
+      "name": "cOl2c_isFireStart",
       "unit": "asm/cod/000000",
       "vaddr": "0x001815D0",
       "size": 8,
-      "tu": "src/cod/000000.c"
+      "tu": "src/cod/object/cOl2c.c"
     },
     {
-      "name": "GetField_771_1815D8",
+      "name": "cOl2c_isFire",
       "unit": "asm/cod/000000",
       "vaddr": "0x001815D8",
       "size": 8,
-      "tu": "src/cod/000000.c"
+      "tu": "src/cod/object/cOl2c.c"
     },
     {
-      "name": "GetField_65B_186670",
+      "name": "cOl40_isDead",
       "unit": "asm/cod/000000",
       "vaddr": "0x00186670",
       "size": 8,
-      "tu": "src/cod/000000.c"
+      "tu": "src/cod/object/cOl40.c"
     },
     {
       "name": "NoOp_1B35C8",
@@ -5530,11 +5594,11 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "GetField_601_1B8718",
+      "name": "cOmbb_ckBomb",
       "unit": "asm/cod/000000",
       "vaddr": "0x001B8718",
       "size": 8,
-      "tu": "src/cod/000000.c"
+      "tu": "src/cod/object/cOmbb.c"
     },
     {
       "name": "SetField_775_1BD778",
@@ -5656,39 +5720,39 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "GetField_761_1A4F10",
+      "name": "cOm4f_isOpen",
       "unit": "asm/cod/000000",
       "vaddr": "0x001A4F10",
       "size": 8,
-      "tu": "src/cod/000000.c"
+      "tu": "src/cod/object/cOm4f.c"
     },
     {
-      "name": "GetField_760_1A4F18",
+      "name": "cOm4f_isActive",
       "unit": "asm/cod/000000",
       "vaddr": "0x001A4F18",
       "size": 8,
-      "tu": "src/cod/000000.c"
+      "tu": "src/cod/object/cOm4f.c"
     },
     {
-      "name": "SetField_763_1A4F20",
+      "name": "cOm4f_setEventMode",
       "unit": "asm/cod/000000",
       "vaddr": "0x001A4F20",
       "size": 8,
-      "tu": "src/cod/000000.c"
+      "tu": "src/cod/object/cOm4f.c"
     },
     {
-      "name": "Obj0000_Set_Byte_762_1A4F28",
+      "name": "cOm4f_setLock",
       "unit": "asm/cod/000000",
       "vaddr": "0x001A4F28",
       "size": 8,
-      "tu": "src/cod/000000.c"
+      "tu": "src/cod/object/cOm4f.c"
     },
     {
-      "name": "SetField_790_1A4F30",
+      "name": "cOm4f_connectDoor",
       "unit": "asm/cod/000000",
       "vaddr": "0x001A4F30",
       "size": 8,
-      "tu": "src/cod/000000.c"
+      "tu": "src/cod/object/cOm4f.c"
     },
     {
       "name": "Obj0000_Get_Field_780_1A50F0",
@@ -5712,11 +5776,11 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "Obj0000_Set_Field_628_1A80F0",
+      "name": "cOm53_setRiseWaitTime",
       "unit": "asm/cod/000000",
       "vaddr": "0x001A80F0",
       "size": 8,
-      "tu": "src/cod/000000.c"
+      "tu": "src/cod/object/cOm53.c"
     },
     {
       "name": "NoOp_1A8680",
@@ -5740,11 +5804,11 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "GetField_60D_1ADA78",
+      "name": "cOm5a_isOpen",
       "unit": "asm/cod/000000",
       "vaddr": "0x001ADA78",
       "size": 8,
-      "tu": "src/cod/000000.c"
+      "tu": "src/cod/object/cOm5a.c"
     },
     {
       "name": "GetField_60E_1ADA80",
@@ -6510,18 +6574,18 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "Obj0000_Set_Bytes_2F4_If_Field_A24_NE_1",
+      "name": "cOl2b_setOpen",
       "unit": "asm/cod/000000",
       "vaddr": "0x00180310",
       "size": 40,
-      "tu": "src/cod/000000.c"
+      "tu": "src/cod/object/cOl2b.c"
     },
     {
-      "name": "Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_If_Field_A24_NE_2",
+      "name": "cOl2b_setClose",
       "unit": "asm/cod/000000",
       "vaddr": "0x00180338",
       "size": 40,
-      "tu": "src/cod/000000.c"
+      "tu": "src/cod/object/cOl2b.c"
     },
     {
       "name": "Obj0000_Set_Short_88_If_LT_1000",
@@ -7607,11 +7671,11 @@
       "tu": "src/cod/merged_orphans_d.c"
     },
     {
-      "name": "func_002C0DD8",
+      "name": "cSceAtUnit_ActTypeSet",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C0DD8",
       "size": 12,
-      "tu": "src/cod/merged_orphans_d.c"
+      "tu": "src/cod/event/cSceAtUnit.c"
     },
     {
       "name": "func_00133B58",
@@ -7645,11 +7709,11 @@
       "tu": "src/cod/merged_orphans_e.c"
     },
     {
-      "name": "func_002C2A98",
+      "name": "cSceAtManager_isHit",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C2A98",
       "size": 64,
-      "tu": "src/cod/merged_orphans_e.c"
+      "tu": "src/cod/event/cSceAtManager.c"
     },
     {
       "name": "func_00297C20",
@@ -8285,11 +8349,11 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "Obj0000_Set_Byte_1868_273D28",
+      "name": "cEm00_setAlphaMode",
       "unit": "asm/cod/000000",
       "vaddr": "0x00273D28",
       "size": 8,
-      "tu": "src/cod/000000.c"
+      "tu": "src/cod/enemy/cEm00.c"
     },
     {
       "name": "Obj0000_Or_Field_16D4_Bit_1000_274140",
@@ -8299,39 +8363,39 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "Obj0000_Or_Field_1644_Bit_800000_275638",
+      "name": "cEm00_setDevilEventFlag",
       "unit": "asm/cod/000000",
       "vaddr": "0x00275638",
       "size": 20,
-      "tu": "src/cod/000000.c"
+      "tu": "src/cod/enemy/cEm00.c"
     },
     {
-      "name": "Obj0000_IsSet_Field_16D4_Bit_2000000_275650",
+      "name": "cEm00_ckBananaDance",
       "unit": "asm/cod/000000",
       "vaddr": "0x00275650",
       "size": 20,
-      "tu": "src/cod/000000.c"
+      "tu": "src/cod/enemy/cEm00.c"
     },
     {
-      "name": "Obj0000_Set_Bytes_2F4_2F5_2F6_2F7_2761B0",
+      "name": "cEm00_setR608EventEnd",
       "unit": "asm/cod/000000",
       "vaddr": "0x002761B0",
       "size": 28,
-      "tu": "src/cod/000000.c"
+      "tu": "src/cod/enemy/cEm00.c"
     },
     {
-      "name": "Obj0000_Or_Field_16D4_Bit_80000000_2761F8",
+      "name": "cEm00_setNeckMoveOff",
       "unit": "asm/cod/000000",
       "vaddr": "0x002761F8",
       "size": 20,
-      "tu": "src/cod/000000.c"
+      "tu": "src/cod/enemy/cEm00.c"
     },
     {
-      "name": "Obj0000_Clear_Field_16D4_Bit_31_276210",
+      "name": "cEm00_setNeckMoveOn",
       "unit": "asm/cod/000000",
       "vaddr": "0x00276210",
       "size": 24,
-      "tu": "src/cod/000000.c"
+      "tu": "src/cod/enemy/cEm00.c"
     },
     {
       "name": "Obj0000_Get_Byte_17C3_NZ_2_276468",
@@ -8369,11 +8433,11 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "Obj0000_Set_Bytes_2F4_2F6_2F5_2F7_278000",
+      "name": "cEm30_setEvent",
       "unit": "asm/cod/000000",
       "vaddr": "0x00278000",
       "size": 24,
-      "tu": "src/cod/000000.c"
+      "tu": "src/cod/enemy/cEm30.c"
     },
     {
       "name": "NoOp_279670",
@@ -9279,11 +9343,11 @@
       "tu": "src/cod/0013c618.c"
     },
     {
-      "name": "func_001B0B08",
+      "name": "cOm5e_setStop",
       "unit": "asm/cod/000000",
       "vaddr": "0x001B0B08",
       "size": 24,
-      "tu": "src/cod/0013c618.c"
+      "tu": "src/cod/object/cOm5e.c"
     },
     {
       "name": "IsSet_Field_600_1B1620",
@@ -9300,11 +9364,11 @@
       "tu": "src/cod/0013c618.c"
     },
     {
-      "name": "func_001B5180",
+      "name": "cOmb3_SetPointTbl",
       "unit": "asm/cod/000000",
       "vaddr": "0x001B5180",
       "size": 12,
-      "tu": "src/cod/0013c618.c"
+      "tu": "src/cod/object/cOmb3.c"
     },
     {
       "name": "IsSet_Field_5B0_Bit3_1B79D0",
@@ -9615,11 +9679,11 @@
       "tu": "src/cod/00138528.c"
     },
     {
-      "name": "ClearFields_254_278_00138528_138528",
+      "name": "cCamera_resetVib",
       "unit": "asm/cod/000000",
       "vaddr": "0x00138528",
       "size": 44,
-      "tu": "src/cod/00138528.c"
+      "tu": "src/cod/camera/cCamera.c"
     },
     {
       "name": "ClearFields_1614D0",
@@ -9930,18 +9994,18 @@
       "tu": "src/cod/001004c8.c"
     },
     {
-      "name": "func_001BDBF8",
+      "name": "cOmDoor2_setOpen",
       "unit": "asm/cod/000000",
       "vaddr": "0x001BDBF8",
       "size": 36,
-      "tu": "src/cod/001004c8.c"
+      "tu": "src/cod/object/cOmDoor2.c"
     },
     {
-      "name": "func_001BDC20",
+      "name": "cOmDoor2_setClose",
       "unit": "asm/cod/000000",
       "vaddr": "0x001BDC20",
       "size": 40,
-      "tu": "src/cod/001004c8.c"
+      "tu": "src/cod/object/cOmDoor2.c"
     },
     {
       "name": "IsSpecialAnim_1C24A0",
@@ -9951,18 +10015,18 @@
       "tu": "src/cod/001004c8.c"
     },
     {
-      "name": "SetBit_Byte676_4_1C25A0",
+      "name": "cOmItem_setGetRangeLong",
       "unit": "asm/cod/000000",
       "vaddr": "0x001C25A0",
       "size": 36,
-      "tu": "src/cod/001004c8.c"
+      "tu": "src/cod/object/cOmItem.c"
     },
     {
-      "name": "SetClearBit0_Byte_676_1C25C8",
+      "name": "cOmItem_setScrCheck",
       "unit": "asm/cod/000000",
       "vaddr": "0x001C25C8",
       "size": 36,
-      "tu": "src/cod/001004c8.c"
+      "tu": "src/cod/object/cOmItem.c"
     },
     {
       "name": "Obj1D00_IsSet_Byte_2F4_EqFour_Byte_2F5_1D0B08",
@@ -10672,11 +10736,11 @@
       "tu": "src/cod/00133900.c"
     },
     {
-      "name": "func_001C25F0",
+      "name": "cOmItem_setFixPos",
       "unit": "asm/cod/000000",
       "vaddr": "0x001C25F0",
       "size": 64,
-      "tu": "src/cod/001c25f0.c"
+      "tu": "src/cod/object/cOmItem.c"
     },
     {
       "name": "InitStructZeroedFields_1E7960",
@@ -10700,11 +10764,11 @@
       "tu": "src/cod/001c25f0.c"
     },
     {
-      "name": "func_001FE148",
+      "name": "cDamageManage_ReleaseDamageGive",
       "unit": "asm/cod/000000",
       "vaddr": "0x001FE148",
       "size": 64,
-      "tu": "src/cod/001c25f0.c"
+      "tu": "src/cod/battle/cDamageManage.c"
     },
     {
       "name": "func_001FE278",
@@ -10889,11 +10953,11 @@
       "tu": "src/cod/002b5bb8.c"
     },
     {
-      "name": "func_002C2A48",
+      "name": "cSceAtManager_getCenterPos",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C2A48",
       "size": 68,
-      "tu": "src/cod/002b5bb8.c"
+      "tu": "src/cod/event/cSceAtManager.c"
     },
     {
       "name": "ClearStructFields_2C8EB0",
@@ -10987,18 +11051,18 @@
       "tu": "src/cod/001fd2c0.c"
     },
     {
-      "name": "func_002AEBF8",
+      "name": "cMessage_deleteWorkId",
       "unit": "asm/cod/000000",
       "vaddr": "0x002AEBF8",
       "size": 68,
-      "tu": "src/cod/002aebf8.c"
+      "tu": "src/cod/ui/cMessage.c"
     },
     {
-      "name": "func_002AEC40",
+      "name": "cMessage_deleteMessNo",
       "unit": "asm/cod/000000",
       "vaddr": "0x002AEC40",
       "size": 68,
-      "tu": "src/cod/002aec40.c"
+      "tu": "src/cod/ui/cMessage.c"
     },
     {
       "name": "NoOp_288DA0",
@@ -11190,7 +11254,7 @@
       "tu": "src/cod/0012cc00.c"
     },
     {
-      "name": "func_00147A48",
+      "name": "MtxInitCoord",
       "unit": "asm/cod/000000",
       "vaddr": "0x00147A48",
       "size": 108,
@@ -11218,11 +11282,11 @@
       "tu": "src/cod/0014fe08.c"
     },
     {
-      "name": "ClearAllEntries_1FEF30",
+      "name": "cDataManager_clear",
       "unit": "asm/cod/000000",
       "vaddr": "0x001FEF30",
       "size": 108,
-      "tu": "src/cod/0014fe08.c"
+      "tu": "src/cod/system/cDataManager.c"
     },
     {
       "name": "AddQueueEntry_1FF4D0",
@@ -13465,11 +13529,11 @@
       "tu": "src/cod/001fd530.c"
     },
     {
-      "name": "UpdateListNodes_1FD888",
+      "name": "cDamageUnit_SetDamageCollOffset",
       "unit": "asm/cod/000000",
       "vaddr": "0x001FD888",
       "size": 76,
-      "tu": "src/cod/001fd530.c"
+      "tu": "src/cod/battle/cDamageUnit.c"
     },
     {
       "name": "InitPools_1FDFA8",
@@ -13479,11 +13543,11 @@
       "tu": "src/cod/001fd530.c"
     },
     {
-      "name": "AllocSlot_1FE0E8",
+      "name": "cDamageManage_CreateDamageGive",
       "unit": "asm/cod/000000",
       "vaddr": "0x001FE0E8",
       "size": 96,
-      "tu": "src/cod/001fd530.c"
+      "tu": "src/cod/battle/cDamageManage.c"
     },
     {
       "name": "InitEntryPool_1FE188",
@@ -13535,11 +13599,11 @@
       "tu": "src/cod/001fe530.c"
     },
     {
-      "name": "GetEntryParam_1FEA00",
+      "name": "cDataManager_seeDataAddress",
       "unit": "asm/cod/000000",
       "vaddr": "0x001FEA00",
       "size": 72,
-      "tu": "src/cod/001fe530.c"
+      "tu": "src/cod/system/cDataManager.c"
     },
     {
       "name": "FreeActiveEntry_1FEC90",
@@ -13696,11 +13760,11 @@
       "tu": "src/cod/002960d0.c"
     },
     {
-      "name": "InitGameState_296458",
+      "name": "cEvent_playStart",
       "unit": "asm/cod/000000",
       "vaddr": "0x00296458",
       "size": 208,
-      "tu": "src/cod/00296458.c"
+      "tu": "src/cod/event/cEvent.c"
     },
     {
       "name": "LoadResourceEntry_297378",
@@ -13773,25 +13837,25 @@
       "tu": "src/cod/002c2138.c"
     },
     {
-      "name": "ClearEntityIfActive_2C28F8",
+      "name": "cSceAtManager_SetEnable_2C28F8",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C28F8",
       "size": 88,
-      "tu": "src/cod/002c2138.c"
+      "tu": "src/cod/event/cSceAtManager.c"
     },
     {
-      "name": "ClearEntityById_2C2950",
+      "name": "cSceAtManager_SetEnable_2C2950",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C2950",
       "size": 80,
-      "tu": "src/cod/002c2138.c"
+      "tu": "src/cod/event/cSceAtManager.c"
     },
     {
-      "name": "ResetEntityActiveState_2C29A0",
+      "name": "cSceAtManager_SetDisable",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C29A0",
       "size": 84,
-      "tu": "src/cod/002c2138.c"
+      "tu": "src/cod/event/cSceAtManager.c"
     },
     {
       "name": "ResetEntityStateById_2C29F8",
@@ -13808,11 +13872,11 @@
       "tu": "src/cod/002c2138.c"
     },
     {
-      "name": "FindEntityByShortId_2C3118",
+      "name": "cSceAtManager_getUnit",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C3118",
       "size": 116,
-      "tu": "src/cod/002c2138.c"
+      "tu": "src/cod/event/cSceAtManager.c"
     },
     {
       "name": "func_002C32C0",
@@ -13843,18 +13907,18 @@
       "tu": "src/cod/002c3858.c"
     },
     {
-      "name": "func_002C3E88",
+      "name": "cScenario_waitEventStartOk",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C3E88",
       "size": 76,
-      "tu": "src/cod/002c3858.c"
+      "tu": "src/cod/event/cScenario.c"
     },
     {
-      "name": "Forward2C3F10_2C3ED8",
+      "name": "cScenario_setCam",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C3ED8",
       "size": 52,
-      "tu": "src/cod/002c3858.c"
+      "tu": "src/cod/event/cScenario.c"
     },
     {
       "name": "LoadScreenOverlay_2C3F10",
@@ -15082,35 +15146,35 @@
       "tu": "src/cod/00124e68.c"
     },
     {
-      "name": "func_00124F60",
+      "name": "ClearField15F4Bit1_124F60",
       "unit": "asm/cod/000000",
       "vaddr": "0x00124F60",
       "size": 100,
       "tu": "src/cod/00124f60.c"
     },
     {
-      "name": "func_00147C60",
+      "name": "ForwardVec3At30_147C60",
       "unit": "asm/cod/000000",
       "vaddr": "0x00147C60",
       "size": 36,
       "tu": "src/cod/00124f60.c"
     },
     {
-      "name": "func_001B7280",
+      "name": "cOmBase_setMeshDispFromLayer",
       "unit": "asm/cod/000000",
       "vaddr": "0x001B7280",
       "size": 128,
-      "tu": "src/cod/00124f60.c"
+      "tu": "src/cod/object/cOmBase.c"
     },
     {
-      "name": "func_0031D000",
+      "name": "fRand0_1",
       "unit": "asm/cod/000000",
       "vaddr": "0x0031D000",
       "size": 28,
       "tu": "src/cod/00124f60.c"
     },
     {
-      "name": "func_0012AC28",
+      "name": "CallWithAndClearField698_12AC28",
       "unit": "asm/cod/000000",
       "vaddr": "0x0012AC28",
       "size": 56,
@@ -15124,7 +15188,7 @@
       "tu": "src/cod/0012ac28.c"
     },
     {
-      "name": "func_001B79B0",
+      "name": "Tramp_00312708_1B79B0",
       "unit": "asm/cod/000000",
       "vaddr": "0x001B79B0",
       "size": 28,
@@ -15138,7 +15202,7 @@
       "tu": "src/cod/0012ac28.c"
     },
     {
-      "name": "func_001351D8",
+      "name": "Forward_001346C8_00134608_1351D8",
       "unit": "asm/cod/000000",
       "vaddr": "0x001351D8",
       "size": 52,
@@ -15152,18 +15216,18 @@
       "tu": "src/cod/001351d8.c"
     },
     {
-      "name": "func_0014F9F0",
+      "name": "AddScaledVecToField_100_14F9F0",
       "unit": "asm/cod/000000",
       "vaddr": "0x0014F9F0",
       "size": 112,
       "tu": "src/cod/001351d8.c"
     },
     {
-      "name": "SetOrClearBit1OnListField_3C_1FD668",
+      "name": "cDamageUnit_SetDamageCollActive",
       "unit": "asm/cod/000000",
       "vaddr": "0x001FD668",
       "size": 76,
-      "tu": "src/cod/001351d8.c"
+      "tu": "src/cod/battle/cDamageUnit.c"
     },
     {
       "name": "AddScaledDeltaToField_104_2A7498",
@@ -15222,18 +15286,18 @@
       "tu": "src/cod/0014a2b0.c"
     },
     {
-      "name": "func_002CB968",
+      "name": "cSnd_SeCall",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CB968",
       "size": 224,
-      "tu": "src/cod/0014a2b0.c"
+      "tu": "src/cod/sound/cSnd.c"
     },
     {
-      "name": "GetListNodeAt404_Field25C_14B6F8",
+      "name": "cModel_getMeshPtr",
       "unit": "asm/cod/000000",
       "vaddr": "0x0014B6F8",
       "size": 56,
-      "tu": "src/cod/0014b6f8.c"
+      "tu": "src/cod/gfx/cModel.c"
     },
     {
       "name": "CopyVec3ToField20_173908",
@@ -15257,7 +15321,7 @@
       "tu": "src/cod/0014b6f8.c"
     },
     {
-      "name": "func_002B6160",
+      "name": "StoreVecFromFieldB0_2B6160",
       "unit": "asm/cod/000000",
       "vaddr": "0x002B6160",
       "size": 80,
@@ -15306,7 +15370,7 @@
       "tu": "src/cod/001b7300.c"
     },
     {
-      "name": "func_001B7908",
+      "name": "SetField5B0Bit2ClearBit8_1B7908",
       "unit": "asm/cod/000000",
       "vaddr": "0x001B7908",
       "size": 168,
@@ -15320,18 +15384,18 @@
       "tu": "src/cod/001b7300.c"
     },
     {
-      "name": "func_002A9EA0",
+      "name": "cIDBase_initialize",
       "unit": "asm/cod/000000",
       "vaddr": "0x002A9EA0",
       "size": 144,
-      "tu": "src/cod/001b7300.c"
+      "tu": "src/cod/id/cIDBase.c"
     },
     {
-      "name": "Forward2ABA78ThenSetByte1C_2ABBE8",
+      "name": "cIDBase_restartAnim",
       "unit": "asm/cod/000000",
       "vaddr": "0x002ABBE8",
       "size": 44,
-      "tu": "src/cod/001b7300.c"
+      "tu": "src/cod/id/cIDBase.c"
     },
     {
       "name": "ShiftDownBytesA8_FAC00",
@@ -15355,18 +15419,18 @@
       "tu": "src/cod/001fd308.c"
     },
     {
-      "name": "AdvanceState5ByteSwap_31CEF8",
+      "name": "Rnd",
       "unit": "asm/cod/000000",
       "vaddr": "0x0031CEF8",
       "size": 48,
       "tu": "src/cod/001fd308.c"
     },
     {
-      "name": "SetupSlotFromField78_200CB0",
+      "name": "cDvd_ReadAlloc",
       "unit": "asm/cod/000000",
       "vaddr": "0x00200CB0",
       "size": 328,
-      "tu": "src/cod/00200cb0.c"
+      "tu": "src/cod/system/cDvd.c"
     },
     {
       "name": "PushEntryAtField10000_299868",
@@ -15446,14 +15510,14 @@
       "tu": "src/cod/00292f38.c"
     },
     {
-      "name": "GetField_548Scaled_292F50",
+      "name": "cEmManage_GetSpeedRate",
       "unit": "asm/cod/000000",
       "vaddr": "0x00292F50",
       "size": 20,
-      "tu": "src/cod/00292f50.c"
+      "tu": "src/cod/enemy/cEmManage.c"
     },
     {
-      "name": "func_0031D020",
+      "name": "DoubleFloatMinusHalf_31D020",
       "unit": "asm/cod/000000",
       "vaddr": "0x0031D020",
       "size": 44,
@@ -15467,11 +15531,11 @@
       "tu": "src/cod/002b62e0.c"
     },
     {
-      "name": "ExitDeleteThreadAndSignalSema_2D5A48",
+      "name": "cTaskWork_exit",
       "unit": "asm/cod/000000",
       "vaddr": "0x002D5A48",
       "size": 88,
-      "tu": "src/cod/002d5a48.c"
+      "tu": "src/cod/system/cTaskWork.c"
     },
     {
       "name": "SetField84Via4_2D6548",
@@ -15481,21 +15545,21 @@
       "tu": "src/cod/002d6548.c"
     },
     {
-      "name": "func_00306200",
+      "name": "KillEffect",
       "unit": "asm/cod/000000",
       "vaddr": "0x00306200",
       "size": 168,
       "tu": "src/cod/00306200.c"
     },
     {
-      "name": "func_0030EE08",
+      "name": "EnsureInitThenForward_2A9538_30EE08",
       "unit": "asm/cod/000000",
       "vaddr": "0x0030EE08",
       "size": 92,
       "tu": "src/cod/00306200.c"
     },
     {
-      "name": "func_0030FA98",
+      "name": "Forward0030FB20_30FA98",
       "unit": "asm/cod/000000",
       "vaddr": "0x0030FA98",
       "size": 48,
@@ -15544,9 +15608,9 @@
     "  3. Extracting .text via",
     "     `objcopy -O binary --only-section=.text` to",
     "     build/rel/<name>/<name>.text.bin.",
-    "  4. Concatenating parts in order \u2014 each `bin` part is read",
+    "  4. Concatenating parts in order — each `bin` part is read",
     "     verbatim and each `asm` part is replaced by the linked .text",
-    "     bytes \u2014 to produce build/rel/<name>.rel.",
+    "     bytes — to produce build/rel/<name>.rel.",
     "  5. Asserting sha256(build/rel/<name>.rel) == sha256_expected.",
     "",
     "Schema per entry:",
@@ -15605,7 +15669,7 @@
     "deprecated in the schema; per-unit `target_path`/`base_path` is",
     "used instead).  They live here only as the on-disk roots compile.py",
     "uses when constructing those per-unit paths and when mirroring",
-    "build/ \u2192 expected/build/ for not-yet-decompiled units.",
+    "build/ → expected/build/ for not-yet-decompiled units.",
     "`watch_patterns` and `progress_categories` are written verbatim.",
     "`min_version` pins the schema; bumping it should be deliberate."
   ],

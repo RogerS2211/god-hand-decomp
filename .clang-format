@@ -1,0 +1,15 @@
+# God Hand decomp — matches the ee-gcc 2.95 / SN ProDG source style.
+# Formatting is advisory: byte-identity to retail is the only hard gate, and
+# matched functions must keep whatever layout reproduces retail bytes.
+BasedOnStyle: LLVM
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+ColumnLimit: 100
+BreakBeforeBraces: Attach
+AllowShortFunctionsOnASingleLine: Inline
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+PointerAlignment: Right
+SpaceAfterCStyleCast: false
+SortIncludes: false

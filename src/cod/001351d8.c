@@ -28,8 +28,8 @@ void AddScaledXfmVecToField_F0_14F928(char *a0, float f12) {
     }
 }
 
-__attribute__((section(".text.func_0014F9F0")))
-void func_0014F9F0(char *a0, float f12) {
+__attribute__((section(".text.AddScaledVecToField_100_14F9F0")))
+void AddScaledVecToField_100_14F9F0(char *a0, float f12) {
     if (!(D_00747A84 & 0x20000000)) {
         *(float*)(a0 + 0x100) += *(float*)(a0 + 0x360) * f12;
         *(float*)(a0 + 0x104) += *(float*)(a0 + 0x364) * f12;
@@ -38,27 +38,12 @@ void func_0014F9F0(char *a0, float f12) {
     }
 }
 
-__attribute__((section(".text.func_001351D8")))
-void func_001351D8(int a0, int a1, int a2) {
+__attribute__((section(".text.Forward_001346C8_00134608_1351D8")))
+void Forward_001346C8_00134608_1351D8(int a0, int a1, int a2) {
     void *v0 = func_001346C8(a0, a1);
     if (v0 != 0) {
         SetNodeListFlag_134608(v0, a2);
     }
-}
-
-__attribute__((section(".text.SetOrClearBit1OnListField_3C_1FD668")))
-void SetOrClearBit1OnListField_3C_1FD668(int a0, int a1) {
-    int node = *(int*)(a0 + 0x3C);
-    if (node == 0) return;
-    do {
-        int *p = *(int**)(node + 0x28);
-        if (a1 == 1) {
-            *p = *p | 2;
-        } else {
-            *p = *p & 0xFFFFFFFD;
-        }
-        node = *(int*)(node + 0x24);
-    } while (node != 0);
 }
 
 __attribute__((section(".text.AddScaledDeltaToField_104_2A7498")))

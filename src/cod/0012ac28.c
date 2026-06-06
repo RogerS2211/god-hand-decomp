@@ -49,8 +49,8 @@ char *InitFields_1B6E90(char *a0) {
     return a0;
 }
 
-__attribute__((section(".text.func_0012AC28")))
-void func_0012AC28(char *a0) {
+__attribute__((section(".text.CallWithAndClearField698_12AC28")))
+void CallWithAndClearField698_12AC28(char *a0) {
     int v = *(int*)(a0 + 0x698);
     if (v) {
         func_001CF4A8(v);
@@ -58,8 +58,8 @@ void func_0012AC28(char *a0) {
     }
 }
 
-__attribute__((section(".text.func_001B79B0")))
-void func_001B79B0(void) { func_00312708(); }
+__attribute__((section(".text.Tramp_00312708_1B79B0")))
+void Tramp_00312708_1B79B0(void) { func_00312708(); }
 
 __attribute__((section(".text.GetOrInitGlobal785878_1B8058")))
 void *GetOrInitGlobal785878_1B8058(void) {

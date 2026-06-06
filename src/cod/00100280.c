@@ -16,7 +16,7 @@ extern int D_007854F8;
 extern void func_0014FD20(void);
 extern float D_003BC7C0;
 extern void func_002A8578(void *, void *, void *, int, int, int, float);
-extern void func_0014F9F0(void *, float);
+extern void AddScaledVecToField_100_14F9F0(void *, float);
 extern void AddScaledXfmVecToField_F0_14F928(void *, float);
 
 __attribute__((section(".text.func_0010B5F0")))
@@ -83,7 +83,7 @@ void func_00102BD8(void *a0) {
             *(unsigned char *)((char *)a0 + 0x2F6) = 0;
             *(unsigned char *)((char *)a0 + 0x2F7) = 0;
         }
-        func_0014F9F0(a0, 1.0f);
+        AddScaledVecToField_100_14F9F0(a0, 1.0f);
         AddScaledXfmVecToField_F0_14F928(a0, 1.0f);
         break;
     default:

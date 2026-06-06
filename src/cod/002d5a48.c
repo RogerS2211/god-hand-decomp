@@ -11,14 +11,3 @@ struct s_002D5A48 {
     short field_C;
 };
 
-__attribute__((section(".text.ExitDeleteThreadAndSignalSema_2D5A48")))
-void ExitDeleteThreadAndSignalSema_2D5A48(struct s_002D5A48 *a0)
-{
-    a0->field_C = 0;
-    if (a0->field_4 != -1) {
-        ChangeThreadPriority(a0->field_4, 1);
-        SignalSema(a0->field_0[10]);
-        a0->field_4 = -1;
-        ExitDeleteThread();
-    }
-}

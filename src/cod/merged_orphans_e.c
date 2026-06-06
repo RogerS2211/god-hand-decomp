@@ -3,17 +3,10 @@ extern void func_002D0658(float);
 __attribute__((section(".text.Forward2D0658_2D0630")))
 void Forward2D0658_2D0630(void) { func_002D0658(0.0f); }
 
-/* func_002C2A98: chain — alloc via FindEntityByShortId_2C3118(a0,a1); if non-null,
+/* cSceAtManager_isHit: chain — alloc via cSceAtManager_getUnit(a0,a1); if non-null,
  * tail-process via func_002C0ED0(obj, a2); else return 0. */
-extern void *FindEntityByShortId_2C3118(void *a0, void *a1);
+extern void *cSceAtManager_getUnit(void *a0, void *a1);
 extern void *func_002C0ED0(void *obj, void *a2);
-__attribute__((section(".text.func_002C2A98")))
-void *func_002C2A98(void *a0, void *a1, void *a2) {
-    void *v0 = FindEntityByShortId_2C3118(a0, a1);
-    if (v0 == 0) return 0;
-    return func_002C0ED0(v0, a2);
-}
-
 /* func_002BF108: pointer-arithmetic getter — DEFERRED.  The natural body
  * compiles to the right 10 insns but SN -O2 emits a branch-likely
  * (`beqzl`) with the shared `a1<<2` hoisted before the compare, whereas

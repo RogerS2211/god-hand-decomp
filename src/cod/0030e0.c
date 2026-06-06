@@ -32,7 +32,7 @@ INCLUDE_ASM("nonmatching", func_0030E5B8);
 
 /* ── 1 × branched_leaf (nonmatching — T1 will match) ─────────────────────── */
 
-INCLUDE_ASM("nonmatching", func_0030E5C0);
+INCLUDE_ASM("nonmatching", Set_bg_mode);
 
 /* ── PERMANENT: func_0030E660 (0x698 B) stays in monolithic ──────────────── */
 /* func_0030E660 — jump-table dispatcher, mult, dsrl32, complex — PERMANENT */

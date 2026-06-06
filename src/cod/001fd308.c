@@ -2,8 +2,8 @@
 
 extern unsigned int D_00747B10;
 
-__attribute__((section(".text.AdvanceState5ByteSwap_31CEF8")))
-int AdvanceState5ByteSwap_31CEF8(void)
+__attribute__((section(".text.Rnd")))
+int Rnd(void)
 {
     unsigned int v0 = (unsigned short)D_00747B10 * 5;
     v0 = ((v0 & 0xFF) << 8) + ((v0 & 0xFF00) >> 8);

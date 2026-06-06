@@ -40,8 +40,8 @@ void *func_001B1B38(void *a0) {
 __attribute__((section(".text.func_001BB508")))
 void func_001BB508(void *a0) {
     *(char *)((char *)a0 + 0x531) = -1;
-    func_00306200(a0, 0, 2);
-    func_001B79B0(a0);
+    KillEffect(a0, 0, 2);
+    Tramp_00312708_1B79B0(a0);
 }
 
 __attribute__((section(".text.func_001D55D0")))

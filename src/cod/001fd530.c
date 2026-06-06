@@ -26,28 +26,10 @@ void ForwardEventToList_1FD820(void *a0, void *a1) {
     }
 }
 
-__attribute__((section(".text.UpdateListNodes_1FD888")))
-void UpdateListNodes_1FD888(void *a0, void *a1) {
-    int *s0 = *(int **)((char*)a0 + 0x3C);
-    while (s0) {
-        void *v0 = *(void **)((char*)s0 + 0x28);
-        func_002BB258(*(void **)((char*)v0 + 0x34), a1);
-        s0 = *(int **)((char*)s0 + 0x24);
-    }
-}
-
 __attribute__((section(".text.InitPools_1FDFA8")))
 void InitPools_1FDFA8(void *a0) {
     InitEntryPool_1FE188(a0);
     InitNodePool_1FE2B8(a0);
-}
-
-__attribute__((section(".text.AllocSlot_1FE0E8")))
-int AllocSlot_1FE0E8(int a0, int a1, int a2) {
-    int p = func_001FE1E0(a0);
-    if (p == 0) return 0;
-    if (func_001FD2C0(p, a1, a2) == 0) p = 0;
-    return p;
 }
 
 __attribute__((section(".text.InitEntryPool_1FE188")))
@@ -55,7 +37,7 @@ void InitEntryPool_1FE188(int a0) {
     char *p = (char *)a0;
     char *end = (char *)a0 + 0x3C00;
     do {
-        func_001FE148(a0, (int)p);
+        cDamageManage_ReleaseDamageGive(a0, (int)p);
         p += 0x60;
     } while (p < end);
 }

@@ -1,7 +1,7 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
 extern void func_002CD4A8(void *a0, float f12);
-extern void func_00147A48(void *a0, int a1, void *a2, void *a3, int t0);
+extern void MtxInitCoord(void *a0, int a1, void *a2, void *a3, int t0);
 extern void SetOrClearField4Bit2C_29_2D6490(void *a0, int a1);
 extern void InitFields_1B6E90(void *a0);
 extern int D_00429C80;
@@ -20,21 +20,6 @@ void OrChildField98AndSelfFieldB0AC_2CA718(void *a0)
     *(unsigned int *)(p + 0xAC) = *(unsigned int *)(p + 0xAC) | 0x100000;
 }
 
-__attribute__((section(".text.func_002CB968")))
-int func_002CB968(void *a0, int a1, short a2, int a3, int a4, int a5)
-{
-    void *p;
-    p = (void *)func_002CC4B8(a0, a1);
-    if (func_002CFC68(p) == 0)
-        return 0;
-    p = (void *)func_002CBEC0(a0);
-    if ((int)p == 0)
-        return 0;
-    if (a3 == 0)
-        return func_002CDF18(p, (short)a1, a2, (short)a4, (short)a5, 0, 0);
-    return func_002CDE28(p, (short)a1, a2, a3, a4, a5);
-}
-
 __attribute__((section(".text.CopyVec3From110To120_14A2B0")))
 void CopyVec3From110To120_14A2B0(void *a0)
 {
@@ -46,7 +31,7 @@ void CopyVec3From110To120_14A2B0(void *a0)
         return;
 
     s1 = s0 + 0x110;
-    func_00147A48(s0 + 0x80, *(int *)(s0 + 0xF0), s0 + 0x100, s1,
+    MtxInitCoord(s0 + 0x80, *(int *)(s0 + 0xF0), s0 + 0x100, s1,
                   *(unsigned char *)(s0 + 0x140));
 
     dst = (float *)(s0 + 0x120);

@@ -54,7 +54,7 @@ void *FreeObjSlotArrayB_197708(void *a0, void *a1) {
         i--;
     } while (i >= 0);
     if (*(int *)((char *)a0 + 0x604) != 0) {
-        func_001FE148(&D_00574380, *(int *)((char *)a0 + 0x604));
+        cDamageManage_ReleaseDamageGive(&D_00574380, *(int *)((char *)a0 + 0x604));
         *(int *)((char *)a0 + 0x604) = 0;
     }
     return SetField214PtrThenInit_1B6F38(a0, a1);
@@ -94,7 +94,7 @@ __attribute__((section(".text.SetSlotDeadBitB_198A58")))
 void SetSlotDeadBitB_198A58(int a0, unsigned int a1) {
     int *p = (int *)(a0 + a1 * 4 + 0x600);
     if (*p != 0) {
-        SetOrClearBit1OnListField_3C_1FD668(*p, 0);
+        cDamageUnit_SetDamageCollActive(*p, 0);
     }
     {
         unsigned int *base = (unsigned int *)(a0 + 0x9D0);

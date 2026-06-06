@@ -39,21 +39,6 @@ void Set_Fields_1884_1894_2609F8(char *a0, int a1, int a2, int a3, int t0, short
     *(short*)((char*)a0+0x1894) = t1;
 }
 
-__attribute__((section(".text.ClearFields_254_278_00138528_138528")))
-void ClearFields_254_278_00138528_138528(void *a0) {
-    char *p = (char *)a0;
-    *(int *)(p + 0x274) = 0;
-    *(int *)(p + 0x268) = 0;
-    *(int *)(p + 0x270) = 0;
-    *(int *)(p + 0x26C) = 0;
-    *(char *)(p + 0x278) = 0;
-    *(int *)(p + 0x260) = 0;
-    *(int *)(p + 0x254) = 0;
-    *(int *)(p + 0x25C) = 0;
-    *(int *)(p + 0x258) = 0;
-    *(char *)(p + 0x264) = 0;
-}
-
 __attribute__((section(".text.ClearFields_1614D0")))
 void ClearFields_1614D0(char *a0) {
     *(char *)(a0 + 0x58) = 0;

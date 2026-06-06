@@ -83,7 +83,8 @@ python -m pytest tests/test_compile.py tests/test_carver.py
 
 ```
 .
-├── src/                decompiled C — one file per carved address range (src/cod/<addr>.c)
+├── src/                decompiled C — recovered class TUs (src/cod/<family>/<Class>.c)
+│                        + address-bucket files for the rest (src/cod/<addr>.c)
 ├── include/            shared headers (sce/, godhand/, macro/asm helpers)
 ├── asm/                splat-disassembled .s, INCLUDE_ASM'd from src (generated)
 ├── config/             splat configs, ee-ld linker scripts (.lcf), symbol/reloc tables

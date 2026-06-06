@@ -197,8 +197,8 @@ int *GetOrInitSingletonC_13C758(void)
 __attribute__((section(".text.SetupFields10And14_13D3C0")))
 void SetupFields10And14_13D3C0(void *a0)
 {
-    func_002A9EA0(a0, 1, 3);
-    func_002A9EA0((char *)a0 + 0xD0, 1, 0x20);
+    cIDBase_initialize(a0, 1, 3);
+    cIDBase_initialize((char *)a0 + 0xD0, 1, 0x20);
     *(short *)((char *)a0 + 0x92) = 0;
 }
 

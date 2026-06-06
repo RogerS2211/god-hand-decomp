@@ -8,7 +8,7 @@ int func_003137B0(void)
     void *p;
     if (D_00747A34 & 0x100000)
         return 0;
-    p = func_0030EE08(0x15B0, 0x10, D_00754220);
+    p = EnsureInitThenForward_2A9538_30EE08(0x15B0, 0x10, D_00754220);
     if (p == 0)
         return 0;
     func_003A52F0(p, 0, 0x15B0);
@@ -21,7 +21,7 @@ int func_00313820(void)
     void *p;
     if (D_00747A34 & 0x100000)
         return 0;
-    p = func_0030EE08(0x1610, 0x10, D_00754220);
+    p = EnsureInitThenForward_2A9538_30EE08(0x1610, 0x10, D_00754220);
     if (p == 0)
         return 0;
     func_003A52F0(p, 0, 0x1610);
@@ -34,7 +34,7 @@ int func_00313890(void)
     void *p;
     if (D_00747A34 & 0x100000)
         return 0;
-    p = func_0030EE08(0x1600, 0x10, D_00754220);
+    p = EnsureInitThenForward_2A9538_30EE08(0x1600, 0x10, D_00754220);
     if (p == 0)
         return 0;
     func_003A52F0(p, 0, 0x1600);
@@ -45,7 +45,7 @@ __attribute__((section(".text.func_00313900")))
 void *func_00313900(void) {
     void *s0;
     if (!(D_00747A34 & 0x100000)) {
-        s0 = func_0030EE08(0x1660, 0x10, D_00754220);
+        s0 = EnsureInitThenForward_2A9538_30EE08(0x1660, 0x10, D_00754220);
         if (s0 != 0) {
             func_003A52F0(s0, 0, 0x1660);
             return Obj28B0_Setup_Field_214_Field_4AC_28B0F0(s0);
@@ -58,7 +58,7 @@ __attribute__((section(".text.func_00313970")))
 void *func_00313970(void) {
     void *s0;
     if (!(D_00747A34 & 0x100000)) {
-        s0 = func_0030EE08(0x1560, 0x10, D_00754220);
+        s0 = EnsureInitThenForward_2A9538_30EE08(0x1560, 0x10, D_00754220);
         if (s0 != 0) {
             func_003A52F0(s0, 0, 0x1560);
             return Setup_0028E018_28E018(s0);
@@ -71,7 +71,7 @@ __attribute__((section(".text.func_00313A60")))
 void *func_00313A60(void) {
     void *s0;
     if (!(D_00747A34 & 0x10000)) {
-        s0 = func_0030EE08(0x8F0, 0x10, D_00754C10);
+        s0 = EnsureInitThenForward_2A9538_30EE08(0x8F0, 0x10, D_00754C10);
         if (s0 != 0) {
             func_003A52F0(s0, 0, 0x8F0);
             return func_00186738(s0);

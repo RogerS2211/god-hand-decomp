@@ -87,14 +87,6 @@ void func_001ADAE8(void *a0) {
     *(int *)((char *)a0 + 0x608) = 1;
 }
 
-__attribute__((section(".text.func_001B0B08")))
-void func_001B0B08(void *a0) {
-    *(char *)((char *)a0 + 0x2F4) = 1;
-    *(char *)((char *)a0 + 0x2F5) = 0;
-    *(char *)((char *)a0 + 0x2F6) = 0;
-    *(char *)((char *)a0 + 0x2F7) = 0;
-}
-
 __attribute__((section(".text.IsSet_Field_600_1B1620")))
 int IsSet_Field_600_1B1620(void *a0) {
     return *(int *)((char *)a0 + 0x600) != 0;
@@ -105,12 +97,6 @@ void SetEntryParams_1B1928(void *a0, int a1, short a2) {
     *(int *)((char *)a0 + 0x660) = a1;
     *(short *)((char *)a0 + 0x664) = a2;
     *(char *)((char *)a0 + 0x666) = 0;
-}
-
-__attribute__((section(".text.func_001B5180")))
-void func_001B5180(void *a0, int a1, short a2) {
-    *(int *)((char *)a0 + 0x604) = a1;
-    *(short *)((char *)a0 + 0x608) = a2;
 }
 
 __attribute__((section(".text.IsSet_Field_5B0_Bit3_1B79D0")))

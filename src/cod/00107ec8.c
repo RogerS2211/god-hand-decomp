@@ -4,7 +4,7 @@ extern int D_0041D220[];
 extern int D_00462FC0[];
 extern void func_001347E8(void *a0, void *a1);
 extern void func_001002C0(void *a0, void *a1);
-extern void func_001351D8(void *a0, void *a1, int a2);
+extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
 extern float SetField444SignedByFlag434_158288(void *a0, float f);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 
@@ -44,7 +44,7 @@ void UpdateBossPhase_10B780(void *a0) {
     int st;
     int base;
     *(float*)((char*)a0 + 0x54C) = 5.0f;
-    func_001351D8(D_00462FC0, a0, 0);
+    Forward_001346C8_00134608_1351D8(D_00462FC0, a0, 0);
     *(int*)((char*)a0 + 0x15F4) = *(int*)((char*)a0 + 0x15F4) | 0x2000;
     *(float*)((char*)a0 + 0x5A8) = 1.0f;
     SetField444SignedByFlag434_158288(a0, 1.0f);

@@ -104,7 +104,7 @@ void FreeMultiResource_193FD8(void *a0, int a1) {
     }
     v5 = *(int *)((char *)a0 + 0x608);
     if (v5 != 0) {
-        func_001FE148(&D_00574380, v5);
+        cDamageManage_ReleaseDamageGive(&D_00574380, v5);
         *(int *)((char *)a0 + 0x608) = 0;
     }
     v5 = *(int *)((char *)a0 + 0x614);

@@ -3,7 +3,7 @@
 extern char *PTR_DAT_003c2f84;
 extern char *PTR_DAT_003c23a4;
 extern void func_002C4150(char *a0, int a1, int a2, int a3, int t0, int t1);
-extern void ExitDeleteThreadAndSignalSema_2D5A48(int a0);
+extern void cTaskWork_exit(int a0);
 extern void func_002C1D68(int a0, int a1, int a2);
 extern void func_002C0E78(int a0, int a1);
 extern void func_002D56A8(void *a0);
@@ -31,7 +31,7 @@ void func_002C2368(char *a0) {
         v1 = func_002AEB50(PTR_DAT_003c23a4, *(unsigned short*)(a0 + 0x5C), v1);
     }
     func_002C4150(PTR_DAT_003c2f84, v1, *(int*)(s1 + 0xC), 0, 0, 1);
-    ExitDeleteThreadAndSignalSema_2D5A48(*(int*)(PTR_DAT_003c2f84 + 0x20));
+    cTaskWork_exit(*(int*)(PTR_DAT_003c2f84 + 0x20));
 }
 
 __attribute__((section(".text.FindNodeByHit_2C2490")))
@@ -93,41 +93,13 @@ int FindEntityAtPosition_2C2638(int a0, int a1, int a2, float *a3) {
     return 0;
 }
 
-__attribute__((section(".text.ClearEntityIfActive_2C28F8")))
-int ClearEntityIfActive_2C28F8(int *a0, int a1) {
-    if (*a0 == 0) return 0;
-    if (a1 == 0) return 0;
-    if (func_002C0E68(a1) != 0) return 1;
-    func_002C0DE8(a1, 0);
-    return 1;
-}
-
-__attribute__((section(".text.ClearEntityById_2C2950")))
-int ClearEntityById_2C2950(int *a0, unsigned short a1) {
-    int v0;
-    if (*a0 == 0) return 0;
-    v0 = FindEntityByShortId_2C3118((int)a0, a1);
-    if (v0 == 0) return 0;
-    return ClearEntityIfActive_2C28F8((int)a0, v0);
-}
-
-__attribute__((section(".text.ResetEntityActiveState_2C29A0")))
-int ResetEntityActiveState_2C29A0(int *a0, int a1) {
-    if (*a0 == 0) return 0;
-    if (a1 == 0) return 0;
-    if (func_002C0E68(a1) != 0) {
-        func_002C0E28(a1, 0);
-    }
-    return 1;
-}
-
 __attribute__((section(".text.ResetEntityStateById_2C29F8")))
 int ResetEntityStateById_2C29F8(int a0, int a1) {
     int r;
     if (*(int*)a0 == 0) return 0;
-    r = FindEntityByShortId_2C3118(a0, a1 & 0xFFFF);
+    r = cSceAtManager_getUnit(a0, a1 & 0xFFFF);
     if (r == 0) return 0;
-    return ResetEntityActiveState_2C29A0(a0, r);
+    return cSceAtManager_SetDisable(a0, r);
 }
 
 __attribute__((section(".text.FindEntityByTypeIndex_2C2AE0")))
@@ -138,17 +110,6 @@ int FindEntityByTypeIndex_2C2AE0(int a0, int a1) {
         if (*(unsigned char*)((char*)e + 0x35) == 1) {
             if (*(unsigned char*)((char*)e + 0x79) == a1) return e;
         }
-    }
-    return 0;
-}
-
-__attribute__((section(".text.FindEntityByShortId_2C3118")))
-int FindEntityByShortId_2C3118(int a0, int a1) {
-    int e;
-    if (a1 == 0xFFFFF) return 0;
-    e = func_002C30C0(a0);
-    while ((e = func_002C30C8(a0, e)) != 0) {
-        if (*(unsigned short*)((char*)e + 0x36) == a1) return e;
     }
     return 0;
 }
