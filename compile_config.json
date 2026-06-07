@@ -910,6 +910,10 @@
     {
       "path": "src/cod/system/cCoreSave.c",
       "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/enemy/cEmWrap.c",
+      "compiler": "sn-2.95.3-136"
     }
   ],
   "_carved_funcs_doc": [
@@ -10505,11 +10509,11 @@
       "tu": "src/cod/001398d0.c"
     },
     {
-      "name": "func_00295CA8",
+      "name": "cEmWrap_isDead",
       "unit": "asm/cod/000000",
       "vaddr": "0x00295CA8",
       "size": 60,
-      "tu": "src/cod/001398d0.c"
+      "tu": "src/cod/enemy/cEmWrap.c"
     },
     {
       "name": "func_002A71B0",
@@ -12801,25 +12805,25 @@
       "tu": "src/cod/00171020.c"
     },
     {
-      "name": "func_002959B0",
+      "name": "cEmWrap_setPos_2959B0",
       "unit": "asm/cod/000000",
       "vaddr": "0x002959B0",
       "size": 88,
-      "tu": "src/cod/00171020.c"
+      "tu": "src/cod/enemy/cEmWrap.c"
     },
     {
-      "name": "func_00295A08",
+      "name": "cEmWrap_setPos_295A08",
       "unit": "asm/cod/000000",
       "vaddr": "0x00295A08",
       "size": 156,
-      "tu": "src/cod/00171020.c"
+      "tu": "src/cod/enemy/cEmWrap.c"
     },
     {
-      "name": "GetActorFieldPtr_295AF8",
+      "name": "cEmWrap_getRot",
       "unit": "asm/cod/000000",
       "vaddr": "0x00295AF8",
       "size": 60,
-      "tu": "src/cod/00171020.c"
+      "tu": "src/cod/enemy/cEmWrap.c"
     },
     {
       "name": "UpdateSlotCurValues_295860",
@@ -12829,11 +12833,11 @@
       "tu": "src/cod/00171020.c"
     },
     {
-      "name": "func_00295B38",
+      "name": "cEmWrap_release",
       "unit": "asm/cod/000000",
       "vaddr": "0x00295B38",
       "size": 72,
-      "tu": "src/cod/00171020.c"
+      "tu": "src/cod/enemy/cEmWrap.c"
     },
     {
       "name": "SetVia4_Float_54C_295B80",
@@ -12843,32 +12847,32 @@
       "tu": "src/cod/00171020.c"
     },
     {
-      "name": "func_00295BC0",
+      "name": "cEmWrap_setSuspend",
       "unit": "asm/cod/000000",
       "vaddr": "0x00295BC0",
       "size": 80,
-      "tu": "src/cod/00171020.c"
+      "tu": "src/cod/enemy/cEmWrap.c"
     },
     {
-      "name": "func_00295C10",
+      "name": "cEmWrap_setLockOff",
       "unit": "asm/cod/000000",
       "vaddr": "0x00295C10",
       "size": 92,
-      "tu": "src/cod/00295c10.c"
+      "tu": "src/cod/enemy/cEmWrap.c"
     },
     {
-      "name": "func_00295C70",
+      "name": "cEmWrap_setDead",
       "unit": "asm/cod/000000",
       "vaddr": "0x00295C70",
       "size": 52,
-      "tu": "src/cod/00295c10.c"
+      "tu": "src/cod/enemy/cEmWrap.c"
     },
     {
-      "name": "func_00295CE8",
+      "name": "cEmWrap_StartAction",
       "unit": "asm/cod/000000",
       "vaddr": "0x00295CE8",
       "size": 68,
-      "tu": "src/cod/00295c10.c"
+      "tu": "src/cod/enemy/cEmWrap.c"
     },
     {
       "name": "SetActorMaxValue_295D88",
@@ -12878,32 +12882,32 @@
       "tu": "src/cod/00295c10.c"
     },
     {
-      "name": "func_00295E38",
+      "name": "cEmWrap_setDropItem",
       "unit": "asm/cod/000000",
       "vaddr": "0x00295E38",
       "size": 64,
-      "tu": "src/cod/00295c10.c"
+      "tu": "src/cod/enemy/cEmWrap.c"
     },
     {
-      "name": "func_00295DC8",
+      "name": "cEmWrap_GetVital",
       "unit": "asm/cod/000000",
       "vaddr": "0x00295DC8",
       "size": 52,
-      "tu": "src/cod/00295c10.c"
+      "tu": "src/cod/enemy/cEmWrap.c"
     },
     {
-      "name": "func_00295E00",
+      "name": "cEmWrap_GetVitalMax",
       "unit": "asm/cod/000000",
       "vaddr": "0x00295E00",
       "size": 52,
-      "tu": "src/cod/00295c10.c"
+      "tu": "src/cod/enemy/cEmWrap.c"
     },
     {
-      "name": "func_00295E78",
+      "name": "cEmWrap_setScrCollEnable",
       "unit": "asm/cod/000000",
       "vaddr": "0x00295E78",
       "size": 100,
-      "tu": "src/cod/00295c10.c"
+      "tu": "src/cod/enemy/cEmWrap.c"
     },
     {
       "name": "func_0019FD50",
@@ -13718,11 +13722,11 @@
       "tu": "src/cod/00295d30.c"
     },
     {
-      "name": "func_00295F28",
+      "name": "cEmWrap_CkActive",
       "unit": "asm/cod/000000",
       "vaddr": "0x00295F28",
       "size": 84,
-      "tu": "src/cod/00295d30.c"
+      "tu": "src/cod/enemy/cEmWrap.c"
     },
     {
       "name": "func_00295F80",
@@ -13732,18 +13736,18 @@
       "tu": "src/cod/00295d30.c"
     },
     {
-      "name": "func_00296018",
+      "name": "cEmWrap_ckGoto",
       "unit": "asm/cod/000000",
       "vaddr": "0x00296018",
       "size": 84,
-      "tu": "src/cod/00295d30.c"
+      "tu": "src/cod/enemy/cEmWrap.c"
     },
     {
-      "name": "ForwardE7A8Call_296070",
+      "name": "cEmWrap_SetKeepPos",
       "unit": "asm/cod/000000",
       "vaddr": "0x00296070",
       "size": 92,
-      "tu": "src/cod/00295d30.c"
+      "tu": "src/cod/enemy/cEmWrap.c"
     },
     {
       "name": "ResetObjectState_2962B0",
@@ -13753,18 +13757,18 @@
       "tu": "src/cod/00295d30.c"
     },
     {
-      "name": "ForwardE7A0Call_2960D0",
+      "name": "cEmWrap_SetKeepLength",
       "unit": "asm/cod/000000",
       "vaddr": "0x002960D0",
       "size": 92,
-      "tu": "src/cod/002960d0.c"
+      "tu": "src/cod/enemy/cEmWrap.c"
     },
     {
-      "name": "func_00296130",
+      "name": "cEmWrap_clearNoMove",
       "unit": "asm/cod/000000",
       "vaddr": "0x00296130",
       "size": 80,
-      "tu": "src/cod/002960d0.c"
+      "tu": "src/cod/enemy/cEmWrap.c"
     },
     {
       "name": "func_00296180",
@@ -13774,11 +13778,11 @@
       "tu": "src/cod/002960d0.c"
     },
     {
-      "name": "func_002961D0",
+      "name": "cEmWrap_SetEscPos",
       "unit": "asm/cod/000000",
       "vaddr": "0x002961D0",
       "size": 92,
-      "tu": "src/cod/002960d0.c"
+      "tu": "src/cod/enemy/cEmWrap.c"
     },
     {
       "name": "SetTimerByFlag_296230",

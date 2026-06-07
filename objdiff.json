@@ -12313,6 +12313,18 @@
       }
     },
     {
+      "name": "src/cod/enemy/cEmWrap",
+      "target_path": "expected/build/src/cod/enemy/cEmWrap.o",
+      "base_path": "build/src/cod/enemy/cEmWrap.o",
+      "metadata": {
+        "auto_generated": true,
+        "complete": true,
+        "progress_categories": [
+          "engine"
+        ]
+      }
+    },
+    {
       "name": "asm/cod/000000.part957",
       "target_path": "expected/build/asm/cod/000000.part957.o",
       "base_path": "build/asm/cod/000000.part957.o",
@@ -12402,18 +12414,6 @@
       }
     },
     {
-      "name": "src/cod/00295c10",
-      "target_path": "expected/build/src/cod/00295c10.o",
-      "base_path": "build/src/cod/00295c10.o",
-      "metadata": {
-        "auto_generated": true,
-        "complete": true,
-        "progress_categories": [
-          "engine"
-        ]
-      }
-    },
-    {
       "name": "asm/cod/000000.part964",
       "target_path": "expected/build/asm/cod/000000.part964.o",
       "base_path": "build/asm/cod/000000.part964.o",
@@ -12475,6 +12475,18 @@
       "base_path": "build/asm/cod/000000.part968.o",
       "metadata": {
         "auto_generated": true,
+        "progress_categories": [
+          "engine"
+        ]
+      }
+    },
+    {
+      "name": "src/cod/00295c10",
+      "target_path": "expected/build/src/cod/00295c10.o",
+      "base_path": "build/src/cod/00295c10.o",
+      "metadata": {
+        "auto_generated": true,
+        "complete": true,
         "progress_categories": [
           "engine"
         ]
@@ -12591,18 +12603,6 @@
       }
     },
     {
-      "name": "src/cod/002960d0",
-      "target_path": "expected/build/src/cod/002960d0.o",
-      "base_path": "build/src/cod/002960d0.o",
-      "metadata": {
-        "auto_generated": true,
-        "complete": true,
-        "progress_categories": [
-          "engine"
-        ]
-      }
-    },
-    {
       "name": "asm/cod/000000.part979",
       "target_path": "expected/build/asm/cod/000000.part979.o",
       "base_path": "build/asm/cod/000000.part979.o",
@@ -12619,6 +12619,18 @@
       "base_path": "build/asm/cod/000000.part980.o",
       "metadata": {
         "auto_generated": true,
+        "progress_categories": [
+          "engine"
+        ]
+      }
+    },
+    {
+      "name": "src/cod/002960d0",
+      "target_path": "expected/build/src/cod/002960d0.o",
+      "base_path": "build/src/cod/002960d0.o",
+      "metadata": {
+        "auto_generated": true,
+        "complete": true,
         "progress_categories": [
           "engine"
         ]

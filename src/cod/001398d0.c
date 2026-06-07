@@ -93,15 +93,6 @@ int Tramp_003B4AD8_1F6E98(int a0, int a1)
     return a1;
 }
 
-__attribute__((section(".text.func_00295CA8")))
-int func_00295CA8(int a0)
-{
-    if (FindResolveActor_295978(a0) == 0) {
-        return 1;
-    }
-    return func_0028FB38(*(int *)(a0 + 4));
-}
-
 __attribute__((section(".text.func_002A71B0")))
 void func_002A71B0(void)
 {
