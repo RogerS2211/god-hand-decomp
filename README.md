@@ -172,10 +172,13 @@ permanent-classification axis — the subset of identified library functions
 carried as `INCLUDE_ASM` and treated as non-gating for decomp progress (they are
 not the engine code the decomp targets).
 
-Populating objdiff's per-**unit** category bars from this map would require the
-per-function units to exist first (the monolithic `.text` is carved into units
-by matched function, not by subsystem); until then the panel and these maps are
-the source of truth for the breakdown above.
+objdiff's per-**unit** category bars are populated for the library functions that
+are carved as standalone units — most of the identified set — so the
+`cri-middleware` / `sce-runtime` / `crt` bars render on the tracker and decomp.dev.
+The remainder (functions matched as C, plus a contiguous high-address
+`libstdc++` iostream region not yet split out) still fall under `engine`; the table
+above (from `function_categories.json`) remains the source of truth for the full
+identified set until a per-symbol carve pass splits the rest into their own units.
 
 ## Contributing
 

@@ -1394,6 +1394,39 @@ def _tu_is_complete(name: str) -> bool:
     return False
 
 
+def _load_category_map(path: Path) -> dict[int, str]:
+    """Reverse ``progress/function_categories.json`` into {vaddr:int -> category}.
+
+    Addresses are upper-hex strings like "0X0017F5D0"; only the library
+    subcategories (cri-middleware / sce-runtime / crt) are listed there, so a
+    vaddr not in the map is engine.
+    """
+    if not path.exists():
+        return {}
+    data = json.loads(path.read_text())
+    out: dict[int, str] = {}
+    for category, addrs in data.get("categories", {}).items():
+        for a in addrs:
+            out[int(a, 16)] = category
+    return out
+
+
+def _unit_categories(name: str, lib_categories: dict[str, str]) -> list[str]:
+    """Map an objdiff unit name to its progress category.
+
+    Library / middleware / CRT functions are carved into standalone
+    ``asm/nonmatching/<func>`` units; *lib_categories* maps such a func name to
+    its subcategory. Every other unit (fragments, decomp TUs, data, RELs) is
+    ``engine``.
+    """
+    if name.startswith("asm/nonmatching/"):
+        func = name.rsplit("/", 1)[-1]
+        cat = lib_categories.get(func)
+        if cat:
+            return [cat]
+    return ["engine"]
+
+
 def _objdiff_units(cfg: Config, carve: Optional[CarveState] = None) -> list[dict]:
     """Build the per-unit list for ``objdiff.json`` from splat's linker entries.
 
@@ -1418,6 +1451,12 @@ def _objdiff_units(cfg: Config, carve: Optional[CarveState] = None) -> list[dict
     base_root = Path(objdiff_cfg["base_dir"])      # repo-relative
     build_root = Path(cfg.raw["build_dir"])        # repo-relative
     units: list[dict] = []
+    cat_map = _load_category_map(ROOT / "progress" / "function_categories.json")
+    lib_categories = {
+        e.name: cat_map[e.vaddr]
+        for e in (carve.entries if carve else [])
+        if e.vaddr in cat_map
+    }
     for obj in _ld_script_objects(cfg, carve):
         rel = obj.relative_to(ROOT / build_root)
         name = str(rel.with_suffix("")).replace(os.sep, "/")
@@ -1428,6 +1467,7 @@ def _objdiff_units(cfg: Config, carve: Optional[CarveState] = None) -> list[dict
         # ``is_complete_tu``; keep the two in sync.
         if _tu_is_complete(name):
             metadata["complete"] = True
+        metadata["progress_categories"] = _unit_categories(name, lib_categories)
         units.append(
             {
                 "name": name,
@@ -1449,14 +1489,16 @@ def _objdiff_units(cfg: Config, carve: Optional[CarveState] = None) -> list[dict
             # ``rel/<name>/asm/rel/<name>/<src>`` suffix so target/base
             # mirror cleanly.
             obj_rel = obj.relative_to(ROOT / build_root)
+            rel_name = str(obj_rel.with_suffix("")).replace(os.sep, "/")
             units.append(
                 {
-                    "name": str(obj_rel.with_suffix("")).replace(os.sep, "/"),
+                    "name": rel_name,
                     "target_path": (target_root / obj_rel).as_posix(),
                     "base_path": (base_root / obj_rel).as_posix(),
                     "metadata": {
                         "auto_generated": True,
                         "rel": rel_desc.name,
+                        "progress_categories": _unit_categories(rel_name, lib_categories),
                     },
                 }
             )
