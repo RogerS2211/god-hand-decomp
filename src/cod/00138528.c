@@ -133,18 +133,6 @@ void AddClamped_Byte_8A_1FBD28(unsigned char **a0, int a1) {
     }
 }
 
-__attribute__((section(".text.SetPrevAndCurByte_1FC0D8")))
-void SetPrevAndCurByte_1FC0D8(unsigned char **a0, unsigned int a1) {
-    unsigned char *p;
-    p = a0[0];
-    a1 = a1 & 0xFF;
-    if (p == 0) {
-        return;
-    }
-    p[0xAF] = p[0xAE];
-    a0[0][0xAE] = (unsigned char)a1;
-}
-
 __attribute__((section(".text.Forward322BD8_322AD0")))
 int Forward322BD8_322AD0(int a0, int a1, int a2, int a3) {
     return func_00322BD8(a0, a1, a2, a3, ((unsigned int)&D_003C532F) & -0x40, 0x800);

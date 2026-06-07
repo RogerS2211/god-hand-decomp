@@ -22,7 +22,7 @@ void func_002982A0(int a0)
 
     if (s1 != 0) {
         s0 = *(unsigned short *)((char *)s1 + 0x2FE);
-        v1 = Obj0000_Get_Byte_AE_Via_Ptr_1FC0A8(D_00569B70);
+        v1 = cCoreSave_getCostumeNo(D_00569B70);
         if (s0 == 0x603) {
             if ((unsigned int)((v1 - 4) & 0xFF) < 2) {
                 *(int *)((char *)s1 + 0x250) = *(int *)((char *)s1 + 0x250) | 2;

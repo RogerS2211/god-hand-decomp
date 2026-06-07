@@ -2388,22 +2388,6 @@ int Obj0000_Get_Field_24_Via_Ptr0_1FA858(int *a0)
     return *(int*)(p + 0x24);
 }
 
-__attribute__((section(".text.Obj0000_Get_Field_68_Via_Ptr_1FA950")))
-int Obj0000_Get_Field_68_Via_Ptr_1FA950(int *a0)
-{
-    int p = *a0;
-    if (p == 0) return 0;
-    return *(int*)(p + 0x68);
-}
-
-__attribute__((section(".text.Obj0000_Get_Field_6C_Via_Ptr_1FAA00")))
-int Obj0000_Get_Field_6C_Via_Ptr_1FAA00(int *a0)
-{
-    int p = *a0;
-    if (p == 0) return 0;
-    return *(int*)(p + 0x6C);
-}
-
 __attribute__((section(".text.Obj0000_Get_Byte_A8_Via_Ptr0_1FAC58")))
 unsigned char Obj0000_Get_Byte_A8_Via_Ptr0_1FAC58(int *a0)
 {
@@ -2441,14 +2425,6 @@ void Obj0000_Add_Byte_156_If_Ptr0_NonNull_1FAE40(int *a0, unsigned char a1)
     if (p != 0) *(unsigned char*)(p + 0x156) = a1 + *(unsigned char*)(p + 0x156);
 }
 
-__attribute__((section(".text.Obj0000_Get_Short_96_Via_Ptr_1FBED0")))
-short Obj0000_Get_Short_96_Via_Ptr_1FBED0(int *a0)
-{
-    int p = *a0;
-    if (p == 0) return 0;
-    return *(short*)(p + 0x96);
-}
-
 __attribute__((section(".text.Obj0000_Get_Short_12_Via_Ptr_1FBF48")))
 unsigned short Obj0000_Get_Short_12_Via_Ptr_1FBF48(int *a0)
 {
@@ -2464,14 +2440,6 @@ void Obj0000_Set_Short_12_If_Ptr_NonNull_1FBF78(int a0, unsigned short a1)
     if (p) {
         *(short*)(p + 0x12) = a1;
     }
-}
-
-__attribute__((section(".text.Obj0000_Get_Byte_AE_Via_Ptr_1FC0A8")))
-unsigned char Obj0000_Get_Byte_AE_Via_Ptr_1FC0A8(int a0)
-{
-    int p = *(int*)a0;
-    if (!p) return 0;
-    return *(unsigned char*)(p + 0xAE);
 }
 
 __attribute__((section(".text.Obj0000_Get_Byte_AF_1FC0C0")))
@@ -2499,16 +2467,6 @@ void Obj0000_Set_Byte_157_If_Ptr_NonNull_1FC120(int a0)
     if (p) {
         *(unsigned char*)(p + 0x157) = 1;
     }
-}
-
-__attribute__((section(".text.Obj0000_Get_Byte_157_Via_Ptr_Field_0_1FC150")))
-int Obj0000_Get_Byte_157_Via_Ptr_Field_0_1FC150(int a0)
-{
-    int p = *(int*)a0;
-    if (p) {
-        return *(unsigned char*)(p + 0x157) != 0;
-    }
-    return 0;
 }
 
 __attribute__((section(".text.Obj0000_Get_Field_B94_Via_Ptr0_1FC3D0")))
@@ -2541,15 +2499,6 @@ unsigned short Obj0000_Get_Short_BB8_Via_Ptr_1FC600(int a0)
     int p = *(int*)a0;
     if (!p) return 0;
     return *(unsigned short*)(p + 0xBB8);
-}
-
-__attribute__((section(".text.Obj0000_Increment_Field_BBC_Via_Ptr_1FC630")))
-void Obj0000_Increment_Field_BBC_Via_Ptr_1FC630(int a0, int a1)
-{
-    int p = *(int*)a0;
-    if (p) {
-        *(int*)(p + 0xBBC) = *(int*)(p + 0xBBC) + a1;
-    }
 }
 
 __attribute__((section(".text.Obj0000_Clear_Short_BBA_Bit0_1FC6C8")))

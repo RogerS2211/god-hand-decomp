@@ -9198,11 +9198,12 @@
       }
     },
     {
-      "name": "src/cod/001fa010",
-      "target_path": "expected/build/src/cod/001fa010.o",
-      "base_path": "build/src/cod/001fa010.o",
+      "name": "src/cod/system/cCoreSave",
+      "target_path": "expected/build/src/cod/system/cCoreSave.o",
+      "base_path": "build/src/cod/system/cCoreSave.o",
       "metadata": {
         "auto_generated": true,
+        "complete": true,
         "progress_categories": [
           "engine"
         ]

@@ -108,8 +108,8 @@ int Forward335A18_324C78(int a0) { return func_00335A18(a0); }
 __attribute__((section(".text.Forward324D88_324E70")))
 int Forward324D88_324E70(void) { return func_00324D88(D_003C814C, D_003C80C8); }
 
-__attribute__((section(".text.func_003252E0")))
-int func_003252E0(void) { return SleepThread(); }
+__attribute__((section(".text.SleepThread_3252E0")))
+int SleepThread_3252E0(void) { return SleepThread(); }
 
 __attribute__((section(".text.Forward33B658_325C60")))
 int Forward33B658_325C60(int a0) { return Forward33B568_33B658(a0); }
@@ -126,7 +126,7 @@ int Forward33F690_325DD8(int a0) { return func_0033F690(a0); }
 __attribute__((section(".text.SetFlagAndForward_325EF8")))
 int SetFlagAndForward_325EF8(void) {
   D_003C80FC = 1;
-  return func_003252E0();
+  return SleepThread_3252E0();
 }
 
 __attribute__((section(".text.GetVia4_Obj33C8_GetShort_24_327800")))

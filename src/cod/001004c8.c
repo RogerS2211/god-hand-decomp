@@ -338,16 +338,6 @@ void UpdateActiveFlag_1F9E00(int **a0) {
 
 struct S001FA690 { char pad[0x10]; unsigned short f10; };
 struct W001FA690 { struct S001FA690 *p; };
-__attribute__((section(".text.Set_p_Field_10_Clamp63_1FA690")))
-void Set_p_Field_10_Clamp63_1FA690(struct W001FA690 *a0, unsigned short a1) {
-    if (a0->p != 0) {
-        a0->p->f10 = a1;
-        if (a0->p->f10 >= 0x64) {
-            a0->p->f10 = 0x63;
-        }
-    }
-}
-
 struct S001FA710 { char pad[0x20]; int f20; };
 __attribute__((section(".text.GetTimerValue_1FA710")))
 int GetTimerValue_1FA710(struct S001FA710 **a0) {
@@ -395,45 +385,6 @@ int func_001FAEA0(int **a0) {
     return *((unsigned char *)*a0 + 0x155);
 }
 
-__attribute__((section(".text.func_001FAEE0")))
-int func_001FAEE0(int **a0) {
-    int *p = *a0;
-    if (p == 0) {
-        return 0;
-    }
-    if (D_00747A38 & 0x8000000) {
-        *((unsigned char *)p + 0x156) = 6;
-    }
-    return *((unsigned char *)*a0 + 0x156);
-}
-
-__attribute__((section(".text.SetByte_B0_1FAF20")))
-void SetByte_B0_1FAF20(int **a0, int a1, int a2)
-{
-    char v = (char)a2;
-    if (*a0) {
-        if (a1 < 0x80) {
-            if (a1 < 0x72) {
-                *(char *)((char *)*a0 + a1 + 0xB0) = v;
-            }
-        }
-    }
-}
-
-__attribute__((section(".text.GetByte_B0_1FAF58")))
-int GetByte_B0_1FAF58(char **a0, int a1)
-{
-    char *p;
-    p = *a0;
-    if (p == 0 || a1 >= 0x80 || a1 >= 0x72) {
-        return -1;
-    }
-    if (D_00747A34 & 0x800000) {
-        return 0;
-    }
-    return *(char *)(p + a1 + 0xB0);
-}
-
 __attribute__((section(".text.InitSlotTable_1FAFA8")))
 void InitSlotTable_1FAFA8(int **a0)
 {
@@ -475,29 +426,6 @@ void ClearField46Array_1FBDD0(int **a0) {
             i++;
             p[0x46] = 0;
         } while (i < 5);
-    }
-}
-
-__attribute__((section(".text.GetField46Entry_1FBE08")))
-short GetField46Entry_1FBE08(int **a0, int a1) {
-    short *p = (short *)*a0;
-    short *q;
-    if (p == 0) return 0;
-    if (--a1 < 0) return 0;
-    if (a1 >= 5) return 0;
-    q = p + a1;
-    return q[0x46];
-}
-
-__attribute__((section(".text.AddHitCounters_1FBEE8")))
-void AddHitCounters_1FBEE8(int **a0) {
-    int *p;
-    int *q;
-    p = *a0;
-    if (p) {
-        *(unsigned short *)((char *)p + 0x96) += 1;
-        q = *a0;
-        *(unsigned short *)((char *)q + 0xBB6) += 1;
     }
 }
 
