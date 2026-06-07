@@ -2,7 +2,7 @@
 
 extern int D_00463050;
 extern void func_0013B9B8(void *a0);
-extern void func_00138D40(void *a0, int a1);
+extern void cCamManager_setPlCamera(void *a0, int a1);
 extern void func_0030F518(void);
 extern void func_00150710(float a, float b, float c);
 
@@ -20,7 +20,7 @@ void ClearField15F4Bit1_124F60(void *a0, int a1, int a2) {
     if (s0 != 0) {
         func_0013B9B8(s0);
     }
-    func_00138D40(s0, 0);
+    cCamManager_setPlCamera(s0, 0);
 }
 
 __attribute__((section(".text.fRand0_1")))

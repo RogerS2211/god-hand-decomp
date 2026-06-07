@@ -74,7 +74,7 @@ int func_001FFD00(int a0, int a1, int a2) {
 
 __attribute__((section(".text.SetColorRgba_1FFE60")))
 void SetColorRgba_1FFE60(int a0, int a1, int a2, int a3, int t0) {
-    if (func_002004C8(a0, a1 & 0xFF, a2 & 0xFF, a3 & 0xFF, 0, t0 & 0xFF) == 1)
+    if (cDoor_getJumpData(a0, a1 & 0xFF, a2 & 0xFF, a3 & 0xFF, 0, t0 & 0xFF) == 1)
         func_001FFF80(a0);
 }
 

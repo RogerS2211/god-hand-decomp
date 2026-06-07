@@ -2,7 +2,7 @@
 
 extern char D_0041DCC8[];
 extern void ForwardFieldNeg20_002A9680_30F5A0(void);
-extern void func_002AAC28(void *);
+extern void cIDBase_trans(void *);
 
 __attribute__((section(".text.SetLinkedObjFlags_1471A8")))
 void SetLinkedObjFlags_1471A8(int a0, unsigned short a1) {
@@ -49,9 +49,9 @@ void func_00146E20(char *a0) {
     if (v1 == 0) return;
     if (v1 == 6) return;
     if (*(unsigned short *)(a0 + 0xF8) == 0) {
-        func_002AAC28(a0);
+        cIDBase_trans(a0);
     } else {
-        func_002AAC28(a0 + 0xA0);
+        cIDBase_trans(a0 + 0xA0);
     }
 }
 

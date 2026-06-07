@@ -3,7 +3,7 @@
 extern int D_0041DCC8[];
 extern void ForwardFieldNeg20_002A9680_30F5A0(void);
 extern int D_004615F0[];
-extern void func_0012C418(void);
+extern void pl00_reset(void);
 
 __attribute__((section(".text.func_00144AD0")))
 void func_00144AD0(void *a0, int a1) {

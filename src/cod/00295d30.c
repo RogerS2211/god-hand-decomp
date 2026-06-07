@@ -1,7 +1,7 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
 extern unsigned char D_0044A870[];
-extern void func_0026E988(void*, int, int, int, float);
+extern void cEm00_setGoto(void*, int, int, int, float);
 extern void func_0026E7A8(int a0, int a1);
 extern void func_00297660(void *a0);
 extern int D_00569B70;
@@ -31,7 +31,7 @@ void func_00295F80(void *a0,int a1,int a2,int a3,float f){
   char *p=*(char**)((char*)a0+4);
   if(*(short*)(p+0x54A)>0){
    if(func_003A5678(D_0044A870,*(int*)(p+0x4AC))==0){
-    func_0026E988(*(void**)((char*)a0+4),a1,a2,a3,f);
+    cEm00_setGoto(*(void**)((char*)a0+4),a1,a2,a3,f);
    }
   }
  }

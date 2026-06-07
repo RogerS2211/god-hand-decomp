@@ -13,7 +13,7 @@ __attribute__((section(".text.func_0013C168")))
 void func_0013C168(int *a0) {
     unsigned char x = *(unsigned char *)((char *)a0 + 0x94);
     if (((x ^ 1) & 1) == 0) {
-        func_002AAC28();
+        cIDBase_trans();
     }
 }
 

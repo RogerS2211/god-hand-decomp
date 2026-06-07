@@ -32,9 +32,9 @@ void func_0013DAE0(void *a0)
 		return;
 	}
 	if ((D_00569B70[5] & 0x04000000) != 0) {
-		func_002AAC28((char *)a0 + 0xD0);
+		cIDBase_trans((char *)a0 + 0xD0);
 	}
-	func_002AAC28(a0);
+	cIDBase_trans(a0);
 }
 
 __attribute__((section(".text.SetStateEntry0x258_16F438")))

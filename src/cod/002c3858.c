@@ -6,17 +6,17 @@ extern void func_002D56A8(void *a0);
 extern void SetFieldsCESignalSemaSleep_2D5AA0(int a0, int a1);
 extern unsigned int D_00747A78;
 extern char D_00463050[];
-extern void func_00138DB8(void *a0, int a1);
+extern void cCamManager_setMotCamera(void *a0, int a1);
 extern void func_001390B8(void *a0, int a1, int a2, int a3, float f12, int t0, int t1);
 extern void func_00138600(void *a0);
 extern void func_0013B9B8(void *a0, int a1);
-extern void func_00138D40(void *a0, int a1);
+extern void cCamManager_setPlCamera(void *a0, int a1);
 extern void ClearField15F4Bit1_124F60(int a0, int a1, int a2);
 extern int *PTR_DAT_003c2f84;
 extern int PTR_DAT_003c23a4;
 extern void ClearSoundSlot_2C4390(char *a0);
 extern void cMessage_deleteMessNo(int a0, int a1);
-extern void func_0031C7E0(void *p, float w);
+extern void setPlayerPos(void *p, float w);
 
 __attribute__((section(".text.func_002C3858")))
 void func_002C3858(void *a0) {
@@ -33,7 +33,7 @@ int LoadScreenOverlay_2C3F10(void *a0, int a1) {
     }
     D_00747A78 = D_00747A78 | 0x200000;
     s0 = D_00463050;
-    func_00138DB8(s0, 0);
+    cCamManager_setMotCamera(s0, 0);
     s0 = D_00463050 + 0x530;
     func_001390B8(s0, a1, 0, 0, 0.0f, 0, 0);
     *(float *)(s0 + 0x3A8) = 0.0f;
@@ -50,7 +50,7 @@ void func_002C3FC0(void *a0) {
     if (s0) {
         func_0013B9B8(s0, 0);
     }
-    func_00138D40(s0, 0);
+    cCamManager_setPlCamera(s0, 0);
     ClearField15F4Bit1_124F60(Obj0000_Get_D_00747A94_2DB6B0(), 0, 1);
     *(char *)((char *)a0 + 0x111) = 0;
 }
@@ -118,7 +118,7 @@ void SetObjectTransform_2C4440(int a0, char *a1, float p0, float p1, float p2, f
         }
     } else {
         s1.a = p0; s1.b = p1; s1.c = p2; s1.d = 1.0f;
-        func_0031C7E0(&s1, p3);
+        setPlayerPos(&s1, p3);
     }
 }
 

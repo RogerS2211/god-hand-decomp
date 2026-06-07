@@ -1,6 +1,6 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
-extern void func_002AAC28(void *);
+extern void cIDBase_trans(void *);
 extern char D_0041DCC8[];
 extern void ForwardFieldNeg20_002A9680_30F5A0(void);
 extern int D_007476B0;
@@ -14,7 +14,7 @@ void ForwardIfStateActive_147460(char *a0) {
     v1 = a0[0xB8];
     if (v1 >= 5) return;
     if (v1 <= 0) return;
-    func_002AAC28(a0);
+    cIDBase_trans(a0);
 }
 
 __attribute__((section(".text.func_001474A0")))

@@ -61,5 +61,5 @@ void InitControllerState_2ACC70(int a0, int a1) {
     *(int *)((char *)a0 + 0x1B544) = 0;
     *(int *)((char *)a0 + 0x740) = 0;
     func_002ACCD8(a0);
-    func_002ACCF8(a0, 1, a1);
+    cIDManager_setIDData(a0, 1, a1);
 }

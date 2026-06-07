@@ -1296,7 +1296,7 @@ void Tramp_func_0014EFA8_0012BBE0(void)
 __attribute__((section(".text.Tramp_func_002AAC28_0013C508")))
 __attribute__((section(".text.Tramp_func_002AAC28_0013C508"))) void Tramp_func_002AAC28_0013C508(void)
 {
- do { func_002AAC28(); } while (0);
+ do { cIDBase_trans(); } while (0);
 }
 
 __attribute__((section(".text.Tramp_func_0030A548_00147528")))
@@ -1352,7 +1352,7 @@ __attribute__((section(".text.Tramp_func_002AAC28_00161970_161970")))
 __attribute__((section(".text.Tramp_func_002AAC28_00161970_161970")))
 void Tramp_func_002AAC28_00161970_161970(void)
 {
-  func_002AAC28();
+  cIDBase_trans();
   do { } while (0);
 }
 
@@ -1368,7 +1368,7 @@ __attribute__((section(".text.Tramp_func_002AAC28_00162278_162278")))
 __attribute__((section(".text.Tramp_func_002AAC28_00162278_162278")))
 void Tramp_func_002AAC28_00162278_162278(void)
 {
-  func_002AAC28();
+  cIDBase_trans();
   do { } while (0);
 }
 
@@ -1392,7 +1392,7 @@ __attribute__((section(".text.Tramp_func_002AAC28_001682A8_1682A8")))
 __attribute__((section(".text.Tramp_func_002AAC28_001682A8_1682A8")))
 void Tramp_func_002AAC28_001682A8_1682A8(void)
 {
-  func_002AAC28();
+  cIDBase_trans();
   do { } while (0);
 }
 

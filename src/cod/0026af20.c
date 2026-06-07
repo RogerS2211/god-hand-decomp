@@ -3,7 +3,7 @@
  *
  * switch(a2) over a small set (0..10, case 0 == default) fills a 7-word stack
  * buffer (2x sqc2 $vf0 zero at 0x0/0x10) with per-case float literals (decoded
- * inline) + a count, then calls func_001CF160(a1, a0, count, buf, buf+0x10).
+ * inline) + a count, then calls cOmWeapon_setParent(a1, a0, count, buf, buf+0x10).
  * Early-out when a1 == 0.
  *
  * NON_MATCHING partial.  Default `us` build uses the byte-exact
@@ -18,7 +18,7 @@
 #include "include_asm.h"
 #include "godhand/vu0.h"
 
-extern int func_001CF160();
+extern int cOmWeapon_setParent();
 
 #ifdef NON_MATCHING
 __attribute__((section(".text.SetOrientByType_26AF20")))
@@ -129,7 +129,7 @@ void SetOrientByType_26AF20(void *a0, int a1, unsigned int a2) {
         break;
     }
     *(int *)((char *)buf + 0x18) = 0;
-    func_001CF160(a1, a3, count, buf, (char *)buf + 0x10);
+    cOmWeapon_setParent(a1, a3, count, buf, (char *)buf + 0x10);
 }
 #else
 INCLUDE_ASM("nonmatching", SetOrientByType_26AF20);

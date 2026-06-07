@@ -4,7 +4,7 @@ extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
 extern void func_00126770(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void func_00157C18(void *a0);
-extern void func_00149EB8(void *a0);
+extern void cModel_calcParts(void *a0);
 extern void func_00152A20(void *a0, void *a1);
 extern void func_0014A038(void *a0);
 extern void func_001CF3A8(void *a0);
@@ -32,12 +32,12 @@ void SetEnemyActiveState_10B888(void *a0, int a1) {
         *(unsigned char *)(s0 + 0x2F7) = 0;
         func_002A8578(s0, *(int *)(v0 + 0x28) + v0, *(int *)(v0 + 0x2C) + v0, 0.0f, 0, 0, 0);
         func_00157C18(s0);
-        func_00149EB8(s0);
+        cModel_calcParts(s0);
         func_00152A20(s0 + 0x448, s0);
         func_0014A038(s0);
         if (*(int *)(s0 + 0x6A8) != 0) {
             func_001CF3A8(*(void **)(s0 + 0x6A8));
-            func_00149EB8(*(void **)(s0 + 0x6A8));
+            cModel_calcParts(*(void **)(s0 + 0x6A8));
         }
     }
 }
