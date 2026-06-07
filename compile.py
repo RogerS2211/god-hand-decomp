@@ -1411,19 +1411,39 @@ def _load_category_map(path: Path) -> dict[int, str]:
     return out
 
 
+# Engine subsystems that earn their own decomp.dev subcategory
+# (``engine.<id>``), rendered as a drill-down bar under "Game engine".
+# decomp.dev builds the parent/child hierarchy from the dotted id, so a unit
+# tagged ``engine.casino`` shows under both the Engine total and a Casino bar.
+# Only subsystem folders with enough decompiled TUs to deserve their own bar
+# are listed; the smaller folders (camera/gfx/battle/id/ui/sound/player/
+# physics) stay bare ``engine`` until they grow.
+_ENGINE_SUBSYSTEMS = frozenset({"casino", "enemy", "event", "object", "system"})
+
+
 def _unit_categories(name: str, lib_categories: dict[str, str]) -> list[str]:
     """Map an objdiff unit name to its progress category.
 
     Library / middleware / CRT functions are carved into standalone
     ``asm/nonmatching/<func>`` units; *lib_categories* maps such a func name to
-    its subcategory. Every other unit (fragments, decomp TUs, data, RELs) is
-    ``engine``.
+    its subcategory. A decomp TU under ``src/cod/<subsys>/`` whose subsystem is
+    in ``_ENGINE_SUBSYSTEMS`` is tagged both ``engine`` (so it still rolls up to
+    the parent) and ``engine.<subsys>`` (its drill-down bar). Every other unit
+    (fragments, flat decomp TUs, data, RELs) is ``engine``.
     """
     if name.startswith("asm/nonmatching/"):
         func = name.rsplit("/", 1)[-1]
         cat = lib_categories.get(func)
         if cat:
             return [cat]
+    parts = name.split("/")
+    if (
+        len(parts) >= 4
+        and parts[0] == "src"
+        and parts[1] == "cod"
+        and parts[2] in _ENGINE_SUBSYSTEMS
+    ):
+        return ["engine", f"engine.{parts[2]}"]
     return ["engine"]
 
 

@@ -20455,6 +20455,26 @@
         "name": "Game engine"
       },
       {
+        "id": "engine.casino",
+        "name": "Casino"
+      },
+      {
+        "id": "engine.enemy",
+        "name": "Enemy"
+      },
+      {
+        "id": "engine.event",
+        "name": "Event"
+      },
+      {
+        "id": "engine.object",
+        "name": "Object"
+      },
+      {
+        "id": "engine.system",
+        "name": "System"
+      },
+      {
         "id": "cri-middleware",
         "name": "CRI middleware (ADX / AFS)"
       },
