@@ -5,3 +5,5 @@ __attribute__((section(".text.cOmbb_ckBomb")))
 unsigned char cOmbb_ckBomb(unsigned char *a0) {
     return a0[0x601];
 }
+
+INCLUDE_ASM("nonmatching", cOmbb_setFire);

@@ -14,3 +14,38 @@ int cSnd_SeCall(void *a0, int a1, short a2, int a3, int a4, int a5)
         return func_002CDF18(p, (short)a1, a2, (short)a4, (short)a5, 0, 0);
     return func_002CDE28(p, (short)a1, a2, a3, a4, a5);
 }
+#include "include_asm.h"
+
+INCLUDE_ASM("nonmatching", cSnd_EmSeCheck);
+
+INCLUDE_ASM("nonmatching", cSnd_SeCall_2CB8A0);
+
+INCLUDE_ASM("nonmatching", cSnd_SeFadeOut);
+
+INCLUDE_ASM("nonmatching", cSnd_SeEndCk);
+
+INCLUDE_ASM("nonmatching", cSnd_BattleBgmAllPause);
+
+INCLUDE_ASM("nonmatching", cSnd_BgmEventSet);
+
+INCLUDE_ASM("nonmatching", cSnd_BgmEventStart);
+
+INCLUDE_ASM("nonmatching", cSnd_BgmEventFade);
+
+INCLUDE_ASM("nonmatching", cSnd_BgmEventStop);
+
+INCLUDE_ASM("nonmatching", cSnd_BgmEvDataEnd);
+
+INCLUDE_ASM("nonmatching", cSnd_BgmEvSet);
+
+INCLUDE_ASM("nonmatching", cSnd_BgmEvStart);
+
+INCLUDE_ASM("nonmatching", cSnd_BgmEvPause);
+
+INCLUDE_ASM("nonmatching", cSnd_BgmEvReStart);
+
+INCLUDE_ASM("nonmatching", cSnd_BgmEvAllSuspend);
+
+INCLUDE_ASM("nonmatching", cSnd_BgmEvAllSignal);
+
+INCLUDE_ASM("nonmatching", cSnd_BgmHitBeSet);

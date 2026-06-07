@@ -16,3 +16,8 @@ void cOmBase_setMeshDispFromLayer(void *a0, int a1, int a2) {
         } while (v1 != 0);
     }
 }
+#include "include_asm.h"
+
+INCLUDE_ASM("nonmatching", cOmBase_setMeshColorFromLayer);
+
+INCLUDE_ASM("nonmatching", cOmBase_setScrSollEnable);

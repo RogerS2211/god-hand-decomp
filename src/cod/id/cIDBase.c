@@ -24,3 +24,12 @@ void cIDBase_restartAnim(void *a0) {
     func_002ABA78(a0);
     *(char *)((char *)a0 + 0x1C) = 1;
 }
+#include "include_asm.h"
+
+INCLUDE_ASM("nonmatching", cIDBase);
+
+INCLUDE_ASM("nonmatching", cIDBase_setDispFamily);
+
+INCLUDE_ASM("nonmatching", cIDBase_move);
+
+INCLUDE_ASM("nonmatching", cIDBase_trans);

@@ -27,3 +27,7 @@ __attribute__((section(".text.cOl29_isOpen")))
 unsigned char cOl29_isOpen(unsigned char *a0) {
     return a0[0x764];
 }
+
+INCLUDE_ASM("nonmatching", cOl29_setOpenFix);
+
+INCLUDE_ASM("nonmatching", cOl29_setCloseFix);

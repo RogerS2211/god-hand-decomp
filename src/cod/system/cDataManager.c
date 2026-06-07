@@ -17,3 +17,6 @@ void cDataManager_clear(unsigned char *a0) {
         i--;
     }
 }
+#include "include_asm.h"
+
+INCLUDE_ASM("nonmatching", cDataManager_loadWait);

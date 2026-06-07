@@ -25,3 +25,7 @@ __attribute__((section(".text.cOm4f_connectDoor")))
 void cOm4f_connectDoor(char *a0, int a1) {
     *(int *)(a0 + 0x790) = a1;
 }
+
+INCLUDE_ASM("nonmatching", cOm4f_setOpen);
+
+INCLUDE_ASM("nonmatching", cOm4f_setClose);

@@ -32,3 +32,6 @@ void cEvent_playStart(void *a0) {
         func_00307208(D_00747470, 0, 0xA, 0, 0xFF000000, 0xFF000000, 0);
     }
 }
+#include "include_asm.h"
+
+INCLUDE_ASM("nonmatching", cEvent_playStartWait);

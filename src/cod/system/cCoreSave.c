@@ -190,3 +190,9 @@ void cCoreSave_addAllStageTime(int a0, int a1)
         *(int*)(p + 0xBBC) = *(int*)(p + 0xBBC) + a1;
     }
 }
+
+INCLUDE_ASM("nonmatching", cCoreSave_gameInit);
+
+INCLUDE_ASM("nonmatching", cCoreSave_stageInit);
+
+INCLUDE_ASM("nonmatching", cCoreSave_getCombo);

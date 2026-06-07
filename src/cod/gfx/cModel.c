@@ -15,3 +15,6 @@ int cModel_getMeshPtr(char *a0, int a1) {
     }
     return v0;
 }
+#include "include_asm.h"
+
+INCLUDE_ASM("nonmatching", cModel_calcParts);

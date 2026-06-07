@@ -5,3 +5,9 @@ __attribute__((section(".text.cOm5a_isOpen")))
 unsigned char cOm5a_isOpen(unsigned char *a0) {
     return a0[0x60D];
 }
+
+INCLUDE_ASM("nonmatching", cOm5a_setOpenFix);
+
+INCLUDE_ASM("nonmatching", cOm5a_setCloseFix);
+
+INCLUDE_ASM("nonmatching", cOm5a_setFaceClose);

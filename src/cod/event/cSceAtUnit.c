@@ -5,3 +5,6 @@ void cSceAtUnit_ActTypeSet(char *obj, int a1, int a2) {
     obj[0x3A] = a1;
     obj[0x54] = a2;
 }
+#include "include_asm.h"
+
+INCLUDE_ASM("nonmatching", cSceAtUnit_AtInit);

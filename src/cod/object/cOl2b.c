@@ -38,3 +38,5 @@ __attribute__((section(".text.cOl2b_isActive")))
 unsigned char cOl2b_isActive(unsigned char *a0) {
     return a0[0xA28];
 }
+
+INCLUDE_ASM("nonmatching", cOl2b_setFire);

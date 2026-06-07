@@ -23,3 +23,6 @@ int cMessage_deleteMessNo(void *a0, unsigned short a1)
     func_002AEF10(a0, v);
     return 1;
 }
+#include "include_asm.h"
+
+INCLUDE_ASM("nonmatching", cMessage_closeAll);

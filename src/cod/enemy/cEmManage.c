@@ -5,3 +5,6 @@ __attribute__((section(".text.cEmManage_GetSpeedRate")))
 float cEmManage_GetSpeedRate(void *a0) {
     return *(float*)((char*)a0 + 0x548) * D_00747A14;
 }
+#include "include_asm.h"
+
+INCLUDE_ASM("nonmatching", cEmManage_EntryEm);

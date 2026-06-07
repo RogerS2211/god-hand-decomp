@@ -48,3 +48,6 @@ int cDvd_ReadAlloc(char *a0, char *a1, int *a2, int a3, int t0, int t1, int t2, 
         func_00201290(a0);
     return *(int *)(s0 + 0x4);
 }
+#include "include_asm.h"
+
+INCLUDE_ASM("nonmatching", cDvd_CheckWait);

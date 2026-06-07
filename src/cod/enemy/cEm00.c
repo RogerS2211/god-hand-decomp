@@ -34,3 +34,5 @@ __attribute__((section(".text.cEm00_setNeckMoveOn")))
 void cEm00_setNeckMoveOn(void *a0) {
     *(int *)((char *)a0 + 0x16D4) &= 0x7FFFFFFF;
 }
+
+INCLUDE_ASM("nonmatching", cEm00_setGoto);

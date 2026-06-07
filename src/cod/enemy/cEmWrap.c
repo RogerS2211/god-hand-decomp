@@ -17,7 +17,7 @@ int cEmWrap_setPos_2959B0(int *a0, int a1)
         short off = *(short *)(v0 + 0x70);
         void (*fp)(int, int) = *(void (**)(int, int))(v0 + 0x74);
         fp(a2 + off, a1);
-        func_00149EB8(*(int *)((char *)a0 + 4));
+        cModel_calcParts(*(int *)((char *)a0 + 4));
     }
 }
 
@@ -40,7 +40,7 @@ void cEmWrap_setPos_295A08(int *a0, int a1, float f12)
             v.d = 1.0f;
             (*(void (**)(int, struct vec4 *))(a2 + 0x7C))(s0 + off2, &v);
         }
-        func_00149EB8(*(int *)((char *)a0 + 4));
+        cModel_calcParts(*(int *)((char *)a0 + 4));
     }
 }
 

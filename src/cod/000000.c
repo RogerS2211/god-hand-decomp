@@ -2925,74 +2925,13 @@ __attribute__((section(".text.Forward348BE0_346BE0")))
 int Forward348BE0_346BE0(int a0, int a1) {
     return FormatVarargsToStaticBuf_348BE0(a1);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+INCLUDE_ASM("nonmatching", chack_point_line);
+INCLUDE_ASM("nonmatching", MotionGetParam);
+INCLUDE_ASM("nonmatching", SetEv61HumanAlive);
+INCLUDE_ASM("nonmatching", Dest_ck);
+INCLUDE_ASM("nonmatching", setColorScrollLayer);
+INCLUDE_ASM("nonmatching", displayOmLayer);
+INCLUDE_ASM("nonmatching", GetViewScrollIdAll);
+INCLUDE_ASM("nonmatching", getItemNumInRoom);
+INCLUDE_ASM("nonmatching", SetEventCutEffect);
+INCLUDE_ASM("nonmatching", setPlayerPos);

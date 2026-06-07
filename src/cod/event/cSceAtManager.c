@@ -56,3 +56,12 @@ int cSceAtManager_getUnit(int a0, int a1) {
     }
     return 0;
 }
+#include "include_asm.h"
+
+INCLUDE_ASM("nonmatching", cSceAtManager_AtDataSet_exec);
+
+INCLUDE_ASM("nonmatching", cSceAtManager_AtExecute_2C2870);
+
+INCLUDE_ASM("nonmatching", cSceAtManager_AtExecute_2C28B0);
+
+INCLUDE_ASM("nonmatching", cSceAtManager_delUnitData);

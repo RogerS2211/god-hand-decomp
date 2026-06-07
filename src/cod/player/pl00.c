@@ -1,5 +1,5 @@
 /* TU: pl00 [player] - recovered C++ class. */
-extern void func_0012C418(void);
+extern void pl00_reset(void);
 #include "include_asm.h"
 
 __attribute__((section(".text.pl00_CannonGameMode")))
@@ -11,7 +11,7 @@ void pl00_CannonGameMode(void *a0, int a1) {
         *(unsigned char*)((char*)a0+0x2F6) = 0;
         *(unsigned char*)((char*)a0+0x2F7) = 0;
     } else {
-        func_0012C418();
+        pl00_reset();
     }
 }
 
@@ -43,3 +43,9 @@ void pl00_setPyramidIn(char *a0) {
     *(unsigned char*)(a0 + 0x2F6) = 0;
     *(unsigned char*)(a0 + 0x2F7) = 0;
 }
+
+INCLUDE_ASM("nonmatching", pl00_SetCannonDamage);
+
+INCLUDE_ASM("nonmatching", pl00_DiscardThrowObj);
+
+INCLUDE_ASM("nonmatching", pl00_reset);
