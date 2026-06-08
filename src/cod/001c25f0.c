@@ -118,7 +118,7 @@ void *GetOrInit_460D68_2BAFA0(void) {
 
 __attribute__((section(".text.Forward2CF6F8_2CB6A0")))
 int Forward2CF6F8_2CB6A0(int a0, int a1, int a2) {
-    return func_002CF6F8(func_002CC4B8(a0), a1, a2);
+    return func_002CF6F8(GetIndexedEntry_2CC4B8(a0), a1, a2);
 }
 
 __attribute__((section(".text.GetOrInit_460D78_2D5BB8")))
@@ -156,7 +156,7 @@ void *GetOrInit_460D90_2D9FF8(void) {
 __attribute__((section(".text.InitVtablePtrAndClearField_2FFD88")))
 int InitVtablePtrAndClearField_2FFD88(int a0) {
     if (a0) {
-        func_002FBCC8();
+        InitObject_2FBCC8();
         *(int*)((char*)a0 + 0x2B0) = 0;
         *(int*)((char*)a0 + 0xF0) = (int)&D_0044EE38;
     }

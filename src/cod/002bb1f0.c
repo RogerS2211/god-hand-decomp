@@ -65,7 +65,7 @@ int LoadFileStripExt_2CB638(void *a0, void *a1, void *a2)
     if (v0 != 0) {
         *v0 = 0;
     }
-    return func_002CF600(func_002CC4B8(a0, a1), a1, a2);
+    return func_002CF600(GetIndexedEntry_2CC4B8(a0, a1), a1, a2);
 }
 
 #include "godhand/vu0.h"
@@ -76,7 +76,7 @@ int LoadFileStripExt_2CB638(void *a0, void *a1, void *a2)
 
 __attribute__((section(".text.Setup_Field_2B0_2F61C8")))
 void *Setup_Field_2B0_2F61C8(void *obj) {
-    func_002FBCC8(obj);
+    InitObject_2FBCC8(obj);
     *(int *)((char *)obj + 0x2B0) = 0;
     *(float *)((char *)obj + 0x2D4) = 1.0f;
     *(int **)((char *)obj + 0xF0) = &D_0044F4F8;
@@ -100,7 +100,7 @@ void *Setup_Field_2B0_2F61C8(void *obj) {
 
 __attribute__((section(".text.InitObjectFields_2F7110")))
 void *InitObjectFields_2F7110(void *obj) {
-    func_002FBCC8(obj);
+    InitObject_2FBCC8(obj);
     *(int *)((char *)obj + 0x2B0) = 0;
     *(float *)((char *)obj + 0x2D4) = 1.0f;
     *(int **)((char *)obj + 0xF0) = &D_0044F6D8;

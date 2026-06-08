@@ -37,10 +37,10 @@ int IsSlotUsable_2CB830(int a0, int a1)
 	int s2;
 
 	s2 = 1;
-	if (func_002CFC78(func_002CC4B8(a0, a1)) == 1) {
+	if (func_002CFC78(GetIndexedEntry_2CC4B8(a0, a1)) == 1) {
 		return 1;
 	}
-	if (func_002CFC88(func_002CC4B8(a0, a1)) != 0) {
+	if (func_002CFC88(GetIndexedEntry_2CC4B8(a0, a1)) != 0) {
 		s2 = 0;
 	}
 	return s2;
@@ -67,7 +67,7 @@ int FindActiveSlot_2CC050(int a0)
 __attribute__((section(".text.Setup_Fields_2B0_2F56C0")))
 void *Setup_Fields_2B0_2F56C0(void *a0)
 {
-	func_002FBCC8(a0);
+	InitObject_2FBCC8(a0);
 
 	*(int *)((char *)a0 + 0x2B0) = 0;
 	*(float *)((char *)a0 + 0x2D4) = 1.0f;

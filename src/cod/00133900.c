@@ -28,7 +28,7 @@ extern int D_00429620;
 __attribute__((section(".text.InitObjectSetVtable_4EAB8_2FFCC8")))
 void *InitObjectSetVtable_4EAB8_2FFCC8(void *a0) {
     if (a0) {
-        func_002FBCC8(a0);
+        InitObject_2FBCC8(a0);
         *(int **)((char *)a0 + 0xF0) = &D_0044EAB8;
     }
     return a0;
@@ -37,7 +37,7 @@ void *InitObjectSetVtable_4EAB8_2FFCC8(void *a0) {
 __attribute__((section(".text.InitObjectSetVtable_4EB70_2FFD08")))
 void *InitObjectSetVtable_4EB70_2FFD08(void *a0) {
     if (a0) {
-        func_002FBCC8(a0);
+        InitObject_2FBCC8(a0);
         *(int **)((char *)a0 + 0xF0) = &D_0044EB70;
     }
     return a0;
@@ -46,7 +46,7 @@ void *InitObjectSetVtable_4EB70_2FFD08(void *a0) {
 __attribute__((section(".text.InitObjectSetVtable_4EC68_2FFD48")))
 void *InitObjectSetVtable_4EC68_2FFD48(void *a0) {
     if (a0) {
-        func_002FBCC8(a0);
+        InitObject_2FBCC8(a0);
         *(int **)((char *)a0 + 0xF0) = &D_0044EC68;
     }
     return a0;
@@ -55,7 +55,7 @@ void *InitObjectSetVtable_4EC68_2FFD48(void *a0) {
 __attribute__((section(".text.InitObjectSetVtable_4EFA0_2FFE10")))
 void *InitObjectSetVtable_4EFA0_2FFE10(void *a0) {
     if (a0) {
-        func_002FBCC8(a0);
+        InitObject_2FBCC8(a0);
         *(int **)((char *)a0 + 0xF0) = &D_0044EFA0;
     }
     return a0;
@@ -64,7 +64,7 @@ void *InitObjectSetVtable_4EFA0_2FFE10(void *a0) {
 __attribute__((section(".text.InitObjectSetVtable_4F078_2FFE50")))
 void *InitObjectSetVtable_4F078_2FFE50(void *a0) {
     if (a0) {
-        func_002FBCC8(a0);
+        InitObject_2FBCC8(a0);
         *(int **)((char *)a0 + 0xF0) = &D_0044F078;
     }
     return a0;
@@ -73,7 +73,7 @@ void *InitObjectSetVtable_4F078_2FFE50(void *a0) {
 __attribute__((section(".text.InitObjectSetVtable_4F1C8_2FFE90")))
 void *InitObjectSetVtable_4F1C8_2FFE90(void *a0) {
     if (a0) {
-        func_002FBCC8(a0);
+        InitObject_2FBCC8(a0);
         *(int **)((char *)a0 + 0xF0) = &D_0044F1C8;
     }
     return a0;
@@ -82,7 +82,7 @@ void *InitObjectSetVtable_4F1C8_2FFE90(void *a0) {
 __attribute__((section(".text.InitObjectSetVtable_4F270_2FFED0")))
 void *InitObjectSetVtable_4F270_2FFED0(void *a0) {
     if (a0) {
-        func_002FBCC8(a0);
+        InitObject_2FBCC8(a0);
         *(int **)((char *)a0 + 0xF0) = &D_0044F270;
     }
     return a0;
@@ -91,7 +91,7 @@ void *InitObjectSetVtable_4F270_2FFED0(void *a0) {
 __attribute__((section(".text.InitObjectSetVtable_4F3A0_2FFF50")))
 void *InitObjectSetVtable_4F3A0_2FFF50(void *a0) {
     if (a0) {
-        func_002FBCC8(a0);
+        InitObject_2FBCC8(a0);
         *(int **)((char *)a0 + 0xF0) = &D_0044F3A0;
     }
     return a0;
@@ -108,7 +108,7 @@ int InitObjectFieldsIfNonNull_300060(int a0) {
 __attribute__((section(".text.InitObjectSetVtable_4F630_300020")))
 int InitObjectSetVtable_4F630_300020(int a0) {
     if (a0) {
-        func_002FBCC8(a0);
+        InitObject_2FBCC8(a0);
         *(int *)(a0 + 0xF0) = (int)&D_0044F630;
     }
     return a0;
@@ -117,7 +117,7 @@ int InitObjectSetVtable_4F630_300020(int a0) {
 __attribute__((section(".text.InitObjectSetVtable_4F880_3000B0")))
 int InitObjectSetVtable_4F880_3000B0(int a0) {
     if (a0) {
-        func_002FBCC8(a0);
+        InitObject_2FBCC8(a0);
         *(int *)(a0 + 0xF0) = (int)&D_0044F880;
     }
     return a0;

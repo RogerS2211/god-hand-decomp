@@ -43,7 +43,7 @@ void SetCustomIDSlotNumber_1F4C40(int a0, unsigned short a1, int a2, int a3)
     if (s0 < 7) {
         off = s0 * 0x7C + 0xC00;
         CustomIDWork_SetNumber(a0 + off, a2);
-        func_001F4778(a0, (int)(s0 + 0x18), a3);
+        SetCustomIDDispOneOrAll_1F4778(a0, (int)(s0 + 0x18), a3);
     }
 }
 
@@ -55,7 +55,7 @@ void SetCustomIDSlotNumberAlt_1F5210(int a0, unsigned short a1, int a2, int a3)
     if (s0 < 7) {
         off = s0 * 0x7C + 0x2058;
         CustomIDWork_SetNumber(a0 + off, a2);
-        func_001F4778(a0, (int)(s0 + 0x42), a3);
+        SetCustomIDDispOneOrAll_1F4778(a0, (int)(s0 + 0x42), a3);
     }
 }
 

@@ -9,9 +9,9 @@ int IsSlotAvailable_2CB778(int a0, int a1)
 {
     int *p;
     if (a1 == -1) return 1;
-    p = func_002CC4B8(a0, a1);
+    p = GetIndexedEntry_2CC4B8(a0, a1);
     if (p[0x3C/4] == -1) return 1;
-    p = func_002CC4B8(a0, a1);
+    p = GetIndexedEntry_2CC4B8(a0, a1);
     return func_002CFC68(p);
 }
 
