@@ -51,11 +51,47 @@ def _named_leaf(funcname: str | None, fallback: str) -> str:
     return fallback
 
 
+def _resolve_part_unit(
+    basename: str,
+    vaddrs: list[int],
+    funcname_by_vaddr: dict[int, str],
+    folder_by_vaddr: dict[int, str],
+) -> str:
+    """Name a carved-monolith fragment unit (``asm/cod/<obj>.partN``) from the
+    vaddrs of the functions it contains.
+
+    A fragment is the gap between two carves, so it holds zero, one, or several
+    un-carved functions.  Naming rule:
+
+    * empty (alignment-only gap)  -> ``cod/_pad/<basename>`` residue bucket
+    * otherwise anchor on the first function (vaddr order) the committed symbol
+      table names (falling back to the lowest vaddr when none are named), folder
+      it by that anchor's subsystem, and append ``(+n)`` for the other functions
+      sharing the fragment so the label stays honest about being a cluster.
+
+    Names come *only* from ``funcname_by_vaddr`` (the committed symbol table);
+    the manifest carries addresses, not names, so nothing absent from public
+    source can surface and a rename in symbol_addrs.txt shows up for free.
+    """
+    if not vaddrs:
+        return f"cod/_pad/{basename}"
+    ordered = sorted(vaddrs)
+    named = [v for v in ordered
+             if (nm := funcname_by_vaddr.get(v)) and not _is_auto_name(nm)]
+    anchor = named[0] if named else ordered[0]
+    leaf = _named_leaf(funcname_by_vaddr.get(anchor), f"{anchor:08x}")
+    folder = folder_by_vaddr.get(anchor, "cod")
+    extra = len(vaddrs) - 1
+    suffix = f" (+{extra})" if extra > 0 else ""
+    return f"{folder}/{leaf}{suffix}"
+
+
 def resolve_unit(
     name: str,
     funcname_by_vaddr: dict[int, str],
     vaddr_by_funcname: dict[str, int],
     folder_by_vaddr: dict[int, str],
+    partfuncs_by_unit: dict[str, list[int]] | None = None,
 ) -> str:
     """Map one objdiff unit ``name`` to its ``<folder>/<leaf>`` display name.
 
@@ -63,6 +99,10 @@ def resolve_unit(
     the unit's start vaddr is known; unresolved engine code falls into the
     ``cod/`` residue folder.  Idempotent: a name with no build-stage head is
     returned unchanged.
+
+    ``partfuncs_by_unit`` (orig unit name -> contained functions) lets carved
+    monolith fragments (``asm/cod/<obj>.partN``) be named after the function(s)
+    they hold; absent it (or absent the unit) they fall back to ``cod/`` residue.
     """
     parts = name.split("/")
     head = parts[0]
@@ -103,7 +143,13 @@ def resolve_unit(
         if sub == "data":
             return "data/" + "/".join(parts[2:])
         if sub == "cod":
-            return "cod/" + "/".join(parts[2:])
+            basename = "/".join(parts[2:])
+            if partfuncs_by_unit is not None and name in partfuncs_by_unit:
+                return _resolve_part_unit(
+                    basename, partfuncs_by_unit[name],
+                    funcname_by_vaddr, folder_by_vaddr,
+                )
+            return "cod/" + basename
         # Generic asm/<x>/<rest> -> <x>/<rest>
         return sub + "/" + "/".join(parts[2:])
 
@@ -115,6 +161,7 @@ def compute_display_names(
     funcname_by_vaddr: dict[int, str],
     vaddr_by_funcname: dict[str, int],
     folder_by_vaddr: dict[int, str],
+    partfuncs_by_unit: dict[str, list[int]] | None = None,
 ) -> dict[str, str]:
     """Resolve every unit, guaranteeing unique display names.
 
@@ -124,7 +171,10 @@ def compute_display_names(
     out: dict[str, str] = {}
     used: set[str] = set()
     for orig in sorted(units):
-        display = resolve_unit(orig, funcname_by_vaddr, vaddr_by_funcname, folder_by_vaddr)
+        display = resolve_unit(
+            orig, funcname_by_vaddr, vaddr_by_funcname, folder_by_vaddr,
+            partfuncs_by_unit=partfuncs_by_unit,
+        )
         if display in used:
             display = f"{display}__{orig.split('/')[-1]}"
         used.add(display)
@@ -176,6 +226,24 @@ def load_folder_map(unit_subsystems_path: Path, function_categories_path: Path) 
     return folder
 
 
+def load_part_funcs(path: Path) -> dict[str, list[int]]:
+    """Load ``progress/unit_part_funcs.json`` — the carved-monolith fragment
+    manifest mapping each ``asm/cod/<obj>.partN`` unit to the vaddrs of the
+    functions it contains.  Each vaddr (a ``"0x..."`` string) is normalised to
+    ``int`` so the resolver can fold/sort by address.  Missing file -> empty map
+    (the resolver then falls back to ``cod/`` residue naming).
+
+    The manifest stores addresses, not names — names come from the committed
+    symbol table at resolve time, so nothing absent from public source leaks in.
+    Generated locally by ``scripts/gen_part_funcs.py`` from the gitignored
+    monolithic asm; committed so the toolchain-free publish path can consume it.
+    """
+    if not path.exists():
+        return {}
+    raw = json.loads(path.read_text())
+    return {unit: [int(str(v), 0) for v in vaddrs] for unit, vaddrs in raw.items()}
+
+
 def load_units(objdiff_json_path: Path) -> list[str]:
     """Read the ordered list of *original* unit names from ``objdiff.json``.
 
@@ -211,8 +279,12 @@ def generate(root: Path = _ROOT) -> dict[str, str]:
         root / "progress" / "unit_subsystems.json",
         root / "progress" / "function_categories.json",
     )
+    partfuncs_by_unit = load_part_funcs(root / "progress" / "unit_part_funcs.json")
     units = load_units(root / "objdiff.json")
-    full = compute_display_names(units, funcname_by_vaddr, vaddr_by_funcname, folder_by_vaddr)
+    full = compute_display_names(
+        units, funcname_by_vaddr, vaddr_by_funcname, folder_by_vaddr,
+        partfuncs_by_unit=partfuncs_by_unit,
+    )
     return {orig: disp for orig, disp in full.items() if disp != orig}
 
 

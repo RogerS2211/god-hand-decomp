@@ -91,7 +91,8 @@ python -m pytest tests/test_compile.py tests/test_carver.py
 ├── objdiff.json        objdiff project: per-object target ↔ base mapping + categories
 ├── progress/
 │   ├── report.json     objdiff progress report (the file decomp.dev consumes)
-│   └── unit_names.json subsystem-folder display names for the decomp.dev tree
+│   ├── unit_names.json subsystem-folder display names for the decomp.dev tree
+│   └── unit_part_funcs.json  carved-fragment → contained functions (names partN units)
 ├── docs/               MIPS cheatsheet, code style notes
 ├── scripts/            build, verification, and decomp tooling
 │   └── checks/         CI-style gates (build, diff, splat, units, score, …)
@@ -141,6 +142,24 @@ Before upload, the workflow applies a display-name remap
 report, so decomp.dev's file tree reads by subsystem (`enemy/`, `object/`,
 `cri-middleware/`, …) instead of `asm/src/<addr>`. The committed report keeps
 its `src/cod/<addr>` names, which the tracker tooling resolves to source files.
+
+The un-decompiled monolith is carved into per-gap `asm/cod/000000.partN`
+fragments; on their own these show as opaque part-index leaves. The remap names
+each fragment after the function(s) it holds, via the committed
+[`progress/unit_part_funcs.json`](progress/unit_part_funcs.json) manifest — which
+records only the **start vaddrs** in each fragment (names are resolved from
+`config/symbol_addrs.txt` at remap time, so the public report never shows a name
+absent from public source). That manifest needs the (gitignored) monolithic asm
+to build, so — like `report.json` — it is regenerated locally, not in CI. After
+a carve changes, regenerate both in order:
+
+```sh
+python3 scripts/gen_part_funcs.py   # asm/cod/000000.s -> progress/unit_part_funcs.json
+python3 scripts/gen_unit_names.py   # -> progress/unit_names.json (consumes the manifest)
+```
+
+Empty alignment-only gaps land in a `cod/_pad/` bucket; a fragment holding
+several functions is named after its first and suffixed `(+n)`.
 
 ### Function categories
 

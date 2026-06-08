@@ -24,6 +24,7 @@ from scripts.gen_unit_names import (
     compute_display_names,
     generate,
     load_folder_map,
+    load_part_funcs,
     load_symbol_addrs,
     load_units,
     resolve_unit,
@@ -51,6 +52,14 @@ FOLDER_BY_VADDR = {
 
 def _resolve(name):
     return resolve_unit(name, FUNC_BY_VADDR, VADDR_BY_FUNC, FOLDER_BY_VADDR)
+
+
+def _resolve_pf(name, partfuncs_by_unit):
+    """resolve_unit with a part-funcs manifest (asm/cod/<obj>.partN naming)."""
+    return resolve_unit(
+        name, FUNC_BY_VADDR, VADDR_BY_FUNC, FOLDER_BY_VADDR,
+        partfuncs_by_unit=partfuncs_by_unit,
+    )
 
 
 # --------------------------------------------------------------------------- #
@@ -97,6 +106,55 @@ class TestResolveUnit:
 
 
 # --------------------------------------------------------------------------- #
+# resolve_unit + part-funcs manifest — the asm/cod/<obj>.partN naming.
+# A carved monolith fragment (partN) is the gap between two carves; it can hold
+# zero, one, or several un-carved functions.  The manifest maps the part unit to
+# the (name, vaddr) of each function it contains, so the resolver can name the
+# fragment after its primary function instead of the opaque hex part-index.
+# --------------------------------------------------------------------------- #
+class TestResolvePartUnits:
+    # The manifest maps a part unit to the vaddrs it contains (asm-structural
+    # fact); ALL names come from the committed symbol table (FUNC_BY_VADDR), so
+    # no name absent from public source can ever surface.
+    def test_single_named_func_uses_subsystem_and_name(self):
+        pf = {"asm/cod/000000.part3": [0x1004C8]}
+        assert _resolve_pf("asm/cod/000000.part3", pf) == "enemy/IsTargetVisibleOrForced"
+
+    def test_multi_func_anchors_lowest_vaddr_named_with_count(self):
+        # input order shuffled; anchor is the lowest-vaddr named function, and
+        # the (+n) suffix counts the other functions sharing the fragment.
+        pf = {"asm/cod/000000.part4": [0x17F5D0, 0x1004C8]}
+        assert _resolve_pf("asm/cod/000000.part4", pf) == "enemy/IsTargetVisibleOrForced (+1)"
+
+    def test_empty_fragment_buckets_under_pad(self):
+        # alignment-only gap between adjacent carves -> quiet residue folder.
+        pf = {"asm/cod/000000.part7": []}
+        assert _resolve_pf("asm/cod/000000.part7", pf) == "cod/_pad/000000.part7"
+
+    def test_part_absent_from_manifest_is_residue(self):
+        # manifest present but this unit missing -> graceful current behavior.
+        assert _resolve_pf("asm/cod/000000.part17", {}) == "cod/000000.part17"
+
+    def test_no_manifest_is_residue(self):
+        # no manifest at all (None) -> unchanged legacy residue naming.
+        assert _resolve("asm/cod/000000.part17") == "cod/000000.part17"
+
+    def test_vaddr_unknown_to_symbol_table_uses_hex_leaf(self):
+        # vaddr not in the committed symbol table (or only an auto-name) -> the
+        # stable hex address, never a name pulled from elsewhere.
+        pf = {"asm/cod/000000.part9": [0x100000]}      # FUNC_BY_VADDR -> func_*
+        assert _resolve_pf("asm/cod/000000.part9", pf) == "cod/00100000"
+        pf2 = {"asm/cod/000000.part9b": [0x1AB340]}    # absent from FUNC_BY_VADDR
+        assert _resolve_pf("asm/cod/000000.part9b", pf2) == "cod/001ab340"
+
+    def test_named_preferred_over_lower_vaddr_anonymous(self):
+        # lowest vaddr is anonymous; anchor jumps to the first *named* fn, but
+        # the count still reflects every function in the fragment.
+        pf = {"asm/cod/000000.part10": [0x100000, 0x1004C8]}
+        assert _resolve_pf("asm/cod/000000.part10", pf) == "enemy/IsTargetVisibleOrForced (+1)"
+
+
+# --------------------------------------------------------------------------- #
 # compute_display_names — whole-set: uniqueness + determinism
 # --------------------------------------------------------------------------- #
 class TestComputeDisplayNames:
@@ -129,6 +187,34 @@ class TestComputeDisplayNames:
         a = compute_display_names(units, funcs, rev, folders)
         b = compute_display_names(list(reversed(units)), funcs, rev, folders)
         assert a == b
+
+    def test_threads_part_funcs_manifest_to_resolver(self):
+        out = compute_display_names(
+            ["asm/cod/000000.part4"],
+            FUNC_BY_VADDR, VADDR_BY_FUNC, FOLDER_BY_VADDR,
+            partfuncs_by_unit={"asm/cod/000000.part4": [0x1004C8]},
+        )
+        assert out["asm/cod/000000.part4"] == "enemy/IsTargetVisibleOrForced"
+
+
+# --------------------------------------------------------------------------- #
+# load_part_funcs — committed progress/unit_part_funcs.json -> in-memory map.
+# Generated locally by scripts/gen_part_funcs.py (which needs the gitignored
+# asm/), committed, then consumed here at toolchain-free publish time.
+# --------------------------------------------------------------------------- #
+class TestLoadPartFuncs:
+    def test_parses_units_and_normalizes_vaddrs_to_int(self, tmp_path):
+        p = tmp_path / "unit_part_funcs.json"
+        p.write_text(json.dumps({
+            "asm/cod/000000.part4": ["0x001004C8", "0x0017F5D0"],
+            "asm/cod/000000.part7": [],
+        }))
+        m = load_part_funcs(p)
+        assert m["asm/cod/000000.part4"] == [0x1004C8, 0x17F5D0]
+        assert m["asm/cod/000000.part7"] == []
+
+    def test_missing_file_yields_empty_map(self, tmp_path):
+        assert load_part_funcs(tmp_path / "nope.json") == {}
 
 
 # --------------------------------------------------------------------------- #
