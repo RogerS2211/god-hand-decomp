@@ -49,8 +49,8 @@ int FreeActiveEntry_1FEC90(void *a0, int a1) {
     return 1;
 }
 
-__attribute__((section(".text.func_001FECE0")))
-int func_001FECE0(void *a0, int a1, int a2) {
+__attribute__((section(".text.AddActiveEntry_1FECE0")))
+int AddActiveEntry_1FECE0(void *a0, int a1, int a2) {
     int v0 = func_001FEE00(a0);
     if (v0 >= 0)
         FreeActiveEntry_1FEC90(a0, a1);
@@ -66,7 +66,7 @@ int UpdateStateReady_1FF238(void *a0) {
     int v1;
     int ret;
     if ((*(int*)((char*)a0+8) & 1) == 0) goto common;
-    ret = func_00201098(&D_00583F20, *(int*)((char*)a0+0x1C));
+    ret = cDvd_Check(&D_00583F20, *(int*)((char*)a0+0x1C));
     if (ret == 1) return 0;
     if (ret == 0) goto zero;
     if (ret == 2) return 0;

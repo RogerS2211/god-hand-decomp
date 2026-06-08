@@ -57,7 +57,7 @@ void ClearCameraOverlayState_2C3FC0(void *a0) {
 
 __attribute__((section(".text.func_002C4078")))
 void func_002C4078(void *a0) {
-    while (func_002C4040(a0) == 0) {
+    while (cScenario_isCamEnd(a0) == 0) {
         SetFieldsCESignalSemaSleep_2D5AA0(*(int *)((char *)PTR_DAT_003c2f84 + 0x20), 1);
     }
 }

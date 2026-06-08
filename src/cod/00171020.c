@@ -17,7 +17,7 @@ void *GetOrInitSingleton785848_171020(void) {
 __attribute__((section(".text.FindResolveActor_295978")))
 int FindResolveActor_295978(unsigned char *a0)
 {
-    int v0 = func_00290868(D_005864F0, *a0);
+    int v0 = cEmManage_GetEm(D_005864F0, *a0);
     *(int *)((char *)a0 + 4) = v0;
     return v0 != 0;
 }

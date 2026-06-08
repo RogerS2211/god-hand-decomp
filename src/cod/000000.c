@@ -2935,3 +2935,189 @@ INCLUDE_ASM("nonmatching", GetViewScrollIdAll);
 INCLUDE_ASM("nonmatching", getItemNumInRoom);
 INCLUDE_ASM("nonmatching", SetEventCutEffect);
 INCLUDE_ASM("nonmatching", setPlayerPos);
+
+INCLUDE_ASM("nonmatching", pl00_CkSubScreen);
+
+INCLUDE_ASM("nonmatching", cCollisionScroll_SetLayerCollEnable);
+
+INCLUDE_ASM("nonmatching", cCockScroll_OnScroll);
+
+INCLUDE_ASM("nonmatching", cModel_setMeshDisplay);
+
+INCLUDE_ASM("nonmatching", cObj_setId);
+
+INCLUDE_ASM("nonmatching", VecRotVec);
+
+INCLUDE_ASM("nonmatching", VecRotY);
+
+INCLUDE_ASM("nonmatching", GetPointCalcPointLine);
+
+INCLUDE_ASM("nonmatching", MotionIsHaveParam);
+
+INCLUDE_ASM("nonmatching", Quaternion_SetVectorRotation);
+
+INCLUDE_ASM("nonmatching", cOl1b_setCloseFix);
+
+INCLUDE_ASM("nonmatching", cOl21_setCollisionActive);
+
+INCLUDE_ASM("nonmatching", cOl22_setOpenFix);
+
+INCLUDE_ASM("nonmatching", cOl22_setCloseFix);
+
+INCLUDE_ASM("nonmatching", cOl2b_setInit);
+
+INCLUDE_ASM("nonmatching", cOl2b_setOpenFix);
+
+INCLUDE_ASM("nonmatching", cOl2b_setCloseFix);
+
+INCLUDE_ASM("nonmatching", cOl40_setVitalMax);
+
+INCLUDE_ASM("nonmatching", cOm1f_setStart);
+
+INCLUDE_ASM("nonmatching", cOm1f_setMoveRange);
+
+INCLUDE_ASM("nonmatching", cOm1f_setHomePos);
+
+INCLUDE_ASM("nonmatching", cOm4f_setOpenFix);
+
+INCLUDE_ASM("nonmatching", cOm4f_setCloseFix);
+
+INCLUDE_ASM("nonmatching", cOm4f_setOpenCloseRot);
+
+INCLUDE_ASM("nonmatching", cOm53_setGetOffEm);
+
+INCLUDE_ASM("nonmatching", cOm53_setDownPos);
+
+INCLUDE_ASM("nonmatching", cOm5a_setClose);
+
+INCLUDE_ASM("nonmatching", cOmb0_ReleaseCollision);
+
+INCLUDE_ASM("nonmatching", cOmb3_SetNextPoint);
+
+INCLUDE_ASM("nonmatching", cOmDoor_setClose);
+
+INCLUDE_ASM("nonmatching", cOmItem_setBlockObj);
+
+INCLUDE_ASM("nonmatching", cOmSub_setVibration);
+
+INCLUDE_ASM("nonmatching", DogRace_SetActBtn);
+
+INCLUDE_ASM("nonmatching", ColiseumBattle_PlCtrlOff);
+
+INCLUDE_ASM("nonmatching", CasinoWork_SetWarmUpRoom);
+
+INCLUDE_ASM("nonmatching", capVu0LengthSq);
+
+INCLUDE_ASM("nonmatching", capVu0Acos);
+
+INCLUDE_ASM("nonmatching", cCoreSave_setGameDifficulty);
+
+INCLUDE_ASM("nonmatching", cCoreSave_setGold);
+
+INCLUDE_ASM("nonmatching", cCoreSave_setKeyNum);
+
+INCLUDE_ASM("nonmatching", cCoreSave_addGodItem);
+
+INCLUDE_ASM("nonmatching", cCoreSave_ckGodReel);
+
+INCLUDE_ASM("nonmatching", cCoreSave_setCasinoTicketNum);
+
+INCLUDE_ASM("nonmatching", cCoreSave_getAllKillEmNum);
+
+INCLUDE_ASM("nonmatching", cCoreSave_SetOliviaCostumeNo);
+
+INCLUDE_ASM("nonmatching", cDamageUnit_SetDamageCollFlashActive);
+
+INCLUDE_ASM("nonmatching", cDvd_Check);
+
+INCLUDE_ASM("nonmatching", cEm00_CkDevilEvent);
+
+INCLUDE_ASM("nonmatching", cEm00_setSitChair);
+
+INCLUDE_ASM("nonmatching", cEm00_setR302Switch);
+
+INCLUDE_ASM("nonmatching", cEm00_setEm65Separate);
+
+INCLUDE_ASM("nonmatching", cEm12_SetParent);
+
+INCLUDE_ASM("nonmatching", cEma2_SetPoison);
+
+INCLUDE_ASM("nonmatching", cEma2_SetPoisonDie);
+
+INCLUDE_ASM("nonmatching", cEma2_gotoSwitch);
+
+INCLUDE_ASM("nonmatching", cEma2_ckKiss);
+
+INCLUDE_ASM("nonmatching", cEmManage_GetEm);
+
+INCLUDE_ASM("nonmatching", cEmManage_ReleaseEmAll);
+
+INCLUDE_ASM("nonmatching", cEmManage_DarkWorldCk);
+
+INCLUDE_ASM("nonmatching", cGame_isReleaseActiveHeap);
+
+INCLUDE_ASM("nonmatching", cHeatSys_SetHeatGage);
+
+INCLUDE_ASM("nonmatching", cIDBase_getIDWork);
+
+INCLUDE_ASM("nonmatching", cObjSimple_R0_Init);
+
+INCLUDE_ASM("nonmatching", cObjSimple_SetRingFlag);
+
+INCLUDE_ASM("nonmatching", cObjSimple_SetBustFlag);
+
+INCLUDE_ASM("nonmatching", cObjSimple_SetPackIndex);
+
+INCLUDE_ASM("nonmatching", cObjSimple_SetParentInfo);
+
+INCLUDE_ASM("nonmatching", cPadVib_setSeq);
+
+INCLUDE_ASM("nonmatching", cPadVib_stopSeq);
+
+INCLUDE_ASM("nonmatching", cRoomJump_setTblAddr);
+
+INCLUDE_ASM("nonmatching", cRoomSave_systemInit);
+
+INCLUDE_ASM("nonmatching", cSceAtManager_SetDoorFunc);
+
+INCLUDE_ASM("nonmatching", cSceAtManager_AtDataSet_exec_2C2750);
+
+INCLUDE_ASM("nonmatching", cSceAtManager_AtDataReset);
+
+INCLUDE_ASM("nonmatching", cScenario_isCamEnd);
+
+INCLUDE_ASM("nonmatching", cScenario_beginRoomJump_2C4548);
+
+INCLUDE_ASM("nonmatching", cScenario_getObjIdFromStr);
+
+INCLUDE_ASM("nonmatching", cScenario_getStrFromObjId);
+
+INCLUDE_ASM("nonmatching", cScenario_SetRoomExitFunc);
+
+INCLUDE_ASM("nonmatching", cScenario_setOmSuspend);
+
+INCLUDE_ASM("nonmatching", cScrArray_SearchScroll);
+
+INCLUDE_ASM("nonmatching", cSnd_SetBgmState);
+
+INCLUDE_ASM("nonmatching", cSnd_SetBgmLevel);
+
+INCLUDE_ASM("nonmatching", CustomIDWork);
+
+INCLUDE_ASM("nonmatching", CustomIDWork_Initialize);
+
+INCLUDE_ASM("nonmatching", CustomIDWork_SetColorAnimNormal_2D6898);
+
+INCLUDE_ASM("nonmatching", CustomIDWork_SetColorAnimNormal_2D68D8);
+
+INCLUDE_ASM("nonmatching", CustomIDWork_SetScaleAnimNormal);
+
+INCLUDE_ASM("nonmatching", cWorldTime_getGlobalHMS);
+
+INCLUDE_ASM("nonmatching", SetEventFrame);
+
+INCLUDE_ASM("nonmatching", KeyStop);
+
+INCLUDE_ASM("nonmatching", classPAD_WORK_Pad_act_set);
+
+INCLUDE_ASM("nonmatching", SearchData);

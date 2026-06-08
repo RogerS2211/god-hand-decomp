@@ -1,7 +1,7 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
 extern unsigned int D_00747A84;
-extern void func_00150830(void *a0, void *a1, void *a2, int a3);
+extern void VecRotVec(void *a0, void *a1, void *a2, int a3);
 extern void func_001F7DA0(float *p);
 extern void SetNodeListFlag_134608(void *a0, int a1);
 extern float D_007479FC;
@@ -21,7 +21,7 @@ void AddScaledXfmVecToField_F0_14F928(char *a0, float f12) {
         v[0] = *(float*)(a0 + 0x330) * *(float*)(a0 + 0x110) * f12;
         v[1] = *(float*)(a0 + 0x334) * *(float*)(a0 + 0x114) * f12;
         v[2] = *(float*)(a0 + 0x338) * *(float*)(a0 + 0x118) * f12;
-        func_00150830(v, v, a0 + 0x100, 0);
+        VecRotVec(v, v, a0 + 0x100, 0);
         *(float*)(*(int*)(a0 + 0xF0) + 0) += v[0];
         *(float*)(*(int*)(a0 + 0xF0) + 4) += v[1];
         *(float*)(*(int*)(a0 + 0xF0) + 8) += v[2];

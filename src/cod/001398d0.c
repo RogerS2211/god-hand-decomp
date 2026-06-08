@@ -96,7 +96,7 @@ int Tramp_003B4AD8_1F6E98(int a0, int a1)
 __attribute__((section(".text.func_002A71B0")))
 void func_002A71B0(void)
 {
-    D_007474A0[0x608 / 4] = func_0031CCF0(D_007474A0[0x5AC / 4], D_0044ADD8, 0);
+    D_007474A0[0x608 / 4] = SearchData(D_007474A0[0x5AC / 4], D_0044ADD8, 0);
 }
 
 __attribute__((section(".text.InitVtableEntry_2B8AE0")))
@@ -154,8 +154,8 @@ void FreeResourceNode_2D3710(int *a0)
 	func_002D40F8(a0);
 }
 
-__attribute__((section(".text.func_002FA310")))
-void func_002FA310(void)
+__attribute__((section(".text.UpdateD007419A0_2FA310")))
+void UpdateD007419A0_2FA310(void)
 {
 	func_002FB4C0();
 	func_00300900();

@@ -100,8 +100,8 @@ void SetNodeListFlag_134608(int a0, int a1) {
     } while (node != 0);
 }
 
-__attribute__((section(".text.func_00138F40")))
-void func_00138F40(int *a0) {
+__attribute__((section(".text.AddToActiveList_138F40")))
+void AddToActiveList_138F40(int *a0) {
     int a2 = *(int *)((char *)a0 + 0x1028);
     int v1, a3;
     if (a2 == 0x10) {
