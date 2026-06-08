@@ -24,10 +24,6 @@ def _readme(mf="1,912", tf="11,199", fpct="17.07", fuzzy="3.55",
         f"| Translation units | {units} |\n")
 
 
-def _badge(pct):
-    return f'<svg><text>label</text><text>{pct}%</text></svg>'
-
-
 class TestExpectedFigures:
     def test_pct_math(self):
         exp = df.expected_figures(_measures())
@@ -37,18 +33,12 @@ class TestExpectedFigures:
 
 
 class TestReconcile:
-    def _tree(self, tmp_path, *, readme=None, measures=None, badges=None):
+    def _tree(self, tmp_path, *, readme=None, measures=None):
         (tmp_path / "progress").mkdir()
         (tmp_path / "progress" / "report.json").write_text(
             json.dumps({"measures": measures or _measures()}))
         (tmp_path / "README.md").write_text(
             readme if readme is not None else _readme())
-        d = tmp_path / "docs"
-        d.mkdir()
-        b = badges or {"functions": "17.07", "code": "3.55", "linked": "3.02"}
-        (d / "badge_functions.svg").write_text(_badge(b["functions"]))
-        (d / "badge_code.svg").write_text(_badge(b["code"]))
-        (d / "badge_linked.svg").write_text(_badge(b["linked"]))
         return tmp_path
 
     def test_passes_when_synced(self, tmp_path):
@@ -63,12 +53,6 @@ class TestReconcile:
         errs = df.reconcile(self._tree(
             tmp_path, readme=_readme(mf="1,843", fpct="16.46")))
         assert any("functions matched" in e for e in errs)
-
-    def test_detects_badge_drift(self, tmp_path):
-        errs = df.reconcile(self._tree(
-            tmp_path, badges={"functions": "16.46", "code": "3.55",
-                              "linked": "3.02"}))
-        assert any("badge_functions" in e for e in errs)
 
     def test_detects_units_drift(self, tmp_path):
         errs = df.reconcile(self._tree(tmp_path, readme=_readme(units="2,185")))

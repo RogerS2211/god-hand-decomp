@@ -1,9 +1,9 @@
 # god-hand-decomp
 
 [![Build](https://github.com/LucasPicoli/god-hand-decomp/actions/workflows/progress.yml/badge.svg)](https://github.com/LucasPicoli/god-hand-decomp/actions/workflows/progress.yml)
-[![Code matched](docs/badge_code.svg)](https://lucaspicoli.github.io/god-hand-decomp/progress.html)
-[![Fully linked](docs/badge_linked.svg)](https://lucaspicoli.github.io/god-hand-decomp/progress.html)
-[![Functions matched](docs/badge_functions.svg)](https://lucaspicoli.github.io/god-hand-decomp/progress.html)
+[![Code matched](https://decomp.dev/LucasPicoli/god-hand-decomp.svg?mode=shield&measure=fuzzy_match_percent&label=code%20matched)](https://decomp.dev/LucasPicoli/god-hand-decomp)
+[![Fully linked](https://decomp.dev/LucasPicoli/god-hand-decomp.svg?mode=shield&measure=complete_code&label=fully%20linked)](https://decomp.dev/LucasPicoli/god-hand-decomp)
+[![Functions matched](https://decomp.dev/LucasPicoli/god-hand-decomp.svg?mode=shield&measure=matched_functions&label=functions)](https://decomp.dev/LucasPicoli/god-hand-decomp)
 
 A work-in-progress **matching decompilation** of **God Hand** — the 2006
 PlayStation 2 brawler by **Clover Studio / Capcom** (NTSC-U, serial
@@ -25,7 +25,7 @@ function-by-function against the retail binary with [objdiff](https://github.com
 | Code fully linked | **2.92 %** |
 | Functions matched | **1,914 / 11,199** (17.09 %) |
 | Data matched | **83.01 %** |
-| Translation units | 3,494 |
+| Translation units | 3,587 |
 
 > Three code axes, all from objdiff's report — the same three decomp.dev shows.
 > **Code matched (fuzzy)** is `fuzzy_match_percent` (decomp.dev's "decompiled"
@@ -37,18 +37,16 @@ function-by-function against the retail binary with [objdiff](https://github.com
 > 100 %-byte-exact count. Partials never inflate the latter two, and the default
 > build stays byte-identical to retail regardless.
 
-**Visual function tracker:** open the
-[**live progress tracker**](https://lucaspicoli.github.io/god-hand-decomp/progress.html) —
-a self-contained page (also openable offline as `docs/progress.html`) with a
-per-module rollup, a per-unit heatmap, and a sortable table, generated from
-[`progress/report.json`](progress/report.json).
+**Visual function tracker:** the live progress page — per-category rollup, a
+per-unit tree, badges, and PR comments — is hosted on decomp.dev:
+[**decomp.dev/LucasPicoli/god-hand-decomp**](https://decomp.dev/LucasPicoli/god-hand-decomp).
+It ingests [`progress/report.json`](progress/report.json) (uploaded by
+`.github/workflows/progress.yml`), so it stays current on every push.
 
-Regenerate the published report, tracker, and badges after a build:
+Regenerate the published report after a build:
 
 ```bash
-scripts/score_nm.sh                 # regenerate progress/report.json (scored build) + docs/
-# or, to refresh only docs/ from an existing report.json:
-python tools/gen_progress_page.py   # refreshes docs/progress.html + docs/badge_*.svg
+scripts/score_nm.sh                 # regenerate progress/report.json (scored build)
 ```
 
 ## Quick start
@@ -92,11 +90,12 @@ python -m pytest tests/test_compile.py tests/test_carver.py
 ├── compile_config.json build manifest: per-TU carve schema consumed by compile.py
 ├── objdiff.json        objdiff project: per-object target ↔ base mapping + categories
 ├── progress/
-│   └── report.json     objdiff progress report (the file decomp.dev consumes)
-├── docs/               generated visual tracker (progress.html) + SVG badges
+│   ├── report.json     objdiff progress report (the file decomp.dev consumes)
+│   └── unit_names.json subsystem-folder display names for the decomp.dev tree
+├── docs/               MIPS cheatsheet, code style notes
 ├── scripts/            build, verification, and decomp tooling
 │   └── checks/         CI-style gates (build, diff, splat, units, score, …)
-├── tools/              splat extensions + the progress-tracker generator
+├── tools/              objdiff-cli + splat extensions (splat_ext: sndata, …)
 ├── tests/              pytest suite for the build/decomp helpers
 ├── patches/            local patch for ee-as (R5900 short-loop errata)
 ├── ctx.h               m2c context typedefs (matching-only; never linked)
@@ -131,15 +130,17 @@ This repo follows the [decomp.dev](https://decomp.dev) model:
 
 1. `progress/report.json` is an [objdiff](https://github.com/encounter/objdiff)
    report describing matched, fully-linked, and fuzzy code plus data/functions
-   per unit (the three axes in the table above). It is committed so the tracker
-   and badges work with zero build; `scripts/mark_complete.py` derives the
+   per unit (the three axes in the table above). It is committed so decomp.dev
+   ingests it with zero build; `scripts/mark_complete.py` derives the
    fully-linked (`complete_code`) axis on every report regeneration.
 2. The GitHub Actions workflow [`.github/workflows/progress.yml`](.github/workflows/progress.yml)
    uploads it as an artifact named `SLUS_215.03_report` on every push.
 
-The local `docs/progress.html` tracker and the
-`docs/badge_*.svg` badges need no external service — they are generated from the
-committed report by `tools/gen_progress_page.py`.
+Before upload, the workflow applies a display-name remap
+([`scripts/gen_unit_names.py`](scripts/gen_unit_names.py)) to a *copy* of the
+report, so decomp.dev's file tree reads by subsystem (`enemy/`, `object/`,
+`cri-middleware/`, …) instead of `asm/src/<addr>`. The committed report keeps
+its `src/cod/<addr>` names, which the tracker tooling resolves to source files.
 
 ### Function categories
 
@@ -161,8 +162,8 @@ modulo relocation); no third-party source is committed. Identified so far
 | `sce-runtime` | 224 | 1.70 % |
 | `crt` | 250 | 1.24 % |
 
-This breakdown is rendered as a **Library / middleware** panel on the
-[progress tracker](https://lucaspicoli.github.io/god-hand-decomp/progress.html).
+This breakdown is rendered as category bars on the
+[decomp.dev page](https://decomp.dev/LucasPicoli/god-hand-decomp).
 
 The category axis is orthogonal to the matching/`permanent` axis: a function's
 category says *what subsystem it belongs to*, independent of whether it is

@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
-"""doc_figures.py — reconcile the README headline + badges with report.json.
+"""doc_figures.py — reconcile the README "Progress" table with report.json.
 
 The committed ``progress/report.json`` is the ground truth decomp.dev ingests.
-The README "Progress" table and the ``docs/badge_*.svg`` shields are
-hand-/tool-updated copies of those numbers, and nothing stopped them silently
-drifting — they were a full publish (1,843 vs 1,912 functions) stale once. This
-lint re-derives the headline figures from ``report.json`` and fails if the
-README table or any badge disagrees, so a stale doc can't be committed.
+The README "Progress" table is a hand-updated copy of those numbers, and nothing
+stopped it silently drifting — it was a full publish (1,843 vs 1,912 functions)
+stale once. This lint re-derives the headline figures from ``report.json`` and
+fails if the README table disagrees, so a stale doc can't be committed. (Badges
+are hosted by decomp.dev, which renders them from the same report, so they can't
+drift.)
 
 Toolchain-free (reads only committed files), so it runs in PR CI alongside
-``report_lint.py``. When it fails: re-run ``python tools/gen_progress_page.py``
-to refresh the badges and update the README "Progress" table.
+``report_lint.py``. When it fails: update the README "Progress" table to match
+``progress/report.json``.
 
 Exit codes: 0 pass, 1 mismatch, 77 skip (no report.json).
 """
@@ -80,16 +81,6 @@ def check_readme(text: str, exp: dict) -> list[str]:
     return errs
 
 
-def check_badge(text: str, exp_pct: float, name: str) -> list[str]:
-    nums = re.findall(r"([\d.]+)\s*%", text)
-    if not nums:
-        return [f"{name}: no percentage found"]
-    # The message (value) is the last % in the shields SVG; the label has none.
-    if abs(float(nums[-1]) - exp_pct) > TOL:
-        return [f"{name} {nums[-1]}% != {exp_pct:.2f}%"]
-    return []
-
-
 def reconcile(root: Path) -> list[str]:
     measures = json.loads((root / "progress" / "report.json").read_text()
                           ).get("measures", {})
@@ -100,12 +91,6 @@ def reconcile(root: Path) -> list[str]:
         errs += check_readme(readme.read_text(), exp)
     else:
         errs.append("README.md missing")
-    for rel, pct in (("docs/badge_functions.svg", exp["functions_pct"]),
-                     ("docs/badge_code.svg", exp["fuzzy_pct"]),
-                     ("docs/badge_linked.svg", exp["linked_pct"])):
-        p = root / rel
-        if p.exists():
-            errs += check_badge(p.read_text(), pct, rel)
     return errs
 
 
@@ -119,8 +104,7 @@ def main() -> int:
         print("doc figures OUT OF SYNC with progress/report.json:")
         for e in errs:
             print("  -", e)
-        print("Fix: python tools/gen_progress_page.py (badges) + update the "
-              "README 'Progress' table.")
+        print("Fix: update the README 'Progress' table to match progress/report.json.")
         return 1
     measures = json.loads(report.read_text()).get("measures", {})
     exp = expected_figures(measures)

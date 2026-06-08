@@ -8,7 +8,7 @@
 #   2. compiles every unit into build-nm/ with NON_MATCHING (the guarded clean-C
 #      bodies compile instead of their INCLUDE_ASM fallback)
 #   3. writes progress/report.json from that build
-#   4. refreshes docs/ (tracker + badges)
+#      (decomp.dev hosts the tracker + badges; it ingests this report on push)
 #
 # What does and does NOT change:
 #   - fuzzy_match_percent ("decompiled" on decomp.dev) rises with partials.
@@ -31,10 +31,9 @@ python compile.py --config config/nm/compile_config.json --no-link >/dev/null
 echo "[3/4] fill non-C objects objdiff needs (REL etc.; NON_MATCHING-invariant)"
 if [ -d build/rel ]; then mkdir -p build-nm/rel && cp -r build/rel/. build-nm/rel/ 2>/dev/null || true; fi
 
-echo "[4/4] objdiff report -> progress/report.json  +  fully-linked axis  +  refresh docs/"
+echo "[4/4] objdiff report -> progress/report.json  +  fully-linked axis"
 tools/objdiff-cli report generate -p config/nm -o progress/report.json -f json-pretty >/dev/null
 python3 scripts/mark_complete.py >/dev/null
-python tools/gen_progress_page.py >/dev/null
 
 python3 - <<'PY'
 import json
@@ -43,4 +42,4 @@ print(f'  decompiled (fuzzy_match_percent): {m["fuzzy_match_percent"]:.4f}%')
 print(f'  fully matched (matched_code):     {m["matched_code"]} B  ({m["matched_functions"]} fns)')
 print(f'  fully linked (complete_code):     {m.get("complete_code", 0)} B  ({m.get("complete_code_percent", 0):.4f}%)')
 PY
-echo "done. Commit progress/report.json + docs/ to publish."
+echo "done. Commit progress/report.json to publish (decomp.dev ingests it on push)."

@@ -92,12 +92,11 @@ If that hash differs, your dump is wrong — stop, nothing else will match.
 
 ## 2. Pick a function
 
-Open the visual tracker
-([live](https://lucaspicoli.github.io/god-hand-decomp/progress.html), or
-`docs/progress.html` offline) and look for a translation unit that is
-**partially** matched — those have the most low-hanging functions. Good first
-targets are small leaf functions (no calls) in a unit that is already mostly
-done.
+Open the visual tracker on
+[decomp.dev](https://decomp.dev/LucasPicoli/god-hand-decomp) and look for a
+translation unit that is **partially** matched — those have the most
+low-hanging functions. Good first targets are small leaf functions (no calls)
+in a unit that is already mostly done.
 
 ```bash
 # List remaining (still INCLUDE_ASM'd) functions for a unit:
@@ -212,7 +211,7 @@ stock Linux runner (no toolchain or disc required). All three gates must pass:
 - a **game-data guard** (`scripts/checks/ci_no_game_data.sh`) — rejects any
   ISO, AFS, boot ELF, SDK binary, or other binary blob from the diff;
 - a **report-consistency lint** (`scripts/checks/report_lint.py`) — confirms
-  `progress/report.json` is internally consistent (the badges read it directly).
+  `progress/report.json` is internally consistent (decomp.dev ingests it directly).
 
 These gates deliberately do **not** rebuild the game — the toolchain and target
 are non-redistributable — so the byte-level match is **your** responsibility:
@@ -220,7 +219,8 @@ make sure `scripts/checks/diff.sh src/cod/<addr>` shows your unit at 100 %
 before you open the PR.
 
 [`.github/workflows/progress.yml`](.github/workflows/progress.yml) uploads the
-progress report on pushes and PRs so decomp.dev (and the badges) stay current.
+progress report on pushes and PRs so the decomp.dev page and its badges stay
+current.
 
 ## 6. Questions
 
