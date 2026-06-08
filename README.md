@@ -21,11 +21,11 @@ function-by-function against the retail binary with [objdiff](https://github.com
 
 | Metric | Value |
 | --- | --- |
-| Code matched (fuzzy) | **3.55 %** |
+| Code matched (fuzzy) | **3.56 %** |
 | Code fully linked | **2.92 %** |
-| Functions matched | **1,914 / 11,199** (17.09 %) |
+| Functions matched | **1,916 / 11,199** (17.11 %) |
 | Data matched | **83.01 %** |
-| Translation units | 3,587 |
+| Translation units | 3,589 |
 
 > Three code axes, all from objdiff's report — the same three decomp.dev shows.
 > **Code matched (fuzzy)** is `fuzzy_match_percent` (decomp.dev's "decompiled"
