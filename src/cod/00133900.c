@@ -97,6 +97,14 @@ void *func_002FFF50(void *a0) {
     return a0;
 }
 
+__attribute__((section(".text.InitObjectFieldsIfNonNull_300060")))
+int InitObjectFieldsIfNonNull_300060(int a0) {
+    if (a0) {
+        a0 = InitObjectFields_2F7110(a0);
+    }
+    return a0;
+}
+
 __attribute__((section(".text.func_00300020")))
 int func_00300020(int a0) {
     if (a0) {
