@@ -2,7 +2,7 @@
 
 extern unsigned char D_00574380[];
 extern int D_00425EE0;
-extern void func_001FE278(void *a, int b);
+extern void ClearAndResetFields_1FE278(void *a, int b);
 extern void func_001BFB00(void *a0, void *a1);
 extern int D_00785E18;
 extern int D_00425F98;
@@ -27,7 +27,7 @@ void ClearObjResource_19D7E8(void *a0, void *a1) {
     *(unsigned int *)((char *)a0 + 0x214) = (unsigned int)&D_00425EE0;
     v1 = *(int *)((char *)a0 + 0x600);
     if (v1 != 0) {
-        func_001FE278(&D_00574380, v1);
+        ClearAndResetFields_1FE278(&D_00574380, v1);
         *(unsigned int *)((char *)a0 + 0x600) = 0;
     }
     func_001BFB00(a0, a1);
@@ -75,7 +75,7 @@ void ClearObjSlot_19DA48(void *a0, void *a1)
     *(int **)((char *)a0 + 0x214) = &D_00425FB0;
     v1 = *(int *)((char *)a0 + 0x600);
     if (v1 != 0) {
-        func_001FE278(&D_00574380, (void *)v1);
+        ClearAndResetFields_1FE278(&D_00574380, (void *)v1);
         *(int *)((char *)a0 + 0x600) = 0;
     }
     ResetField214FreeField180_1C2820(a0, a1);
@@ -122,7 +122,7 @@ void ResetObjSlotResource_19DCD0(void *a0, int a1) {
     *(int*)((char*)a0 + 0x214) = (int)&D_00426098;
     v1 = *(int*)((char*)a0 + 0x600);
     if (v1 != 0) {
-        func_001FE278(&D_00574380, (void*)v1);
+        ClearAndResetFields_1FE278(&D_00574380, (void*)v1);
         *(int*)((char*)a0 + 0x600) = 0;
     }
     ResetField214FreeField180_1C2820(a0, a1);

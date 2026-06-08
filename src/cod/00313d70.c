@@ -1,8 +1,8 @@
 extern int D_00747A34;
 extern char D_00754C10[];
 
-__attribute__((section(".text.func_00313D70")))
-int func_00313D70(void)
+__attribute__((section(".text.ForwardInitBuffer_313D70")))
+int ForwardInitBuffer_313D70(void)
 {
     void *s0;
 

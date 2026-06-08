@@ -2,7 +2,7 @@
 
 extern int D_00466448[];
 extern void func_002A9790(void *p);
-extern void func_00149550(int a0, int a1);
+extern void ForwardGlobalIfFlagSet_149550(int a0, int a1);
 extern int D_00747A80;
 extern int D_00747AA8;
 extern void InitStructDefaults_137AA0(void);
@@ -13,8 +13,8 @@ int Forward1494F8_149350(int a0) {
     return func_001494F8(D_00466448, a0);
 }
 
-__attribute__((section(".text.func_00149550")))
-void func_00149550(int a0, int a1) {
+__attribute__((section(".text.ForwardGlobalIfFlagSet_149550")))
+void ForwardGlobalIfFlagSet_149550(int a0, int a1) {
     if (a1 == 0xFFFF && a0 != 0) {
         func_002A9790(D_00466448);
     }
@@ -22,7 +22,7 @@ void func_00149550(int a0, int a1) {
 
 __attribute__((section(".text.Forward149550_149580")))
 void Forward149550_149580(void) {
-    func_00149550(1, 0xFFFF);
+    ForwardGlobalIfFlagSet_149550(1, 0xFFFF);
 }
 
 __attribute__((section(".text.IsTargetVisible_14B470")))

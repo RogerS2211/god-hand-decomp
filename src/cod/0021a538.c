@@ -2379,13 +2379,13 @@ block_575:
                             temp_a0_4 = (*(s32 *)((u8 *)(arg0) + 0x744));
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_73) + 0x37D4)) + temp_v1_73;
                             if (temp_a0_4 != 0) {
-                                func_0027EA50(temp_a0_4, 0xA);
+                                ForwardAnimParamPairByIndex_27EA50(temp_a0_4, 0xA);
                             }
                         } else {
                             temp_a0_5 = (*(s32 *)((u8 *)(arg0) + 0x744));
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_73) + 0x37D4)) + temp_v1_73;
                             if (temp_a0_5 != 0) {
-                                func_0027EA50(temp_a0_5, 9);
+                                ForwardAnimParamPairByIndex_27EA50(temp_a0_5, 9);
                             }
                         }
                         break;
@@ -2399,13 +2399,13 @@ block_575:
                             temp_a0_6 = (*(s32 *)((u8 *)(arg0) + 0x744));
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_74) + 0x37A8)) + temp_v1_74;
                             if (temp_a0_6 != 0) {
-                                func_0027EA50(temp_a0_6, 8);
+                                ForwardAnimParamPairByIndex_27EA50(temp_a0_6, 8);
                             }
                         } else {
                             temp_a0_7 = (*(s32 *)((u8 *)(arg0) + 0x744));
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_74) + 0x37A4)) + temp_v1_74;
                             if (temp_a0_7 != 0) {
-                                func_0027EA50(temp_a0_7, 7);
+                                ForwardAnimParamPairByIndex_27EA50(temp_a0_7, 7);
                             }
                         }
                         break;
@@ -2419,13 +2419,13 @@ block_575:
                             temp_a0_8 = (*(s32 *)((u8 *)(arg0) + 0x744));
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_76) + 0x37E4)) + temp_v1_76;
                             if (temp_a0_8 != 0) {
-                                func_0027EA50(temp_a0_8, 0xC);
+                                ForwardAnimParamPairByIndex_27EA50(temp_a0_8, 0xC);
                             }
                         } else {
                             temp_a0_9 = (*(s32 *)((u8 *)(arg0) + 0x744));
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_76) + 0x37E0)) + temp_v1_76;
                             if (temp_a0_9 != 0) {
-                                func_0027EA50(temp_a0_9, 0xB);
+                                ForwardAnimParamPairByIndex_27EA50(temp_a0_9, 0xB);
                             }
                         }
                         break;

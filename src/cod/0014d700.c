@@ -28,15 +28,15 @@ void ResetActorState_1BBF00(int a0, int a1)
     *(int *)(a0 + 0x214) = (int)D_004292F0;
     v1 = *(int *)(a0 + 0x600);
     if (v1 != 0) {
-        func_001FE278(D_00574380, v1);
+        ClearAndResetFields_1FE278(D_00574380, v1);
         *(int *)(a0 + 0x600) = 0;
     }
     func_001BD3F0(a0);
     SetField214PtrThenInit_1B6F38(a0, a1);
 }
 
-__attribute__((section(".text.func_001F4C40")))
-void func_001F4C40(int a0, unsigned short a1, int a2, int a3)
+__attribute__((section(".text.SetCustomIDSlotNumber_1F4C40")))
+void SetCustomIDSlotNumber_1F4C40(int a0, unsigned short a1, int a2, int a3)
 {
     unsigned int s0 = a1;
     int off;
@@ -47,8 +47,8 @@ void func_001F4C40(int a0, unsigned short a1, int a2, int a3)
     }
 }
 
-__attribute__((section(".text.func_001F5210")))
-void func_001F5210(int a0, unsigned short a1, int a2, int a3)
+__attribute__((section(".text.SetCustomIDSlotNumberAlt_1F5210")))
+void SetCustomIDSlotNumberAlt_1F5210(int a0, unsigned short a1, int a2, int a3)
 {
     unsigned int s0 = a1;
     int off;

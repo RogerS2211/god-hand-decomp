@@ -56,8 +56,8 @@ void *AllocAndInitSystem_312F00(void)
     return 0;
 }
 
-__attribute__((section(".text.func_003130E0")))
-void *func_003130E0(void)
+__attribute__((section(".text.AllocZeroedAndInit_3130E0")))
+void *AllocZeroedAndInit_3130E0(void)
 {
     void *p;
     if (!(D_00747A34 & 0x100000))

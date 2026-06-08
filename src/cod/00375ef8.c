@@ -34,14 +34,14 @@ void ClearEventFlagsPending_375FA0(void) {
     }
 }
 
-__attribute__((section(".text.func_00376008")))
-void func_00376008(void) {
+__attribute__((section(".text.ClearPendingEntries_376008")))
+void ClearPendingEntries_376008(void) {
     unsigned char *s0 = D_0076F050;
     int s1 = 0x5F;
     do {
         if (*(unsigned short *)s0 != 0) {
             if (*(unsigned char *)(s0 + 8) & 0x10) {
-                func_00376200(s0);
+                BuildSlotEntry_376200(s0);
             } else {
                 func_00376080(s0);
             }
@@ -51,13 +51,13 @@ void func_00376008(void) {
     } while (--s1 >= 0);
 }
 
-__attribute__((section(".text.func_00376200")))
-int func_00376200(void *a0) {
+__attribute__((section(".text.BuildSlotEntry_376200")))
+int BuildSlotEntry_376200(void *a0) {
     void *r;
     r = func_00376A90(*(void **)((char *)a0 + 4));
     if (r == 0) return -1;
     if (*(short *)((char *)a0 + 0xA) == 0) {
-        func_00376260(r, a0);
+        SetSlotEntry_376260(r, a0);
     } else {
         func_003762D8(r, a0);
     }

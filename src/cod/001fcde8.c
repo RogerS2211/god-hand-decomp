@@ -5,7 +5,7 @@ extern unsigned char D_0042C4D8[];
 extern unsigned char D_0042C4B8[];
 extern void func_001FCDB8(void *a0);
 extern unsigned char D_0042C498[];
-extern void func_001FCDE8(void *a0);
+extern void ResetObjectFields_1FCDE8(void *a0);
 extern void func_001FF0B0(void *);
 extern void ClearSlotArray_1FF5B8(void *);
 extern void func_0032A6D0(void *a0, void *a1, void *a2);
@@ -13,8 +13,8 @@ extern void ClearSlotRefs_376AE0(void *a0, int a1);
 extern void func_00378020(void *a0);
 extern void func_00378070(void *a0);
 
-__attribute__((section(".text.func_001FCDE8")))
-void func_001FCDE8(void *a0) {
+__attribute__((section(".text.ResetObjectFields_1FCDE8")))
+void ResetObjectFields_1FCDE8(void *a0) {
     func_001FCD00(a0);
     *(int*)((char*)a0+0x34) = 0;
     *(char*)((char*)a0+0x49) = 2;
@@ -52,7 +52,7 @@ void *InitObjectB_1FD3B8(void *a0) {
     *(int*)((char*)a0+0x60) = 0;
     *(unsigned char**)((char*)a0+0x50) = D_0042C498;
     *(char*)((char*)a0+0x49) = 2;
-    func_001FCDE8(a0);
+    ResetObjectFields_1FCDE8(a0);
     return a0;
 }
 
@@ -84,8 +84,8 @@ void ForwardCollectionItems_374820(void *a0, void *a1, void *a2) {
     } while (i < *(int*)((char*)a0+0xC));
 }
 
-__attribute__((section(".text.func_00376260")))
-void func_00376260(void *a0, void *a1) {
+__attribute__((section(".text.SetSlotEntry_376260")))
+void SetSlotEntry_376260(void *a0, void *a1) {
     unsigned char *p = (unsigned char *)a1 + 0x20;
     unsigned short v1 = *(unsigned short *)(p + 6);
     if ((unsigned short)(v1 + 1) < 2) {
@@ -98,8 +98,8 @@ void func_00376260(void *a0, void *a1) {
     *(unsigned short *)a0 |= 0x100;
 }
 
-__attribute__((section(".text.func_003767B0")))
-void func_003767B0(void *a0) {
+__attribute__((section(".text.UpdateSlotState_3767B0")))
+void UpdateSlotState_3767B0(void *a0) {
     char *s = (char *)a0;
     unsigned short flags = *(unsigned short *)s;
     if (flags & 0x100) {

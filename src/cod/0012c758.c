@@ -34,8 +34,8 @@ void func_00139060(int a0)
     }
 }
 
-__attribute__((section(".text.func_0013D338")))
-void func_0013D338(void *a0, int a1)
+__attribute__((section(".text.SetVtable80AndForwardNeg20_13D338")))
+void SetVtable80AndForwardNeg20_13D338(void *a0, int a1)
 {
     *(char **)((char *)a0 + 0x80) = D_0041DCC8;
     if (a1 & 1) {
@@ -43,8 +43,8 @@ void func_0013D338(void *a0, int a1)
     }
 }
 
-__attribute__((section(".text.func_0013E300")))
-void func_0013E300(void *a0, int a1)
+__attribute__((section(".text.SetVtable80AndMaybeForwardNeg20_13E300")))
+void SetVtable80AndMaybeForwardNeg20_13E300(void *a0, int a1)
 {
     *(char **)((char *)a0 + 0x80) = D_0041DCC8;
     if (a1 & 1) {
@@ -52,8 +52,8 @@ void func_0013E300(void *a0, int a1)
     }
 }
 
-__attribute__((section(".text.func_0013E750")))
-void func_0013E750(void *a0, int a1)
+__attribute__((section(".text.InitVtable80ConditionalForward_13E750")))
+void InitVtable80ConditionalForward_13E750(void *a0, int a1)
 {
     *(char **)((char *)a0 + 0x80) = D_0041DCC8;
     if (a1 & 1) {
@@ -61,8 +61,8 @@ void func_0013E750(void *a0, int a1)
     }
 }
 
-__attribute__((section(".text.func_0013EC50")))
-void func_0013EC50(void *a0, int a1)
+__attribute__((section(".text.SetField80VtableAndForward_13EC50")))
+void SetField80VtableAndForward_13EC50(void *a0, int a1)
 {
     *(char **)((char *)a0 + 0x80) = D_0041DCC8;
     if (a1 & 1) {

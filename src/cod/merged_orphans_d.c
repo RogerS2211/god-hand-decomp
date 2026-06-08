@@ -3,7 +3,7 @@
  * a stack frame (the helper is not a tail call).  $v0 is left as the
  * helper's return value.
  */
-extern int func_00107DE0(int id, int mask);
+extern int ResetGlobalStateFields_107DE0(int id, int mask);
 extern int func_00155DC8(int id, int mask);
 extern int func_001574F0(int id, int mask);
 extern int func_00294AE0(int id, int mask);
@@ -11,7 +11,7 @@ extern int func_00308EE8(int id, int mask);
 extern int func_0031D9F0(int id, int mask);
 
 __attribute__((section(".text.Forward107DE0_107E20")))
-int Forward107DE0_107E20(void) { return func_00107DE0(1, 0xFFFF); }
+int Forward107DE0_107E20(void) { return ResetGlobalStateFields_107DE0(1, 0xFFFF); }
 
 __attribute__((section(".text.Forward155DC8_1563D0")))
 int Forward155DC8_1563D0(void) { return func_00155DC8(1, 0xFFFF); }
@@ -49,19 +49,19 @@ int GetObjVtabPtr_2A9458(void *obj) { return *(int *)((char *)obj + 0xF0); }
 extern int D_0041D7B8;
 extern int D_00424D18;
 extern int D_00586AF0;
-extern void func_001339C0(void *obj);
+extern void InitVtableField30_1339C0(void *obj);
 extern void SetField214PtrThenInit_1B6F38(void *obj);
 extern void func_00298088(void);
 extern void func_00297B40(void *a, void *b);
 
-__attribute__((section(".text.func_00133B58")))
-void func_00133B58(void *obj) {
+__attribute__((section(".text.InitObjVtableField30_133B58")))
+void InitObjVtableField30_133B58(void *obj) {
     *(int **)((char *)obj + 0x30) = &D_0041D7B8;
-    func_001339C0(obj);
+    InitVtableField30_1339C0(obj);
 }
 
-__attribute__((section(".text.func_00195ED0")))
-void func_00195ED0(void *obj) {
+__attribute__((section(".text.InitObjVtableField214_195ED0")))
+void InitObjVtableField214_195ED0(void *obj) {
     *(int **)((char *)obj + 0x214) = &D_00424D18;
     SetField214PtrThenInit_1B6F38(obj);
 }

@@ -12,8 +12,8 @@ extern char D_0061A990[];
 extern void func_002D9BD0(void *a0);
 extern void func_002D9BD8(void *a0);
 
-__attribute__((section(".text.func_002C2138")))
-int func_002C2138(char *a0, int a1) {
+__attribute__((section(".text.SetNodeCallback_2C2138")))
+int SetNodeCallback_2C2138(char *a0, int a1) {
     int t;
     if (*(int*)(a0+0x3C) == 0) {
         return 0;
@@ -23,8 +23,8 @@ int func_002C2138(char *a0, int a1) {
     return 1;
 }
 
-__attribute__((section(".text.func_002C2368")))
-void func_002C2368(char *a0) {
+__attribute__((section(".text.ForwardEntityAndExit_2C2368")))
+void ForwardEntityAndExit_2C2368(char *a0) {
     char *s1 = a0 + 0x5C;
     int v1 = *(unsigned short*)(s1 + 2);
     if ((unsigned int)v1 < 0x1000) {
@@ -114,8 +114,8 @@ int FindEntityByTypeIndex_2C2AE0(int a0, int a1) {
     return 0;
 }
 
-__attribute__((section(".text.func_002C32C0")))
-void func_002C32C0(void *a0) {
+__attribute__((section(".text.ClearActorList_2C32C0")))
+void ClearActorList_2C32C0(void *a0) {
     func_002D56A8((char*)a0 + 0x1C);
     *(char*)((char*)a0 + 0x14) = 0;
 }

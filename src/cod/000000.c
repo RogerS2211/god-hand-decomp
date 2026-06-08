@@ -434,8 +434,8 @@ void NoOp_1F15B8(void) {}
 
 extern int D_003C80A8;
 
-__attribute__((section(".text.func_00325610")))
-int func_00325610(void) {
+__attribute__((section(".text.GetD003C80A8_325610")))
+int GetD003C80A8_325610(void) {
     return D_003C80A8;
 }
 
@@ -462,22 +462,22 @@ void Obj0000_Set_D_003DA394_335348(int a0) {
 
 extern int D_003E9D5C;
 
-__attribute__((section(".text.func_0033C718")))
-int func_0033C718(void) {
+__attribute__((section(".text.GetD003E9D5C_33C718")))
+int GetD003E9D5C_33C718(void) {
     return D_003E9D5C;
 }
 
 extern unsigned char D_003EC7E0[];
 
-__attribute__((section(".text.func_003452B0")))
-void *func_003452B0(void) {
+__attribute__((section(".text.GetD003EC7E0_3452B0")))
+void *GetD003EC7E0_3452B0(void) {
     return D_003EC7E0;
 }
 
 extern int D_003EE078;
 
-__attribute__((section(".text.func_003463F8")))
-int func_003463F8(void) {
+__attribute__((section(".text.GetD003EE078_3463F8")))
+int GetD003EE078_3463F8(void) {
     return D_003EE078;
 }
 
@@ -530,8 +530,8 @@ int Obj0000_Get_D_003EE34C_35FC28(void) {
 
 extern int D_003EE804;
 
-__attribute__((section(".text.func_00360720")))
-int func_00360720(void) {
+__attribute__((section(".text.GetD003EE804_360720")))
+int GetD003EE804_360720(void) {
     return D_003EE804;
 }
 
@@ -558,8 +558,8 @@ void Obj0000_Set_D_003EEA70_360C80(long long a0) {
 
 extern char D_003EEA90[];
 
-__attribute__((section(".text.func_00360D18")))
-char *func_00360D18(void) {
+__attribute__((section(".text.GetD003EEA90_360D18")))
+char *GetD003EEA90_360D18(void) {
     return D_003EEA90;
 }
 
@@ -593,8 +593,8 @@ int Obj0000_Get_D_0076A7A4_3756F0(void) {
 
 extern unsigned char D_003F8560[];
 
-__attribute__((section(".text.func_00395388")))
-unsigned char *func_00395388(void) {
+__attribute__((section(".text.GetD003F8560_395388")))
+unsigned char *GetD003F8560_395388(void) {
     return D_003F8560;
 }
 
@@ -672,8 +672,8 @@ typedef struct CGObj38B8
   unsigned char unk[0x60];
 } CGObj38B8_t;
 extern volatile int D_003D848C;
-__attribute__((section(".text.func_003313E0")))
-int func_003313E0(void)
+__attribute__((section(".text.GetD003D848C_3313E0")))
+int GetD003D848C_3313E0(void)
 {
   return D_003D848C;
 }

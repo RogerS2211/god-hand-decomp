@@ -12,8 +12,8 @@ void func_00138600(int a0) {
     func_00138740(a0);
 }
 
-__attribute__((section(".text.func_0013D0B8")))
-void func_0013D0B8(char *a0)
+__attribute__((section(".text.InitFiveSubstructs2ABA78_13D0B8")))
+void InitFiveSubstructs2ABA78_13D0B8(char *a0)
 {
     func_002ABA78(a0);
     func_002ABA78(a0 + 0x140);
@@ -22,8 +22,8 @@ void func_0013D0B8(char *a0)
     func_002ABA78(a0 + 0xF0);
 }
 
-__attribute__((section(".text.func_0013D100")))
-void func_0013D100(char *a0)
+__attribute__((section(".text.InitFiveSubstructs2AABA0_13D100")))
+void InitFiveSubstructs2AABA0_13D100(char *a0)
 {
     func_002AABA0(a0);
     func_002AABA0(a0 + 0x140);

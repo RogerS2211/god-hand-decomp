@@ -1,8 +1,8 @@
 extern int D_00747A34;
 extern char D_00754220[];
 
-__attribute__((section(".text.func_00313510")))
-void *func_00313510(void)
+__attribute__((section(".text.AllocAndInitObjVtable_313510")))
+void *AllocAndInitObjVtable_313510(void)
 {
     void *p;
     if (!(D_00747A34 & 0x100000))
@@ -17,8 +17,8 @@ void *func_00313510(void)
     return 0;
 }
 
-__attribute__((section(".text.func_00313580")))
-void *func_00313580(void)
+__attribute__((section(".text.AllocAndSetupObj_313580")))
+void *AllocAndSetupObj_313580(void)
 {
     void *p;
     if (!(D_00747A34 & 0x100000))
@@ -33,8 +33,8 @@ void *func_00313580(void)
     return 0;
 }
 
-__attribute__((section(".text.func_003135F0")))
-void *func_003135F0(void)
+__attribute__((section(".text.AllocZeroedAndInitVtable_3135F0")))
+void *AllocZeroedAndInitVtable_3135F0(void)
 {
     void *p;
     if (!(D_00747A34 & 0x100000))
@@ -49,8 +49,8 @@ void *func_003135F0(void)
     return 0;
 }
 
-__attribute__((section(".text.func_00313660")))
-int func_00313660(void)
+__attribute__((section(".text.AllocZeroedAndSetupObj_313660")))
+int AllocZeroedAndSetupObj_313660(void)
 {
     void *p;
     if (D_00747A34 & 0x100000)
@@ -62,8 +62,8 @@ int func_00313660(void)
     return Setup_27DD88(p);
 }
 
-__attribute__((section(".text.func_003136D0")))
-int func_003136D0(void)
+__attribute__((section(".text.AllocAndInitObjVtableFull_3136D0")))
+int AllocAndInitObjVtableFull_3136D0(void)
 {
     void *p;
     if (D_00747A34 & 0x100000)
@@ -75,8 +75,8 @@ int func_003136D0(void)
     return InitObjVtableAndTypeFull_27EE68(p);
 }
 
-__attribute__((section(".text.func_00313740")))
-int func_00313740(void)
+__attribute__((section(".text.ForwardInitBuffer_313740")))
+int ForwardInitBuffer_313740(void)
 {
     void *p;
     if (D_00747A34 & 0x100000)

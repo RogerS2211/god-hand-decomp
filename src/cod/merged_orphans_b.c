@@ -42,7 +42,7 @@ extern void func_0014FD20(void);
 extern void GetOrInitGlobal785878_1B8058(void);
 extern void GetOrInitGlobal785798_1C3BE8(void);
 extern void func_0028FDD0(void);
-extern void func_002B6528(void);
+extern void GetOrInit_460D58_2B6528(void);
 extern void func_002EFA60(void);
 extern void GetOrInitGlobal7863C8_300148(void);
 extern void SetField_0_4_8_31EEA8(void *a, void *b, void *c);
@@ -158,7 +158,7 @@ int *GetSingleton786578_2F9CE0(void) {
 __attribute__((section(".text.GetSingleton786598_3000F8")))
 int *GetSingleton786598_3000F8(void) {
     if (D_00786598 == 0) {
-        func_002B6528();
+        GetOrInit_460D58_2B6528();
         SetField_0_4_8_31EEA8(&D_00786598, &D_0044FBA8, &D_00460D58);
     }
     return &D_00786598;
@@ -167,7 +167,7 @@ int *GetSingleton786598_3000F8(void) {
 __attribute__((section(".text.GetSingletonD007865A8_304E38")))
 int *GetSingletonD007865A8_304E38(void) {
     if (D_007865A8 == 0) {
-        func_002B6528();
+        GetOrInit_460D58_2B6528();
         SetField_0_4_8_31EEA8(&D_007865A8, &D_0044FDB8, &D_00460D58);
     }
     return &D_007865A8;

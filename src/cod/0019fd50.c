@@ -13,8 +13,8 @@ extern int D_00785ED8;
 extern char D_00426A80[];
 extern int D_00426A98;
 
-__attribute__((section(".text.func_0019FD50")))
-void func_0019FD50(void *a0) {
+__attribute__((section(".text.ClearDamageCollAndState_19FD50")))
+void ClearDamageCollAndState_19FD50(void *a0) {
     int v0 = *(int*)((char*)a0 + 0x5B0);
     int x = *(int*)((char*)a0 + 0x650);
     *(int*)((char*)a0 + 0x5B0) = (v0 & -9) | 4;
@@ -63,7 +63,7 @@ void FreeActorResources_19FF30(void *a0, int a1) {
     *(int **)((char*)a0 + 0x214) = &D_004268C8;
     v1 = *(int*)((char*)a0 + 0x600);
     if (v1 != 0) {
-        func_001FE278(&D_00574380, v1);
+        ClearAndResetFields_1FE278(&D_00574380, v1);
         *(int*)((char*)a0 + 0x600) = 0;
     }
     ResetField214FreeField180_1C2820(a0, a1);
@@ -111,7 +111,7 @@ void FreeActorResourcesC_1A01A8(void *a0, void *a1) {
     *(int **)((char *)a0 + 0x214) = &D_004269B0;
     v1 = *(int *)((char *)a0 + 0x600);
     if (v1 != 0) {
-        func_001FE278(&D_00574380, (void *)v1);
+        ClearAndResetFields_1FE278(&D_00574380, (void *)v1);
         *(int *)((char *)a0 + 0x600) = 0;
     }
     ResetField214FreeField180_1C2820(a0, a1);
@@ -158,7 +158,7 @@ void FreeActorResourcesD_1A0418(void *a0, void *a1)
 {
     *(int *)((char *)a0 + 0x214) = (int)&D_00426A98;
     if (*(int *)((char *)a0 + 0x600) != 0) {
-        func_001FE278(&D_00574380, *(int *)((char *)a0 + 0x600));
+        ClearAndResetFields_1FE278(&D_00574380, *(int *)((char *)a0 + 0x600));
         *(int *)((char *)a0 + 0x600) = 0;
     }
     ResetField214FreeField180_1C2820(a0, a1);

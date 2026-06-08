@@ -11,8 +11,8 @@ extern int D_00785838;
 extern int D_00420908;
 extern int D_00420920;
 
-__attribute__((section(".text.func_00170990")))
-void func_00170990(int a0) {
+__attribute__((section(".text.InitActorVU0Slots0A0C_170990")))
+void InitActorVU0Slots0A0C_170990(int a0) {
     func_002CBA48(D_005FEE00, 2, 0xA, a0, 0, 0, 0, 0);
     func_002CBA48(D_005FEE00, 2, 0xC, a0, 0, 0, 0, 0);
 }
@@ -39,20 +39,20 @@ int FreeActorVtableState_170A90(int a0, int a1) {
     *(int *)(a0 + 0x214) = (int)&D_00420780;
     v1 = *(int *)(a0 + 0x600);
     if (v1 != 0) {
-        func_001FE278(&D_00574380, v1);
+        ClearAndResetFields_1FE278(&D_00574380, v1);
         *(int *)(a0 + 0x600) = 0;
     }
     return func_001BFB00(a0, a1);
 }
 
-__attribute__((section(".text.func_00170C20")))
-void func_00170C20(int a0) {
+__attribute__((section(".text.InitActorVU0Slots0A0CB_170C20")))
+void InitActorVU0Slots0A0CB_170C20(int a0) {
     func_002CBA48(D_005FEE00, 2, 0xA, a0, 0, 0, 0, 0);
     func_002CBA48(D_005FEE00, 2, 0xC, a0, 0, 0, 0, 0);
 }
 
-__attribute__((section(".text.func_00170C98")))
-void *func_00170C98(void)
+__attribute__((section(".text.GetOrInitSingleton785828_170C98")))
+void *GetOrInitSingleton785828_170C98(void)
 {
     if (D_00785828 == 0) {
         func_001C0018();
@@ -76,14 +76,14 @@ void FreeActorVtableState2_170D20(void *a0, void *a1)
     *(int *)((char *)a0 + 0x214) = (int)&D_00420850;
     v1 = *(int *)((char *)a0 + 0x600);
     if (v1 != 0) {
-        func_001FE278(&D_00574380, (void *)v1);
+        ClearAndResetFields_1FE278(&D_00574380, (void *)v1);
         *(int *)((char *)a0 + 0x600) = 0;
     }
     func_001BFB00(a0, a1);
 }
 
-__attribute__((section(".text.func_00170EB0")))
-void *func_00170EB0(void)
+__attribute__((section(".text.GetOrInitSingleton785838_170EB0")))
+void *GetOrInitSingleton785838_170EB0(void)
 {
     if (D_00785838 == 0) {
         func_001C0018();

@@ -58,8 +58,8 @@ void ForwardAndSyncPosition_102EE0(void *a0) {
     }
 }
 
-__attribute__((section(".text.func_00102FE8")))
-void func_00102FE8(void *a0) {
+__attribute__((section(".text.UpdateAttackMovePhase_102FE8")))
+void UpdateAttackMovePhase_102FE8(void *a0) {
     int g;
     switch (*(unsigned char *)((char *)a0 + 0x2F6)) {
     case 0:

@@ -3,7 +3,7 @@
 extern int D_0041D220[];
 extern int D_00462FC0[];
 extern void func_001347E8(void *a0, void *a1);
-extern void func_001002C0(void *a0, void *a1);
+extern void InitObjectVtableAndRegister_1002C0(void *a0, void *a1);
 extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
 extern float SetField444SignedByFlag434_158288(void *a0, float f);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
@@ -36,7 +36,7 @@ __attribute__((section(".text.InitActorWithVtable_107EC8")))
 void InitActorWithVtable_107EC8(void *a0, void *a1) {
     *(int **)((char*)a0+0x214) = D_0041D220;
     func_001347E8(D_00462FC0, a0);
-    func_001002C0(a0, a1);
+    InitObjectVtableAndRegister_1002C0(a0, a1);
 }
 
 __attribute__((section(".text.UpdateBossPhase_10B780")))

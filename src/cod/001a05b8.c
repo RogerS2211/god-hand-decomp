@@ -55,7 +55,7 @@ void FreeActorResourcesE_1A0690(void *a0, void *a1)
 {
     *(int *)((char *)a0 + 0x214) = (int)&D_00426B80;
     if (*(int *)((char *)a0 + 0x600) != 0) {
-        func_001FE278(&D_00574380, *(int *)((char *)a0 + 0x600));
+        ClearAndResetFields_1FE278(&D_00574380, *(int *)((char *)a0 + 0x600));
         *(int *)((char *)a0 + 0x600) = 0;
     }
     ResetField214FreeField180_1C2820(a0, a1);
@@ -105,7 +105,7 @@ void FreeActorResourcesF_1A0908(void *a0, void *a1)
 	*(int **)((char *)a0 + 0x214) = &D_00426C68;
 	v1 = *(int *)((char *)a0 + 0x600);
 	if (v1 != 0) {
-		func_001FE278(&D_00574380, (void *)v1);
+		ClearAndResetFields_1FE278(&D_00574380, (void *)v1);
 		*(int *)((char *)a0 + 0x600) = 0;
 	}
 	ResetField214FreeField180_1C2820(a0, a1);

@@ -91,8 +91,8 @@ int ForwardInitBuffer_314FD0(void){
     return InitObjVu0Fields_19D340(s0);
 }
 
-__attribute__((section(".text.func_00315040")))
-int func_00315040(void){
+__attribute__((section(".text.ForwardInitObjVtableBuffer_315040")))
+int ForwardInitObjVtableBuffer_315040(void){
     void *s0;
     if (D_00747A34 & 0x10000) return 0;
     s0 = EnsureInitThenForward_2A9538_30EE08(0x610, 0x10, D_00754C10);

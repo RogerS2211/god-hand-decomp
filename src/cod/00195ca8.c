@@ -1,13 +1,13 @@
 extern int D_00424C30;
 extern int D_00574380;
 
-__attribute__((section(".text.func_00195CA8")))
-void *func_00195CA8(void *a0, int a1) {
+__attribute__((section(".text.ResetField214FreeField600H_195CA8")))
+void *ResetField214FreeField600H_195CA8(void *a0, int a1) {
     int v1;
     *(int *)((char *)a0 + 0x214) = (int)&D_00424C30;
     v1 = *(int *)((char *)a0 + 0x600);
     if (v1 != 0) {
-        func_001FE278(&D_00574380, v1);
+        ClearAndResetFields_1FE278(&D_00574380, v1);
         *(int *)((char *)a0 + 0x600) = 0;
     }
     return ResetField214FreeField180_1C2820(a0, a1);

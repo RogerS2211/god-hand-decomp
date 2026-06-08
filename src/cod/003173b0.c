@@ -61,8 +61,8 @@ int func_003175E0(void){
     return func_0017D5D0(s0);
 }
 
-__attribute__((section(".text.func_00317650")))
-int func_00317650(void){
+__attribute__((section(".text.AllocInitObj17E0F8_317650")))
+int AllocInitObj17E0F8_317650(void){
     void *s0;
     if (D_00747A34 & 0x10000) return 0;
     s0 = EnsureInitThenForward_2A9538_30EE08(0x780, 0x10, D_00754C10);
@@ -71,8 +71,8 @@ int func_00317650(void){
     return func_0017E0F8(s0);
 }
 
-__attribute__((section(".text.func_003176C0")))
-int func_003176C0(void){
+__attribute__((section(".text.AllocInitObj17E828_3176C0")))
+int AllocInitObj17E828_3176C0(void){
     void *s0;
     if (D_00747A34 & 0x10000) return 0;
     s0 = EnsureInitThenForward_2A9538_30EE08(0x6B0, 0x10, D_00754C10);
@@ -81,8 +81,8 @@ int func_003176C0(void){
     return func_0017E828(s0);
 }
 
-__attribute__((section(".text.func_00317730")))
-int func_00317730(void){
+__attribute__((section(".text.AllocInitObj17EA98_317730")))
+int AllocInitObj17EA98_317730(void){
     void *s0;
     if (D_00747A34 & 0x10000) return 0;
     s0 = EnsureInitThenForward_2A9538_30EE08(0x780, 0x10, D_00754C10);
@@ -91,8 +91,8 @@ int func_00317730(void){
     return func_0017EA98(s0);
 }
 
-__attribute__((section(".text.func_003177A0")))
-int func_003177A0(void){
+__attribute__((section(".text.AllocInitObj17EC08_3177A0")))
+int AllocInitObj17EC08_3177A0(void){
     void *s0;
     if (D_00747A34 & 0x10000) return 0;
     s0 = EnsureInitThenForward_2A9538_30EE08(0x600, 0x10, D_00754C10);

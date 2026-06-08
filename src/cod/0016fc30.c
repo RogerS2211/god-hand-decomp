@@ -96,7 +96,7 @@ void FreeObjResourceAndDestroy_16FFF0(void *a0, void *a1) {
     *(int **)((char *)a0 + 0x214) = &D_00420410;
     v1 = *(int *)((char *)a0 + 0x600);
     if (v1 != 0) {
-        func_001FE278(&D_00574380, (void *)v1);
+        ClearAndResetFields_1FE278(&D_00574380, (void *)v1);
         *(int *)((char *)a0 + 0x600) = 0;
     }
     ResetField214FreeField180_1C2820(a0, a1);

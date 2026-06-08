@@ -25,7 +25,7 @@ __attribute__((section(".text.ClearActiveBit_2CCAC8")))
 void ClearActiveBit_2CCAC8(void *a0) {
     if (func_002CC568(a0)) {
         *(int *)((char *)a0 + 0x98) = *(int *)((char *)a0 + 0x98) & 0xFFFFFFFE;
-        func_003734F0(a0);
+        UpdateStateAndClearFlag_3734F0(a0);
     }
 }
 

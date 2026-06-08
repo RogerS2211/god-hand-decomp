@@ -12,8 +12,8 @@ void InitAllocBuffer_14FE08(unsigned char *a0, int a1) {
     func_0014FE78(a0);
 }
 
-__attribute__((section(".text.func_001B18B8")))
-void func_001B18B8(unsigned char *a0) {
+__attribute__((section(".text.InitDamageCollPair_1B18B8")))
+void InitDamageCollPair_1B18B8(unsigned char *a0) {
     int v = 0x32;
     *(short *)(*(unsigned char **)(a0 + 0x66C) + 0x46) = 0x30;
     *(int *)(*(unsigned char **)(a0 + 0x66C) + 0x4C) = v;

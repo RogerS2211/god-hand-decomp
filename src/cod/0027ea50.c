@@ -1,5 +1,5 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
-/* src/cod/0027ea.c — func_0027EA50: 50-way move-data field selector.
+/* src/cod/0027ea.c — ForwardAnimParamPairByIndex_27EA50: 50-way move-data field selector.
  *
  * switch(a1) over 0..49 (case 0 == default) picks a pair of field offsets
  * off the move-data block *(a0+0x304), then the shared tail calls
@@ -21,8 +21,8 @@
 extern void func_002A8578(void *a0, void *a1, void *a2, float f, int a3, int t0, int t1);
 
 #ifdef NON_MATCHING
-__attribute__((section(".text.func_0027EA50")))
-void func_0027EA50(void *a0, unsigned int a1) {
+__attribute__((section(".text.ForwardAnimParamPairByIndex_27EA50")))
+void ForwardAnimParamPairByIndex_27EA50(void *a0, unsigned int a1) {
     int g;
     int v1, a0v;
     switch (a1) {
@@ -281,7 +281,7 @@ void func_0027EA50(void *a0, unsigned int a1) {
     func_002A8578(a0, (void *)(v1 + g), (void *)(a0v + g), 0.0f, 0xA, 0, 0);
 }
 #else
-INCLUDE_ASM("nonmatching", func_0027EA50);
+INCLUDE_ASM("nonmatching", ForwardAnimParamPairByIndex_27EA50);
 /* Re-export the switch jump-table head label the .rodata table references
  * across the .o boundary (the labels.inc-assembled carve marks jlabels
  * local).  --strip-all => no effect on the final ELF bytes / sha256. */

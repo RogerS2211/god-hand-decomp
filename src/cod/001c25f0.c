@@ -43,34 +43,34 @@ void *InitStructAndSubfields_1E8DA8(void *a0) {
     return a0;
 }
 
-__attribute__((section(".text.func_001F7C88")))
-int *func_001F7C88(void) {
+__attribute__((section(".text.GetOrInit_460D40_1F7C88")))
+int *GetOrInit_460D40_1F7C88(void) {
     if (D_00460D40 == 0) {
         func_0031EEC8(&D_00460D40, &D_0042C348);
     }
     return &D_00460D40;
 }
 
-__attribute__((section(".text.func_001FE278")))
-int func_001FE278(int a0, int a1) {
+__attribute__((section(".text.ClearAndResetFields_1FE278")))
+int ClearAndResetFields_1FE278(int a0, int a1) {
     if (a1 == 0) {
         return 0;
     }
     func_001FD580(a1);
-    func_001FCDE8(a1);
+    ResetObjectFields_1FCDE8(a1);
     return 1;
 }
 
-__attribute__((section(".text.func_001FE4C0")))
-int *func_001FE4C0(void) {
+__attribute__((section(".text.GetOrInit_460D48_1FE4C0")))
+int *GetOrInit_460D48_1FE4C0(void) {
     if (D_00460D48 == 0) {
         func_0031EEC8(&D_00460D48, &D_0042C4F8);
     }
     return &D_00460D48;
 }
 
-__attribute__((section(".text.func_001FFA28")))
-int func_001FFA28(int a0) {
+__attribute__((section(".text.GetBuiltPackedAddr_1FFA28")))
+int GetBuiltPackedAddr_1FFA28(int a0) {
     int v = func_001FFA68(a0);
     if (v == 0) {
         return 0;
@@ -84,24 +84,24 @@ void ForwardDispatchByMode_27F170(void *a0) {
     KillEffect(a0, 1, 2);
 }
 
-__attribute__((section(".text.func_002A9D60")))
-void *func_002A9D60(void) {
+__attribute__((section(".text.GetOrInit_460D50_2A9D60")))
+void *GetOrInit_460D50_2A9D60(void) {
     if (D_00460D50 == 0) {
         func_0031EEC8(&D_00460D50, D_0044AF10);
     }
     return &D_00460D50;
 }
 
-__attribute__((section(".text.func_002B6528")))
-void *func_002B6528(void) {
+__attribute__((section(".text.GetOrInit_460D58_2B6528")))
+void *GetOrInit_460D58_2B6528(void) {
     if (D_00460D58 == 0) {
         func_0031EEC8(&D_00460D58, D_0044B330);
     }
     return &D_00460D58;
 }
 
-__attribute__((section(".text.func_002BAD40")))
-void *func_002BAD40(void) {
+__attribute__((section(".text.GetOrInit_460D60_2BAD40")))
+void *GetOrInit_460D60_2BAD40(void) {
     if (D_00460D60 == 0) {
         func_0031EEC8(&D_00460D60, D_0044BE98);
     }
@@ -121,16 +121,16 @@ int Forward2CF6F8_2CB6A0(int a0, int a1, int a2) {
     return func_002CF6F8(func_002CC4B8(a0), a1, a2);
 }
 
-__attribute__((section(".text.func_002D5BB8")))
-void *func_002D5BB8(void) {
+__attribute__((section(".text.GetOrInit_460D78_2D5BB8")))
+void *GetOrInit_460D78_2D5BB8(void) {
     if (D_00460D78 == 0) {
         func_0031EEC8(&D_00460D78, &D_0044D200);
     }
     return &D_00460D78;
 }
 
-__attribute__((section(".text.func_002D5BF8")))
-void *func_002D5BF8(void) {
+__attribute__((section(".text.GetOrInit_460D80_2D5BF8")))
+void *GetOrInit_460D80_2D5BF8(void) {
     if (D_00460D80 == 0) {
         func_0031EEC8(&D_00460D80, &D_0044D210);
     }
@@ -145,16 +145,16 @@ void *GetOrInit_D00460D88_2D9EC8(void) {
     return &D_00460D88;
 }
 
-__attribute__((section(".text.func_002D9FF8")))
-void *func_002D9FF8(void) {
+__attribute__((section(".text.GetOrInit_460D90_2D9FF8")))
+void *GetOrInit_460D90_2D9FF8(void) {
     if (D_00460D90 == 0) {
         func_0031EEC8(&D_00460D90, &D_0044D3D8);
     }
     return &D_00460D90;
 }
 
-__attribute__((section(".text.func_002FFD88")))
-int func_002FFD88(int a0) {
+__attribute__((section(".text.InitVtablePtrAndClearField_2FFD88")))
+int InitVtablePtrAndClearField_2FFD88(int a0) {
     if (a0) {
         func_002FBCC8();
         *(int*)((char*)a0 + 0x2B0) = 0;
@@ -163,8 +163,8 @@ int func_002FFD88(int a0) {
     return a0;
 }
 
-__attribute__((section(".text.func_003071A0")))
-int func_003071A0(void) {
+__attribute__((section(".text.GetOrInit_460D98_3071A0")))
+int GetOrInit_460D98_3071A0(void) {
     if (D_00460D98 == 0) {
         func_0031EEC8(&D_00460D98, &D_00450098);
     }
@@ -179,8 +179,8 @@ int Get_460D70_3BAFF8(void) {
     return (int)&D_00460D70;
 }
 
-__attribute__((section(".text.func_0037B5E0")))
-void func_0037B5E0(int a0) {
+__attribute__((section(".text.ResetChannelPairFields_37B5E0")))
+void ResetChannelPairFields_37B5E0(int a0) {
     func_00374980(0, (void*)((char*)a0 + 0x16C));
     func_00374980(1, (void*)((char*)a0 + 0x18C));
     *(char*)((char*)a0 + 0x28) = 0;

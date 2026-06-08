@@ -98,5 +98,5 @@ int ForwardInitObject_3161C0(void){
     s0 = EnsureInitThenForward_2A9538_30EE08(0x610, 0x10, D_00754C10);
     if (s0 == 0) return 0;
     func_003A52F0(s0, 0, 0x610);
-    return func_001B1B38(s0);
+    return InitFieldsAndVtable600_1B1B38(s0);
 }

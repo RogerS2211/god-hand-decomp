@@ -37,8 +37,8 @@ void InitSoundBlock_374D98(short a0, short a1, short *a2)
     *(unsigned short *)((char *)a2 + 0xE) = 0x8000;
 }
 
-__attribute__((section(".text.func_00374DF8")))
-int func_00374DF8(void *a0, int a1) {
+__attribute__((section(".text.BuildSoundNode_374DF8")))
+int BuildSoundNode_374DF8(void *a0, int a1) {
     char *s2 = (char *)a0;
     char *p;
     if (*(unsigned short *)(s2 + 0xE) & 0x8000) return 0;

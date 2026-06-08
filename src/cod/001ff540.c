@@ -44,8 +44,8 @@ int *InitSlotTable_1FF800(int *a0) {
     return a0;
 }
 
-__attribute__((section(".text.func_001FFC60")))
-int func_001FFC60(int a0, int a1) {
+__attribute__((section(".text.AllocSlotEntry_1FFC60")))
+int AllocSlotEntry_1FFC60(int a0, int a1) {
     int s1 = func_00323618(a1, 0);
     int s0 = func_003243C8(s1);
     int s2 = EnsureInitThenForward_2A9538_30EE08(s0 << 11, 0x40, &D_00754200);
@@ -56,8 +56,8 @@ int func_001FFC60(int a0, int a1) {
     return s2;
 }
 
-__attribute__((section(".text.func_001FFD00")))
-int func_001FFD00(int a0, int a1, int a2) {
+__attribute__((section(".text.LoadEntryByValue_1FFD00")))
+int LoadEntryByValue_1FFD00(int a0, int a1, int a2) {
     int sp0;
     int v0;
     int s0;
@@ -78,8 +78,8 @@ void SetColorRgba_1FFE60(int a0, int a1, int a2, int a3, int t0) {
         func_001FFF80(a0);
 }
 
-__attribute__((section(".text.func_00200658")))
-void func_00200658(void) {
+__attribute__((section(".text.InitSlotParams_200658")))
+void InitSlotParams_200658(void) {
     func_003A52F0(&D_00747A78, 0, 8);
     D_00747A78[2] = D_00747A78[2] & ~0x100000;
     *(float*)((char*)Obj0000_Get_D_00747A94_2DB6B0() + 0x54C) = 30.0f;

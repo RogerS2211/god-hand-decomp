@@ -2,8 +2,8 @@ extern int D_00747A30;
 extern char D_00569B70[];
 extern int D_0044F448;
 
-__attribute__((section(".text.func_00292E80")))
-void func_00292E80(int a0)
+__attribute__((section(".text.UpdateConditionalNotify_292E80")))
+void UpdateConditionalNotify_292E80(int a0)
 {
     if ((D_00747A30 & 0x800) == 0) {
         if (func_00292F08() == 0) {
@@ -13,8 +13,8 @@ void func_00292E80(int a0)
     }
 }
 
-__attribute__((section(".text.func_002982A0")))
-void func_002982A0(int a0)
+__attribute__((section(".text.SetCostumeFlagIfMatch_2982A0")))
+void SetCostumeFlagIfMatch_2982A0(int a0)
 {
     int *s1 = (int *)a0;
     unsigned short s0;

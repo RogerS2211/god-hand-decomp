@@ -1,5 +1,5 @@
-__attribute__((section(".text.func_003059A8")))
-int func_003059A8(void *a0, int a1, void *a2) {
+__attribute__((section(".text.FindAndForwardEntry_3059A8")))
+int FindAndForwardEntry_3059A8(void *a0, int a1, void *a2) {
     int sp[4];
     int r;
     if (a1 == 5) {
@@ -42,8 +42,8 @@ void ClearLinkedTarget_12CC00(char *a0)
 	}
 }
 
-__attribute__((section(".text.func_0012ECF0")))
-void func_0012ECF0(char *a0)
+__attribute__((section(".text.ClearLinkedNodeList_12ECF0")))
+void ClearLinkedNodeList_12ECF0(char *a0)
 {
 	char *p;
 	char *vt;
@@ -71,5 +71,5 @@ void MtxInitCoord(void *a0, int a1, int a2, int a3, int t0)
 	e = t0;
 	BuildTranslationMatrix_1476D0(a0);
 	func_00147B60(a0, a0, a2, e);
-	func_00147BF8(a0, a0, a3);
+	BuildAltMatrixAndForward_147BF8(a0, a0, a3);
 }

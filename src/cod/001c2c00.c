@@ -3,8 +3,8 @@ extern char D_005FEE00[];
 extern void func_002D6910(void *p, int x, int y, int z);
 extern void func_002D6948(void *p);
 
-__attribute__((section(".text.func_001C2C00")))
-void func_001C2C00(void *a0)
+__attribute__((section(".text.SetBlendField5F4_1C2C00")))
+void SetBlendField5F4_1C2C00(void *a0)
 {
 
     int s = *(short *)((char *)a0 + 0x5F4);
@@ -13,8 +13,8 @@ void func_001C2C00(void *a0)
     }
 }
 
-__attribute__((section(".text.func_001C2D60")))
-void func_001C2D60(void *a0)
+__attribute__((section(".text.SetBlendField5F6_1C2D60")))
+void SetBlendField5F6_1C2D60(void *a0)
 {
 
     int s = *(short *)((char *)a0 + 0x5F6);
@@ -140,8 +140,8 @@ void SetBlendField348_1DDBB8(void *a0, int a1, int a2)
     }
 }
 
-__attribute__((section(".text.func_001DDC60")))
-void func_001DDC60(void *a0, int a1, int a2)
+__attribute__((section(".text.SetBlendField4BCColor_1DDC60")))
+void SetBlendField4BCColor_1DDC60(void *a0, int a1, int a2)
 {
     if (a1) {
         int b;

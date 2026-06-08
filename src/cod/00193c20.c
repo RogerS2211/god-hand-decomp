@@ -90,7 +90,7 @@ void FreeObjSlotArray_1960E0(void *a0, int a1) {
     do {
         int v = *s0;
         if (v != 0) {
-            func_001FE278(&D_00574380, v);
+            ClearAndResetFields_1FE278(&D_00574380, v);
             *s0 = 0;
         }
         i -= 1;

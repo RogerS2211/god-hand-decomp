@@ -91,8 +91,8 @@ int AllocZeroedAndForward_3172D0(void){
     return func_00178FC8(s0);
 }
 
-__attribute__((section(".text.func_00317340")))
-int func_00317340(void){
+__attribute__((section(".text.AllocZeroedAndForwardInit179D58_317340")))
+int AllocZeroedAndForwardInit179D58_317340(void){
     void *s0;
     if (D_00747A34 & 0x10000) return 0;
     s0 = EnsureInitThenForward_2A9538_30EE08(0x9C0, 0x10, D_00754C10);

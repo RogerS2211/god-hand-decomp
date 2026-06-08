@@ -96,8 +96,8 @@ int UpdateSequenceEntry_373298(void *a0, int a1) {
     return s1;
 }
 
-__attribute__((section(".text.func_00373430")))
-void func_00373430(void *a0) {
+__attribute__((section(".text.UpdateSequenceNode_373430")))
+void UpdateSequenceNode_373430(void *a0) {
     if (func_00373A50(a0) != 0) {
         if (func_00373B20(a0) == 1) {
             func_00374548(a0);
@@ -107,8 +107,8 @@ void func_00373430(void *a0) {
     }
 }
 
-__attribute__((section(".text.func_00373488")))
-void func_00373488(void *a0) {
+__attribute__((section(".text.UpdateSequenceNodeSetFlag_373488")))
+void UpdateSequenceNodeSetFlag_373488(void *a0) {
     if (func_00373A50(a0) != 0) {
         if (func_00373B20(a0) == 1) {
             func_00374570(a0);
@@ -119,8 +119,8 @@ void func_00373488(void *a0) {
     }
 }
 
-__attribute__((section(".text.func_00373560")))
-void func_00373560(void *a0, int a1, float f) {
+__attribute__((section(".text.UpdateSequenceNodeWeighted_373560")))
+void UpdateSequenceNodeWeighted_373560(void *a0, int a1, float f) {
     if (func_00373A50(a0) != 0) {
         if (func_00373B20(a0) == 1) {
             func_003745C0(a0, *(int*)((char*)a0+0x54), f, a1);
@@ -130,8 +130,8 @@ void func_00373560(void *a0, int a1, float f) {
     }
 }
 
-__attribute__((section(".text.func_00373690")))
-void func_00373690(void *a0, int a1, int a2) {
+__attribute__((section(".text.ForwardSequenceItems_373690")))
+void ForwardSequenceItems_373690(void *a0, int a1, int a2) {
     if (func_00373A50(a0)) {
         if (*(int*)((char*)a0+0x58) >= 2) {
             ForwardCollectionItems_374820(a0, a2, a1);
@@ -141,8 +141,8 @@ void func_00373690(void *a0, int a1, int a2) {
     }
 }
 
-__attribute__((section(".text.func_00373708")))
-void func_00373708(void *a0, int a1, int a2) {
+__attribute__((section(".text.UpdateSequenceState_373708")))
+void UpdateSequenceState_373708(void *a0, int a1, int a2) {
     if (func_00373A50(a0)) {
         if (func_00373B20(a0) != 1) {
             func_00374148(a0, a1, a2);

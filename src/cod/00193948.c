@@ -50,13 +50,13 @@ void *InitSlotVu0Data_193998(void *a0) {
     return a0;
 }
 
-__attribute__((section(".text.func_00193A20")))
-int func_00193A20(void *a0, int a1) {
+__attribute__((section(".text.ResetField214FreeField600F_193A20")))
+int ResetField214FreeField600F_193A20(void *a0, int a1) {
     int v1;
     *(int **)((char*)a0 + 0x214) = &D_00424960;
     v1 = *(int *)((char*)a0 + 0x600);
     if (v1 != 0) {
-        func_001FE278(&D_00574380, v1);
+        ClearAndResetFields_1FE278(&D_00574380, v1);
         *(int *)((char*)a0 + 0x600) = 0;
     }
     return ResetField214FreeField180_1C2820(a0, a1);
@@ -71,13 +71,13 @@ void *GetCInstance_193BD0(void) {
     return &D_00785C98;
 }
 
-__attribute__((section(".text.func_00193CA8")))
-int func_00193CA8(void *a0, int a1) {
+__attribute__((section(".text.ResetField214FreeField600G_193CA8")))
+int ResetField214FreeField600G_193CA8(void *a0, int a1) {
     int v1;
     *(int **)((char*)a0 + 0x214) = &D_00424A48;
     v1 = *(int *)((char*)a0 + 0x600);
     if (v1 != 0) {
-        func_001FE278(&D_00574380, v1);
+        ClearAndResetFields_1FE278(&D_00574380, v1);
         *(int *)((char*)a0 + 0x600) = 0;
     }
     return ResetField214FreeField180_1C2820(a0, a1);
@@ -99,7 +99,7 @@ void FreeMultiResource_193FD8(void *a0, int a1) {
     *(int *)((char *)a0 + 0x214) = (int)&D_00424B68;
     v1 = *(int *)((char *)a0 + 0x604);
     if (v1 != 0) {
-        func_001FE278(&D_00574380, v1);
+        ClearAndResetFields_1FE278(&D_00574380, v1);
         *(int *)((char *)a0 + 0x604) = 0;
     }
     v5 = *(int *)((char *)a0 + 0x608);

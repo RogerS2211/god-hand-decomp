@@ -5,8 +5,8 @@ extern unsigned char D_005864F0[];
 extern int D_00747B00[];
 extern int *PTR_DAT_003c2f84;
 
-__attribute__((section(".text.func_00171020")))
-void *func_00171020(void) {
+__attribute__((section(".text.GetOrInitSingleton785848_171020")))
+void *GetOrInitSingleton785848_171020(void) {
     if (D_00785848 == 0) {
         GetPilotClassDesc_1BDE00();
         SetField_0_4_8_31EEA8(&D_00785848, &D_004209D0, &D_00785858);

@@ -2,8 +2,8 @@
 
 extern char D_0041B6A0[];
 extern char D_0041B730[];
-extern void func_001F6EE0(int x);
-extern void func_0012ECF0(void *p);
+extern void SetFlagBitF30IfField35Active_1F6EE0(int x);
+extern void ClearLinkedNodeList_12ECF0(void *p);
 
 __attribute__((section(".text.GetNextAnimIndex_1451E0")))
 short GetNextAnimIndex_1451E0(char *a0) {
@@ -23,8 +23,8 @@ short GetNextAnimIndex_1451E0(char *a0) {
     return -2;
 }
 
-__attribute__((section(".text.func_00100508")))
-int func_00100508(void *a0) {
+__attribute__((section(".text.InitVtableAndForwardSetup_100508")))
+int InitVtableAndForwardSetup_100508(void *a0) {
     *(char**)((char*)a0+0x214) = D_0041B6A0;
     return func_0014EA28(a0);
 }
@@ -34,16 +34,16 @@ int Forward100FB8_101E98(void) {
     return func_00100FB8(1, 0xFFFF);
 }
 
-__attribute__((section(".text.func_00102128")))
-int func_00102128(void *a0) {
+__attribute__((section(".text.InitAltVtableAndSetup_102128")))
+int InitAltVtableAndSetup_102128(void *a0) {
     *(char**)((char*)a0+0x214) = D_0041B730;
-    return func_001002C0(a0);
+    return InitObjectVtableAndRegister_1002C0(a0);
 }
 
 __attribute__((section(".text.FreeFieldObject_1267F8")))
 void FreeFieldObject_1267F8(char *a0) {
     if (*(int*)(a0 + 0x165C)) {
-        func_001F6EE0(*(int*)(a0 + 0x165C));
+        SetFlagBitF30IfField35Active_1F6EE0(*(int*)(a0 + 0x165C));
     }
 }
 
@@ -59,5 +59,5 @@ void InitZeroAndSetup_12E800(int *a0) {
     v0[6] = 0;
     v0[7] = 0;
     v0[8] = 0;
-    func_0012ECF0(v0);
+    ClearLinkedNodeList_12ECF0(v0);
 }

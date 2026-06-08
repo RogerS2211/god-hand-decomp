@@ -8,8 +8,8 @@ extern int D_007861B8;
 extern char D_0042C518[];
 extern int D_00583F20;
 
-__attribute__((section(".text.func_001FE530")))
-void *func_001FE530(void) {
+__attribute__((section(".text.GetSlotInstance_1FE530")))
+void *GetSlotInstance_1FE530(void) {
     if (D_007861A8 == 0) {
         if (D_00460D48 == 0) {
             func_0031EEC8(&D_00460D48, D_0042C4F8);
@@ -19,8 +19,8 @@ void *func_001FE530(void) {
     return &D_007861A8;
 }
 
-__attribute__((section(".text.func_001FE5E0")))
-void *func_001FE5E0(void) {
+__attribute__((section(".text.GetSlotInstanceB_1FE5E0")))
+void *GetSlotInstanceB_1FE5E0(void) {
     if (D_007861B8 == 0) {
         if (D_00460D48 == 0) {
             func_0031EEC8(&D_00460D48, D_0042C4F8);

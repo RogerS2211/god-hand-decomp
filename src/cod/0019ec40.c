@@ -2,7 +2,7 @@
 
 extern void *D_00426608;
 extern char D_00574380[];
-extern void func_001FE278(void *heap, void *p);
+extern void ClearAndResetFields_1FE278(void *heap, void *p);
 extern void ResetField214FreeField180_1C2820(void *a0, int a1);
 extern void *D_00785E98;
 extern char D_004266D8[];
@@ -18,20 +18,20 @@ extern int D_004267F8;
 extern void func_001C7D98(void *a0);
 extern void func_001C7DE0(void *a0, void *a1);
 
-__attribute__((section(".text.ResetObjW17dVtableAndFree_19EC40")))
-void ResetObjW17dVtableAndFree_19EC40(void *a0, int a1) {
+__attribute__((section(".text.ResetObjVtableAndFree_19EC40")))
+void ResetObjVtableAndFree_19EC40(void *a0, int a1) {
     void *p;
     *(void **)((char *)a0 + 0x214) = &D_00426608;
     p = *(void **)((char *)a0 + 0x600);
     if (p) {
-        func_001FE278(&D_00574380, p);
+        ClearAndResetFields_1FE278(&D_00574380, p);
         *(int *)((char *)a0 + 0x600) = 0;
     }
     ResetField214FreeField180_1C2820(a0, a1);
 }
 
-__attribute__((section(".text.GetObjW17eClassDesc_19EDE0")))
-void *GetObjW17eClassDesc_19EDE0(void) {
+__attribute__((section(".text.GetObjClassDesc_19EDE0")))
+void *GetObjClassDesc_19EDE0(void) {
     if (!D_00785E98) {
         GetOrInitGlobal785798_1C3BE8();
         SetField_0_4_8_31EEA8(&D_00785E98, &D_004266D8, &D_00785798);
@@ -45,8 +45,8 @@ void *GetObjW17eClassDesc_19EDE0(void) {
 
 
 
-__attribute__((section(".text.InitObjW17eSlots_19EE30")))
-void *InitObjW17eSlots_19EE30(void *a0) {
+__attribute__((section(".text.InitObjSlots_19EE30")))
+void *InitObjSlots_19EE30(void *a0) {
     char *p = (char *)a0 + 0x620;
     int i;
     InitVtable214_429C80_1C27E8(a0);
@@ -63,20 +63,20 @@ void *InitObjW17eSlots_19EE30(void *a0) {
     return a0;
 }
 
-__attribute__((section(".text.ResetObjW17eVtableAndFree_19EEB8")))
-void ResetObjW17eVtableAndFree_19EEB8(void *a0, int a1) {
+__attribute__((section(".text.ResetObjVtableAndFree_19EEB8")))
+void ResetObjVtableAndFree_19EEB8(void *a0, int a1) {
     void *p;
     *(void **)((char *)a0 + 0x214) = &D_004266F0;
     p = *(void **)((char *)a0 + 0x600);
     if (p) {
-        func_001FE278(&D_00574380, p);
+        ClearAndResetFields_1FE278(&D_00574380, p);
         *(int *)((char *)a0 + 0x600) = 0;
     }
     ResetField214FreeField180_1C2820(a0, a1);
 }
 
-__attribute__((section(".text.GetObjW17fClassDesc_19F058")))
-void *GetObjW17fClassDesc_19F058(void) {
+__attribute__((section(".text.GetObjClassDesc_19F058")))
+void *GetObjClassDesc_19F058(void) {
     if (D_00785EA8 == 0) {
         GetOrInitGlobal785798_1C3BE8();
         SetField_0_4_8_31EEA8(&D_00785EA8, &D_004267C0, &D_00785798);
@@ -90,8 +90,8 @@ void *GetObjW17fClassDesc_19F058(void) {
 
 
 
-__attribute__((section(".text.InitObjW17fSlots_19F0A8")))
-void *InitObjW17fSlots_19F0A8(void *a0) {
+__attribute__((section(".text.InitObjSlots_19F0A8")))
+void *InitObjSlots_19F0A8(void *a0) {
     char *p = (char *)a0 + 0x660;
     int i;
     func_001C7D98(a0);
@@ -110,13 +110,13 @@ void *InitObjW17fSlots_19F0A8(void *a0) {
     return a0;
 }
 
-__attribute__((section(".text.ResetObjW17fVtableAndFree_19F130")))
-void ResetObjW17fVtableAndFree_19F130(void *a0, void *a1) {
+__attribute__((section(".text.ResetObjVtableAndFree_19F130")))
+void ResetObjVtableAndFree_19F130(void *a0, void *a1) {
     void *p;
     *(int *)((char *)a0 + 0x214) = (int)&D_004267F8;
     p = *(void **)((char *)a0 + 0x650);
     if (p != 0) {
-        func_001FE278(&D_00574380, p);
+        ClearAndResetFields_1FE278(&D_00574380, p);
         *(int *)((char *)a0 + 0x650) = 0;
     }
     func_001C7DE0(a0, a1);

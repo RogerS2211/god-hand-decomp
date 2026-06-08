@@ -1,8 +1,8 @@
 extern int D_00747A34;
 extern unsigned char D_00754C10[];
 
-__attribute__((section(".text.func_00313AD0")))
-void *func_00313AD0(void) {
+__attribute__((section(".text.ForwardInitBuffer_313AD0")))
+void *ForwardInitBuffer_313AD0(void) {
     void *s0;
     if (!(D_00747A34 & 0x10000)) {
         s0 = EnsureInitThenForward_2A9538_30EE08(0x8A0, 0x10, D_00754C10);
@@ -14,8 +14,8 @@ void *func_00313AD0(void) {
     return 0;
 }
 
-__attribute__((section(".text.func_00313B40")))
-void *func_00313B40(void) {
+__attribute__((section(".text.ForwardInitBuffer_313B40")))
+void *ForwardInitBuffer_313B40(void) {
     void *s0;
     if (!(D_00747A34 & 0x10000)) {
         s0 = EnsureInitThenForward_2A9538_30EE08(0x920, 0x10, D_00754C10);
@@ -27,8 +27,8 @@ void *func_00313B40(void) {
     return 0;
 }
 
-__attribute__((section(".text.func_00313BB0")))
-void *func_00313BB0(void) {
+__attribute__((section(".text.ForwardInitBuffer_313BB0")))
+void *ForwardInitBuffer_313BB0(void) {
     void *s0;
     if (!(D_00747A34 & 0x10000)) {
         s0 = EnsureInitThenForward_2A9538_30EE08(0x9E0, 0x10, D_00754C10);
@@ -40,8 +40,8 @@ void *func_00313BB0(void) {
     return 0;
 }
 
-__attribute__((section(".text.func_00313C20")))
-int func_00313C20(void)
+__attribute__((section(".text.ForwardInitBuffer_313C20")))
+int ForwardInitBuffer_313C20(void)
 {
     void *s0;
 
@@ -54,8 +54,8 @@ int func_00313C20(void)
     return func_00187C88(s0);
 }
 
-__attribute__((section(".text.func_00313C90")))
-int func_00313C90(void)
+__attribute__((section(".text.ForwardInitBuffer_313C90")))
+int ForwardInitBuffer_313C90(void)
 {
     void *s0;
 
@@ -68,8 +68,8 @@ int func_00313C90(void)
     return func_00188A68(s0);
 }
 
-__attribute__((section(".text.func_00313D00")))
-int func_00313D00(void)
+__attribute__((section(".text.ForwardInitBuffer_313D00")))
+int ForwardInitBuffer_313D00(void)
 {
     void *s0;
 

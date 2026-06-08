@@ -42,7 +42,7 @@ void FreeObjResourceAndDestroyB_1702D8(void *a0, void *a1) {
     *(unsigned int *)((char *)a0 + 0x214) = (unsigned int)&D_004204F8;
     v1 = *(void **)((char *)a0 + 0x600);
     if (v1 != 0) {
-        func_001FE278(&D_00574380, v1);
+        ClearAndResetFields_1FE278(&D_00574380, v1);
         *(unsigned int *)((char *)a0 + 0x600) = 0;
     }
     ResetField214FreeField180_1C2820(a0, a1);
@@ -76,14 +76,14 @@ void FreeObjResourceAndDestroyD_170570(void *a0, void *a1) {
     *(unsigned int *)((char *)a0 + 0x214) = (unsigned int)&D_004205E0;
     v1 = *(void **)((char *)a0 + 0x600);
     if (v1 != 0) {
-        func_001FE278(&D_00574380, v1);
+        ClearAndResetFields_1FE278(&D_00574380, v1);
         *(unsigned int *)((char *)a0 + 0x600) = 0;
     }
     func_001BFB00(a0, a1);
 }
 
-__attribute__((section(".text.func_00170700")))
-void func_00170700(int a0) {
+__attribute__((section(".text.InitObjVU0Slots0A0C_170700")))
+void InitObjVU0Slots0A0C_170700(int a0) {
     func_002CBA48(&D_005FEE00, 2, 0xA, a0, 0, 0, 0, 0);
     func_002CBA48(&D_005FEE00, 2, 0xC, a0, 0, 0, 0, 0);
 }
@@ -110,7 +110,7 @@ void FreeObjResourceAndDestroyE_170800(int a0, int a1) {
     *(int*)((char*)a0 + 0x214) = (int)&D_004206B0;
     v1 = *(int*)((char*)a0 + 0x600);
     if (v1 != 0) {
-        func_001FE278(&D_00574380, v1);
+        ClearAndResetFields_1FE278(&D_00574380, v1);
         *(int*)((char*)a0 + 0x600) = 0;
     }
     func_001BFB00(a0, a1);

@@ -35,16 +35,16 @@ void SetListNodeBitByKey_14A398(int a0, int a1, int a2) {
     } while (v1 != 0);
 }
 
-__attribute__((section(".text.func_00146748")))
-void func_00146748(void *a0, int a1) {
+__attribute__((section(".text.InitPtrField80AndForward_146748")))
+void InitPtrField80AndForward_146748(void *a0, int a1) {
     *(char **)((char *)a0 + 0x80) = D_0041DCC8;
     if (a1 & 1) {
         ForwardFieldNeg20_002A9680_30F5A0();
     }
 }
 
-__attribute__((section(".text.func_00146E20")))
-void func_00146E20(char *a0) {
+__attribute__((section(".text.ForwardTransBySubState_146E20")))
+void ForwardTransBySubState_146E20(char *a0) {
     char v1 = a0[0x79];
     if (v1 == 0) return;
     if (v1 == 6) return;
@@ -55,16 +55,16 @@ void func_00146E20(char *a0) {
     }
 }
 
-__attribute__((section(".text.func_00146E70")))
-void func_00146E70(void *a0, int a1) {
+__attribute__((section(".text.InitPtrField80AndForward_146E70")))
+void InitPtrField80AndForward_146E70(void *a0, int a1) {
     *(char **)((char *)a0 + 0x80) = D_0041DCC8;
     if (a1 & 1) {
         ForwardFieldNeg20_002A9680_30F5A0();
     }
 }
 
-__attribute__((section(".text.func_00146F98")))
-void func_00146F98(void *a0, int a1) {
+__attribute__((section(".text.InitPtrField80AndForward_146F98")))
+void InitPtrField80AndForward_146F98(void *a0, int a1) {
     *(char **)((char *)a0 + 0x80) = D_0041DCC8;
     if (a1 & 1) {
         ForwardFieldNeg20_002A9680_30F5A0();

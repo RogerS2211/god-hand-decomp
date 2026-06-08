@@ -25,8 +25,8 @@ void SetByteParam531_295EE0(void *a0, char a1) {
     }
 }
 
-__attribute__((section(".text.func_00295F80")))
-void func_00295F80(void *a0,int a1,int a2,int a3,float f){
+__attribute__((section(".text.SetActorGoto_295F80")))
+void SetActorGoto_295F80(void *a0,int a1,int a2,int a3,float f){
  if(FindResolveActor_295978(a0)){
   char *p=*(char**)((char*)a0+4);
   if(*(short*)(p+0x54A)>0){

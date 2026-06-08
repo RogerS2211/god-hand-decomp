@@ -14,21 +14,21 @@ void InitFieldsAt90_13D1D0(char *a0) {
     *(char*)(a0 + 0x92) = 0;
 }
 
-__attribute__((section(".text.func_0013D1E8")))
-void func_0013D1E8(char *a0) {
+__attribute__((section(".text.InitFieldsAt90_13D1E8")))
+void InitFieldsAt90_13D1E8(char *a0) {
     *(char*)(a0 + 0x93) = 0;
     *(short*)(a0 + 0x90) = 6;
     *(char*)(a0 + 0x92) = 0;
 }
 
-__attribute__((section(".text.func_0013E7D8")))
-void func_0013E7D8(char *a0) {
+__attribute__((section(".text.ClearFields94And9C_13E7D8")))
+void ClearFields94And9C_13E7D8(char *a0) {
     *(int*)(a0 + 0x94) = 0;
     *(int*)(a0 + 0x9C) = 0;
 }
 
-__attribute__((section(".text.func_00147018")))
-void func_00147018(char *a0) {
+__attribute__((section(".text.ClearFields_B0_AC_147018")))
+void ClearFields_B0_AC_147018(char *a0) {
     unsigned int v = 0xFFFF;
     *(int*)(a0 + 0xB0) = 0;
     *(short*)(a0 + 0xAC) = v;
@@ -44,14 +44,14 @@ void ClearActiveSlot_147188(char *a0) {
     }
 }
 
-__attribute__((section(".text.func_0014FF60")))
-void func_0014FF60(int a0, int *a1) {
+__attribute__((section(".text.SetPackedFields10And18_14FF60")))
+void SetPackedFields10And18_14FF60(int a0, int *a1) {
     *(long long*)((char*)a0 + 0x18) = 0;
     *(long long*)((char*)a0 + 0x10) = ((long long)*a1 << 32) | 0x20000000;
 }
 
-__attribute__((section(".text.func_00159998")))
-void func_00159998(int a0) {
+__attribute__((section(".text.ClearFields_4_8_C_E_159998")))
+void ClearFields_4_8_C_E_159998(int a0) {
     *(int*)((char*)a0 + 0x4) = 0;
     *(int*)((char*)a0 + 0x8) = 0;
     *(short*)((char*)a0 + 0xC) = 0;
@@ -65,24 +65,24 @@ void Set_Field_0_4_8_1646B0(int a0, int a1, int a2, int a3) {
     *(int*)((char*)a0 + 0x8) = a3;
 }
 
-__attribute__((section(".text.func_0017AEA0")))
-void func_0017AEA0(int a0) {
+__attribute__((section(".text.SetField_606_17AEA0")))
+void SetField_606_17AEA0(int a0) {
     *(short*)((char*)a0 + 0x606) = 6;
 }
 
-__attribute__((section(".text.func_0017F6B0")))
-void func_0017F6B0(int a0) {
+__attribute__((section(".text.ClearBytes_764_765_17F6B0")))
+void ClearBytes_764_765_17F6B0(int a0) {
     *(char*)((char*)a0 + 0x765) = 0;
     *(char*)((char*)a0 + 0x764) = 0;
 }
 
-__attribute__((section(".text.func_001AA500")))
-void func_001AA500(void *a0) {
+__attribute__((section(".text.SetField_9E0_1AA500")))
+void SetField_9E0_1AA500(void *a0) {
     *(int *)((char *)a0 + 0x9E0) = 8;
 }
 
-__attribute__((section(".text.func_001ADAE8")))
-void func_001ADAE8(void *a0) {
+__attribute__((section(".text.InitFields_604_608_1ADAE8")))
+void InitFields_604_608_1ADAE8(void *a0) {
     *(int *)((char *)a0 + 0x604) = 0;
     *(int *)((char *)a0 + 0x608) = 1;
 }
@@ -111,8 +111,8 @@ int SetFlagBit_1BD698(int a0) {
     return 1;
 }
 
-__attribute__((section(".text.func_001BE830")))
-void func_001BE830(int a0) {
+__attribute__((section(".text.InitBytes_2F4_To_2F7_1BE830")))
+void InitBytes_2F4_To_2F7_1BE830(int a0) {
     *(char*)((char*)a0 + 0x2F4) = 1;
     *(char*)((char*)a0 + 0x2F5) = 0;
     *(char*)((char*)a0 + 0x2F6) = 0;
@@ -129,8 +129,8 @@ void SetField_2F6_1C2308(char *a0) {
     a0[0x2F6] = 6;
 }
 
-__attribute__((section(".text.func_001C2318")))
-void func_001C2318(char *a0) {
+__attribute__((section(".text.ClearField630_SetField2F6_1C2318")))
+void ClearField630_SetField2F6_1C2318(char *a0) {
     *(int*)(a0 + 0x630) = 0;
     a0[0x2F6] = 2;
 }
@@ -147,8 +147,8 @@ int InitNode_1D0C78(int a0) {
     return a0;
 }
 
-__attribute__((section(".text.func_001FC7F8")))
-void func_001FC7F8(int a0) {
+__attribute__((section(".text.ClearFields_20_24_28_30_1FC7F8")))
+void ClearFields_20_24_28_30_1FC7F8(int a0) {
     *(int*)((char*)a0 + 0x28) = 0;
     *(short*)((char*)a0 + 0x30) = 0;
     *(int*)((char*)a0 + 0x20) = 0;
@@ -158,8 +158,8 @@ void func_001FC7F8(int a0) {
 __attribute__((section(".text.NoOp_1FD528")))
 void NoOp_1FD528(void) {}
 
-__attribute__((section(".text.func_001FE6B8")))
-int func_001FE6B8(int a0, int a1, int a2) {
+__attribute__((section(".text.SetFields_4_And_8_1FE6B8")))
+int SetFields_4_And_8_1FE6B8(int a0, int a1, int a2) {
     *(int*)((char*)a0 + 0x4) = a2;
     *(int*)((char*)a0 + 0x8) = a1;
     return a0;

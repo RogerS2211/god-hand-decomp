@@ -1,5 +1,5 @@
-__attribute__((section(".text.func_001FD2C0")))
-int func_001FD2C0(char *a0, int a1, int a2)
+__attribute__((section(".text.SetObjTargetAndActivate_1FD2C0")))
+int SetObjTargetAndActivate_1FD2C0(char *a0, int a1, int a2)
 {
     if (*(signed char *)(a0 + 0x49) == 0)
         return 1;

@@ -8,7 +8,7 @@ extern void NoOp_33E6A8(void);   /* target of Obj3290_Tramp_0033E6A8_9070 trampo
 extern void NoOp_33E6B0(void);   /* target of Obj3290_Tramp_0033E6B0_9088 trampoline     */
 extern void func_0033F130(void *a0); /* target of Obj3290_TrampViaA1_0033F130_90A0 (arg-reroute)*/
 extern void Obj0000_Set_D_003D8488_3313F0(void);   /* target of Obj3290_Tramp_003313F0_9278 trampoline     */
-extern void func_003313E0(void);   /* target of Obj3290_Tramp_003313E0_9298 trampoline     */
+extern void GetD003D848C_3313E0(void);   /* target of Obj3290_Tramp_003313E0_9298 trampoline     */
 
 /* ── External global ─────────────────────────────────────────────────────── */
 extern int D_003D1400;   /* word-sized global; setter Obj3290_SetGlobal_D003D1400          */
@@ -97,6 +97,6 @@ void Obj3290_SetGlobal_D003D1400(int a0) { D_003D1400 = a0; }
 __attribute__((section(".text.Obj3290_Tramp_003313F0_9278")))
 void Obj3290_Tramp_003313F0_9278(void) { Obj0000_Set_D_003D8488_3313F0(); }
 
-/* Obj3290_Tramp_003313E0_9298: addiu sp,-0x10; sd ra; ld ra; j func_003313E0; addiu sp,+0x10 */
+/* Obj3290_Tramp_003313E0_9298: addiu sp,-0x10; sd ra; ld ra; j GetD003D848C_3313E0; addiu sp,+0x10 */
 __attribute__((section(".text.Obj3290_Tramp_003313E0_9298")))
-void Obj3290_Tramp_003313E0_9298(void) { func_003313E0(); }
+void Obj3290_Tramp_003313E0_9298(void) { GetD003D848C_3313E0(); }

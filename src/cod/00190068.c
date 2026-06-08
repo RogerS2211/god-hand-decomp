@@ -28,7 +28,7 @@ void FreeMultiSlotResources_190250(void *a0, void *a1) {
     for (i = 3; i >= 0; i--) {
         v = *p;
         if (v != 0) {
-            func_001FE278(&D_00574380, (void *)v);
+            ClearAndResetFields_1FE278(&D_00574380, (void *)v);
             *p = 0;
         }
         p++;
@@ -90,13 +90,13 @@ void *GetInstance_192F18(void) {
     return D_00785C48;
 }
 
-__attribute__((section(".text.func_00193278")))
-int func_00193278(char *a0, void *a1) {
+__attribute__((section(".text.ResetField214FreeField600I_193278")))
+int ResetField214FreeField600I_193278(char *a0, void *a1) {
     int v1;
     *(int *)(a0 + 0x214) = (int)&D_004246A8;
     v1 = *(int *)(a0 + 0x600);
     if (v1 != 0) {
-        func_001FE278(&D_00574380, (void *)v1);
+        ClearAndResetFields_1FE278(&D_00574380, (void *)v1);
         *(int *)(a0 + 0x600) = 0;
     }
     return ResetField214FreeField180_1C2820(a0, a1);

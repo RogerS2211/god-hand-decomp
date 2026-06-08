@@ -46,13 +46,13 @@ void *Obj1929_Setup_1929B0(void *a0) {
     return a0;
 }
 
-__attribute__((section(".text.func_00192A38")))
-void *func_00192A38(void *a0, void *a1) {
+__attribute__((section(".text.ResetField214FreeField600B_192A38")))
+void *ResetField214FreeField600B_192A38(void *a0, void *a1) {
     *(int **)((char *)a0 + 0x214) = &D_004243F0;
     {
         void *v1 = *(void **)((char *)a0 + 0x600);
         if (v1) {
-            func_001FE278(&D_00574380, v1);
+            ClearAndResetFields_1FE278(&D_00574380, v1);
             *(int *)((char *)a0 + 0x600) = 0;
         }
     }
@@ -92,13 +92,13 @@ void *InitObjSlots_192C38(void *a0) {
     return a0;
 }
 
-__attribute__((section(".text.func_00192CC0")))
-void *func_00192CC0(void *a0, void *a1) {
+__attribute__((section(".text.ResetField214FreeField600C_192CC0")))
+void *ResetField214FreeField600C_192CC0(void *a0, void *a1) {
     *(int **)((char *)a0 + 0x214) = &D_004244D8;
     {
         void *v1 = *(void **)((char *)a0 + 0x600);
         if (v1) {
-            func_001FE278(&D_00574380, v1);
+            ClearAndResetFields_1FE278(&D_00574380, v1);
             *(int *)((char *)a0 + 0x600) = 0;
         }
     }
@@ -130,13 +130,13 @@ void *InitObjSlots_192F68(void *a0) {
     return a0;
 }
 
-__attribute__((section(".text.func_00192FF0")))
-void *func_00192FF0(void *a0, int a1) {
+__attribute__((section(".text.ResetField214FreeField600D_192FF0")))
+void *ResetField214FreeField600D_192FF0(void *a0, int a1) {
     int v1;
     *(int **)((char *)a0 + 0x214) = &D_004245C0;
     v1 = *(int *)((char *)a0 + 0x600);
     if (v1 != 0) {
-        func_001FE278(&D_00574380, v1);
+        ClearAndResetFields_1FE278(&D_00574380, v1);
         *(int *)((char *)a0 + 0x600) = 0;
     }
     return ResetField214FreeField180_1C2820(a0, a1);

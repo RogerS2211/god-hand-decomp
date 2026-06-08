@@ -5,16 +5,16 @@ extern void ForwardFieldNeg20_002A9680_30F5A0(void);
 extern int D_004615F0[];
 extern void pl00_reset(void);
 
-__attribute__((section(".text.func_00144AD0")))
-void func_00144AD0(void *a0, int a1) {
+__attribute__((section(".text.InitPtrField80AndForward_144AD0")))
+void InitPtrField80AndForward_144AD0(void *a0, int a1) {
     *(int **)((char *)a0 + 0x80) = D_0041DCC8;
     if (a1 & 1) {
         ForwardFieldNeg20_002A9680_30F5A0();
     }
 }
 
-__attribute__((section(".text.func_00107DE0")))
-void func_00107DE0(int a0, int a1) {
+__attribute__((section(".text.ResetGlobalStateFields_107DE0")))
+void ResetGlobalStateFields_107DE0(int a0, int a1) {
     if (a1 == 0xFFFF) {
         if (a0 != 0) {
             *(int*)((char*)D_004615F0+0) = 0;

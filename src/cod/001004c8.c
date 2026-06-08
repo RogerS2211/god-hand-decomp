@@ -4,8 +4,8 @@ extern char *D_00566E10;
 extern char D_00506E10[];
 extern int D_00747A78;
 
-__attribute__((section(".text.func_00146F70")))
-void func_00146F70(char *a0) {
+__attribute__((section(".text.UpdateField78_FromField90_146F70")))
+void UpdateField78_FromField90_146F70(char *a0) {
     if (*(unsigned char*)(a0 + 0x90) != 0) {
         *(char*)(a0 + 0x78) = 0;
     } else {
@@ -14,8 +14,8 @@ void func_00146F70(char *a0) {
     *(char*)(a0 + 0x90) = 0;
 }
 
-__attribute__((section(".text.func_001A7A08")))
-void func_001A7A08(int a0) {
+__attribute__((section(".text.SetField2F5IfField615Active_1A7A08")))
+void SetField2F5IfField615Active_1A7A08(int a0) {
     if (*(unsigned char*)((char*)a0 + 0x615)) {
         *(char*)((char*)a0 + 0x2F7) = 0;
         *(char*)((char*)a0 + 0x2F6) = 0;
@@ -198,8 +198,8 @@ int SetActorLink_1B7118(int a0, int a1) {
     return 1;
 }
 
-__attribute__((section(".text.func_001B76B0")))
-int func_001B76B0(int a0) {
+__attribute__((section(".text.ClearField5B4IfFlagUnset_1B76B0")))
+int ClearField5B4IfFlagUnset_1B76B0(int a0) {
     int v0 = 1;
     if (D_00747A78 & 0x20000000) {
         v0 = 0;
@@ -226,8 +226,8 @@ int Obj1D00_IsSet_Byte_2F4_EqFour_Byte_2F5_1D0B08(void *a0) {
     return (*(unsigned char *)((char *)a0 + 0x2F5) ^ 4) == 0;
 }
 
-__attribute__((section(".text.func_001D6D68")))
-void func_001D6D68(char *a0, int a1) {
+__attribute__((section(".text.SetLinkedObjField2B_1D6D68")))
+void SetLinkedObjField2B_1D6D68(char *a0, int a1) {
     if (a1 != 0) {
         *(char*)(*(int*)(a0 + 0x1D8) + 0x2B) = 3;
         *(char*)(*(int*)(a0 + 0x254) + 0x2B) = 4;
@@ -251,8 +251,8 @@ extern int D_00747A80;
 extern unsigned char D_0041D5A8[];
 extern unsigned char D_0041D540[];
 
-__attribute__((section(".text.func_001F6EE0")))
-void func_001F6EE0(unsigned char *a0)
+__attribute__((section(".text.SetFlagBitF30IfField35Active_1F6EE0")))
+void SetFlagBitF30IfField35Active_1F6EE0(unsigned char *a0)
 {
     if (a0[0x35] != 1) {
         return;
@@ -288,22 +288,22 @@ void Setup_1F7AE8(int a0)
     *(int *)(p + 0x40) = 0;
 }
 
-__attribute__((section(".text.func_001F7B60")))
-void func_001F7B60(unsigned int *a0) {
+__attribute__((section(".text.InitVtableAndClearFlags_1F7B60")))
+void InitVtableAndClearFlags_1F7B60(unsigned int *a0) {
     unsigned int a1 = a0[0];
     a0[2] = (unsigned int)&D_0042C320;
     a0[0] = a1 & 0xFFFFF9FC;
 }
 
-__attribute__((section(".text.func_001F7C60")))
-void func_001F7C60(unsigned int *a0) {
+__attribute__((section(".text.InitVtablePtrAndClearFlags_1F7C60")))
+void InitVtablePtrAndClearFlags_1F7C60(unsigned int *a0) {
     unsigned int a1 = a0[0];
     a0[2] = (unsigned int)&D_0042C320;
     a0[0] = a1 & 0xFFFFF9FC;
 }
 
-__attribute__((section(".text.func_001F9C30")))
-void func_001F9C30(int *a0) {
+__attribute__((section(".text.CopyGlobalPairToTarget_1F9C30")))
+void CopyGlobalPairToTarget_1F9C30(int *a0) {
     int d0, d1;
     d0 = D_0061A990[0];
     *(int *)(*(int *)a0) = d0;
@@ -311,8 +311,8 @@ void func_001F9C30(int *a0) {
     *(int *)(*(int *)a0 + 4) = d1;
 }
 
-__attribute__((section(".text.func_001F9C58")))
-void func_001F9C58(int **a0) {
+__attribute__((section(".text.UpdateCounterClamped_1F9C58")))
+void UpdateCounterClamped_1F9C58(int **a0) {
     int *v1 = a0[0];
     unsigned int c = v1[2] + 1;
     v1[2] = c;
@@ -321,8 +321,8 @@ void func_001F9C58(int **a0) {
     }
 }
 
-__attribute__((section(".text.func_001F9C88")))
-void func_001F9C88(int **a0) {
+__attribute__((section(".text.SetFieldShorts0C0E_1F9C88")))
+void SetFieldShorts0C0E_1F9C88(int **a0) {
     *(short *)((char *)*a0 + 0xC) = D_007474A0[0x2D8];
     *(short *)((char *)*a0 + 0xE) = D_007474A0[0x2DB];
 }
@@ -361,8 +361,8 @@ int IsTimerExpired_1FA8E0(struct S001FA8E0 **a0) {
     return 0xF423E < p->f20;
 }
 
-__attribute__((section(".text.func_001FAE60")))
-int func_001FAE60(int **a0) {
+__attribute__((section(".text.GetField154Byte_1FAE60")))
+int GetField154Byte_1FAE60(int **a0) {
     int *p = *a0;
     if (p == 0) {
         return 0;
@@ -373,8 +373,8 @@ int func_001FAE60(int **a0) {
     return *((unsigned char *)*a0 + 0x154);
 }
 
-__attribute__((section(".text.func_001FAEA0")))
-int func_001FAEA0(int **a0) {
+__attribute__((section(".text.GetField155Byte_1FAEA0")))
+int GetField155Byte_1FAEA0(int **a0) {
     int *p = *a0;
     if (p == 0) {
         return 0;
@@ -401,8 +401,8 @@ void InitSlotTable_1FAFA8(int **a0)
     *(unsigned short *)((char *)*a0 + 0x288) = 1;
 }
 
-__attribute__((section(".text.func_001FBD60")))
-unsigned char func_001FBD60(unsigned char **a0) {
+__attribute__((section(".text.GetField8AByte_1FBD60")))
+unsigned char GetField8AByte_1FBD60(unsigned char **a0) {
     unsigned char *p;
     unsigned char *q;
     p = *a0;
@@ -429,8 +429,8 @@ void ClearField46Array_1FBDD0(int **a0) {
     }
 }
 
-__attribute__((section(".text.func_001FBF18")))
-void func_001FBF18(int **a0) {
+__attribute__((section(".text.AddCounterFields12AndBB8_1FBF18")))
+void AddCounterFields12AndBB8_1FBF18(int **a0) {
     int *p;
     int *q;
     p = *a0;
@@ -506,32 +506,32 @@ int IsFlagBitSet_1FC360(int **a0, int a1) {
     return 1;
 }
 
-__attribute__((section(".text.func_001004C8")))
-int func_001004C8(int a0) {
+__attribute__((section(".text.IsTargetVisibleOrForced_1004C8")))
+int IsTargetVisibleOrForced_1004C8(int a0) {
     if (D_00747A80 & 0x200000) {
         return 1;
     }
     return IsTargetVisible_14B470(a0) != 0;
 }
 
-__attribute__((section(".text.func_0012D178")))
-void func_0012D178(int *a0, int a1) {
+__attribute__((section(".text.SetField5CAndForward_12D178")))
+void SetField5CAndForward_12D178(int *a0, int a1) {
     *(int *)((char *)a0 + 0x5C) = (int)D_0041D5A8;
     if (a1 & 1) {
         ForwardFieldNeg20_002A9680_30F5A0(a0);
     }
 }
 
-__attribute__((section(".text.func_0012DC88")))
-void func_0012DC88(int *a0, int a1) {
+__attribute__((section(".text.SetField5CAndForwardAlt_12DC88")))
+void SetField5CAndForwardAlt_12DC88(int *a0, int a1) {
     *(int *)((char *)a0 + 0x5C) = (int)D_0041D5A8;
     if (a1 & 1) {
         ForwardFieldNeg20_002A9680_30F5A0(a0);
     }
 }
 
-__attribute__((section(".text.func_0012E640")))
-void func_0012E640(int *a0, int a1) {
+__attribute__((section(".text.SetField198AndForward_12E640")))
+void SetField198AndForward_12E640(int *a0, int a1) {
     *(int *)((char *)a0 + 0x198) = (int)D_0041D540;
     if (a1 & 1) {
         ForwardFieldNeg20_002A9680_30F5A0(a0);

@@ -165,5 +165,5 @@ int Forward32BC98_32BD90(int a0, int a1) { return func_0032BC98(a0, a1, 0, 0xFFF
 __attribute__((section(".text.Forward32D868_32DA08")))
 int Forward32D868_32DA08(int a0, int a1, int a2) { return func_0032D868(a0, a1, a2, 0, 0xFFFFF); }
 
-__attribute__((section(".text.func_0032ED48")))
-int func_0032ED48(int *a0, int a1, int a2) { a0 += a1; return func_0032A9F0(a0[3], a2); }
+__attribute__((section(".text.ForwardField3ByOffset_32ED48")))
+int ForwardField3ByOffset_32ED48(int *a0, int a1, int a2) { a0 += a1; return func_0032A9F0(a0[3], a2); }

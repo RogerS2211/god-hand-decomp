@@ -18,8 +18,8 @@ extern void ClearSoundSlot_2C4390(char *a0);
 extern void cMessage_deleteMessNo(int a0, int a1);
 extern void setPlayerPos(void *p, float w);
 
-__attribute__((section(".text.func_002C3858")))
-void func_002C3858(void *a0) {
+__attribute__((section(".text.ForwardCallbackAndRelease_2C3858")))
+void ForwardCallbackAndRelease_2C3858(void *a0) {
     ForwardStoredCallback_2C4DE0(a0);
     func_002C3820(a0);
     func_002D56A8((char *)a0 + 0x1C);
@@ -42,8 +42,8 @@ int LoadScreenOverlay_2C3F10(void *a0, int a1) {
     return 1;
 }
 
-__attribute__((section(".text.func_002C3FC0")))
-void func_002C3FC0(void *a0) {
+__attribute__((section(".text.ClearCameraOverlayState_2C3FC0")))
+void ClearCameraOverlayState_2C3FC0(void *a0) {
     char *s0;
     D_00747A78 = D_00747A78 & 0xFFDFFFFF;
     s0 = D_00463050;

@@ -5,8 +5,8 @@ extern int D_00747A24;
 extern int D_0044F4F8;
 extern int D_0044F6D8;
 
-__attribute__((section(".text.func_002BB1F0")))
-void func_002BB1F0(void *a0)
+__attribute__((section(".text.UpdateObjWithVtableDispatch_2BB1F0")))
+void UpdateObjWithVtableDispatch_2BB1F0(void *a0)
 {
     unsigned char *s0 = (unsigned char *)a0;
     long v1 = s0[0x4];

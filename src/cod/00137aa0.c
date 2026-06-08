@@ -27,8 +27,8 @@ void InitStructDefaults_137AA0(char *a0) {
     *(float *)(a0 + 0x1C) = 1.06f;
 }
 
-__attribute__((section(".text.func_00147B18")))
-void func_00147B18(int a0, int a1, int a2) {
+__attribute__((section(".text.BuildAndApplyTranslationMatrix_147B18")))
+void BuildAndApplyTranslationMatrix_147B18(int a0, int a1, int a2) {
     int buf[16];
     BuildTranslationMatrix_1476D0(buf, a2);
     Tramp_func_0030A2E0_00147548(a0, a1, buf);

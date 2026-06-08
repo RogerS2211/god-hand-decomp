@@ -8,16 +8,16 @@ extern void func_003A80A8(int a0);
 extern float D_00741DC0;
 extern float D_00754C48;
 
-__attribute__((section(".text.func_002FBE50")))
-void func_002FBE50(void *a0) {
+__attribute__((section(".text.UpdateObjByIndexedOp_2FBE50")))
+void UpdateObjByIndexedOp_2FBE50(void *a0) {
     int r;
     r = func_002B5E50(a0);
     func_002B5CF0(a0, r);
     func_002FB020(a0);
 }
 
-__attribute__((section(".text.func_003A7CC0")))
-void func_003A7CC0(int a0) {
+__attribute__((section(".text.UpdateGlobalPtrWithParam_3A7CC0")))
+void UpdateGlobalPtrWithParam_3A7CC0(int a0) {
     func_003A8048(PTR_DAT_003fa62c);
     func_003ACA28(PTR_DAT_003fa62c, a0);
     func_003A80A8(PTR_DAT_003fa62c);

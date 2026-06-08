@@ -19,8 +19,8 @@ extern void func_002A8578(void *, void *, void *, int, int, int, float);
 extern void AddScaledVecToField_100_14F9F0(void *, float);
 extern void AddScaledXfmVecToField_F0_14F928(void *, float);
 
-__attribute__((section(".text.func_0010B5F0")))
-int func_0010B5F0(unsigned char *a0) {
+__attribute__((section(".text.IsStateByteIdle_10B5F0")))
+int IsStateByteIdle_10B5F0(unsigned char *a0) {
     int c;
     if (a0[0x2F4] != 0)
         return 0;
@@ -30,8 +30,8 @@ int func_0010B5F0(unsigned char *a0) {
     return 1;
 }
 
-__attribute__((section(".text.func_00100280")))
-void *func_00100280(void *a0) {
+__attribute__((section(".text.InitObjectVtables_100280")))
+void *InitObjectVtables_100280(void *a0) {
     void *r;
     func_002A7338(a0);
     *(int **)((char*)a0 + 0x214) = &D_0041B598;
@@ -40,8 +40,8 @@ void *func_00100280(void *a0) {
     return r;
 }
 
-__attribute__((section(".text.func_001002C0")))
-void func_001002C0(void *a0, void *a1) {
+__attribute__((section(".text.InitObjectVtableAndRegister_1002C0")))
+void InitObjectVtableAndRegister_1002C0(void *a0, void *a1) {
     *(int **)((char*)a0 + 0x214) = &D_0041B598;
     func_001347E8(&D_00462FC0, a0);
     func_002A73C8(a0, a1);
@@ -65,8 +65,8 @@ void *GetOrInitSingletonAlt_101E48(void) {
     return &D_007854E8;
 }
 
-__attribute__((section(".text.func_00102BD8")))
-void func_00102BD8(void *a0) {
+__attribute__((section(".text.UpdateAttackMoveState_102BD8")))
+void UpdateAttackMoveState_102BD8(void *a0) {
     void *r = Obj0000_Get_D_00747A94_2DB6B0();
     switch (*(unsigned char *)((char *)a0 + 0x2F6)) {
     case 0: {

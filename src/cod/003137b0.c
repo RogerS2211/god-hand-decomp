@@ -2,8 +2,8 @@ extern int D_00747A34;
 extern unsigned char D_00754220[];
 extern unsigned char D_00754C10[];
 
-__attribute__((section(".text.func_003137B0")))
-int func_003137B0(void)
+__attribute__((section(".text.ForwardInitVtable214Buffer_3137B0")))
+int ForwardInitVtable214Buffer_3137B0(void)
 {
     void *p;
     if (D_00747A34 & 0x100000)
@@ -15,8 +15,8 @@ int func_003137B0(void)
     return Init_Vtable214_TypeName4AC_279CE8(p);
 }
 
-__attribute__((section(".text.func_00313820")))
-int func_00313820(void)
+__attribute__((section(".text.ForwardInitBuffer_313820")))
+int ForwardInitBuffer_313820(void)
 {
     void *p;
     if (D_00747A34 & 0x100000)
@@ -28,8 +28,8 @@ int func_00313820(void)
     return func_00284A28(p);
 }
 
-__attribute__((section(".text.func_00313890")))
-int func_00313890(void)
+__attribute__((section(".text.ForwardInitBuffer_313890")))
+int ForwardInitBuffer_313890(void)
 {
     void *p;
     if (D_00747A34 & 0x100000)
@@ -41,8 +41,8 @@ int func_00313890(void)
     return func_00289728(p);
 }
 
-__attribute__((section(".text.func_00313900")))
-void *func_00313900(void) {
+__attribute__((section(".text.ForwardInitObj28B0Buffer_313900")))
+void *ForwardInitObj28B0Buffer_313900(void) {
     void *s0;
     if (!(D_00747A34 & 0x100000)) {
         s0 = EnsureInitThenForward_2A9538_30EE08(0x1660, 0x10, D_00754220);
@@ -54,8 +54,8 @@ void *func_00313900(void) {
     return 0;
 }
 
-__attribute__((section(".text.func_00313970")))
-void *func_00313970(void) {
+__attribute__((section(".text.ForwardSetupBuffer_28E018_313970")))
+void *ForwardSetupBuffer_28E018_313970(void) {
     void *s0;
     if (!(D_00747A34 & 0x100000)) {
         s0 = EnsureInitThenForward_2A9538_30EE08(0x1560, 0x10, D_00754220);
@@ -67,8 +67,8 @@ void *func_00313970(void) {
     return 0;
 }
 
-__attribute__((section(".text.func_00313A60")))
-void *func_00313A60(void) {
+__attribute__((section(".text.ForwardInitBuffer_313A60")))
+void *ForwardInitBuffer_313A60(void) {
     void *s0;
     if (!(D_00747A34 & 0x10000)) {
         s0 = EnsureInitThenForward_2A9538_30EE08(0x8F0, 0x10, D_00754C10);

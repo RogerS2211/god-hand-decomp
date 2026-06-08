@@ -55,7 +55,7 @@ void InitNodePool_1FE2B8(int a0) {
     char *p = (char *)a0 + 0x3C00;
     unsigned int i = 0;
     do {
-        func_001FE278(a0, (int)p);
+        ClearAndResetFields_1FE278(a0, (int)p);
         i++;
         p += 0x70;
     } while (i < 0x100);

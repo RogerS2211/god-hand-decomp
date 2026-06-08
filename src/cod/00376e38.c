@@ -48,13 +48,13 @@ void UpdateSoundNodeState_377598(void *a0) {
             *(short*)((char*)a0 + 0x14) = 3;
             return;
         }
-        func_003775F0(a0);
+        UpdateChannelState_3775F0(a0);
     }
     UpdateChannelOutputLevels_377700(a0);
 }
 
-__attribute__((section(".text.func_003775F0")))
-void func_003775F0(void *a0) {
+__attribute__((section(".text.UpdateChannelState_3775F0")))
+void UpdateChannelState_3775F0(void *a0) {
     int i;
     if ((*(unsigned short*)a0 & 0x10) != 0) {
         for (i = 0; i < 4; i++) {

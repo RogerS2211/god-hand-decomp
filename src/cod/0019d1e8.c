@@ -11,7 +11,7 @@ extern char D_00425DF8[];
 extern char D_007859B8[];
 extern char D_00425E10[];
 extern unsigned char D_00574380[];
-extern void func_001FE278(void *a, int b);
+extern void ClearAndResetFields_1FE278(void *a, int b);
 extern void func_001BFB00(void *a0, void *a1);
 extern int D_00785E08;
 extern int D_00425EC8;
@@ -91,7 +91,7 @@ void FreeObjResource_19D5E0(void *a0, void *a1) {
     *(unsigned int *)((char *)a0 + 0x214) = (unsigned int)&D_00425E10;
     v1 = *(int *)((char *)a0 + 0x600);
     if (v1 != 0) {
-        func_001FE278(&D_00574380, v1);
+        ClearAndResetFields_1FE278(&D_00574380, v1);
         *(unsigned int *)((char *)a0 + 0x600) = 0;
     }
     func_001BFB00(a0, a1);

@@ -78,13 +78,13 @@ void *InitObjSlots_191AB0(void *a0) {
     return a0;
 }
 
-__attribute__((section(".text.func_00191B38")))
-void func_00191B38(void *a0, int a1) {
+__attribute__((section(".text.ResetField214FreeField600_191B38")))
+void ResetField214FreeField600_191B38(void *a0, int a1) {
     int v1;
     *(int*)((char*)a0+0x214) = (int)&D_00424040;
     v1 = *(int*)((char*)a0+0x600);
     if (v1 != 0) {
-        func_001FE278(&D_00574380, v1);
+        ClearAndResetFields_1FE278(&D_00574380, v1);
         *(int*)((char*)a0+0x600) = 0;
     }
     ResetField214FreeField180_1C2820(a0, a1);
