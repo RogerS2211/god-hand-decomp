@@ -7,6 +7,13 @@ name: Upload Objdiff Progress Report
 #
 # The report is committed (progress/report.json) and regenerated locally, so this
 # job does not build the project or vendor the (non-redistributable) toolchain.
+#
+# Before upload we apply the subsystem-folder *display* remap
+# (scripts/gen_unit_names.py) to a COPY of the report, so decomp.dev's file tree
+# reads like the real codebase (enemy/, object/, cri-middleware/, ...).  The
+# committed report keeps its original src/cod/<addr> names — the tracker tooling
+# (mark_complete, check_tu_complete) resolves source files by those names. The
+# transform is pure JSON: no build, no toolchain.
 
 on:
   push:
@@ -27,9 +34,17 @@ jobs:
       - name: Verify report exists
         run: test -f progress/report.json
 
+      - name: Build decomp.dev report (subsystem display names)
+        # Refresh the remap from the committed config, then apply it to a COPY of
+        # report.json (committed report is left untouched). Output keeps the
+        # report.json basename so decomp.dev ingests it unchanged.
+        run: |
+          python3 scripts/gen_unit_names.py
+          python3 scripts/gen_unit_names.py --apply-report progress/report.json "$RUNNER_TEMP/report.json"
+
       - name: Upload progress report
         uses: actions/upload-artifact@v4
         with:
           name: SLUS_215.03_report
-          path: progress/report.json
+          path: ${{ runner.temp }}/report.json
           if-no-files-found: error
