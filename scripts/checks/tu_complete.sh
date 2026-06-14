@@ -17,6 +17,7 @@
 # In that state we can't decide either way — defer to the next
 # session_check run.
 #
+# Documented in the session-check notes.
 set -uo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"

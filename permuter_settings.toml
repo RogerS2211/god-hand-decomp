@@ -1,19 +1,20 @@
-# decomp-permuter / decomp.me settings for god-hand-decomp.
+# decomp-permuter / decomp.me settings for godhand-recomp.
 #
 # Read by `tools/decomp-permuter/import.py`, which prepares a scratch
 # directory and shells out to permuter.py.
 #
-# Compiler: ee-gcc 2.96 (SCE PS2 SDK 3.0.20).
+# Compiler: ee-gcc 2.96 (SCE PS2 SDK 3.0.20), DECISIONS.md.
 # decomp.me preset `ee-gcc2.96` is verified retail-byte-equal by the
-# cc-roundtrip probes.
-# Wrapper: scripts/ee-cc-wrap.py (the upstream `ee-gcc` driver
-# segfaults on this host; the wrapper invokes cpp0 + cc1 + ee-as
-# directly, byte-equivalent output).
+# preflight cc-roundtrip probes.
+# Wrapper: scripts/ee-cc-wrap.py per DECISIONS.md (the upstream
+# `ee-gcc` driver segfaults on this host; the wrapper invokes cpp0 + cc1
+# + ee-as directly, byte-equivalent output).
 
 # decomp-permuter's randomization-weight table.  "gcc" matches our
 # `ee-gcc 2.96` toolchain; explicitly set rather than inferred-from-target
 # (the platform target `ps2` would otherwise infer `ido`, which is wrong
-# for our SCE-on-EE toolchain).
+# for our SCE-on-EE toolchain — see DECISIONS.md amendment 2 and the
+# decomp-permuter notes).
 compiler_type = "gcc"
 
 # Import-time build line.  Mirrors `compile_config.json::c_flags` +

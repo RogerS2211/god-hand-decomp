@@ -13,7 +13,7 @@
 # breaking the main-ELF sha256 still fails the ratchet.
 #
 # Skip semantics (per session_check.sh exit-77 convention):
-#   - if compile.py is missing, exit 77 (not landed)
+#   - if compile.py is missing, exit 77 (compile path not landed)
 #   - if compile_config.json::rels is empty, exit 77 (no RELs declared
 #     yet, e.g. on an early commit)
 #   - if build/rel/<name>.rel is missing, exit 77 (the build hasn't

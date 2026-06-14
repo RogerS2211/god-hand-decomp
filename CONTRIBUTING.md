@@ -1,230 +1,377 @@
-# Contributing to god-hand-decomp
+# Contributing — a human's guide to godhand-recomp
 
-Thanks for helping decompile **God Hand**. This is a *matching* decomp: the bar
-for any contribution is that the compiled output is **byte-identical** to the
-retail binary, verified with [objdiff](https://github.com/encounter/objdiff).
-You don't need PS2 or reverse-engineering experience to start — just patience
-and a willingness to read assembly.
+This is a **matching decompilation** of *God Hand* (PS2, 2006, Clover Studio /
+Capcom). The job is to rewrite the game's machine code as C/C++ that, when
+compiled with the original toolchain, produces **byte-for-byte the same** boot
+ELF and `.rel` overlays as the retail disc.
 
-By contributing you agree your work is your own and is offered under the same
-preservation/education/non-commercial-research terms described in the
-[README's Legal section](README.md#legal). **Never** commit game assets, ripped
-data, ROMs/ISOs, SDK binaries, or any copyrighted material.
+Most of the day-to-day driving here runs through an orchestration loop (see
+[`AGENTS.md`](./AGENTS.md) / [`ORIENT.md`](./ORIENT.md)), but every step it
+takes is a plain command you can run by hand. This document is the
+human-facing version of that workflow: how to set up, how to take one function
+from "raw asm" to "byte-identical match", and the handful of rules that keep
+the build honest.
 
-## 1. One-time setup
+> **Status.** The repo is solo/private right now and not yet taking outside
+> pull requests (see the README). This guide documents the workflow so you can
+> reproduce it locally, follow along, and so it's ready the day the project
+> opens up. If you want to help and the door is still closed, open an issue
+> first.
 
-You must own a copy of the game and dump it yourself.
+---
 
-### Platform support
+## 1. The mental model (read this before anything else)
 
-The matching toolchain — `ee-gcc` 2.96, the SN ProDG `ee-gcc` 2.95.3 compiler
-(run under [`wibo`](https://github.com/decompals/wibo)), `ee-dvp-as`, and
-`objdiff-cli` — is distributed as **Linux x86-64** binaries, and the build is
-verified against them. All three OSes below converge on running that same Linux
-toolchain; pick your path:
+You are not "porting" or "rewriting" the game in the loose sense. You are
+**reproducing the exact bytes** the original compiler emitted. Two ideas drive
+everything:
 
-| OS | How you run the toolchain |
-| --- | --- |
-| **Linux** | Natively (reference platform). |
-| **Windows** | Inside **WSL2** (Ubuntu) — recommended. |
-| **macOS** | Inside a Linux **x86-64 container** or VM (Intel & Apple Silicon). |
+- **The ratchet.** There is one number that only ever goes up:
+  `matched_code_percent` — the fraction of `.text` bytes that compile
+  *byte-identical* to retail. Every commit must keep the build reproducing
+  retail (`scripts/session_check.sh` enforces this). You never land a change
+  that lowers the number or breaks the build.
 
-The Python-only parts of the workflow — reading `m2c` output, editing C, running
-the pytest suite, and regenerating the tracker — run natively everywhere; only
-*compile → link → diff* needs the Linux environment. [objdiff](https://github.com/encounter/objdiff)
-also ships a native GUI app for all three OSes, so you can diff graphically even
-when the build runs in WSL2 or a container.
+- **Carving.** The whole game starts as one giant disassembly
+  (`asm/cod/000000.s`, the "monolithic"). Functions are pulled out one at a
+  time. Until a function is matched, the C source `#include`s its raw assembly
+  via `INCLUDE_ASM(...)`. When you match it, the `INCLUDE_ASM` line is replaced
+  by real C. This is called **carving** a function.
 
-**Linux (native).** The ee-gcc binaries are 32-bit, so you need i386 glibc plus
-the `mipsel-linux-gnu` cross-binutils:
+A function is **matched** when the compiler, fed your C with the project's
+exact flags, emits the identical machine code. Not "equivalent" — *identical*,
+down to register allocation and instruction order. That's the bar.
 
-```bash
-# Debian / Ubuntu
-sudo apt install libc6:i386 binutils binutils-mipsel-linux-gnu curl git python3
-# Arch / CachyOS:  base-devel git python, then mipsel-linux-gnu-binutils from the AUR
-```
+You'll see two related metrics:
 
-**Windows (WSL2).** Native Windows can't run the Linux ELF toolchain, but WSL2
-runs it unmodified. In an elevated PowerShell:
+| Metric | What it means |
+|---|---|
+| `matched_code_percent` | % of `.text` bytes byte-identical to retail (the ratchet) |
+| `matched_functions` | count of functions that match |
+| full-ELF sha256 gate | pass/fail: does the whole built ELF still equal retail? |
 
-```powershell
-wsl --install -d Ubuntu        # then reboot
-```
+Current state lives in [`STATE.md`](./STATE.md) (auto-generated — don't
+hand-edit the numbers).
 
-Then open the Ubuntu shell and follow the **Linux** path above. Keep your
-checkout on the Linux filesystem (`~/god-hand-decomp`, *not* `/mnt/c/...`) for
-usable build speed. You can run the native-Windows objdiff GUI against the
-`objdiff.json` in your WSL checkout (`\\wsl$\Ubuntu\home\...`).
+---
 
-**macOS (container or VM).** The binaries are Linux x86-64, so they don't run
-natively on Intel or Apple Silicon — run the build in a container:
+## 2. One-time setup
 
-```bash
-# from the repo root; --platform forces x86-64 (emulated on Apple Silicon)
-docker run --platform linux/amd64 -it -v "$PWD":/repo -w /repo ubuntu:22.04 bash
-# inside the container, follow the Linux path (apt install ... && ./scripts/...)
-```
+You need your own legally-dumped NTSC-U disc. **No game data ships in this
+repo** and none should ever be committed.
 
-A full Linux VM (UTM, Lima, `multipass`) works equally well. On Apple Silicon
-the x86-64 toolchain runs under emulation (Rosetta/QEMU) — slower than
-Linux/WSL2, but byte-identical output.
-
-### Fetch the toolchain and build
-
-Once you're in a Linux environment (native, WSL2, or container), the rest is
-identical on every platform:
+> **Nix users (optional):** run `nix develop` first — it provisions the compiler,
+> wibo, objdiff, and the cross-binutils for you (subsuming step 2 below and the
+> step-3 host package), so `setup_toolchain.sh` then only sets up the venv, the
+> Python tools, the assembler patches, and the git hooks. See
+> [README → Nix dev environment](./README.md#nix-dev-environment-optional). The
+> steps below otherwise work unchanged.
 
 ```bash
-# Place your dumped disc at the repo root as 'God Hand (USA).iso', then:
-./scripts/extract_iso.sh        # carve disc_extract/SLUS_215.03 (+ overlay tables)
-./scripts/setup_toolchain.sh    # vendor ee-gcc 2.96 + SN ee-gcc + dvp-as + m2c
-python compile.py --setup       # generate objdiff.json from the linker map
-python compile.py               # full build — should complete cleanly
+# 1. Put your own dump at the repo root as 'God Hand (USA).iso'.
+./scripts/extract_iso.sh            # extracts + sha256-verifies the boot ELF
+                                    # (add --version eu / --version jp for siblings)
+
+# 2. Vendor the SCE PS2 SDK 3.0.20 toolchain (ee-gcc 2.96 + SN linker + dvp-as),
+#    plus splat / m2c / objdiff / asm-differ / decomp-permuter:
+./scripts/setup_toolchain.sh
+
+# 3. One-time host dependency (assembler used by the build):
+paru -S mipsel-linux-gnu-binutils   # or your distro's equivalent
+
+# 4. Generate the asm split + objdiff scoring project:
+.venv/bin/python compile.py --setup
+
+# 5. Build (an empty matching link to start — every byte comes from re-assembled asm):
+.venv/bin/python compile.py         # default version is 'us'
+
+# 6. Sanity-check the tooling:
+.venv/bin/python -m pytest tests/   # parsers, carve splitter, mappers — wall < 1 s
+.venv/bin/python tools/m2c/m2c.py --help
 ```
 
-Verify your boot ELF is the right one before doing anything else:
+After step 5 you should have a `build/SLUS_215.03.elf` whose sha256 equals the
+retail boot ELF. If that holds, your environment is correct. (An "empty" build
+already reproduces retail.)
 
-```
-sha256(disc_extract/SLUS_215.03) == 1742f95bef65bdb2aa57b7a77df4ac7619a092e9646e1ea325bc32ec8a64f3cd
-```
+**A note on `.venv`.** All Python tooling runs under the repo's virtualenv.
+Prefix Python commands with `.venv/bin/python` (the examples below sometimes
+drop it for brevity).
 
-If that hash differs, your dump is wrong — stop, nothing else will match.
+---
 
-## 2. Pick a function
+## 3. The lay of the land
 
-Open the visual tracker on
-[decomp.dev](https://decomp.dev/LucasPicoli/god-hand-decomp) and look for a
-translation unit that is **partially** matched — those have the most
-low-hanging functions. Good first targets are small leaf functions (no calls)
-in a unit that is already mostly done.
+You'll touch these constantly:
+
+| Path | What it is |
+|---|---|
+| `asm/cod/000000.s` | the **monolithic** — raw disassembly of the whole game, with retail bytes embedded in each instruction comment |
+| `src/cod/*.c` | decompiled C. Each file is a translation unit (TU) holding one or more functions. |
+| `include/` | shared headers: `sce/` (SDK), `cri/`, `capcom/`, `gh/` (game) |
+| `compile_config.json` | the build manifest: which functions are carved, which compiler each TU uses, per-TU flags |
+| `config/symbol_addrs.txt` | name → address map (seeded from Ghidra); where you record names you learn |
+| `expected/build/*.o` | the objdiff *target* — disassembled-from-retail object files |
+| `compile.py` | the build entry point |
+| `objdiff.json` | objdiff scoring project (per-`.o` byte diff) |
+
+These you'll read for orientation:
+
+- [`STATE.md`](./STATE.md) — current truth dashboard
+- [`DECISIONS.md`](./DECISIONS.md) — locked architectural decisions (don't relitigate)
+- [`STRUCTS.md`](./STRUCTS.md) — known struct layouts
+- [`CONTEXT.md`](./CONTEXT.md) — domain glossary
+- [`notes/`](./notes/) — recon reports and retros (the "why" behind everything)
+
+**Search hygiene — important.** The repo root holds multi-GB artefacts (the
+ISO, `tools/`, `build/`, `asm/`). **Never** run `find /`, `find ~`, or
+`grep -r` above the project. Use `git grep` / `rg` from the project root (both
+respect `.gitignore` and skip the heavy trees), or `scripts/proj-find.sh` if
+you need `find`. This rule is load-bearing — see
+[`AGENTS.md`](./AGENTS.md#filesystem-search-hygiene--non-negotiable).
+
+---
+
+## 4. The per-function workflow
+
+This is the core loop. The goal: take one function from `INCLUDE_ASM` to a
+byte-identical C match.
+
+### Step 0 — pick a target
+
+Good first targets are **small leaf functions** (no calls, simple control
+flow): getters/setters, small constructors, math helpers. Avoid huge
+dispatchers and anything with VU0 microcode or 64-bit runtime shifts until
+you're comfortable — those hit toolchain-fidelity walls (see
+[`STATE.md`](./STATE.md)).
+
+To browse the worklist, the cross-region atlas census is the map:
 
 ```bash
-# List remaining (still INCLUDE_ASM'd) functions for a unit:
-scripts/checks/units.sh
-# or inspect a single unit's source:
-$EDITOR src/cod/<addr>.c
+.venv/bin/python scripts/function_atlas.py     # -> progress/function_atlas.summary.md
 ```
 
-Each `src/cod/<addr>.c` file holds one carved address range. Unmatched functions
-appear as `INCLUDE_ASM(...)` stubs that pull in the raw `asm/` disassembly;
-your job is to replace a stub with C that compiles to the same bytes.
+Pick a `func_XXXXXXXX` name (the address-based default name) or a name from
+`config/symbol_addrs.txt`.
 
-## 3. The matching loop
+### Step 1 — look at what you're matching
+
+The retail bytes and disassembly for any function come straight out of the
+monolithic. The fast oracle dumps them for you:
 
 ```bash
-# Compile just your unit (no link) and open the objdiff diff for it:
-python compile.py --single-file src/cod/<addr>.c
-scripts/checks/diff.sh src/cod/<addr>        # interactive objdiff TUI
-
-# Or get a one-shot score for the unit:
-scripts/checks/score.sh src/cod/<addr>
+.venv/bin/python scripts/score_candidate.py func_002772A8 --asm-only
 ```
 
-Iterate: write/adjust C → recompile → read the diff → repeat until the function
-is 100 %. Useful helpers:
+This prints the exact retail instructions and their little-endian bytes — this
+is your target. (In `asm/cod/000000.s` the same function lives between
+`glabel func_002772A8` and `endlabel func_002772A8`; the 3rd field of each
+`/* ... */` comment is the raw retail bytes.)
 
-- **`m2c`** (vendored in `tools/`) gives a first-pass C decompilation to start from.
-- **`decomp-permuter`** (`permuter_settings.toml` is preconfigured) brute-forces
-  equivalent C variations when you're close but not exact.
-- **`ctx.h`** holds shared typedefs so m2c output compiles; it is matching-only
-  and never linked, so you may add context typedefs there freely.
-- Some functions need the **SN ProDG `ee-gcc` 2.95.3** compiler rather than the
-  default Cygnus 2.96 (e.g. retail prologues that use the `sq` instruction for
-  callee-saved registers). Opt a TU in via `compile_config.json`; see existing
-  entries for the format.
+### Step 2 — first-pass C with m2c
 
-A function is fully matched only when objdiff shows it 100 %. Do **not** commit
-"pseudo-matches" that rely on instruction shapes the original compiler wouldn't emit
-(forced-register pins, inline `asm{}` to coerce a 100 %) — an honest partial beats a
-fake match.
-
-### Partial matches (clean C that isn't byte-exact yet)
-
-A **plausible** clean-C body that compiles to 90–99 % of the target but not byte-exact
-doesn't have to be discarded. Keep it behind a `NON_MATCHING` guard so the published
-progress credits it as a fuzzy partial, while the default build stays byte-identical
-to retail via the `INCLUDE_ASM` fallback:
-
-```c
-#ifdef NON_MATCHING
-void *func_xxxx(void *obj) { /* clean, readable C — scores 90-99 % */ }
-#else
-INCLUDE_ASM("nonmatching", func_xxxx);
-#endif
-```
-
-- The default `python compile.py` build compiles the `#else` branch, so the linked
-  ELF is unchanged and still byte-identical to retail.
-- `scripts/score_nm.sh` compiles the `#ifdef NON_MATCHING` body and scores it into
-  `progress/report.json`, so its `fuzzy_match_percent` ("decompiled" on decomp.dev)
-  credits the partial. The 100 %-exact `matched_functions` count is unaffected.
-
-The bar for a guarded body is **plausibility, not %**: it must read like source a
-human would write. A high score reached through cast-soup or phantom locals doesn't
-qualify — leave those as a plain `INCLUDE_ASM` stub.
-
-## 4. Naming & conventions
-
-- **Files:** one TU per carved range, `src/cod/<addr>.c`. Don't rename existing TUs.
-- **Functions/symbols:** if you can identify a function's purpose, name it and add
-  the mapping to `config/symbol_addrs.txt`; otherwise leave the address-anchored
-  name. Renames belong in their own commit.
-- **Structs:** field offsets in matched C are exact ground truth. If you work out
-  a struct's layout, document it in a short comment above the function rather than
-  inventing speculative names.
-- **Style:** match the surrounding code. Decomp C is not idiomatic C — readability
-  is secondary to matching; keep the variable/casting shapes the compiler needs.
-
-## 5. Before you open a PR
-
-Run the relevant gates (all fast):
+`m2c` turns MIPS back into rough C. It won't match, but it gives you the
+shape — control flow, struct offsets, call signatures:
 
 ```bash
-python compile.py                                  # full build still links + byte-matches retail
-python -m pytest tests/test_compile.py tests/test_carver.py
-scripts/checks/diff.sh src/cod/<addr>              # your unit is still matched
-scripts/score_nm.sh                                # regenerate progress/report.json (scored build) + docs/
+.venv/bin/python tools/m2c/m2c.py --target mipsee-gcc-c <asm-for-the-function>
 ```
 
-`scripts/score_nm.sh` is what produces the **published** `progress/report.json` (the
-file decomp.dev ingests): it builds with `-DNON_MATCHING` so `#ifdef NON_MATCHING`
-partials are scored into `fuzzy_match_percent`, then refreshes `docs/`. The default
-`python compile.py` above remains the byte-identical build you verify your match
-against — the two are independent.
+Clean it up: name the locals, replace raw offsets with struct field accesses
+(`STRUCTS.md` and Ghidra help here), declare the externs it references.
 
-Then:
+**Large or jump-table-heavy function?** Don't hand-feed m2c the raw monolithic —
+use `scripts/m2c_prep.py <func> --casts`, which auto-discovers and reassembles
+the jump tables, injects the labels splat omits, restores raw-encoded COP1/COP2
+ops, and emits a compilable house-style C body in one step. It also warns you
+about two gotchas (the carve `.globl` re-export for rodata-referenced
+jump-table labels, and objdiff's inability to score multi-thousand-insn
+functions).
 
-1. Branch from `main`, keep the change focused (one unit / one logical change).
-2. In the PR description, state which functions newly match and paste the objdiff
-   score before/after.
-3. Commit the refreshed `progress/report.json` and `docs/` if your change moved
-   the numbers.
-4. Commit messages: short imperative subject, e.g.
-   `match func_00359218 in src/cod/func_00359218`.
+### Step 3 — score it, fast
 
-### Automated PR checks
+`score_candidate.py` is your inner loop. It compiles **just that one function**
+with the project's exact flags and tells you MATCH / NO-MATCH in ~0.3 s,
+without a full relink and without touching any tracked file:
 
-Opening a PR runs [`.github/workflows/pr.yml`](.github/workflows/pr.yml) on a
-stock Linux runner (no toolchain or disc required). All three gates must pass:
+```bash
+.venv/bin/python scripts/score_candidate.py func_002772A8 my_candidate.c
+# exit 0 = MATCH, 1 = bytes differ, 2 = compile error
+```
 
-- the **`pytest` suite** (`tests/`) — build-helper and carver invariants;
-- a **game-data guard** (`scripts/checks/ci_no_game_data.sh`) — rejects any
-  ISO, AFS, boot ELF, SDK binary, or other binary blob from the diff;
-- a **report-consistency lint** (`scripts/checks/report_lint.py`) — confirms
-  `progress/report.json` is internally consistent (decomp.dev ingests it directly).
+Some functions were built with a different compiler in the SDK. If you're not
+sure which, let the scorer try both:
 
-These gates deliberately do **not** rebuild the game — the toolchain and target
-are non-redistributable — so the byte-level match is **your** responsibility:
-make sure `scripts/checks/diff.sh src/cod/<addr>` shows your unit at 100 %
-before you open the PR.
+```bash
+.venv/bin/python scripts/score_candidate.py func_002772A8 my_candidate.c --try-both
+# compilers: cygnus-2.96 (the default catch-all) and sn-2.95.3-136 (sq-prologue functions, etc.)
+```
 
-[`.github/workflows/progress.yml`](.github/workflows/progress.yml) uploads the
-progress report on pushes and PRs so the decomp.dev page and its badges stay
-current.
+(There's an address-band heuristic for which compiler a function wants — see
+the notes referenced from `compile_config.json` and `src/cod/002772.c`'s
+header comment for a worked example.)
 
-## 6. Questions
+### Step 4 — when it's close, diff to see *what's* off
 
-Open an issue. Toolchain quirks and design rationale are documented in the
-relevant `scripts/` and `config/` files; skim those first.
+If the bytes differ, see exactly where. objdiff gives a per-instruction diff
+against the retail target:
 
-Happy matching.
+```bash
+# unit = the TU path minus its extension, symbol = the function name
+tools/objdiff-cli diff -p . -u src/cod/002772 func_002772A8
+```
+
+`asm-differ` (in `tools/asm-differ/`) is the interactive sibling if you prefer
+a scrolling side-by-side.
+
+Read the diff structurally. A different register or a reordered load almost
+always means the **C structure** is wrong, not that you need to fight the
+compiler. Common fixes: reorder local declarations, store an address directly
+instead of through a temp, fix a return-value's liveness, get a cast right.
+
+### Step 5 — brute-force the last mile with decomp-permuter
+
+When you're *close* (right instructions, wrong order/registers), let the
+permuter mutate your C looking for a byte-identical arrangement:
+
+```bash
+# import your scratch into a permuter workdir, then run it
+tools/decomp-permuter/import.py ...        # uses permuter_settings.toml
+tools/decomp-permuter/permuter.py <workdir>
+```
+
+`permuter_settings.toml` is already wired to the project's `ee-gcc 2.96`
+flags. The permuter is for closing gaps, not for generating matches from
+scratch.
+
+### Step 6 — integrate and commit
+
+When `score_candidate.py` says MATCH, land it. The integrator carves the
+function (adds the `carved_funcs` entry, swaps the `INCLUDE_ASM` for your C),
+reseeds the objdiff target, and re-verifies the full ELF still equals retail:
+
+```bash
+.venv/bin/python scripts/integrate_match.py func_002772A8 my_candidate.c
+```
+
+Or do integrate + verify + commit in one gated step (this is what the agents
+use — it refuses on a dirty tree, runs the cheat-detector and byte-match gate,
+runs the fast `session_check` subset, and prints the new commit sha):
+
+```bash
+scripts/match_and_commit.sh func_002772A8 my_candidate.c
+```
+
+Before you consider the work done, run the full session check:
+
+```bash
+scripts/session_check.sh
+```
+
+It must exit clean. It builds the ELF, verifies the sha256 ratchet, checks the
+objdiff score didn't drop, validates the carve, and runs the forced-register
+guard.
+
+---
+
+## 5. The rules (these are non-negotiable)
+
+1. **Honor the ratchet.** Never commit something that lowers
+   `matched_code_percent` or breaks the build. `scripts/session_check.sh` is
+   the gate.
+
+2. **No forced registers.** Do **not** use
+   `register T x __asm__("$N");` to force the compiler's hand. A register-only
+   diff means your C structure is wrong — fix the structure, run the permuter,
+   and if it still won't match, ship an honest `INCLUDE_ASM("nonmatching", ...)`.
+   A pinned pseudo-match is *not* a match, and `scripts/check_forced_regs.py`
+   hard-fails any pin (the allowlist is kept empty). See
+   [`src/cod/002772.c`](./src/cod/002772.c) for a function that was correctly
+   *regressed* back to nonmatching rather than pinned.
+
+3. **Name what you understand, in the same commit.** Names don't affect the
+   ratchet but they *are* most of the deliverable (and what makes the PC port
+   possible). If you figure out what a function, global, or struct is,
+   propagate the name into `config/symbol_addrs.txt`, the C source,
+   `carved_funcs`, and Ghidra — together, in the commit that matched it. See
+   `DECISIONS.md`.
+
+4. **Don't relitigate locked decisions.** Read [`DECISIONS.md`](./DECISIONS.md)
+   before proposing an architectural change. If you hit a genuinely new fork,
+   add a proposal there *before* implementing.
+
+5. **One focused change per commit.** Prefix the commit subject with the task
+   or context tag in brackets, e.g. `[func-match] func_002772A8: …`. Don't
+   sneak unrelated "small fixes" into a match commit.
+
+6. **A non-matching decomp is still progress.** If a function resists matching,
+   landing readable `INCLUDE_ASM("nonmatching", name)` C with the structure and
+   names figured out is valuable — it can be ratcheted to matching later, and
+   it feeds the port. Honest beats fake.
+
+---
+
+## 6. Multi-version porting (free progress)
+
+All three regional masters (`us`, `eu`, `jp`) were built with the same
+compiler/SDK, so a function matched on `us` is — modulo relocations — the same
+machine code on the siblings. You usually **don't re-decompile** for `eu`/`jp`;
+you port:
+
+```bash
+.venv/bin/python scripts/port_version.py --version eu   # find sibling addresses
+.venv/bin/python scripts/land_verify.py ...             # land matched us C, keep only byte-verified TUs
+.venv/bin/python compile.py --version eu                # build the sibling
+scripts/checks/build_version.sh eu                      # verify vs retail ELF
+```
+
+A function that matches `us` but has **no** sibling counterpart is a strong
+overfit signal — it's flagged, not ported. See
+[`MULTIVERSION.md`](./MULTIVERSION.md).
+
+---
+
+## 7. Measuring progress
+
+```bash
+scripts/progress.sh                      # us: regenerate report + print headline
+scripts/progress.sh --version eu         # a sibling
+scripts/checks/progress_all.sh           # one-screen dashboard across all versions
+.venv/bin/python scripts/render_state.py # refresh STATE.md's metric block
+```
+
+Never hand-type the matched percentage into `STATE.md` — regenerate it. (The
+old hand-edited dashboard once reported four different numbers for the same
+metric; that's why it's generated now.)
+
+---
+
+## 8. Quick reference
+
+| You want to… | Command |
+|---|---|
+| See a function's retail bytes/disasm | `score_candidate.py <name> --asm-only` |
+| First-pass C from asm | `tools/m2c/m2c.py --target mipsee-gcc-c <asm>` |
+| Test a candidate (fast, no relink) | `score_candidate.py <name> cand.c [--try-both]` |
+| See *where* the bytes differ | `tools/objdiff-cli diff -p . -u <tu> <name>` |
+| Close the last mile | `tools/decomp-permuter/permuter.py <workdir>` |
+| Integrate a match | `integrate_match.py <name> cand.c` |
+| Integrate + verify + commit | `scripts/match_and_commit.sh <name> cand.c` |
+| Pre-commit gate | `scripts/session_check.sh` |
+| Build the ELF | `compile.py [--version us\|eu\|jp]` |
+| Build one TU only | `compile.py --single-file src/cod/<x>.c` |
+| Progress headline | `scripts/progress.sh` |
+| Browse the worklist | `scripts/function_atlas.py` |
+
+---
+
+## 9. Where to go deeper
+
+- [`README.md`](./README.md) — project overview, goals, legal
+- [`ORIENT.md`](./ORIENT.md) — full orientation contract (what the agents follow)
+- [`program.md`](./program.md) — the success spec and milestones
+- [`MULTIVERSION.md`](./MULTIVERSION.md) — the three-region architecture
+- [`notes/`](./notes/) — every recon report and retro; the project's memory
+
+Welcome aboard. Match one small function end-to-end first — it teaches the
+whole loop in an afternoon.

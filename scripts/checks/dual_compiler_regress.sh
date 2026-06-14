@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Dual-compiler regression harness — thin shell dispatcher over
+# dual-compiler regression harness — thin shell dispatcher over
 # the Python implementation.
 #
 # Iterates every `src/cod/*.c`, compiles with both
@@ -13,8 +13,8 @@
 #      TU; SN is informational and may report misses or even per-TU
 #      failures (e.g. unsupported wide-integer arithmetic in SN cc1).
 #   1  default compiler drifted on at least one section \u2014 the
-#      compiler-dispatch plumbing has a real regression that must be
-#      diagnosed before shipping further changes.
+#      plumbing has a real regression that must be diagnosed before
+#      shipping further changes.
 #   2  setup error (missing expected/build/, missing toolchain, etc.).
 #
 # Skip semantics: if `expected/build/` is empty (fresh clone before

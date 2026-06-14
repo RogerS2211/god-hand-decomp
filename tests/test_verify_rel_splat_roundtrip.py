@@ -120,6 +120,6 @@ def test_check_one_passes_for_r207(tmp_path):
     # This re-uses the on-disc REL via the script's RELS registry.
     # If splat has not yet been run, the check returns 77 (skip);
     # we accept either 0 or 77 here so the test passes on a fresh
-    # clone before the REL splat outputs land.
+    # clone before the outputs land.
     rc = VR.check_one(VR.RELS[0])
     assert rc in (0, 77)

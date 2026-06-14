@@ -17,9 +17,9 @@ Usage::
                                   [-o disc_extract/rel]
                                   [--filter '*.rel'] [--filter PAT ...]
 
-If no ``--filter`` is given, ``*.rel`` is implied (the default).  Pass
-``--filter '*'`` to extract everything (NOT recommended; ``_DATA.AFS``
-is 1.5 GB).
+If no ``--filter`` is given, ``*.rel`` is implied (the default; see
+``DECISIONS.md``).  Pass ``--filter '*'`` to extract
+everything (NOT recommended; ``_DATA.AFS`` is 1.5 GB).
 
 Idempotent: re-running yields byte-identical outputs and an unchanged
 manifest.  Each file is hashed during extraction and the manifest's
@@ -148,7 +148,7 @@ def main(argv: list[str] | None = None) -> int:
 
     # Guard against basename collisions in the matched set.  Different
     # FST paths with the same basename would clobber each other in the
-    # flat extraction layout.  Verified zero collisions for *.rel;
+    # flat extraction layout.  Prior recon verified zero collisions for *.rel;
     # this check makes the assumption explicit for future filter changes.
     seen_bn: dict[str, str] = {}
     for f in matched:

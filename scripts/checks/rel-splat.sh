@@ -9,8 +9,8 @@
 # Skip semantics: the underlying script returns exit 77 (handled by
 # session_check.sh as "skipped, non-fatal") when no REL has been split
 # yet.  That lets this check land before any REL config exists (e.g.
-# on a fresh clone, before the REL splat is applied) without breaking
-# the 8-of-8 ratchet.
+# on a fresh clone, before this config is applied) without breaking the
+# 8-of-8 ratchet.
 set -uo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"

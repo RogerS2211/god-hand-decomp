@@ -1,8 +1,8 @@
 """Offline unit tests for ``scripts/afs.py``.
 
-Locks in the reverse-engineered AFS-header / GODHAND.FST schema so a
-future change can't silently shift the parser without flipping at
-least one of these tests.
+Locks in the AFS-header / GODHAND.FST schema we reverse-engineered so a
+future schema-discovery agent can't silently shift the parser without
+flipping at least one of these tests.
 
 All fixtures are synthetic byte strings — none of these tests touches the
 real ISO or FST.  ``tests/test_afs_smoke.py`` covers the integration

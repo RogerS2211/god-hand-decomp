@@ -1,239 +1,242 @@
-# god-hand-decomp
+# godhand-recomp
 
-[![Build](https://github.com/LucasPicoli/god-hand-decomp/actions/workflows/progress.yml/badge.svg)](https://github.com/LucasPicoli/god-hand-decomp/actions/workflows/progress.yml)
-[![Code matched](https://decomp.dev/LucasPicoli/god-hand-decomp.svg?mode=shield&measure=fuzzy_match_percent&label=code%20matched)](https://decomp.dev/LucasPicoli/god-hand-decomp)
-[![Fully linked](https://decomp.dev/LucasPicoli/god-hand-decomp.svg?mode=shield&measure=complete_code&label=fully%20linked)](https://decomp.dev/LucasPicoli/god-hand-decomp)
-[![Functions matched](https://decomp.dev/LucasPicoli/god-hand-decomp.svg?mode=shield&measure=matched_functions&label=functions)](https://decomp.dev/LucasPicoli/god-hand-decomp)
+Matching decompilation of **God Hand** (PS2, 2006, Clover Studio / Capcom),
+orchestrated by the [pi coding agent]. The build targets **all three regional
+masters** from one source tree, selected by a short version key.
 
-A work-in-progress **matching decompilation** of **God Hand** — the 2006
-PlayStation 2 brawler by **Clover Studio / Capcom** (NTSC-U, serial
-`SLUS-21503`).
+| key | serial | region | disc | boot ELF | status |
+|-----|--------|--------|------|----------|--------|
+| `us` | SLUS-21503 | NTSC-U | 1.00 | `SLUS_215.03` | matching (primary) |
+| `eu` | SLES-54490 | PAL | 1.00 | `SLES_544.90` | byte-identical + 533 ported funcs |
+| `jp` | SLPM-66550 | NTSC-J | 1.01 | `SLPM_665.50` | byte-identical + 538 ported funcs |
 
-The goal is human-readable C that recompiles, with the GPL `ee-gcc` 2.96
-toolchain, into a **byte-identical** `SLUS_215.03` boot ELF and
-matching `.rel` overlays — the standard "matching decomp" bar, verified
-function-by-function against the retail binary with [objdiff](https://github.com/encounter/objdiff).
+All three build **byte-identical to their retail boot ELF** (`elf_sha256` in
+[`config/versions.json`](./config/versions.json)). `us` carries the active C
+decompilation; `eu`/`jp` are byte-identical empty-carve baselines that the
+[cross-version port tooling](#multi-version-support) fills in from the matched
+`us` C. The same compiler/SDK built all three, so a matched `us` function is
+the same machine code on the siblings — see [`MULTIVERSION.md`](./MULTIVERSION.md).
 
-> **No game data lives in this repository.** You supply your own legally-dumped
-> disc. See [Legal](#legal).
+See [`program.md`](./program.md) for the success spec and the `notes/`
+directory for the recon report.
 
-## Progress
+## Goals
 
-| Metric | Value |
-| --- | --- |
-| Code matched (fuzzy) | **3.61 %** |
-| Code fully linked | **2.97 %** |
-| Functions matched | **1,927 / 11,199** (17.21 %) |
-| Data matched | **83.01 %** |
-| Translation units | 3,605 |
+1. Produce C/C++ that compiles back into a byte-identical `SLUS_215.03` plus
+   matching `.rel` overlays, using the original SCE PS2 SDK 3.0.20 toolchain.
+2. From the same source tree, build a **native PC port** with a thin platform
+   abstraction layer (SDL, modern graphics API, modern audio).
+3. Drive the per-function matching loop with an orchestration layer that
+   runs parallel attempts and ratchets git on a single matched-code metric.
 
-> Three code axes, all from objdiff's report — the same three decomp.dev shows.
-> **Code matched (fuzzy)** is `fuzzy_match_percent` (decomp.dev's "decompiled"
-> headline); it includes plausible clean-C bodies kept behind a `NON_MATCHING`
-> guard (the matching-decomp convention; see [CONTRIBUTING](CONTRIBUTING.md)).
-> **Code fully linked** is `complete_code_percent` (decomp.dev's "fully linked") —
-> the share of `.text` in TUs built *entirely* from source, i.e. decompiled and
-> linked, not merely byte-matched in place. **Functions matched** is the strict
-> 100 %-byte-exact count. Partials never inflate the latter two, and the default
-> build stays byte-identical to retail regardless.
+## How it works (the orchestration model)
 
-**Visual function tracker:** the live progress page — per-category rollup, a
-per-unit tree, badges, and PR comments — is hosted on decomp.dev:
-[**decomp.dev/LucasPicoli/god-hand-decomp**](https://decomp.dev/LucasPicoli/god-hand-decomp).
-It ingests [`progress/report.json`](progress/report.json) (uploaded by
-`.github/workflows/progress.yml`), so it stays current on every push.
-
-Regenerate the published report after a build:
-
-```bash
-scripts/score_nm.sh                 # regenerate progress/report.json (scored build)
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  outer loop  ── reads program.md, picks next function/REL,     │
+│                  spawns worktree workers, integrates results,   │
+│                  ratchets git on matched_text_percent           │
+└────────────────────────┬────────────────────────────────────────┘
+                         │ per-function
+                         ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  inner loop  ── per-function: m2c → edit → compile/view asm →   │
+│                  objdiff → decomp-permuter → matched or          │
+│                  escalated                                       │
+└────────────────────────┬────────────────────────────────────────┘
+                         │
+                         ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  splat + ee-gcc 2.96 + dvp-as + ee-ld + objdiff + asm-differ    │
+│  ground truth: disc_extract/SLUS_215.03 (sha256 1742f95b…f3cd)  │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
-## Quick start
+The inspirations are explicit:
+- [decomp.me](https://decomp.me) — collaborative matching scratches model
+- a single-metric git ratchet — every commit only ever raises matched code
+- [recvx-decomp](https://github.com/fmil95/recvx-decomp) — PS2 matching-decomp template (same era, same publisher)
 
-You need Python 3.10+, the `mipsel-linux-gnu` binutils, and your own God Hand
-(USA) disc image. The matching toolchain is Linux x86-64; **Windows** (via WSL2)
-and **macOS** (via a Linux container/VM) are supported — see
-[CONTRIBUTING.md § Platform support](CONTRIBUTING.md#platform-support).
-
-```bash
-# 1. Place your own dumped disc at the repo root as 'God Hand (USA).iso'.
-#    The boot ELF it yields (disc_extract/SLUS_215.03, 3,607,008 B) must hash to
-#    sha256 1742f95bef65bdb2aa57b7a77df4ac7619a092e9646e1ea325bc32ec8a64f3cd
-./scripts/extract_iso.sh          # carve the boot ELF + overlay tables
-
-# 2. Vendor the matching toolchain (ee-gcc 2.96 + SN ee-gcc + dvp-as + m2c).
-./scripts/setup_toolchain.sh
-
-# 3. Generate the asm split + objdiff project, then build.
-python compile.py --setup         # (re)write objdiff.json from the linker map
-python compile.py                 # build all .o + link the .elf
-
-# 4. Diff a single object against the retail target.
-python compile.py --single-file src/cod/000000.c
-scripts/checks/diff.sh src/cod/000000             # objdiff TUI for one unit
-
-# 5. Lock-in tests for the build helpers (sub-second).
-python -m pytest tests/test_compile.py tests/test_carver.py
-```
-
-## Project layout
+## Layout
 
 ```
 .
-├── src/                decompiled C — recovered class TUs (src/cod/<family>/<Class>.c)
-│                        + address-bucket files for the rest (src/cod/<addr>.c)
-├── include/            shared headers (sce/, godhand/, macro/asm helpers)
-├── asm/                splat-disassembled .s, INCLUDE_ASM'd from src (generated)
-├── config/             splat configs, ee-ld linker scripts (.lcf), symbol/reloc tables
-├── compile.py          build entry point (compile → assemble → link)
-├── compile_config.json build manifest: per-TU carve schema consumed by compile.py
-├── objdiff.json        objdiff project: per-object target ↔ base mapping + categories
-├── progress/
-│   ├── report.json     objdiff progress report (the file decomp.dev consumes)
-│   ├── unit_names.json subsystem-folder display names for the decomp.dev tree
-│   └── unit_part_funcs.json  carved-fragment → contained functions (names partN units)
-├── docs/               MIPS cheatsheet, code style notes
-├── scripts/            build, verification, and decomp tooling
-│   └── checks/         CI-style gates (build, diff, splat, units, score, …)
-├── tools/              objdiff-cli + splat extensions (splat_ext: sndata, …)
-├── tests/              pytest suite for the build/decomp helpers
-├── patches/            local patch for ee-as (R5900 short-loop errata)
-├── ctx.h               m2c context typedefs (matching-only; never linked)
-└── disc_extract/       boot ELF + overlay tables (gitignored; only rel/manifest.json kept)
+├── God Hand (USA).iso       your own dump, gitignored
+├── disc_extract/             extracted boot ELF + tables, gitignored except hashes
+├── program.md                research spec / success ratchet
+├── notes/                    recon, design decisions, retros
+├── config/
+│   ├── SLUS_215.03.yaml      splat config
+│   ├── SLUS_215.03.lcf       ee-ld linker script
+│   ├── symbol_addrs.txt      seeded from Ghidra
+│   └── reloc_addrs.txt
+├── compiler/                 ee-gcc 2.96 + SN linker, vendored, gitignored
+├── tools/                    splat, m2c, asm-differ, objdiff, decomp-permuter
+├── src/                      decompiled C/C++
+├── include/                  shared headers (sce/, cri/, capcom/, gh/)
+├── asm/                      splat output, INCLUDE_ASM'd from src
+├── bin/                      splat data dumps
+├── expected/                 disassembled-from-original .o files (objdiff target)
+├── build/                    compile output (.o, .elf, .map), gitignored
+├── ghidra/                   local Ghidra project for static analysis, gitignored
+├── scripts/                  small utilities (iso extraction, afs reader, …)
+├── .pi/
+│   ├── agents/               custom decomp-* workers (scout, worker, oracle, integrator)
+│   ├── chains/               saved orchestration workflows
+│   └── extensions/           tools wrapping the GhidraMCP HTTP API
+├── compile.py                top-level build entry point
+└── objdiff.json              objdiff project (per-.o scoring)
 ```
 
-## How matching works
+## Setup (will be filled in once toolchain is vendored)
 
-```
-splat ── carves the retail SLUS_215.03 ELF into per-address asm units
-  │
-  ▼
-src/cod/<addr>.c ── INCLUDE_ASM'd stubs replaced, function by function, with C
-  │
-  ▼
-compile.py ── ee-gcc 2.96 → .o ──► objdiff ──► byte-identical?  ──► commit
-  │                                   │
-  │                                   └─ not yet → m2c first pass / decomp-permuter / hand-tune
-  ▼
-progress/report.json ── regenerated → docs/ tracker → decomp.dev
-```
+```bash
+# 1. Place your own dumped ISO at the repo root as 'God Hand (USA).iso'.
+#    Expected sha256: TBD (matches NTSC-U serial SLUS-21503).
+# 2. Extract the boot ELF:
+./scripts/extract_iso.sh
 
-Ground truth is the retail boot ELF (`disc_extract/SLUS_215.03`,
-sha256 `1742f95b…f3cd`). A function counts only when its compiled bytes match
-the target exactly. A small set of functions use the SN ProDG `ee-gcc` 2.95.3
-compiler instead of Cygnus 2.96 (selected per-TU in `compile_config.json`) when
-that is what the retail prologue requires.
+# 3. Vendor the SCE PS2 SDK 3.0.20 toolchain (ee-gcc 2.96 + SN linker + dvp-as):
+./scripts/setup_toolchain.sh
 
-## Progress reporting & decomp.dev
+# 4. Install Python build deps (splat, etc.):
+pip install -r scripts/requirements.txt
 
-This repo follows the [decomp.dev](https://decomp.dev) model:
+# 5. Generate the asm split + objdiff project:
+python compile.py --setup
 
-1. `progress/report.json` is an [objdiff](https://github.com/encounter/objdiff)
-   report describing matched, fully-linked, and fuzzy code plus data/functions
-   per unit (the three axes in the table above). It is committed so decomp.dev
-   ingests it with zero build; `scripts/mark_complete.py` derives the
-   fully-linked (`complete_code`) axis on every report regeneration.
-2. The GitHub Actions workflow [`.github/workflows/progress.yml`](.github/workflows/progress.yml)
-   uploads it as an artifact named `SLUS_215.03_report` on every push.
+# 6. Build the project (empty matching link to start):
+python compile.py            # default version is 'us'
 
-Before upload, the workflow applies a display-name remap
-([`scripts/gen_unit_names.py`](scripts/gen_unit_names.py)) to a *copy* of the
-report, so decomp.dev's file tree reads by subsystem (`enemy/`, `object/`,
-`cri-middleware/`, …) instead of `asm/src/<addr>`. The committed report keeps
-its `src/cod/<addr>` names, which the tracker tooling resolves to source files.
-
-The un-decompiled monolith is carved into per-gap `asm/cod/000000.partN`
-fragments; on their own these show as opaque part-index leaves. The remap names
-each fragment after the function(s) it holds, via the committed
-[`progress/unit_part_funcs.json`](progress/unit_part_funcs.json) manifest — which
-records only the **start vaddrs** in each fragment (names are resolved from
-`config/symbol_addrs.txt` at remap time, so the public report never shows a name
-absent from public source). That manifest needs the (gitignored) monolithic asm
-to build, so — like `report.json` — it is regenerated locally, not in CI. After
-a carve changes, regenerate both in order:
-
-```sh
-python3 scripts/gen_part_funcs.py   # asm/cod/000000.s -> progress/unit_part_funcs.json
-python3 scripts/gen_unit_names.py   # -> progress/unit_names.json (consumes the manifest)
+# 7. Run the unit tests (parsers, carve splitter, ELF reglue, cross-version
+#    mapper, cross-region atlas). Wall time < 1 s.
+.venv/bin/python -m pytest tests/
 ```
 
-Empty alignment-only gaps land in a `cod/_pad/` bucket; a fragment holding
-several functions is named after its first and suffixed `(+n)`.
+Add `--version eu` / `--version jp` to any `compile.py` invocation to target a
+sibling (the registry in `config/versions.json` resolves the per-version
+config). Omitting `--version` reproduces the original `us` build byte-for-byte.
 
-### Function categories
+## Nix dev environment (optional)
 
-The objdiff project defines progress categories — `engine`, `cri-middleware`,
-`sce-runtime`, `crt`, `unknown` — so progress can be reported per subsystem
-rather than as one bar. [`progress/function_categories.json`](progress/function_categories.json)
-maps game `.text` addresses to a category; `engine` (the game's own code, the
-decomp target) is the default for any address not listed.
+`nix develop` provisions a sealed toolchain (compiler, wibo, objdiff,
+cross-binutils, python, node). It is **additive** to
+`scripts/setup_toolchain.sh`: the shellHook symlinks the pinned blobs into the
+exact gitignored paths the script already guards, so the script skips the blob
+fetches and only does the venv, Python tools, assembler patches, and git hooks.
 
-The non-engine categories cover code the game statically linked from standard
-libraries / middleware / the C runtime. These are identified — not rewritten —
-by relocation-masked instruction-signature analysis (confirmed byte-identical
-modulo relocation); no third-party source is committed. Identified so far
-(≈ **4.9 % of `.text`**, 837 functions):
+- **Linux (x86_64 or ARM):** `nix develop`, then `./scripts/setup_toolchain.sh`
+  (the blobs are already provisioned), then `python compile.py`. On x86_64 the
+  i386 compiler blobs run natively; on ARM they run transparently under
+  `qemu-i386` (wired into the shell).
+- **Without Nix:** install the host prereqs and run `./scripts/setup_toolchain.sh`
+  as before, then `python compile.py`.
+- **macOS:** the compiler is an i386-Linux binary, so run the Linux flow inside a
+  `linux/amd64` container:
 
-| category | functions | % of `.text` |
-|---|---:|---:|
-| `cri-middleware` | 363 | 1.98 % |
-| `sce-runtime` | 224 | 1.70 % |
-| `crt` | 250 | 1.24 % |
+  ```bash
+  docker run --platform linux/amd64 -v "$PWD":/src -w /src nixos/nix \
+    nix develop --extra-experimental-features 'nix-command flakes' --command bash
+  ```
 
-This breakdown is rendered as category bars on the
-[decomp.dev page](https://decomp.dev/LucasPicoli/god-hand-decomp).
+## Multi-version support
 
-The category axis is orthogonal to the matching/`permanent` axis: a function's
-category says *what subsystem it belongs to*, independent of whether it is
-matched or carried as `INCLUDE_ASM`. The companion
-[`progress/library_identified.json`](progress/library_identified.json) is the
-permanent-classification axis — the subset of identified library functions
-carried as `INCLUDE_ASM` and treated as non-gating for decomp progress (they are
-not the engine code the decomp targets).
+One source tree builds all three regional masters. Full architecture is in
+[`MULTIVERSION.md`](./MULTIVERSION.md); the short version:
 
-objdiff's per-**unit** category bars are populated for the library functions that
-are carved as standalone units — most of the identified set — so the
-`cri-middleware` / `sce-runtime` / `crt` bars render on the tracker and decomp.dev.
-The remainder (functions matched as C, plus a contiguous high-address
-`libstdc++` iostream region not yet split out) still fall under `engine`; the table
-above (from `function_categories.json`) remains the source of truth for the full
-identified set until a per-symbol carve pass splits the rest into their own units.
+```bash
+./scripts/extract_iso.sh --version eu        # extract that region's boot ELF (hash-checked)
+python compile.py --version eu               # build it
+scripts/checks/build_version.sh eu           # build + verify vs retail (full-ELF sha256)
+scripts/checks/build_all_versions.sh         # build + verify every bootstrapped version
+python scripts/bootstrap_version.py <key>    # bring up a brand-new region from its ELF
+```
+
+**Cross-version porting.** Because all three were built with the same
+compiler/SDK, a function matched on `us` is — modulo relocations — the same
+machine code on `eu`/`jp`. `scripts/port_version.py` finds each `us` function's
+sibling counterpart by a **relocation-masked opcode signature** and writes:
+
+```bash
+python scripts/port_version.py --version eu  # -> config/eu/symbol_addrs.txt + progress/port_plan.eu.json
+```
+
+`config/<ver>/symbol_addrs.txt` maps the canonical `us` name to the sibling's
+address; `progress/port_plan.<ver>.json` reports how many matched functions are
+landable on the sibling. A function that matches `us` but has **no** sibling
+counterpart is a strong overfit signal and is flagged rather than ported.
+
+## Measuring progress
+
+Progress is measured per version, the same way for all three:
+
+- **`matched_code_percent` / `matched_functions`** — the fine-grained metric.
+  [objdiff](https://github.com/encounter/objdiff) diffs every compiled unit
+  against the frozen retail-disassembly target and counts the `.text` bytes (in
+  real C units) that compile byte-identical to retail. Each version has its own
+  objdiff project (`objdiff.json` for `us`, `config/<ver>/objdiff.json` for the
+  siblings) and report (`progress/report.<ver>.json`):
+
+  ```bash
+  python compile.py --version eu --setup     # build units + write config/eu/objdiff.json
+  scripts/progress.sh --version eu           # -> progress/report.eu.json + headline
+  scripts/checks/progress_all.sh             # one-screen dashboard across all versions
+  ```
+
+- **Full-ELF byte identity** — the binary pass/fail gate. `build_version.sh`
+  checks the built ELF's sha256 against the retail boot ELF. The empty-carve
+  baselines already pass it at 0% C; as functions are carved to C it stays green
+  only while every carved function reproduces retail exactly, so 100% matched
+  code ⇒ a byte-identical ELF.
+
+The two are complementary: objdiff shows *how far in* the decomp is; the sha256
+gate shows whether the binary still reproduces. The shared compiler also makes
+progress *transferable* — porting matched `us` C lifts the siblings' numbers
+without re-decompiling.
+
+**The worklist (cross-region function atlas).** To know *how far there is to
+go* across all three masters at once, `scripts/function_atlas.py` aligns the
+function sequences of every region (anchored address-order alignment) into a
+single census — every function, grouped into a cross-region equivalence class
+with a match tier, plus the genuine per-region deltas:
+
+```bash
+python scripts/function_atlas.py             # -> progress/function_atlas.{json,summary.md}
+```
+
+It currently maps **11113 / 11144** eu and **11115 / 11115** jp functions to
+their `us` counterpart — ~**11,200 distinct logical functions** across all three
+masters, of which **10979** land byte-exact in both siblings with only a name +
+address remap (1727 of them already decompiled).
+`progress/function_atlas.summary.md` is the human-readable headline; see
+[`MULTIVERSION.md`](./MULTIVERSION.md#cross-region-function-atlas-the-worklist)
+for the method.
+
+**Porting is real and byte-verified.** A cross-version *data* map
+(`scripts/data_map.py`) re-points the `D_*`/`jtbl_*` symbols a matched function
+touches, and `scripts/land_verify.py` lands matched `us` C onto a sibling while
+keeping only the TUs that hold the **full-ELF build byte-identical to retail**.
+Once **boundary-safe carving** removed the linker's carve-unit alignment trap
+(a one-line `SUBALIGN(8)` in the build-time linker script), this carried
+**533 functions onto eu and 538 onto jp** straight from the `us` C — no
+re-decompilation — lifting both siblings to ~0.75–0.86% matched code (see
+[`MULTIVERSION.md`](./MULTIVERSION.md#verified-landing)).
 
 ## Contributing
 
-Pick an unmatched function, make it byte-match, send a PR. The full workflow —
-choosing a target, the objdiff loop, naming/struct conventions, and what a good
-PR looks like — is in **[CONTRIBUTING.md](CONTRIBUTING.md)**.
+Solo / private right now — not yet accepting external contributors. Will revisit
+once the build is reproducible and the orchestration loop is stable.
 
 ## Legal
 
-This repository contains **no copyrighted Capcom or Sony assets** and
-distributes **no game data**. The boot-ELF hash recorded above merely
-identifies the legitimately-dumped NTSC-U retail disc so contributors can verify
-they have the right image — you must dump your own copy.
+This repository contains no copyrighted Capcom or Sony assets. The boot ELF
+hash recorded in the recon notes identifies the legitimately-dumped NTSC-U
+retail disc, but no game data is distributed here. The original SCE PS2 SDK binaries used for matching builds
+are not redistributed in this repo; the setup script downloads them from
+public archives maintained by the PS2 decomp community.
 
-The matching build uses the GCC-based **ee-gcc** compiler (Cygnus 2.96 and SN
-ProDG 2.95.3), which is free software under the GNU GPL;
-`scripts/setup_toolchain.sh` fetches it from the decompilation community's
-public compiler collection ([decompme/compilers](https://github.com/decompme/compilers)).
-**No proprietary Sony/SCE PS2 SDK code, headers, or libraries are used or
-distributed** — un-decompiled functions are emitted as raw bytes from your own
-disc dump via `INCLUDE_ASM`, and the headers under `include/` are the
-project's own.
+Trademarks of *God Hand*, *Clover Studio*, and *Capcom* belong to their
+respective holders. This project is for preservation, education, and
+non-commercial research.
 
-The decompiled C is derived, by hand and tooling, from a binary you own, for the
-purposes of **preservation, education, and non-commercial research**.
-*God Hand*, *Clover Studio*, and *Capcom* are trademarks of their respective
-holders; this project is not affiliated with or endorsed by them.
-
-## Acknowledgements
-
-Built on the shoulders of the decomp community:
-[objdiff](https://github.com/encounter/objdiff) &
-[decomp.dev](https://decomp.dev) (Luke Street),
-[splat](https://github.com/ethteck/splat),
-[m2c](https://github.com/matt-kempster/m2c),
-[decomp-permuter](https://github.com/simonlindholm/decomp-permuter),
-[decomp.me](https://decomp.me), and the
-[recvx-decomp](https://github.com/fmil95/recvx-decomp) PS2 template.
+[pi coding agent]: https://github.com/Earendil-Works/pi

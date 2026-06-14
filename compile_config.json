@@ -1,7 +1,8 @@
 {
   "_comment": [
     "compile.py configuration for the God Hand matching-decomp build.",
-    "Paths are relative to the repo root."
+    "Paths are relative to the repo root.  See DECISIONS.md for the",
+    "toolchain rationale."
   ],
   "tools": {
     "ee_cc_wrap": "scripts/ee-cc-wrap.py",
@@ -30,7 +31,7 @@
     "bytes), which the linker concatenates into the output .text and",
     "breaks retail byte-equality.  The monolithic asm/cod/000000.s",
     "unit's .text happens to be a multiple of 16 (2,867,072 bytes), so",
-    "the flag is a no-op for the empty-carves baseline (verified)",
+    "the flag is a no-op for the empty-carves baseline",
     "but mandatory the moment any function is carved."
   ],
   "as_flags": [
@@ -69,8 +70,8 @@
     "Two reasons: (1) the input .o's .data is genuinely data, not code,",
     "so giving it the X bit poisons objdiff's section classification:",
     "objdiff infers section kind from flags (X -> code) and would count",
-    "those bytes under total_code instead of total_data. (2) The X bit",
-    "on the OUTPUT .data",
+    "those bytes under total_code instead of total_data (M2-VERIFY-",
+    "followup-objdiff-data-scoring). (2) The X bit on the OUTPUT .data",
     "is stamped back on after the link by scripts/elf_postprocess.py's",
     "LOADED_SECTION_PATCHES table, which forces retail sh_flags=0x07",
     "(WAX) onto .data unconditionally. So objdiff sees .data as WA in",
@@ -94,7 +95,7 @@
     "src/**/*.vsm"
   ],
   "sdata_overrides": {
-    "_comment": "Per-source -G<n> overrides; empty until decompilation starts.",
+    "_comment": "Per-source -G<n> overrides; empty until M6 starts decompiling.",
     "example_form": "src/foo/bar.c: 8"
   },
   "_compile_units_doc": [
@@ -102,7 +103,7 @@
     "  { \"path\": <src-rel-to-repo>, \"compiler\"?: <name> }",
     "where `compiler` is one of 'cygnus-2.96' (default, today's behaviour",
     "for all 735 currently-matched TUs) or 'sn-2.95.3-136' (opt-in SN",
-    "ee-gcc for the `sq`-prologue family).  TUs not",
+    "ee-gcc for the `sq`-prologue functions).  TUs not",
     "named here use the default compiler; the override is at TU",
     "granularity (not per-function \u2014 that's a later task if needed).",
     "Documentation entries (path starting with `_`) are ignored.",
@@ -373,14 +374,6 @@
     },
     {
       "path": "src/cod/001fd2c0.c",
-      "compiler": "sn-2.95.3-136"
-    },
-    {
-      "path": "src/cod/002aebf8.c",
-      "compiler": "sn-2.95.3-136"
-    },
-    {
-      "path": "src/cod/002aec40.c",
       "compiler": "sn-2.95.3-136"
     },
     {
@@ -792,14 +785,6 @@
       "compiler": "cygnus-2.96"
     },
     {
-      "path": "src/cod/002d5a48.c",
-      "compiler": "sn-2.95.3-136"
-    },
-    {
-      "path": "src/cod/002d6548.c",
-      "compiler": "cygnus-2.96"
-    },
-    {
       "path": "src/cod/00306200.c",
       "compiler": "sn-2.95.3-136"
     },
@@ -951,7 +936,7 @@
     "`tu` (optional) names the C TU that owns the carve:",
     "the TU's INCLUDE_ASM macro pulls the carved .s into its own .text,",
     "so the standalone build/asm/nonmatching/<name>.o is NOT built or",
-    "linked when `tu` is set.  Without `tu`, the",
+    "linked when `tu` is set.  Without `tu` (baseline), the",
     "standalone .o is linked directly \u2014 useful for asm-only carves",
     "with no C wrapper yet.",
     "",
@@ -21119,7 +21104,7 @@
     "  1. Assembling every `asm` part to build/rel/<name>/<asm-rel>.o",
     "  2. Full-linking via `mipsel-linux-gnu-ld -EL -T <lcf>",
     "     --unresolved-symbols=ignore-all -o build/rel/<name>/<name>.elf`",
-    "     (full link, not -r; the SNR2 tail",
+    "     (full link, not -r \u2014 the SNR2 tail",
     "     blob already encodes the surviving external reloc table).",
     "  3. Extracting .text via",
     "     `objcopy -O binary --only-section=.text` to",

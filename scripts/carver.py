@@ -7,18 +7,22 @@ Two seams:
   file I/O, no mutation. The schema-side contract that
   `compile.py::maybe_carve` consumes at build time.
 - **CarveSession**: stateful single-function carve + atomic rollback.
+  Lands in Phase 2 (this file is Phase 1: the schema half).
 
-The schema-side surface lives here; `compile.py` re-exports the
+Phase 1 moves the schema-side surface here from `compile.py` while
+preserving behaviour exactly. `compile.py` re-exports the moved
 symbols so existing call sites and tests continue to work without
-import changes.
+import changes. Phase 3 drops the re-export shim after callers
+migrate to importing from `scripts.carver` directly.
 
-`BuildError` lives here because the carve helpers raise it.
-`compile.py` re-exports it; existing
+`BuildError` was moved from `compile.py` to here because the moved
+helpers raise it. `compile.py` re-exports it; existing
 `pytest.raises(cm.BuildError, ...)` assertions continue to match.
-The name is preserved (not renamed to `CarveError`) to keep the cut
-behaviour-preserving. Other `compile.py` raises of `BuildError`
-(e.g. unknown compiler, malformed part lists) work unchanged via
-the re-export.
+The name is preserved (not renamed to `CarveError`) to keep the
+behaviour-preserving Phase 1 cut clean — a separate naming-pass can
+rename it later if a future review wants. Other `compile.py` raises
+of `BuildError` (e.g. unknown compiler, malformed part lists) work
+unchanged via the re-export.
 
 Schema reference:
 - `CarveEntry` — frozen dataclass for one `compile_config.json::carved_funcs[]`
@@ -47,9 +51,10 @@ if TYPE_CHECKING:
     # `.carved_funcs` attribute to avoid a circular import.
     from compile import Config  # noqa: F401
 
-# `ROOT` is the project root (`Path(__file__).resolve().parent.parent`).
-# `compile.py` uses `Path(__file__).resolve().parent` because it sits at
-# the repo root.
+# `ROOT` matches the project-root convention used by the other
+# `scripts/` tools (`Path(__file__).resolve().parent.parent`), e.g.
+# `scripts/integrate_match.py`. `compile.py` uses
+# `Path(__file__).resolve().parent` because it sits at the repo root.
 ROOT = Path(__file__).resolve().parent.parent
 
 
@@ -61,14 +66,17 @@ ROOT = Path(__file__).resolve().parent.parent
 class BuildError(RuntimeError):
     """Raised for build-pipeline configuration or carving errors.
 
-    Lives in `scripts/carver.py` because the schema-side carve helpers
+    Moved from `compile.py` to `scripts/carver.py` in Phase 1 of the
+    carver-module split because the schema-side carve helpers
     (`_index_functions`, `_preamble_end_index`, `_split_monolithic`,
     `CarveState.entry_by_name`) raise it. `compile.py` re-exports it so
     existing call sites and `pytest.raises(cm.BuildError, ...)`
     assertions continue to work.
 
-    The name `BuildError` (rather than a carver-specific `CarveError`)
-    is preserved to keep behaviour unchanged.
+    The name `BuildError` (rather than a carver-specific
+    `CarveError`) is preserved for Phase 1 to keep the cut clean
+    behaviour-preserving; renaming is a separate later concern if
+    a future review wants it.
     """
 
 
@@ -77,8 +85,15 @@ class CarveError(Exception):
     (`_capture_auto_carve_snapshot`, `_revert_auto_carve`,
     `_atomic_auto_carve`, `_auto_carve_uncarved`, `CarveSession`).
 
-    `scripts/auto_carve_func.py` catches `CarveError` directly. Each
-    module owns its own error vocabulary.
+    An earlier refactor moved these primitives here into
+    `scripts/carver.py`. The original raises used the caller's error
+    type; the moved code uses `CarveError` instead. The caller's
+    wrap-sites around `_atomic_auto_carve` / `_auto_carve_uncarved` were
+    updated to catch both error types; `scripts/auto_carve_func.py`
+    catches `CarveError` directly.
+
+    A sibling error type, not a subclass: each module owns its own error
+    vocabulary (a module owning its own schema error).
     """
 
 
@@ -96,7 +111,7 @@ _ALABEL_LIKE_RE = re.compile(r"^\s*(alabel|jlabel|ehlabel)\s+(\S+)")
 #   ``    /* FILE_OFF HEX_VRAM HEX_BYTES */  insn ...``
 # Each match contributes 4 bytes to the carve unit's .text size.
 # Used by ``CarveSchema.carve_unit_size_bytes`` /
-# ``_carve_unit_size_bytes``: the LCF location-counter fix needs to
+# ``_carve_unit_size_bytes`` — the LCF location-counter fix needs to
 # know each carve's effective byte size so the trailing-pad nop bytes
 # don't get lost when a C TU integrates a body smaller than the full
 # carve unit.
@@ -185,8 +200,11 @@ class CarveEntry:
                               # INCLUDE_ASM, and the lcf-replacement uses
                               # the TU's .o path at the carve slot.
                               # When None, the standalone .o is linked
-                              # directly (useful for asm-only carves
-                              # with no C wrapper yet).
+                              # directly (useful for asm-only carves with
+                              # no C wrapper yet).
+    lib: bool = False         # True => library/middleware/CRT carve; the
+                              # standalone asm/nonmatching/<name> unit is
+                              # tagged progress_categories=["library"].
 
 
 @dataclasses.dataclass(frozen=True)
@@ -262,10 +280,10 @@ def _parse_carved_entries(cfg) -> list[CarveEntry]:
     raw_entries = cfg.carved_funcs
     out: list[CarveEntry] = []
     for raw in raw_entries:
-        # Skip pure-documentation entries (_comment-only markers record
-        # that a function deliberately stays in the
-        # monolithic asm — e.g. PERMANENT carves whose local labels are
-        # referenced by rodata jump tables, which carving would orphan).
+        # Skip pure-documentation entries: _comment-only markers record
+        # that a function deliberately stays in the monolithic asm —
+        # e.g. PERMANENT carves whose local labels are referenced by
+        # rodata jump tables, which carving would orphan.
         if "name" not in raw:
             continue
         name = raw["name"]
@@ -274,11 +292,12 @@ def _parse_carved_entries(cfg) -> list[CarveEntry]:
         size = int(raw["size"])
         tu_raw = raw.get("tu")
         tu = str(tu_raw) if tu_raw else None
+        lib = bool(raw.get("lib", False))
         if isinstance(vaddr_raw, str):
             vaddr = int(vaddr_raw, 16) if vaddr_raw.lower().startswith("0x") else int(vaddr_raw, 0)
         else:
             vaddr = int(vaddr_raw)
-        out.append(CarveEntry(name=name, unit=unit, vaddr=vaddr, size=size, tu=tu))
+        out.append(CarveEntry(name=name, unit=unit, vaddr=vaddr, size=size, tu=tu, lib=lib))
     return out
 
 
@@ -498,17 +517,17 @@ def _carve_unit_size_bytes(carved_text: str) -> int:
     labels, ``nonmatching`` markers, and blank lines contribute zero.
 
     Used by `compile.py::_emit_build_lcf` to determine the carve unit's
-    true byte span — the LCF location counter must advance past the
-    full span (body + trailing nop pad) so a C TU integration that
-    produces a body shorter than the carve unit doesn't shift every
-    subsequent function earlier in .text.
+    true byte span — the LCF location counter must advance past the full
+    span (body + trailing nop pad) so a C TU integration that produces a
+    body shorter than the carve unit doesn't shift every subsequent
+    function earlier in .text.
 
-    An earlier post-carve LCF emitted ``. = ALIGN(8);`` which is
-    sufficient ONLY for the case where the body is 4-aligned and the
-    trailing pad is ≤4 bytes (e.g. ``func_002930B8`` 12-B body + 1-nop
-    pad → 16-B carve unit, ALIGN(8) pads C-body 12→16).  It does NOT
-    scale to 8-byte 2-insn functions whose carve unit can extend to
-    40 B (8 B body + 8 trailing nops; ``func_00138BB8``).
+    An earlier version of the post-carve LCF emitted ``. = ALIGN(8);``
+    which is sufficient ONLY for the case where the body is 4-aligned and
+    the trailing pad is ≤4 bytes (e.g. ``func_002930B8`` 12-B body +
+    1-nop pad → 16-B carve unit, ALIGN(8) pads C-body 12→16).  It
+    does NOT scale to 8-byte 2-insn functions whose carve unit can
+    extend to 40 B (8 B body + 8 trailing nops; ``func_00138BB8``).
     """
     count = 0
     for line in carved_text.splitlines():
@@ -525,9 +544,9 @@ def _carve_unit_size_bytes(carved_text: str) -> int:
 class CarveSchema:
     """Schema-only carving surface: parse, validate, split, size.
 
-    Pure functions; no file I/O; no mutation. Two-seam shape: this
-    class owns the data-shape contract; `CarveSession` owns mutation
-    + atomic rollback.
+    Pure functions; no file I/O; no mutation. The two-seam shape: this
+    class owns the data-shape contract; `CarveSession` (Phase 2) owns
+    mutation + atomic rollback.
 
     All methods are `@staticmethod` because the schema has no
     instance state — the class is a namespace for discoverability, not
@@ -582,12 +601,18 @@ class CarveSchema:
 
 
 # =========================================================================== #
-# Session half (mutation + atomic rollback)
+# PHASE 2 — Session half (mutation + atomic rollback)
 #
-# The primitives use private leading-underscore names. The public
-# surface for new callers is `class CarveSession` below.  These
-# primitives raise `CarveError`; `auto_carve_func.py` catches it
-# directly.
+# Moved here in the carver-module split. The primitives preserve their
+# pre-move names (private leading underscore) so the original module's
+# re-export shim and
+# its tests' `ar._auto_carve_uncarved` / `ar._atomic_auto_carve` accesses
+# keep working unchanged. The public surface for new callers is
+# `class CarveSession` below.
+#
+# Raised exceptions changed from the caller's error type to `CarveError`
+# at the move; the caller's 3 wrap-sites were updated to catch both error
+# types; `auto_carve_func.py` updated to catch `CarveError` directly.
 # =========================================================================== #
 
 
@@ -665,13 +690,15 @@ def _derive_tu_from_asm_path(asm_module_path: str) -> tuple[str, str]:
       ``compile_config.json::carved_funcs[].unit``:  ``asm/cod/000000``.
     - ``tu`` is ``src/<module>.c`` (e.g. ``src/cod/000000.c``).
 
-    All current tiny-leaf-no-globals candidates live in
+    All current tier-1 tiny-leaf-no-globals candidates live in
     ``asm/cod/000000.s``, so they map to ``src/cod/000000.c``.  The
     derivation is intentionally generic: any ``asm/<module>.s`` maps
-    to ``src/<module>.c``, so future multi-TU work needs no code
-    changes.  If ``asm_module_path`` is ``None`` / empty / missing
+    to ``src/<module>.c``, so future multi-TU campaigns work without
+    code changes.  If ``asm_module_path`` is ``None`` / empty / missing
     the ``asm/`` prefix, the function falls back to the defaults
     ``asm/cod/000000`` + ``src/cod/000000.c``.
+
+    Documented in the TU-selection-policy notes.
     """
     path = asm_module_path or _DEFAULT_ASM_MODULE
     # Strip leading "asm/" prefix.
@@ -690,24 +717,27 @@ class CarveSnapshot:
 
     Captured BEFORE the carve mutates `compile_config.json` /
     `src/<tu>.c`; restored by `_revert_auto_carve` when the
-    subsequent integration fails.
+    subsequent `integrate_match` fails.
 
-    Without the snapshot, a failed integration leaks
-    `compile_config.json` `carved_funcs` entries +
+    The rollback bug this guards against: pre-fix, the three
+    `_auto_carve_uncarved` + `integrate_match` call-pairs leaked
+    compile_config.json `carved_funcs` entries +
     `INCLUDE_ASM("nonmatching", <name>);` lines + orphan
-    `build/asm/nonmatching/<name>.s` fragments whenever integration
-    raises, which can compound into many orphan entries that then
-    need hand-cleaning.
+    `build/asm/nonmatching/<name>.s` fragments whenever integrate
+    raised.  One batch compounded this into 20 orphan entries before
+    the orchestrator hand-cleaned.
 
-    The expected/build/asm/cod/*.o files are also snapshotted; without
-    that, failed 12-B integrations left stale part files that drifted
-    total_code / total_functions metrics.  Now captures the entire
+    The expected-rollback bug this guards against: pre-fix, the
+    expected/build/asm/cod/*.o files were not snapshotted, so failed
+    12-B integrations left stale part files that drifted total_code /
+    total_functions metrics.  Now captures the entire
     expected/build/asm/cod/ subtree as a dict of {relative_path: bytes}.
     Coarser but simpler than per-file tracking; ~700 files ×
     ~few-hundred-B = ~few-MB snapshot.
 
-    The name `_AutoCarveSnapshot` is preserved as a back-compat alias
-    below.
+    An earlier refactor moved this dataclass here from the original
+    module (where it was `_AutoCarveSnapshot`). That pre-move name is
+    preserved as a back-compat alias in the original module.
     """
     name: str
     config_path: Path
@@ -838,7 +868,7 @@ def _atomic_auto_carve(
 
         try:
             with _atomic_auto_carve(name, cand, config_path=..., root=...):
-                integrate(name, c_source, ...)
+                integrate_match(name, c_source, ...)
         except CarveError as exc:
             integrate_failures.append({"name": name, "reason": str(exc)})
 
@@ -885,7 +915,7 @@ def _auto_carve_uncarved(
        ``INCLUDE_ASM(…, name)`` pattern is already present, skip the
        TU write (idempotent).  If the function is already integrated
        (``__attribute__((section(".text.<name>")))`` pattern present),
-       also skip — the integration step will surface a clean error.
+       also skip — ``integrate_match.py`` will surface a clean error.
     4. Append ``\nINCLUDE_ASM("nonmatching", <name>);\n`` to the TU.
 
     Returns ``"carved"`` when at least one write was performed, or
@@ -987,8 +1017,9 @@ def _auto_carve_uncarved(
     return "carved" if did_carve else "already_carved"
 
 
-# Back-compat alias: the name `_AutoCarveSnapshot` is preserved so
-# existing imports and tests keep working unchanged.
+# Back-compat alias: pre-move name `_AutoCarveSnapshot` (the original
+# module's symbol). The original module re-exports it; existing imports
+# and tests keep working unchanged through Phase 3.
 _AutoCarveSnapshot = CarveSnapshot
 
 
@@ -1000,8 +1031,8 @@ _AutoCarveSnapshot = CarveSnapshot
 class CarveSession:
     """Stateful carve mutation + atomic rollback surface.
 
-    Two-seam shape: this class owns mutation + rollback; `CarveSchema`
-    (above) owns the data-shape contract.
+    The two-seam shape: this class owns mutation + rollback;
+    `CarveSchema` (above) owns the data-shape contract.
 
     Today's behaviour is a thin facade over the private primitives
     `_capture_auto_carve_snapshot`, `_revert_auto_carve`,
@@ -1009,9 +1040,11 @@ class CarveSession:
     the existing exact behaviour can also use those primitives
     directly; new callers should prefer this class for discoverability.
 
-    `auto_carve_func.py` consumes `carve_one()` (no internal atomic
-    wrap; the caller is expected to handle rollback). The atomic wrap
-    is available to any caller that wants it via `atomic()` or the
+    Per the Phase-2 design (Q3 decision), `auto_carve_func.py`
+    consumes `carve_one()` (no internal atomic wrap; the bash
+    `cleanup_on_fail` trap in `scripts/match_and_commit.sh` continues
+    to handle worker-side rollback). The atomic wrap is available to
+    any caller that wants it via `atomic()` or the
     `_atomic_auto_carve` private alias.
 
     Example::
@@ -1030,8 +1063,8 @@ class CarveSession:
     Example (atomic, with downstream rollback)::
 
         with session.atomic(name, candidate, config_path=cfg_path):
-            integrate(name, c_source, ...)
-        # If integration raises, the carve is reverted before the
+            integrate_match(name, c_source, ...)
+        # If integrate_match raises, the carve is reverted before the
         # exception propagates.
     """
 

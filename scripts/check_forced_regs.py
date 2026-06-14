@@ -41,12 +41,13 @@ ALLOWLIST = ROOT / "config" / "forced_regs_allowlist.txt"
 SCAN_DIRS = ("src", "include")
 SCAN_EXTS = (".c", ".cc", ".cpp", ".cxx", ".c++", ".h", ".hpp", ".hh")
 
-# A forced-register declaration: ``register <stuff> __asm__("$N")``.
-# Matched anywhere on a line (NOT anchored) so a pin written mid-line
-# (e.g. ``if (...) { register int x __asm__("$2"); ...``) cannot evade
-# the gate.  Comments are stripped first (see ``strip_comments``) so
-# prose mentions of the idiom in file headers never count.
-PIN_RE = re.compile(r"\bregister\b[^;{}]*?__asm__\s*\(")
+# The forced-register pin pattern lives in the central registry.
+# It matches `register <stuff> __asm__("$N")` anywhere on a line (NOT anchored)
+# so a mid-line pin cannot evade the gate; comments are stripped first (see
+# ``strip_comments``) so prose mentions of the idiom never count.
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+from scripts.denylist import FORCED_REG_RE as PIN_RE
 
 _BLOCK_COMMENT = re.compile(r"/\*.*?\*/", re.DOTALL)
 _LINE_COMMENT = re.compile(r"//[^\n]*")
@@ -122,10 +123,10 @@ HEADER = """\
 # now enforces ZERO pins.
 #
 # Format:  <path>  <max-allowed-count>
-# The ratchet (scripts/check_forced_regs.py, run by session_check.sh)
-# FAILS if any file has pins while absent from this list.  Adding an
-# entry resurrects a banned pattern — don't, unless the policy is
-# explicitly amended to reopen the exception.
+# The ratchet (scripts/check_forced_regs.py) FAILS if any file has pins
+# while absent from this list.  Adding an entry resurrects a banned
+# pattern — don't, unless a future policy amendment explicitly reopens
+# the exception.
 """
 
 

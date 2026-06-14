@@ -2,7 +2,8 @@
 """
 test_strip_data_nonmatching.py — offline tests for strip_data_nonmatching.
 
-No pytest required. Run with:
+No pytest required; matches the in-repo style of
+`tools/ghidra-mcp-bridge/test_seed.py`. Run with:
 
     python tools/test_strip_data_nonmatching.py
 

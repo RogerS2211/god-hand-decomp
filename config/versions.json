@@ -1,0 +1,32 @@
+{
+  "_comment": [
+    "Registry of the God Hand retail release this decomp targets.",
+    "Source of truth for build parametrization (compile.py, extract_iso.sh,",
+    "splat configs, objdiff targets, progress reports).",
+    "",
+    "'elf_sha256' is of the on-disc boot ELF (what extract_iso.sh verifies).",
+    "'rom_sha1' is the loaded-image hash splat targets.",
+    "'status': 'matching' = active decomp target."
+  ],
+  "default": "us",
+  "versions": {
+    "us": {
+      "serial": "SLUS-21503",
+      "region": "NTSC-U",
+      "vmode": "NTSC",
+      "disc_version": "1.00",
+      "basename": "SLUS_215.03",
+      "boot_elf": "SLUS_215.03",
+      "compile_config": "compile_config.json",
+      "elf_size": 3607008,
+      "elf_sha256": "1742f95bef65bdb2aa57b7a77df4ac7619a092e9646e1ea325bc32ec8a64f3cd",
+      "rom_sha1": "2a81167afa727a9e4293803a8139192e87cfdf17",
+      "text_vaddr": "0x00100000",
+      "text_size": "0x002bbf20",
+      "data_vaddr": "0x003bbf80",
+      "gp_value": "0x00468cf0",
+      "iso_name": "God Hand (USA).iso",
+      "status": "matching"
+    }
+  }
+}

@@ -13,12 +13,13 @@ Answers the question: is the C translation unit at ``<tu-path>``
   2. Every function listed in ``progress/report.json`` for the
      TU's ``.o`` unit reports ``fuzzy_match_percent == 100.0``.
 
-A third sub-criterion ("no ``nonmatching <name>, <hex>`` markers in
-``asm/cod/<TU>.s``") is **deliberately omitted**: those markers are
-emitted by the ``nonmatching`` macro from ``include/labels.inc`` and
-are load-bearing — ``compile.py``'s carve splitter
-(``split_monolithic``) uses them to find function boundaries in the
-monolithic asm.  Removing them would break the build.
+A third possible sub-criterion ("no
+``nonmatching <name>, <hex>`` markers in ``asm/cod/<TU>.s``") is
+**deliberately omitted**: those markers are emitted by the
+``nonmatching`` macro from ``include/labels.inc`` and are
+load-bearing — ``compile.py``'s carve splitter
+(``split_monolithic``) uses them to find function boundaries in
+the monolithic asm.  Removing them would break the build.
 
 CLI
 ---
@@ -43,8 +44,8 @@ CLI
         Override the default config / report / marker paths (used
         by the offline test suite).
 
-The marker file ``progress/in_progress_tu.txt`` records the TU
-currently being worked on and is cleared once the TU is complete.
+The marker file ``progress/in_progress_tu.txt`` is set when a TU is
+picked up and cleared once the TU is complete.
 
 Pure Python; no third-party deps.  Offline-tested by
 ``tests/test_check_tu_complete.py``.

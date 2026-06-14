@@ -5,7 +5,7 @@ Verify splat data-segment round-trip without invoking the linker.
 For every data .s file splat emits, walk the directives and reconstruct the
 exact byte stream of the original ELF section.  This proves splat read every
 byte and re-encoded it losslessly even though `.word` references to other
-sections are still symbolic (those get resolved by the linker).
+sections are still symbolic (those get resolved by the linker at link time).
 
 How splat writes data lines (observed from spimdisasm 1.40.3 output):
 

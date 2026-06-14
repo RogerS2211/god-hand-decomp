@@ -17,6 +17,8 @@
 #   - ``config/SLUS_215.03.lcf`` missing (fresh clone, pre-splat).
 #   - ``asm/cod/000000.s`` missing (splat has never been run; the
 #     ``maybe_carve()`` step that discover() calls would raise).
+#
+# See the session-check notes.
 set -uo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"

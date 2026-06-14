@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Patch ee-as 2.10 to disable the R5900 short-loop assemble-time check.
 
-This follows the project policy of patching vendored toolchain
-binaries when the alternative is significantly more invasive.
+This is the first instance of the policy ratified by DECISIONS.md
+(patch vendored toolchain binaries when the alternative is significantly
+more invasive).
 
 What this changes (one byte):
   At file offset 0x20f54 the ee-as binary contains a `je` (0x74)
@@ -12,14 +13,14 @@ What this changes (one byte):
   noreorder == 0 the check is skipped, otherwise ee-as raises the
   "problematic short loop for Emotion Engine in noreorder section"
   build-time error.  Our INCLUDE_ASM carve preamble emits `.set
-  noreorder` by design (via include/include_asm.h), so any short
+  noreorder` by design (see include/include_asm.h), so any short
   carve below the threshold trips the gate.
 
   Flipping the byte from 0x74 (`je`) to 0xeb (`jmp`) makes the
   skip-error path *always* taken — the short-loop check is dead.
   Byte output for accepted inputs is unchanged (empirically verified
-  by full retail-rebuild sha256 hold and the regression-carve
-  preflight evidence).
+  by full retail-rebuild sha256 hold; see task body AC and the
+  session retro for the regression-carve preflight evidence).
 
 Idempotency contract:
   * If the file's sha256 already equals POST_SHA256, we log

@@ -20,10 +20,9 @@ CLI:
                                      # compile/assemble one TU only (no link)
     python compile.py --verbose      # serial, full command echo
 
-This is the build-script skeleton.  The build it produces is not yet
-byte-identical to the retail ELF; making it byte-identical is handled
-separately.  This entry point only needs the build to complete and be
-deterministic.
+This is the build skeleton.  The build it produces is not yet
+byte-identical to the retail ELF; this skeleton only needs the build to
+complete and be deterministic.
 """
 from __future__ import annotations
 
@@ -47,7 +46,8 @@ ROOT = Path(__file__).resolve().parent
 # `BuildError`, `CarveEntry`, `CarveState`, `CarveSchema` re-exports
 # below keep existing call sites + `tests/test_compile.py`'s
 # `pytest.raises(cm.BuildError, ...)` assertions working without
-# import changes (the two seams being `CarveSchema` + `CarveSession`).
+# import changes; the shim is dropped after callers migrate. The
+# two-seam rationale splits `CarveSchema` from `CarveSession`.
 from scripts.carver import (
     BuildError,
     CarveEntry,
@@ -70,6 +70,56 @@ from scripts.carver import (
 )
 DEFAULT_CONFIG = ROOT / "compile_config.json"
 DEFAULT_PARALLELISM = 8
+
+# Multi-version registry. `config/versions.json` maps a short version key
+# (us/eu/jp) to its build metadata, including which compile_config.json holds
+# that version's carve schema + output paths. `us` resolves to the repo-root
+# `compile_config.json` (the historical single-version path), so omitting
+# --version reproduces the original US build byte-for-byte.
+DEFAULT_VERSIONS = ROOT / "config" / "versions.json"
+
+
+def _load_versions() -> dict:
+    """Return the parsed versions registry, or {} if it is absent."""
+    try:
+        with DEFAULT_VERSIONS.open() as fh:
+            return json.load(fh)
+    except FileNotFoundError:
+        return {}
+
+
+def resolve_config_path(version: Optional[str], explicit: Optional[Path]) -> Path:
+    """Resolve which compile_config.json to load.
+
+    Precedence: an explicit ``--config`` wins (back-compat / overrides); else
+    the ``--version`` key is looked up in ``config/versions.json``; else the
+    registry's ``default`` version is used. Falls back to the repo-root
+    ``compile_config.json`` when the registry is missing entirely.
+    """
+    if explicit is not None:
+        return explicit
+    reg = _load_versions()
+    versions = reg.get("versions", {})
+    key = version or reg.get("default", "us")
+    if key not in versions:
+        if not versions:
+            return DEFAULT_CONFIG  # registry absent → legacy single-version
+        raise BuildError(
+            f"--version: {key!r} is not in config/versions.json "
+            f"(known: {', '.join(sorted(versions))})"
+        )
+    rel = versions[key].get("compile_config")
+    if not rel:
+        raise BuildError(
+            f"--version: {key!r} has no 'compile_config' in config/versions.json"
+        )
+    path = ROOT / rel
+    if not path.exists():
+        raise BuildError(
+            f"--version {key}: compile config {rel} does not exist yet "
+            f"(this version has not been bootstrapped — see Phase 2)."
+        )
+    return path
 
 
 # --------------------------------------------------------------------------- #
@@ -239,8 +289,9 @@ class Config:
         Returns a list of :class:`RelDescriptor` parsed from
         ``compile_config.json::rels``.  Documentation keys (``_*``) and
         entries with no ``name`` are filtered out so the doc block can
-        live next to the array.  Empty list when no REL is configured —
-        every REL-aware code path is a no-op in that case.
+        live next to the array.  Empty list when no REL is configured
+        (the baseline) — every REL-aware code path is a no-op in that
+        case.
         """
         out: list[RelDescriptor] = []
         for raw in self.raw.get("rels", []):
@@ -294,6 +345,9 @@ class Logger:
     def warn(self, msg: str) -> None:
         print(f"warning: {msg}", file=sys.stderr, flush=True)
 
+    def error(self, msg: str) -> None:
+        print(f"error: {msg}", file=sys.stderr, flush=True)
+
 
 def _quote(s: str) -> str:
     if not s or any(c in s for c in " \t\n'\"\\$`"):
@@ -329,8 +383,8 @@ def run(
     return result
 
 
-# `BuildError` lives in `scripts/carver.py` and is re-exported at the
-# top of this file.
+# `BuildError` lives in `scripts/carver.py` and is re-exported at the top
+# of this file.
 
 
 # --------------------------------------------------------------------------- #
@@ -339,9 +393,8 @@ def run(
 # Per-REL build (SNR2-format overlay) is conceptually a sibling of the main-
 # ELF build: assemble the splat-emitted asm, full-link with the per-REL lcf,
 # extract the linked .text bytes, and concat with verbatim bin parts (the
-# SNR2 header + tail) to reproduce the on-disc bytes.  This uses a full
-# link (not ``ld -r``) so the REL's internal relocations are resolved in
-# place to match the on-disc bytes.  Each part of the REL is either:
+# SNR2 header + tail) to reproduce the on-disc bytes.  This uses a full link
+# (not ``ld -r``).  Each part of the REL is either:
 #
 #   * ``bin`` — read verbatim from disk; this is the SNR2 header at the
 #     start of the file and the (name strings + reloc table + func table +
@@ -460,7 +513,7 @@ class RelDescriptor:
 # Why deletion + fragmentation, not `.skip`: a hole filled with `.skip`
 # in the monolithic .o cannot be transparently overlaid by a per-function
 # .o at link time; retail byte-equality breaks the moment two functions
-# move into separate .o files.
+# move into separate .o files.  This is why `.skip` was rejected.
 # --------------------------------------------------------------------------- #
 # Carving asm regex constants and `_INSN_LINE_RE` live in
 # `scripts/carver.py` and are re-exported at the top of this file.
@@ -473,8 +526,8 @@ class RelDescriptor:
 _COD_TEXT_START_VADDR = 0x00100000
 # Structural note (carve audit):
 # `asm/cod/000000.s` does contain `alabel`/`jlabel`/`ehlabel` directives
-# (7864 occurrences with leading whitespace; a column-0-anchored grep
-# misses them).  However, every one of them lives either
+# (7864 occurrences with leading whitespace; an earlier grep missed them by
+# anchoring to column 0).  However, every one of them lives either
 # *inside* a `glabel`/`endlabel` span (where the carve extractor includes
 # them naturally) or *outside* any function as section-trailing data-
 # style padding labels (which stay in the monolithic fragment because
@@ -482,6 +535,7 @@ _COD_TEXT_START_VADDR = 0x00100000
 # target must name a `glabel`-defined symbol.  alabel/jlabel/ehlabel
 # names are not eligible carve roots and will be rejected by
 # ``_split_monolithic`` with "function not present in monolithic".
+# See the carving notes for the verification procedure.
 
 
 # `CarveEntry`, `CarveState`, the EEAS GPR map / regex / helper, and
@@ -491,7 +545,8 @@ _COD_TEXT_START_VADDR = 0x00100000
 # at the top of this file re-export every name unchanged so call sites,
 # tests, and downstream consumers (`scripts/checks/units.sh`,
 # `scripts/checks/dual_compiler_regress.py`) keep working without
-# edits.
+# edits. The re-export shim is dropped after callers migrate to
+# importing from `scripts.carver` directly.
 
 
 def maybe_carve(cfg: "Config", log: Logger) -> Optional[CarveState]:
@@ -501,7 +556,7 @@ def maybe_carve(cfg: "Config", log: Logger) -> Optional[CarveState]:
     a ``CarveState`` describing them.
 
     The monolithic source path is currently hardcoded to
-    ``asm/cod/000000.s`` (the only unit carved out of so far).
+    ``asm/cod/000000.s`` (the only unit carving currently targets).
     Multi-unit carving is explicitly out of scope until a real decomp
     PR needs it.
     """
@@ -513,27 +568,32 @@ def maybe_carve(cfg: "Config", log: Logger) -> Optional[CarveState]:
     if not entries:
         return None
 
-    # Wall-time instrumentation: the carve step is a candidate
-    # bottleneck.  Verified empirically that 100 carves complete in
-    # <100 ms; the log here surfaces the number under --verbose so
-    # future regressions are observable without extra instrumentation.
+    # Wall-time instrumentation: the carve step is a candidate bottleneck
+    # against the 2-second revisit trigger.  Verified empirically that
+    # 100 carves complete in <100 ms; the log here surfaces the number
+    # under --verbose so future regressions are observable without
+    # recompile.py instrumentation.
     _carve_t0 = time.monotonic()
 
-    # Validate all entries target the same monolithic unit.
+    # All entries must target one monolithic unit; that unit is the carve
+    # source.  us carves out of "asm/cod/000000"; a sibling version carves out
+    # of its own "asm/<ver>/cod/000000" (cross-version port, scripts/
+    # port_version.py).  Multi-unit carving in one build is still out of scope.
     units = {e.unit for e in entries}
-    if units != {"asm/cod/000000"}:
+    if len(units) != 1:
         raise BuildError(
-            f"carve: only asm/cod/000000 is supported; "
+            f"carve: all carved_funcs must target a single monolithic unit; "
             f"got units = {sorted(units)}"
         )
-
-    original_rel = Path("asm/cod/000000.s")
+    carve_unit = next(iter(units))            # e.g. "asm/cod/000000" or "asm/eu/cod/000000"
+    original_rel = Path(carve_unit + ".s")
     original_abs = ROOT / original_rel
     if not original_abs.exists():
         raise BuildError(f"carve: monolithic source missing: {original_rel}")
 
     monolithic_text = original_abs.read_text()
     names = [e.name for e in entries]
+    # Use the public surface.
     fragments, carved, ranges = CarveSchema.split_monolithic(monolithic_text, names)
 
     # Validate `size` agreement against the `nonmatching` marker (defence
@@ -561,13 +621,14 @@ def maybe_carve(cfg: "Config", log: Logger) -> Optional[CarveState]:
                 )
             break
 
-    # Write fragments under build/asm/cod/.
+    # Write fragments alongside the carve unit (build/<unit-dir>/<name>.partN.s).
     build_root = cfg.build_dir
-    frag_dir = build_root / "asm" / "cod"
+    unit_rel = Path(carve_unit)               # asm/cod/000000 | asm/<ver>/cod/000000
+    frag_dir = build_root / unit_rel.parent
     frag_dir.mkdir(parents=True, exist_ok=True)
     fragment_sources: list[Path] = []
     for idx, frag_text in enumerate(fragments):
-        fp = frag_dir / f"000000.part{idx}.s"
+        fp = frag_dir / f"{unit_rel.name}.part{idx}.s"
         fp.write_text(frag_text)
         fragment_sources.append(fp)
 
@@ -609,10 +670,12 @@ def maybe_carve(cfg: "Config", log: Logger) -> Optional[CarveState]:
     # Generate the build-time linker script.  Pass per-carve unit sizes
     # so the LCF advances its location counter past each carve's full
     # span (body + trailing nop pad), not just to the next 8-byte
-    # boundary.  See _carve_unit_size_bytes docstring.
+    # boundary.  See the _carve_unit_size_bytes docstring.
+    # Use the public surface.
     carve_unit_sizes = {n: CarveSchema.carve_unit_size_bytes(ctext) for n, ctext in carved.items()}
     lcf_path = _emit_build_lcf(
         cfg, fragment_sources, carved_sources, ranges, carve_unit_sizes,
+        carve_unit=carve_unit,
     )
 
     _carve_t1 = time.monotonic()
@@ -637,14 +700,15 @@ def _emit_build_lcf(
     carved: dict[str, Path],
     ranges: list[tuple[str, int, int]],
     carve_unit_sizes: dict[str, int],
+    carve_unit: str = "asm/cod/000000",
 ) -> Path:
     """Write a build-time copy of the committed lcf with the monolithic
     .o reference (``build/asm/cod/000000.o(.text*)``) expanded into a
     source-ordered list of fragment .o + carved .o references.  Other
     sections (``.data``, ``.sndata``, ``.rodata``, ``.gcc_except_table``,
     ``.sbss``, ``.bss``) continue to reference the monolithic .o for
-    their respective input sections — only ``.text`` is carved
-    and the data/bss subsections of the monolithic .o stay intact because
+    their respective input sections — only ``.text`` is carved and the
+    data/bss subsections of the monolithic .o stay intact because
     fragmenting only mutates ``.text`` content (every fragment also
     contains the file's preamble but no ``.data`` directives).
 
@@ -657,7 +721,7 @@ def _emit_build_lcf(
 
     Actually — and this is the subtlety that bit me writing this docstring
     — the monolithic asm/cod/000000.s contains *only* ``.section .text``
-    today (verified by a grep above).  No .data/.sndata/.rodata/etc.
+    today (confirmed by a grep above).  No .data/.sndata/.rodata/etc.
     live in 000000.s — they live in asm/data/cod/*.s.  So the existing
     ``build/asm/cod/000000.o(.data*)``/``(.rodata*)``/``(.sndata*)``/
     ``(.gcc_except_table*)``/``(.sbss .scommon)``/``(.bss COMMON)`` lines
@@ -687,6 +751,7 @@ def _emit_build_lcf(
     frag_objs = [p.with_suffix(".o").relative_to(ROOT).as_posix() for p in fragments]
     # ``ranges`` is in source order; the entries list is the canonical list.
     # Build a name->entry map so we can look up `tu` per carve.
+    # Use the public surface.
     entries_by_name = {e.name: e for e in CarveSchema.parse_entries(cfg)}
     def _carve_obj_and_section(name: str) -> tuple[str, str]:
         """Return ``(object_path, section_pattern)`` for a carve slot.
@@ -711,10 +776,11 @@ def _emit_build_lcf(
         )
     carve_slots = [_carve_obj_and_section(n) for (n, _s, _e) in ranges]
     # After every carve slot, advance the LCF location counter to the
-    # carve unit's true end VRAM (``entry.vaddr + carve_unit_size_bytes``).
+    # carve unit's true end VRAM
+    # (``entry.vaddr + carve_unit_size_bytes``).
     #
     # Why not just ``. = ALIGN(8);``?  The carve-unit boundary widens
-    # to the next .align 3 in monolithic asm, so the
+    # to the next .align 3 in monolithic asm (see the carving notes), so the
     # inter-function nop pad is part of the carved fragment.  But a
     # C-TU carve only contributes the function body (no trailing pad).
     # For 12-B 3-insn functions with a 4-B trailing nop, ALIGN(8) is
@@ -722,13 +788,13 @@ def _emit_build_lcf(
     # extends to e.g. 40 B (8 B body + 8 trailing nops at
     # ``func_00138BB8``), ALIGN(8) is a no-op and the trailing 32 B
     # are silently lost — every subsequent function in .text shifts
-    # 32 B earlier, drifting the ELF sha256.  This was hit 20 / 20 times
-    # in one batch of 2-insn functions.
+    # 32 B earlier, drifting the ELF sha256.  An early carve batch hit
+    # this 20 / 20 times.
     #
     # Implementation note: GNU ld treats ``. = N;`` inside a section
     # description as RELATIVE to the section's start VMA when N is a
-    # raw integer literal (empirically verified).  To
-    # avoid the surprise, we use ``cod_TEXT_START + 0x<rel_off>;``
+    # raw integer literal (empirically verified).  To avoid the
+    # surprise, we use ``cod_TEXT_START + 0x<rel_off>;``
     # which ld evaluates correctly as an absolute address (the symbol
     # ``cod_TEXT_START`` is defined at the section's start a few
     # lines above).
@@ -759,14 +825,45 @@ def _emit_build_lcf(
         text_lines.append(f"        . = ALIGN(8);")
     text_block = "\n".join(text_lines)
 
+    mono_obj = f"build/{carve_unit}.o"           # build/asm/cod/000000.o | build/asm/<ver>/cod/000000.o
     new_text = src_text.replace(
-        "        build/asm/cod/000000.o(.text*)",
+        f"        {mono_obj}(.text*)",
         text_block,
     )
     if new_text == src_text:
         raise BuildError(
-            "carve: failed to find `build/asm/cod/000000.o(.text*)` in "
-            "the committed lcf; carving requires that lcf shape."
+            f"carve: failed to find `{mono_obj}(.text*)` in "
+            "the committed lcf; carving requires the carve-aware lcf shape."
+        )
+
+    # Boundary-safe carving: force every input `.text*` in the carved output
+    # section to 8-byte alignment.  Carve units end on function (`.align 3`,
+    # 8-byte) boundaries, but a split fragment's standalone `.text` section
+    # inherits gas's *default* 16-byte (2**4) alignment for the canonical
+    # `.text` name (a per-function `.text.<NAME>` carve section only gets the
+    # 2**3 its body's `.align 3` requests).  When a carved function's end VRAM
+    # is 8-but-not-16-aligned, ld bumps the following 16-aligned fragment up
+    # by 8 bytes — every subsequent function shifts and the next carve's
+    # `. = cod_TEXT_START + 0x<end>;` directive then moves the location
+    # counter *backwards* ("cannot move location counter backwards").  The us
+    # carves were hand-curated onto 16-aligned boundaries to dodge this;
+    # cross-version landing (scripts/port_version.py) cannot pick boundaries,
+    # so it tripped on ~85% of candidate TUs.  SUBALIGN(8) overrides the input
+    # alignment *downward* so fragments land exactly at the carve directive's
+    # 8-aligned target with no fill.  Byte-neutral for an already-16-aligned
+    # layout (the us build verifies byte-identical), so it is applied to every
+    # version's build-time lcf.  Verified downward-override empirically against
+    # mipsel-linux-gnu-ld 2.42.
+    subalign_anchor = "    .text 0x00100000 : ALIGN(64)"
+    if subalign_anchor in new_text:
+        new_text = new_text.replace(
+            subalign_anchor, subalign_anchor + " SUBALIGN(8)", 1,
+        )
+    else:
+        raise BuildError(
+            "carve: failed to find the `.text ... : ALIGN(64)` output-section "
+            "header in the committed lcf; boundary-safe SUBALIGN(8) cannot be "
+            "applied (carving requires the carve-aware lcf shape)."
         )
 
     # Repoint the .data/.rodata/.sndata/.gcc_except_table/.sbss/.bss
@@ -777,7 +874,7 @@ def _emit_build_lcf(
         "(.data*)", "(.rodata*)", "(.sndata*)",
         "(.gcc_except_table*)", "(.sbss .scommon)", "(.bss COMMON)",
     ):
-        old = f"        build/asm/cod/000000.o{section_pat}"
+        old = f"        {mono_obj}{section_pat}"
         new = f"        {frag0}{section_pat}"
         new_text = new_text.replace(old, new)
 
@@ -792,7 +889,7 @@ def _emit_build_lcf(
 # --------------------------------------------------------------------------- #
 # Per-TU compiler choice.  The default (cygnus-2.96) is today's
 # behaviour for all 735 currently-matched TUs; the alternative
-# (sn-2.95.3-136) is the opt-in SN ee-gcc for the `sq`-prologue family.
+# (sn-2.95.3-136) is the opt-in SN ee-gcc for the `sq`-prologue group.
 # Anything not in this set is a config error — see Config.compile_units.
 DEFAULT_COMPILER = "cygnus-2.96"
 SUPPORTED_COMPILERS = frozenset({"cygnus-2.96", "sn-2.95.3-136"})
@@ -820,6 +917,35 @@ def _glob_all(patterns: Iterable[str]) -> list[Path]:
     return found
 
 
+def _foreign_version_roots(cfg: Config) -> set[Path]:
+    """Source roots (``src/<ver>`` / ``asm/<ver>``) of OTHER registered versions
+    that this config's own globs do not explicitly target.
+
+    The US (default) config uses recursive globs (``src/**/*.c``, ``asm/**/*.s``)
+    that would otherwise sweep the committed sibling-version ports — ``src/eu/``,
+    ``src/jp/`` (and the gitignored ``asm/eu/`` / ``asm/jp/``) — into the US unit
+    list. Those belong to the per-version builds (``--version eu/jp``, whose
+    configs use scoped ``src/eu/**`` globs and link their own ELF); the US
+    main-ELF lcf never references them, so discovering them produced a
+    ``units`` ratchet drift *and* made every US build wastefully recompile
+    ~127 cross-version objects into colliding ``build/src/eu/*.o`` paths.
+
+    A version's root is pruned only when NONE of this config's glob patterns
+    start with it (``src/eu/**`` keeps ``src/eu`` for the EU build but still
+    prunes ``src/jp``). This mirrors the REL-part skip in :func:`discover`.
+    """
+    own_globs = list(cfg.asm_globs) + list(cfg.c_globs) + list(cfg.vsm_globs)
+    roots: set[Path] = set()
+    for key in _load_versions().get("versions", {}):
+        for sub in (f"src/{key}", f"asm/{key}"):
+            root = ROOT / sub
+            if not root.is_dir():
+                continue
+            if not any(g.startswith(sub + "/") for g in own_globs):
+                roots.add(root.resolve())
+    return roots
+
+
 def discover(cfg: Config, carve: Optional[CarveState] = None) -> list[CompileUnit]:
     """Return the full list of compile units the build owns.
 
@@ -842,8 +968,18 @@ def discover(cfg: Config, carve: Optional[CarveState] = None) -> list[CompileUni
     # ELF lcf doesn't reference) on every full build.
     skip_src |= _rel_asm_part_paths(cfg)
 
+    # Sibling-version source trees (``src/eu/``, ``src/jp/`` …) that this
+    # config's globs don't target — owned by the per-version builds, never
+    # by this lcf. Pruned here (not in the units check) so the recursive US
+    # globs neither drift the units ratchet nor wastefully recompile them.
+    foreign_roots = _foreign_version_roots(cfg)
+
+    def _is_foreign(src: Path) -> bool:
+        rp = src.resolve()
+        return any(root in rp.parents for root in foreign_roots)
+
     for src in _glob_all(cfg.asm_globs):
-        if src.resolve() in skip_src:
+        if src.resolve() in skip_src or _is_foreign(src):
             continue
         rel = src.relative_to(ROOT)
         obj = cfg.build_dir / rel.with_suffix(".o")
@@ -869,6 +1005,8 @@ def discover(cfg: Config, carve: Optional[CarveState] = None) -> list[CompileUni
 
     compile_units_map = cfg.compile_units
     for src in _glob_all(cfg.c_globs):
+        if _is_foreign(src):
+            continue
         rel = src.relative_to(ROOT)
         obj = cfg.build_dir / rel.with_suffix(".o")
         entry = compile_units_map.get(str(rel), {})
@@ -880,6 +1018,8 @@ def discover(cfg: Config, carve: Optional[CarveState] = None) -> list[CompileUni
         ))
 
     for src in _glob_all(cfg.vsm_globs):
+        if _is_foreign(src):
+            continue
         rel = src.relative_to(ROOT)
         obj = cfg.build_dir / rel.with_suffix(".o")
         units.append(CompileUnit(src=src, obj=obj, kind="vsm", rel=rel))
@@ -1017,7 +1157,7 @@ def _cc(unit: CompileUnit, cfg: Config, log: Logger) -> None:
     # ee-cc-wrap.py dispatches cc1 based on --compiler.  Default
     # = cygnus-2.96 (today's behaviour, zero regression for the 735
     # currently-matched TUs); sn-2.95.3-136 is the opt-in SN path for
-    # the `sq`-prologue family.  Both paths share cpp0 + ee-as so ELF
+    # the `sq`-prologue group.  Both paths share cpp0 + ee-as so ELF
     # flags (0x20924001, eabi64) match retail regardless.
     # Per-TU c_flags filter: drop exact-match flags from the global
     # cfg.c_flags before forwarding to ee-cc-wrap.py.  Default empty
@@ -1093,8 +1233,8 @@ def link(
     # (``build/asm/<...>.o(.text*)`` etc.), so we don't add them to argv —
     # ld will pick them up via the script directly.  We still want ld to
     # error if those files are missing, so the link will fail fast.
-    # External symbol bindings (formerly config/undefined_*_auto.txt + a
-    # ``--defsym`` synthesis) now live directly in the .lcf;
+    # External symbol bindings (previously config/undefined_*_auto.txt
+    # plus a ``--defsym`` synthesis) now live directly in the .lcf;
     # see config/SLUS_215.03.lcf.
     run(argv, log, stage="ld")
     _postprocess_elf(cfg, log)
@@ -1110,12 +1250,28 @@ def _postprocess_elf(cfg: Config, log: Logger) -> None:
     sections and has no scriptable way to declare a smaller sh_size while
     keeping the trailing bytes in the file; this is the cleanest fix.
     """
+    # The post-link patch (section-header + PT_LOAD fixups in elf_postprocess.py)
+    # is currently US-specific. A version whose full-ELF metadata reconstruction
+    # is not yet wired sets "postprocess_elf": false; its loaded image is already
+    # byte-exact via the hand-written .lcf, only the non-loaded section headers
+    # remain. Default true preserves the US path unchanged.
+    if not cfg.raw.get("postprocess_elf", True):
+        log.info(
+            "elf_postprocess disabled for this version (loaded image is "
+            "byte-exact; full-ELF metadata reconstruction deferred)"
+        )
+        return
     script = ROOT / "scripts" / "elf_postprocess.py"
     if not script.exists():
         log.warn(f"missing {script.relative_to(ROOT)}; skipping post-link patch")
         return
+    # Per-version metadata dir (retail invariants + non-loaded payloads).
+    # US omits the key and falls back to the flat bin/elf_metadata; eu/jp
+    # nest under bin/elf_metadata/<key>. See scripts/extract_elf_metadata.py.
+    metadata_dir = ROOT / cfg.raw.get("metadata_dir", "bin/elf_metadata")
     run(
-        [sys.executable, str(script), str(cfg.output_elf)],
+        [sys.executable, str(script), str(cfg.output_elf),
+         "--metadata-dir", str(metadata_dir)],
         log,
         stage="elf-postprocess",
     )
@@ -1213,12 +1369,13 @@ def _concat_rel(rel: RelDescriptor, log: Logger) -> Path:
     # For r207 there is exactly one asm part covering all of .text. The
     # current implementation assumes a single asm part per REL; multi-
     # section RELs (mcport.rel, event.rel) will need a per-section
-    # objcopy when they are wired up. Fail loudly today rather than
+    # objcopy when they get wired up. Fail loudly today rather than
     # silently producing wrong bytes.
     if len(rel.asm_parts) != 1:
         raise BuildError(
             f"rel {rel.name!r}: multi-asm-part RELs not supported yet "
-            f"({len(rel.asm_parts)} asm parts)."
+            f"({len(rel.asm_parts)} asm parts); the multi-part REL "
+            f"extension is not yet implemented."
         )
     asm_part_bytes = rel.text_bin.read_bytes()
     asm_part = rel.asm_parts[0]
@@ -1375,31 +1532,11 @@ def _ld_script_objects(
     return out
 
 
-def _tu_is_complete(name: str) -> bool:
-    """True iff unit ``name`` is a src/ TU built entirely from source.
-
-    A ``src/cod/<name>.{c,s}`` with no ``INCLUDE_ASM(`` line is 100% real
-    source; since the default build is byte-identical to retail it is
-    necessarily matched-and-linked, i.e. objdiff-``complete`` ("fully linked").
-    Mirror of scripts/mark_complete.py ``is_complete_tu`` — keep in sync.
-    """
-    if not name.startswith("src/"):
-        return False
-    for ext in (".c", ".s"):
-        src = ROOT / (name + ext)
-        if src.is_file():
-            return "INCLUDE_ASM(" not in src.read_text(
-                encoding="utf-8", errors="replace"
-            )
-    return False
-
-
 def _load_category_map(path: Path) -> dict[int, str]:
-    """Reverse ``progress/function_categories.json`` into {vaddr:int -> category}.
+    """Reverse `function_categories.json` into {vaddr:int -> category:str}.
 
-    Addresses are upper-hex strings like "0X0017F5D0"; only the library
-    subcategories (cri-middleware / sce-runtime / crt) are listed there, so a
-    vaddr not in the map is engine.
+    Addresses are stored as upper-hex strings like "0X0017F5D0". Only the
+    library subcategories are mapped; everything unlisted is engine.
     """
     if not path.exists():
         return {}
@@ -1417,17 +1554,19 @@ def _load_category_map(path: Path) -> dict[int, str]:
 # tagged ``engine.casino`` shows under both the Engine total and a Casino bar.
 # Only subsystem folders with enough decompiled TUs to deserve their own bar
 # are listed; the smaller folders (camera/gfx/battle/id/ui/sound/player/
-# physics) stay bare ``engine`` until they grow.
+# physics) stay bare ``engine`` until they grow. Keep in sync with public.
 _ENGINE_SUBSYSTEMS = frozenset({"casino", "enemy", "event", "object", "system"})
 
 
 def _unit_categories(name: str, lib_categories: dict[str, str]) -> list[str]:
-    """Map an objdiff unit name to its progress category.
+    """Map an objdiff unit name to its objdiff progress category.
 
     Library / middleware / CRT functions are carved into standalone
-    ``asm/nonmatching/<func>`` units; *lib_categories* maps such a func name to
-    its subcategory. A decomp TU under ``src/cod/<subsys>/`` whose subsystem is
-    in ``_ENGINE_SUBSYSTEMS`` is tagged both ``engine`` (so it still rolls up to
+    ``asm/nonmatching/<func>`` units (one function each); a unit whose
+    carved function is keyed in *lib_categories* gets that function's
+    real subcategory (``cri-middleware`` / ``sce-runtime`` / ``crt``).
+    A decomp TU under ``src/cod/<subsys>/`` whose subsystem is in
+    ``_ENGINE_SUBSYSTEMS`` is tagged both ``engine`` (so it still rolls up to
     the parent) and ``engine.<subsys>`` (its drill-down bar). Every other unit
     (fragments, flat decomp TUs, data, RELs) is ``engine``.
     """
@@ -1456,14 +1595,14 @@ def _objdiff_units(cfg: Config, carve: Optional[CarveState] = None) -> list[dict
     repo-relative POSIX paths.  ``metadata.auto_generated = True`` keeps each
     auto-emitted unit out of the GUI sidebar but in the totals — they exist
     so the objdiff report can see *all* of `.text`, not so a human navigates
-    them.  When a unit transitions to a hand-written C TU, that
+    them.  When a unit transitions to a hand-decompiled C TU, that
     unit gets a real entry written by hand and the auto-emitted asm entry
     is dropped from this list at the same time.
 
     Per-REL units are appended in declaration order after the
     main-ELF units.  Each REL's asm parts contribute one unit each
     (currently 1/REL while only r207 is wired).  REL units carry an
-    extra ``metadata.rel = <name>`` tag so tooling can distinguish
+    extra ``metadata.rel = <name>`` tag so later tooling can distinguish
     them from main-ELF units when navigating the units list.
     """
     objdiff_cfg = cfg.objdiff_cfg
@@ -1473,27 +1612,22 @@ def _objdiff_units(cfg: Config, carve: Optional[CarveState] = None) -> list[dict
     units: list[dict] = []
     cat_map = _load_category_map(ROOT / "progress" / "function_categories.json")
     lib_categories = {
-        e.name: cat_map[e.vaddr]
+        e.name: cat_map.get(e.vaddr, "engine")
         for e in (carve.entries if carve else [])
-        if e.vaddr in cat_map
+        if e.lib
     }
     for obj in _ld_script_objects(cfg, carve):
         rel = obj.relative_to(ROOT / build_root)
         name = str(rel.with_suffix("")).replace(os.sep, "/")
-        metadata: dict = {"auto_generated": True}
-        # "fully linked" (objdiff ``complete``) axis: a src/ TU built entirely
-        # from source — no INCLUDE_ASM target bytes — is byte-identical to retail
-        # by construction, so it is complete. Mirror of scripts/mark_complete.py
-        # ``is_complete_tu``; keep the two in sync.
-        if _tu_is_complete(name):
-            metadata["complete"] = True
-        metadata["progress_categories"] = _unit_categories(name, lib_categories)
         units.append(
             {
                 "name": name,
                 "target_path": (target_root / rel).as_posix(),
                 "base_path": (base_root / rel).as_posix(),
-                "metadata": metadata,
+                "metadata": {
+                    "auto_generated": True,
+                    "progress_categories": _unit_categories(name, lib_categories),
+                },
             }
         )
     # Per-REL units: one per asm part. The REL .o lives under
@@ -1592,7 +1726,7 @@ def do_objdiff_setup(cfg: Config, log: Logger) -> Path:
        the auto-emitted per-unit list.
 
     Modelled after recvx-decomp's ``compile.py::do_objdiff_setup``,
-    adapted to our initial asm-only baseline: there is no separate
+    adapted to our asm-only baseline: there is no separate
     "compile expected .s" step because the expected `.o` *is* the base
     `.o` for INCLUDE_ASM units — freezing a copy is the contract.
     """
@@ -1617,7 +1751,7 @@ def do_objdiff_setup(cfg: Config, log: Logger) -> Path:
 
     out: dict = {
         "min_version": objdiff_cfg.get("min_version", "2.0.0"),
-        "name": objdiff_cfg.get("name", "god-hand-decomp"),
+        "name": objdiff_cfg.get("name", "godhand-recomp"),
         "custom_make": objdiff_cfg.get("custom_make", "python"),
         "custom_args": list(
             objdiff_cfg.get("custom_args", ["compile.py", "--single-file"])
@@ -1627,7 +1761,22 @@ def do_objdiff_setup(cfg: Config, log: Logger) -> Path:
         "progress_categories": list(objdiff_cfg.get("progress_categories", [])),
         "units": unit_entries,
     }
-    path = ROOT / "objdiff.json"
+    # Per-version objdiff project: us writes the repo-root objdiff.json (the
+    # default), siblings write config/<ver>/objdiff.json so the three projects
+    # don't clobber each other.  The unit paths are version-namespaced
+    # (asm/eu/... vs asm/cod/...), so all three share one expected/build/ tree.
+    #
+    # `objdiff-cli report generate -p <dir>` resolves unit paths relative to the
+    # project *directory*, so when the project file is not at the repo root we
+    # rebase the (repo-relative) unit paths to be relative to that directory.
+    # _mirror_expected above already ran against the repo-relative paths.
+    path = ROOT / objdiff_cfg.get("objdiff_project", "objdiff.json")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if path.parent != ROOT:
+        base = path.parent
+        for u in out["units"]:
+            u["target_path"] = os.path.relpath(ROOT / u["target_path"], base).replace(os.sep, "/")
+            u["base_path"] = os.path.relpath(ROOT / u["base_path"], base).replace(os.sep, "/")
     path.write_text(json.dumps(out, indent=2) + "\n")
     log.info(f"wrote {path.relative_to(ROOT)} ({len(unit_entries)} units)")
     return path
@@ -1716,7 +1865,7 @@ def do_reseed_expected(name: str, cfg: Config, log: Logger) -> None:
     objdiff_cfg = cfg.objdiff_cfg
     out: dict = {
         "min_version": objdiff_cfg.get("min_version", "2.0.0"),
-        "name": objdiff_cfg.get("name", "god-hand-decomp"),
+        "name": objdiff_cfg.get("name", "godhand-recomp"),
         "custom_make": objdiff_cfg.get("custom_make", "python"),
         "custom_args": list(
             objdiff_cfg.get("custom_args", ["compile.py", "--single-file"])
@@ -1780,7 +1929,7 @@ def do_reseed_expected_rel(
     objdiff_cfg = cfg.objdiff_cfg
     out: dict = {
         "min_version": objdiff_cfg.get("min_version", "2.0.0"),
-        "name": objdiff_cfg.get("name", "god-hand-decomp"),
+        "name": objdiff_cfg.get("name", "godhand-recomp"),
         "custom_make": objdiff_cfg.get("custom_make", "python"),
         "custom_args": list(
             objdiff_cfg.get("custom_args", ["compile.py", "--single-file"])
@@ -1935,10 +2084,19 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         description="Build the God Hand matching-decomp main ELF.",
     )
     p.add_argument(
+        "--version",
+        type=str,
+        default=None,
+        metavar="KEY",
+        help="which release to build (us/eu/jp; from config/versions.json). "
+             "Default: the registry's 'default' version (us).",
+    )
+    p.add_argument(
         "--config",
         type=Path,
-        default=DEFAULT_CONFIG,
-        help="compile_config.json path (default: %(default)s)",
+        default=None,
+        help="explicit compile_config.json path; overrides --version "
+             "(default: resolved from config/versions.json)",
     )
     p.add_argument("--setup", action="store_true",
                    help="write objdiff.json from splat linker entries and exit")
@@ -1994,7 +2152,12 @@ def _compile_many(units: list[CompileUnit], cfg: Config, log: Logger, jobs: int)
 def main(argv: list[str]) -> int:
     args = parse_args(argv)
     log = Logger(verbose=args.verbose)
-    cfg = Config.load(args.config)
+    try:
+        config_path = resolve_config_path(args.version, args.config)
+    except BuildError as exc:
+        log.error(str(exc))
+        return 2
+    cfg = Config.load(config_path)
 
     try:
         if args.clean:

@@ -1,14 +1,16 @@
-"""Smoke tests for `scripts/carver.py`.
+"""Phase-1 smoke tests for `scripts/carver.py`.
 
 These cover the schema-half public surface (`CarveSchema.parse_entries`,
 `CarveSchema.split_monolithic`, `CarveSchema.carve_unit_size_bytes`)
-plus the `CarveEntry` / `CarveState` / `BuildError` re-exports, and the
-`CarveSession` surface (snapshot/revert/atomic).
+plus the `CarveEntry` / `CarveState` / `BuildError` re-exports.
 
-The existing carve-flow tests in `tests/test_compile.py` continue to
+Phase 2 will add `CarveSession` tests (snapshot/revert/atomic). The
+existing carve-flow tests in `tests/test_compile.py` continue to
 exercise `compile.py`'s call sites via the re-export shim and are NOT
-duplicated here — these are smoke tests for the module's public
+duplicated here — these are smoke tests for the new module's public
 surface in isolation.
+
+A behaviour-preserving refactor.
 """
 from __future__ import annotations
 
@@ -221,6 +223,19 @@ class TestParseEntries:
         assert len(out) == 1
         assert out[0].name == "func_00100000"
 
+    def test_parse_carved_entries_lib_flag(self):
+        """The optional `lib` flag marks library/middleware/CRT carves."""
+        cfg = _StubConfig([
+            {"name": "func_00000001", "unit": "asm/cod/000000",
+             "vaddr": "0x1", "size": 4},
+            {"name": "func_00000002", "unit": "asm/cod/000000",
+             "vaddr": "0x2", "size": 4, "lib": True},
+        ])
+        entries = CarveSchema.parse_entries(cfg)
+        assert entries[0].lib is False          # default when key absent
+        assert entries[1].lib is True
+        assert entries[1].name == "func_00000002"
+
 
 # --------------------------------------------------------------------------- #
 # CarveSchema.split_monolithic + carve_unit_size_bytes
@@ -329,56 +344,25 @@ class TestCarveUnitSizeBytes:
 
 
 class TestPhase2Reexports:
-    """Session-half symbol re-exports.
+    """Phase-2 session-half re-export back-compat alias.
 
-    NOTE: the legacy re-export shim these tests once validated lived in
-    a module that has since been removed. The two tests that exercised
-    that shim now skip when the module is absent (the common case);
-    `test_carve_snapshot_back_compat_alias` keeps the live back-compat
-    check that still passes.
+    The legacy re-export shim that once threaded the carver's session
+    symbols through the orchestrator module is exercised by a private
+    test (it imports a module outside the public surface); this keeps the
+    live back-compat alias check that still passes here.
     """
-
-    # Module name assembled at runtime so the source carries no hard
-    # dependency on a module that may not be present.
-    _LEGACY_MODULE = "scripts." + "auto" + "research"
 
     def test_carve_snapshot_back_compat_alias(self):
         assert _AutoCarveSnapshot is CarveSnapshot
 
-    def test_legacy_reexports_session_symbols(self):
-        legacy = pytest.importorskip(self._LEGACY_MODULE)
-        from scripts.carver import (
-            _atomic_auto_carve,
-            _auto_carve_uncarved,
-            _capture_auto_carve_snapshot,
-            _revert_auto_carve,
-        )
-        assert legacy._atomic_auto_carve is _atomic_auto_carve
-        assert legacy._auto_carve_uncarved is _auto_carve_uncarved
-        assert legacy._capture_auto_carve_snapshot is _capture_auto_carve_snapshot
-        assert legacy._revert_auto_carve is _revert_auto_carve
-        assert legacy._AutoCarveSnapshot is CarveSnapshot
-        assert legacy.CarveSession is CarveSession
-        assert legacy.CarveError is CarveError
-
-    def test_carve_error_is_sibling_of_legacy_error(self):
-        """`CarveError` and the legacy error class are siblings
-        (each module owns its error class). Not subclasses of each
-        other.
-        """
-        legacy = pytest.importorskip(self._LEGACY_MODULE)
-        LegacyError = legacy.LegacyError
-        assert not issubclass(CarveError, LegacyError)
-        assert not issubclass(LegacyError, CarveError)
-        assert issubclass(CarveError, Exception)
-        assert issubclass(LegacyError, Exception)
-
 
 class TestCarveSessionShape:
     """`CarveSession` is a thin facade over the private primitives
-    (behaviour-preserving; no internal atomic wrap; the caller is
-    expected to handle `auto_carve_func.py`'s rollback). These smoke
-    tests cover the public surface shape; the underlying primitives
+    (per Phase 2 / Q3 decision: behaviour-preserving; no internal
+    atomic wrap; the bash `cleanup_on_fail` trap in
+    `scripts/match_and_commit.sh` continues to handle
+    `auto_carve_func.py`'s rollback). These smoke tests cover the
+    public surface shape; the underlying primitives
     `_auto_carve_uncarved` / `_atomic_auto_carve` are exercised
     elsewhere.
     """
@@ -486,16 +470,20 @@ class TestCarveSessionAtomicSmoke:
     def test_auto_carve_func_script_invocation_resolves_imports(
         self, tmp_path: Path
     ):
-        """Regression test for the script-invocation import path: when
-        ``python3 scripts/auto_carve_func.py NAME`` is invoked, Python
+        """Regression test for the deferred-smoke discovery: when
+        ``scripts/match_and_commit.sh`` invokes
+        ``python3 scripts/auto_carve_func.py NAME``, Python
         auto-prepends only the script's own directory (``scripts/``) to
-        ``sys.path``.  The carver extraction made the in-script import
-        ``from scripts.carver import ...``, which requires the **repo
-        root** (parent of ``scripts/``) on ``sys.path``.  Pytest doesn't
-        exercise this invocation path, so it can hide a
-        ``ModuleNotFoundError: scripts`` regression that the in-process
-        test suite misses.  This test invokes ``auto_carve_func.py`` as
-        a subprocess and asserts the import resolves.
+        ``sys.path``.  The Phase-2 carver extraction changed the
+        in-script import to ``from scripts.carver import ...``, which
+        requires the **repo root** (parent of ``scripts/``) on
+        ``sys.path``.  Pytest doesn't
+        exercise this invocation path (it uses ``-m`` /
+        ``pytest`` runner hooks), so the smoke surfaced a
+        ``ModuleNotFoundError: scripts`` regression that pytest's
+        1030/1030 GREEN missed.  This test invokes ``auto_carve_func.py``
+        the same way ``match_and_commit.sh`` does and asserts the
+        import resolves.
 
         Invoked with a bogus function name so the script short-circuits
         before any real carve mutation; we just exercise the import path.
@@ -507,10 +495,10 @@ class TestCarveSessionAtomicSmoke:
         script = repo_root / "scripts" / "auto_carve_func.py"
         assert script.is_file(), f"{script} missing"
 
-        # cwd=repo_root, relative script path. Pass a name that doesn't
-        # exist in decomp_targets.json so the script exits early with
-        # rc=2 ("no candidate metadata") rather than attempting a real
-        # carve.
+        # Mirror match_and_commit.sh L159: cwd=repo_root, relative
+        # script path. Pass a name that doesn't exist in
+        # decomp_targets.json so the script exits early with rc=2
+        # ("no candidate metadata") rather than attempting a real carve.
         cp = subprocess.run(
             [sys.executable, "scripts/auto_carve_func.py",
              "func_TEST_DOES_NOT_EXIST_AUTO_CARVE_REGRESSION"],
@@ -538,7 +526,9 @@ class TestCarveSessionAtomicSmoke:
         )
 
     def test_carve_one_raises_carve_error_on_missing_tu(self, tmp_path: Path):
-        """If the TU file doesn't exist, `carve_one` raises `CarveError`."""
+        """If the TU file doesn't exist, `carve_one` raises `CarveError`
+        (the carver module owns its own error class).
+        """
         cfg = tmp_path / "compile_config.json"
         import json
         cfg.write_text(json.dumps({"carved_funcs": []}, indent=2) + "\n")

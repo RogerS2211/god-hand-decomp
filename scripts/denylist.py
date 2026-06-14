@@ -1,0 +1,40 @@
+"""Shared regex patterns for the project's source-quality lint checks.
+
+Defined once here so every check that uses them stays in agreement instead of
+each carrying its own copy that can drift. Each entry is a structural shape; the
+checks import the compiled patterns from this module. Storage, not policy — the
+patterns are byte-for-byte what the checks used inline before centralization.
+"""
+from __future__ import annotations
+
+import re
+
+# --- forced-register pin ----------------------------------------------------- #
+# A GCC explicit-register local (`register <type> x __asm__("$N")`). Matched
+# anywhere on a line (NOT anchored) so a mid-line declaration cannot evade the
+# check; callers strip comments first so prose mentions never count.
+FORCED_REG_RE = re.compile(r"\bregister\b[^;{}]*?__asm__\s*\(")
+
+# --- inline-asm keywords ----------------------------------------------------- #
+# Each is anchored or word-bounded so it does not match identifiers that merely
+# contain the substring `asm`. Order matters for the error message: the first
+# match wins, so the more-specific patterns come first.
+INLINE_ASM_PATTERNS: tuple[tuple[str, "re.Pattern[str]"], ...] = (
+    ("__asm__", re.compile(r"\b__asm__\b")),
+    ("__asm(", re.compile(r"\b__asm\s*\(")),
+    ("asm volatile", re.compile(r"\basm\s+volatile\b")),
+    ("asm(", re.compile(r"\basm\s*\(")),
+    ("#pragma asm", re.compile(r"^\s*#\s*pragma\s+asm\b", re.MULTILINE)),
+)
+
+# --- identifier-suffix naming guard ------------------------------------------ #
+# A short uppercase-letter + 1-2 digit (+ optional a-f) suffix appended to a
+# CamelCase identifier. Two surface variants:
+#   CONTENT — scanning free text / diffs: the suffix may sit mid-string, so it
+#     needs a preceding lowercase letter and ends on a word boundary.
+#   NAME — scanning a single identifier: it may also sit at the very start and
+#     ends at end-of-string.
+# Case-SENSITIVE: an uppercase letter + 1-2 digits discriminates a real suffix
+# from all-caps acronyms (`HW2`) and 3+-digit data symbols.
+WAVE_LABEL_CONTENT_RE = re.compile(r"[a-z]W\d{1,2}[a-f]?(?=[A-Z]|_|\b)")
+WAVE_LABEL_NAME_RE = re.compile(r"(?:^|[a-z_])W\d{1,2}[a-f]?(?=[A-Z]|_|$)")

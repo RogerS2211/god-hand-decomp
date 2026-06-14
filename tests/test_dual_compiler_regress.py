@@ -201,7 +201,7 @@ def test_0033c8_dual_compiler_spot_check():
     With cygnus-2.96, src/cod/0033c8.o byte-equals
     expected/build/src/cod/0033c8.o (the load-bearing back-compat
     contract). With sn-2.95.3-136, every named-accessor .text.*
-    section still matches (the empirical SN finding we assert).
+    section still matches (the empirical finding we assert here).
     """
     result = subprocess.run(
         [

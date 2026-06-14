@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # diff sub-check.
 #
-# Mechanically enforces the third clause of the carve gate:
+# Mechanically enforces the third clause of the per-function diff gate:
 #
 #     per-function diff reachable via
 #       `tools/objdiff-cli diff -p . -u <unit> <symbol>`.
 #
-# Clauses 1 and 2 of the carve gate are already session-checked:
+# Clauses 1 and 2 of the gate are already session-checked:
 #     1. carved_funcs non-empty — inspection at session_check time
 #     2. ELF byte-equality vs retail — `scripts/checks/build.sh`
 #
@@ -21,12 +21,12 @@
 #
 # Unit derivation: if the carve has a `tu:` field (TU-owned carve,
 # the universal shape), strip the C/C++ extension to get the objdiff
-# unit name (e.g. "src/cod/000000.c" → "src/cod/000000").  Otherwise
-# fall back to the `unit` field verbatim.  The TU-first rule is what
-# every live carve uses today (e.g. "src/cod/000000" for
-# func_00100000); the fallback exists so a future asm-only carve (no
-# C wrapper) still diffs against the standalone
-# `build/asm/nonmatching/<name>.o`.
+# unit name (e.g. "src/cod/000000.c" → "src/cod/000000").
+# Otherwise fall back to the `unit` field verbatim.  The TU-first
+# rule is what every live carve uses today and is what the
+# worked example pinned ("src/cod/000000" for func_00100000); the
+# fallback exists so a future asm-only carve (no C wrapper) still
+# diffs against the standalone `build/asm/nonmatching/<name>.o`.
 #
 # Diffing only the **first** carve is deliberate: the gate clause is
 # about the CLI surface, not coverage.  If the first carve diffs
@@ -46,6 +46,7 @@
 #   - objdiff-cli exits non-zero, with the full stderr surfaced and a
 #     `objdiff-cli diff failed for <unit>/<symbol>` lead line.
 #
+# Documented in the session-check notes (§ "12. `diff.sh`").
 set -uo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"

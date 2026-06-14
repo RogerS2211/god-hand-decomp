@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
-# proj-find.sh — safe `find` wrapper for the god-hand-decomp repo.
+# proj-find.sh — safe `find` wrapper for the godhand-recomp repo.
 #
 # Why: the repo root holds a 1.5 GB ISO, ~744 MB of vendored tools, and
 # ~120 MB of splat/compile output. A bare `find .` is slow and noisy;
-# `find /` or `find ~` will hang for many minutes and is the foot-gun
-# this wrapper exists to neutralise.
+# `find /` or `find ~` will hang an agent's turn for many minutes and is
+# the foot-gun this wrapper exists to neutralise. See AGENTS.md /
+# ORIENT.md § "Filesystem search hygiene" for the full contract.
 #
 # Usage:
 #   scripts/proj-find.sh                       # all files, default prunes

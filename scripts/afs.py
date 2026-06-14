@@ -44,7 +44,7 @@ Each ``Entry`` is::
                                 /* (109 entries flag=1, 27 flag=4, etc; most 0)  */
     uint16  size_hint           /* file-only: roughly afs_size/16, capped 0xffff.*/
                                 /* Does NOT equal floor or ceil(size/16) exactly;*/
-                                /* the precise relationship is left for later.  */
+                                /* the precise relationship is still unresolved. */
     uint32  str_off             /* offset into strings[]; 0 for type=3 */
     uint32  value               /* type=1: child-entry offset (in entries[]) */
                                 /* type=2: AFS index (0..file_count-1) */

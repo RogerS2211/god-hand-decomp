@@ -1,17 +1,23 @@
 #!/usr/bin/env bash
-# Example pre-commit hook for god-hand-decomp.
+# pre-commit hook for godhand-recomp — the commit-time ratchet.
 #
-# Install with:
-#     ln -s ../../scripts/hooks/pre-commit .git/hooks/pre-commit
+# Installed automatically by scripts/setup_toolchain.sh, which points
+# core.hooksPath at scripts/hooks/ so this version-tracked file runs on
+# every commit (no .git symlink to drift). Before 2026-06-05 the hook was
+# opt-in and usually left uninstalled, so the ratchet was honor-system — a
+# workflow-audit gap.
 #
-# Or, if you prefer a copy (so the hook follows what was committed at
-# checkout time rather than the working tree):
-#     cp scripts/hooks/pre-commit .git/hooks/pre-commit
-#     chmod +x .git/hooks/pre-commit
-#
-# Either way the hook runs scripts/session_check.sh.  It is intentionally
-# NOT installed automatically — developers opt in per clone.
+# Escape hatches:
+#   GODHAND_NO_HOOK=1           skip the hook (env: this commit or your shell)
+#   GODHAND_PRECOMMIT_CHECKS=…  run a fast subset, e.g. "build,score,state"
+#                               (default: the full session_check.sh suite)
+#   git commit --no-verify      bypass once (only for a ratchet-loosening
+#                               task with a DECISIONS.md entry)
 set -euo pipefail
+
+if [[ -n "${GODHAND_NO_HOOK:-}" ]]; then
+    exit 0
+fi
 
 ROOT="$(git rev-parse --show-toplevel)"
 HARNESS="$ROOT/scripts/session_check.sh"
@@ -21,7 +27,15 @@ if [[ ! -x "$HARNESS" ]]; then
     exit 0
 fi
 
-if ! "$HARNESS"; then
+# Optional fast subset; empty/unset runs the full default suite.
+CHECKS="${GODHAND_PRECOMMIT_CHECKS:-}"
+if [[ -n "$CHECKS" ]]; then
+    HARNESS_ARGS=("$CHECKS")
+else
+    HARNESS_ARGS=()
+fi
+
+if ! "$HARNESS" "${HARNESS_ARGS[@]}"; then
     cat >&2 <<'EOF'
 
 pre-commit: session_check.sh failed.
@@ -30,8 +44,8 @@ Refusing the commit because the ratchet has regressed.  See output
 above for which sub-check failed.  Fix, re-run scripts/session_check.sh
 to confirm green, then commit again.
 
-To bypass (only for an explicit, documented ratchet-loosening
-change):  git commit --no-verify
+To bypass (only for an explicit ratchet-loosening task that has a
+DECISIONS.md entry):  git commit --no-verify
 EOF
     exit 1
 fi

@@ -49,7 +49,7 @@ options:
 
   extensions_path: tools/splat_ext
 
-  # Do NOT regenerate the include/ asm-macro files on every split. A
+  # Do NOT regenerate the include/ asm-macro files on every split. The
   # preflight customized include/include_asm.h with
   # `.pushsection .text.<NAME> ... .popsection` brackets (so per-function
   # carves land at distinct virtual addresses; splat's default bare

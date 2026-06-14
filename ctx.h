@@ -1,24 +1,30 @@
-/* m2c context header for the God Hand decomp.
+/* m2c per-function context header for godhand-recomp.
  *
- * Provides just enough types / macros / externs that an `m2c`-generated C
- * function compiles on its own while you iterate it toward a byte match.
- * This file is NOT in the matching-build link path (it is never #included
- * from anything under `src/`); changing it cannot perturb
- * `build/SLUS_215.03.elf` / `build/rel/*.rel` byte output. Header-only.
+ * Concatenated ahead of the generated C code while iterating an
+ * `m2c`-direct function toward a byte match.  This file is NOT in the
+ * matching-build link path (it is never #included from anything under
+ * `src/`); changing it cannot perturb the `build/SLUS_215.03.elf` or
+ * rel-overlay byte output.  Header-only.
+ *
+ * Goal: give m2c-direct output enough types / externs to compile
+ * against `ctx.h` without having to bootstrap a typedef by hand each
+ * time.
  *
  * Sections, in order:
- *   1. Width-alias typedefs (matches m2c's primitive emit + the PS2-era
- *      decomp convention).
+ *   1. Width-alias typedefs (matches m2c's primitive emit + the
+ *      precedent PS2-era decomp projects).
  *   2. m2c "valid syntax" mode helpers (forwarded from
  *      `tools/m2c/m2c_macros.h` so m2c output with --valid-syntax
- *      still compiles in this context; no-op otherwise).
- *   3. Opaque struct shapes for the $a0 / $a1 argument types of common
- *      functions. Sized at "highest observed field offset + 4, rounded
- *      up to a multiple of 16".
- *   4. extern decls for the D_* globals those functions reference.
+ *      still compiles in our context; no-op otherwise).
+ *   3. Opaque struct shapes for the $a0 / $a1 argument types of the
+ *      stress-test candidates.  Sized at "highest observed
+ *      field offset + 4, rounded up to multiple of 16".
+ *   4. extern decls for the D_* globals referenced by the
+ *      candidates + one loader-group global (cMcLoaderState).
  *
- * If a declaration collides with an existing one in `include/**` once the
- * SCE / SN headers are vendored, prefer the header and drop the shim here.
+ * If a declaration collides with an existing one under the `include` tree once
+ * the SCE / SN headers are vendored, prefer the header and drop the
+ * shim here.
  */
 
 #ifndef CTX_H
@@ -60,15 +66,16 @@ typedef s64  M2C_UNK64;
 #endif
 
 /* -- 3. Opaque struct shapes ---------------------------------------- */
-/* Naming convention:
+/* Naming convention (loose-seed per ORIENT.md):
  *
  *     CGUnk_<seed-addr>_t      — opaque shape with byte-padding to the
  *                                highest observed field offset + 4,
  *                                rounded up to multiple of 16.
  *
- * "Seed-addr" is the VRAM of the first function observed to operate on
- * that shape (so the symbol is greppable).  When/if the shape is named
- * in Ghidra, rename here.
+ * "Seed-addr" is the VRAM of the first candidate observed to
+ * operate on that shape (so the symbol is greppable to the recon
+ * trail).  When/if the shape is named in Ghidra, rename here in the
+ * same commit per ORIENT.md contract point 9.
  *
  * Each shape gets a forward decl so callers can use the pointer-form
  * without depending on the size baked in below.  The size is the
@@ -90,7 +97,8 @@ typedef struct CGUnk_0013C5C8 { u8 unk[0xA0]; } CGUnk_0013C5C8_t;
  * (BRANCHED-LEAF flag-check on `arg0[0x2F4]` + `arg0[0x2F5]`), and the
  * also-matched `func_0014B638` (`return arg0[0x2B1];`).  Highest
  * observed offset is 0x2F5, +4 = 0x2F9, round up to 0x300.  Probably
- * the main per-entity state shape (sister of the matched func_0010BE10).
+ * the main per-entity state shape (sister of the existing matched
+ * func_0010BE10).
  */
 typedef struct CGUnk_0010B5C8 { u8 unk[0x300]; } CGUnk_0010B5C8_t;
 
@@ -116,7 +124,7 @@ typedef struct CGUnk_0013E3F8 { u8 unk[0x110]; } CGUnk_0013E3F8_t;
 typedef struct CGUnk_00134648 { u8 unk[0x10]; } CGUnk_00134648_t;
 
 /* Game-object state-accessor shape operated on by the first-TU
- * function family at 0x002930A8 – 0x00293C40.
+ * group at 0x002930A8 – 0x00293C40.
  * Observed field touches (signed/unsigned byte + word):
  *
  *   +0x500  w_500   word     (func_00293130 — return)
@@ -141,9 +149,10 @@ typedef struct CGUnk_00134648 { u8 unk[0x10]; } CGUnk_00134648_t;
  * (func_00293138 / func_002937C0 / func_00293C40) almost certainly
  * touch higher offsets — but their bodies stay in monolithic asm so
  * the C-side typedef doesn't have to cover them; size will bump if a
- * later decomp surfaces a higher offset.
- * Field names are conservative (`b_<off>` / `w_<off>`) pending
- * Ghidra-side naming; rename here when understood.
+ * later decomp surfaces a higher offset, per the sizing rule.
+ * Field names are seed-conservative (`b_<off>` / `w_<off>`)
+ * pending Ghidra-side naming; rename here in the same commit per
+ * ORIENT.md § "Name what you understand".
  */
 typedef struct CGObj293 { u8 unk[0x590]; } CGObj293_t;
 
@@ -169,15 +178,15 @@ extern u8 D_0041EDF0[];
 extern u8 D_00466448[];
 
 /* SN ProDG loader runtime state — `cMcLoaderState` (the 0x00752C00
- * global).  32 slots × 0x88 B + a `u32 refcount` at
- * slot+0x1104 = 0x1108 B total.  Used by the loader functions
- * (`func_00200CB0`, `func_00201788`, the SN `Load__*` runtime).
+ * global is the SN cMcLoaderState).  32 slots × 0x88 B + a
+ * `u32 refcount` at slot+0x1104 = 0x1108 B total.  Used by the loader
+ * group (`func_00200CB0`, `func_00201788`, the SN `Load__*` runtime).
  * Declared as `u8[]` for now; a real `cMcLoaderSlot slots[32]; u32 refcount;`
- * shape lands when the first loader function decomps.
+ * shape lands when the first loader-group function decomps.
  */
 extern u8 cMcLoaderState[0x1108];
 
-/* Jump-table for func_00293760 (first-TU function family).  Five word-
+/* Jump-table for func_00293760 (first-TU group).  Five word-
  * sized code-pointer slots at 0x0044A7B0..0x0044A7C3, indexed by
  * `(*(int*)(arg1 + 0x564)) - 0x270` after a `sltiu $v1, $a0, 0x5`
  * range check.  Each slot's target is a `sw $a1, 0x57N($a2); jr $ra`
@@ -187,7 +196,7 @@ extern u8 cMcLoaderState[0x1108];
  */
 extern u8 D_0044A7B0[];
 
-/* Accessor family at 0x0038B810–0x0038BFF8.                           */
+/* Accessor-group at 0x0038B810–0x0038BFF8.                            */
 /* Singleton globals for init-check patterns in func_0038B8B0 /         */
 /* func_0038BE98: each is a 32-bit int; non-zero = already initialized. */
 /* &D_786768 / &D_786778 are passed to func_0031EEA8 as the destination  */
@@ -198,7 +207,7 @@ extern int D_0045D350;  /* arg to func_0031EEA8 from func_0038B8B0      */
 extern int D_0045D360;  /* arg to func_0031EEA8 from func_0038BE98      */
 extern int D_00460DB0;  /* arg to func_0031EEA8 from func_0038BE98      */
 
-/* Game-object accessor type for the family at 0x0038B810.             */
+/* Game-object accessor type for the group at 0x0038B810.              */
 /* Observed field offsets up to 0x50 (vtable ptr); size rounded to 0x60.*/
 /* Field mapping: +0x0=flags(int), +0x14=cursor(int), +0x1A=flags(u8),  */
 /* +0x1B=flags(u8), +0x38=signed_val(int), +0x50=vtable_ptr(ptr).       */

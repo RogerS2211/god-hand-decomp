@@ -2,12 +2,12 @@
 
 Scope: cover the pure-Python plumbing that lets ``compile_config.json``
 name which cc1 (Cygnus 2.96 default, SN 2.95.3-136 opt-in) gets invoked
-for each C TU. The end-to-end ``.o`` byte-equality checks (default =
-cygnus reproduces today's output; sn-2.95.3-136 produces ``sq`` saves)
-live in the integration harness ``scripts/session_check.sh`` + the
-smoke test inside ``scripts/setup_toolchain.sh § 5b``; here we lock in
-the *dispatch* so those integration checks don't silently regress at
-the Python layer.
+for each C TU. The end-to-end ``.o`` byte-equality checks that the
+acceptance criteria mention (default = cygnus reproduces today's output;
+sn-2.95.3-136 produces ``sq`` saves) live in the integration harness
+``scripts/session_check.sh`` + the smoke test inside
+``scripts/setup_toolchain.sh § 5b``; here we lock in the *dispatch* so
+those integration checks don't silently regress at the Python layer.
 
 Inventory (one ``-k`` slice per behaviour):
 
@@ -20,6 +20,7 @@ Inventory (one ``-k`` slice per behaviour):
     ee-cc-wrap dispatch       — argparse accepts --compiler; sn dispatch
                                 strips the flag and re-execs sn-cc-wrap
 
+See DECISIONS.md.
 """
 from __future__ import annotations
 

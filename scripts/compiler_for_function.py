@@ -3,11 +3,12 @@
 
 Given a function name (``func_HHHHHHHH``) or address (``0xHHHHHH``), prints
 the recommended compiler tag for that function's text-section address.
-Based on the empirical address-band layout (the "Address-band predictor").
+Based on the empirical address-band layout documented in the
+dual-compiler policy notes § "Address-band predictor".
 
 This is the canonical CLI for the address → compiler decision that future
 hand-author / smoke / bulk-migration work would otherwise re-derive
-empirically per-candidate (which cost ~3 hours of probing).
+empirically per-candidate (which cost ~3 hours of prior recon).
 
 Examples::
 
@@ -29,8 +30,8 @@ Exit codes:
   1  argument parse error or function/address outside all bands
   2  internal error
 
-The band table provenance and revalidation procedure are documented
-alongside the band scan.
+See the dual-compiler policy notes for the band table provenance +
+revalidation procedure.
 """
 from __future__ import annotations
 
@@ -42,11 +43,12 @@ from dataclasses import dataclass
 from typing import Sequence
 
 # --------------------------------------------------------------------------- #
-# Band table — the Address-band predictor.
+# Band table — must match the dual-compiler policy notes
+# § Address-band predictor.
 #
 # Updating this table:
-#   1. Re-run the band scan.
-#   2. Update the table here.
+#   1. Re-run the band scan (see the policy notes § Reproducing the band scan).
+#   2. Update the table here AND in the policy notes atomically.
 #   3. Re-run tests/test_compiler_for_function.py.
 # --------------------------------------------------------------------------- #
 
@@ -56,7 +58,7 @@ _COMPILER_CYGNUS = "cygnus-2.96"
 
 @dataclass(frozen=True)
 class Band:
-    index: int  # 1-based band number
+    index: int  # 1-based, matches the policy notes numbering
     start: int
     end: int   # inclusive
     compiler: str
@@ -64,7 +66,7 @@ class Band:
 
 
 _BANDS: tuple[Band, ...] = (
-    # Band 1 end extended 0x0031D928 -> 0x0031DA28:
+    # Band 1 end extended 0x0031D928 -> 0x0031DA28 (session 2026-05-29):
     # func_0031DA28 was matched under SN (carved into the SN-pinned
     # src/cod/merged_orphans_d.c) and sits in what used to be the
     # band-1/band-2 gap, ending exactly at band 2's start (0x0031DA48).
@@ -159,7 +161,8 @@ def _format_human(address: int, band: Band | None) -> str:
     if band is None:
         return (
             f"UNKNOWN  (address 0x{address:08X} is outside all known bands; "
-            f"re-run the band scan to extend coverage)"
+            f"see the dual-compiler policy notes § \"Reproducing the band "
+            f"scan\" to extend coverage)"
         )
     return (
         f"{band.compiler}  (band {band.index}, "
@@ -187,7 +190,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         description=(
             "Look up the recommended compiler pin (SN ee-gcc 2.95.3-136 vs "
             "Cygnus 2.96) for a function based on its text-section address. "
-            "Uses the empirical Address-band predictor table."
+            "See the dual-compiler policy notes § \"Address-band predictor\"."
         ),
     )
     parser.add_argument(

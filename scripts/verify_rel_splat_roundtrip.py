@@ -2,7 +2,7 @@
 """
 Verify per-REL splat round-trip without invoking the linker.
 
-This is the REL sibling of `scripts/verify_splat_roundtrip.py` for the
+This is the sibling of `scripts/verify_splat_roundtrip.py` for the
 main ELF, adapted to SNR2-format REL overlays.  For every REL with a
 splat config (currently just r207.rel), we:
 
@@ -19,13 +19,13 @@ splat config (currently just r207.rel), we:
 
 If this script reports `PASS`, splat read every byte of the REL and we
 have a deterministic recipe to reproduce the original bytes from the
-split-out tree.  That is the property the REL build path leans on when
-wiring `compile.py --rel r207` to actually compile + link + SNR2-wrap.
+split-out tree.  That is the property the REL build path will lean on
+when wiring `compile.py --rel r207` to actually compile + link + SNR2-wrap.
 
 Exits 0 on byte-perfect round-trip of every configured REL, 1
 otherwise.  Skips with exit 77 if no REL splat output exists yet
 (so `scripts/checks/rel-splat.sh` can defer cleanly until the REL
-splat has actually run).
+split has actually run).
 """
 from __future__ import annotations
 
@@ -46,7 +46,8 @@ ROOT = Path(__file__).resolve().parent.parent
 #   "asm"  — splat-emitted .s file, decoded via rebuild_asm()
 #
 # This is hand-curated for each REL (small, ~3 entries per REL — the
-# SNR2 carve is well-bounded). r207 ships first; later RELs append.
+# SNR2 carve is well-bounded). The initial cut ships r207 only; later
+# RELs append.
 # ---------------------------------------------------------------------------
 
 RELS = [

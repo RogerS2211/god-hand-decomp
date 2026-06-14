@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Verify the expected/build/ objdiff baseline really
+# Gap B: verify the expected/build/ objdiff baseline really
 # is the retail-equal build.
 #
 # Runs scripts/checks/verify_expected_vs_retail.py in deep mode

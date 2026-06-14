@@ -1,7 +1,7 @@
 # God Hand (USA) — r207.rel — splat config
 #
-# First REL splat target. Chosen on size/simplicity per the REL
-# inventory recon (`progress/rel_inventory.json`):
+# First REL splat target. Chosen on size/simplicity per
+# recon (`progress/rel_inventory.json`):
 #
 #   r207.rel       1720 B  15 funcs  4 externals  8 relocs
 #   r502.rel       1720 B  15 funcs  4 externals  8 relocs (tied)
@@ -13,7 +13,7 @@
 # subsegments for the header + tail and a single `asm` subsegment for
 # the code/early-data region.  The carve points are:
 #
-#   [0x000, 0x03C)  SNR2 header (60 B)
+#   [0x000, 0x03C)  SNR2 header (60 B; fields documented in the recon notes)
 #   [0x03C, 0x488)  code + early data (1100 B; spans .text + ctor/dtor
 #                   lists at 0x400/0x408; spimdisasm will emit data
 #                   words for the non-instruction tail of the range
@@ -42,7 +42,7 @@ sha256: ea59932301345e48add7a3eff029b7d0d0138fff1abc67569467880678c653c1
 options:
   basename: r207
   target_path: disc_extract/rel/r207.rel
-  # We do not (yet) produce a relocatable ELF for r207 — a later stage wires
+  # We do not (yet) produce a relocatable ELF for r207 — a later step wires
   # `compile.py --rel r207` to ee-ld -r the splat output. For now
   # elf_path is unset; splat doesn't need it for `split`.
   base_path: ..
@@ -55,7 +55,7 @@ options:
   asset_path: bin/rel/r207
 
   # No linker-script generation here; the LCF for the REL is hand-
-  # written at config/r207.lcf.
+  # written at config/r207.lcf and wired in a later step.
   ld_script_path: config/r207.gen.ld
   ld_dependencies: False
   ld_wildcard_sections: True
@@ -134,6 +134,6 @@ segments:
       # table (8×12 B @ 0x588), func table (15×12 B @ 0x5E8),
       # trailing zero pad (0x69C..0x6B8 = 28 B; these 28 B are
       # always zero across the 81-REL corpus
-      # "pad_nonzero == 0").
+      # — "pad_nonzero == 0").
       - [0x488, bin, tail]
   - [0x6B8]   # end-of-file marker (file size from SNR2 header)

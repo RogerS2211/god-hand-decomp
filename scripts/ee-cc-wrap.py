@@ -29,10 +29,10 @@ Default = ``cygnus-2.96`` (this wrapper's native path, back-compat with
 every existing TU).  ``sn-2.95.3-136`` re-execs ``scripts/sn-cc-wrap.py``
 with equivalent arguments — the SN ee-gcc cc1 (Win32 PE, runs under
 wibo) emits the ``sq`` callee-save shape retail needs for the
-sq-prologue failure-mode group.  Both wrappers share the Cygnus 2.96
-cpp0 preprocessor and the Cygnus ee-as 2.10 assembler so the resulting
-.o ELF flags (0x20924001, eabi64) match retail regardless of which cc1
-produced the intermediate .s.
+``sq``-prologue group.  Both wrappers share
+the Cygnus 2.96 cpp0 preprocessor and the Cygnus ee-as 2.10 assembler so
+the resulting .o ELF flags (0x20924001, eabi64) match retail regardless
+of which cc1 produced the intermediate .s.
 """
 from __future__ import annotations
 
@@ -213,19 +213,19 @@ def _dispatch_sn(argv: list[str]) -> int:
     """Re-exec scripts/sn-cc-wrap.py with the same args (minus our
     ``--compiler`` flag, which sn-cc-wrap.py doesn't understand).
 
-    The per-TU override lives in compile_config.json and is forwarded
-    to *this* wrapper by ``compile.py::_cc``.  When the TU asks for SN,
-    the cleanest dispatch is to hand the whole invocation to
-    sn-cc-wrap.py — it already runs the same Cygnus cpp0 + Cygnus ee-as
-    backend this wrapper does, and the cc1 stage is the only real
-    difference (SN cc1.exe via wibo vs. Cygnus cc1).  Keeping the two
-    wrappers as siblings (rather than inlining SN here) preserves
+    The per-TU override lives in compile_config.json and is
+    forwarded to *this* wrapper by ``compile.py::_cc``.  When the TU
+    asks for SN, the cleanest dispatch is to hand the whole invocation
+    to sn-cc-wrap.py — it already runs the same Cygnus cpp0 + Cygnus
+    ee-as backend this wrapper does, and the cc1 stage is the only
+    real difference (SN cc1.exe via wibo vs. Cygnus cc1).  Keeping the
+    two wrappers as siblings (rather than inlining SN here) preserves
     sn-cc-wrap.py as the canonical SN entry point that
     ``scripts/setup_toolchain.sh`` § 5b's smoke test exercises.
     """
     sn_wrap = ROOT / "scripts" / "sn-cc-wrap.py"
     if not sn_wrap.exists():
-        die(f"sn-cc-wrap.py missing at {sn_wrap} — run setup_toolchain.sh")
+        die(f"sn-cc-wrap.py missing at {sn_wrap} — run toolchain setup")
     # Strip --compiler=... / --compiler X tokens before forwarding.
     forwarded: list[str] = []
     skip = False

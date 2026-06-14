@@ -1,18 +1,18 @@
 # config/forced_regs_allowlist.txt
 #
 # Allowlist of files permitted to contain forced-register variables
-# (`register T x __asm__("$N");`).
+# (`register T x __asm__("$N");`).  See DECISIONS.md.
 #
-# THIS FILE SHOULD STAY EMPTY.  Policy: a forced-register pin is NOT a
-# real C match.  If a function only matches with a pin, it stays
-# `INCLUDE_ASM("nonmatching", ...)` until an authentic (pin-free) match
-# is found.  The 9 originally-grandfathered constructors were regressed
-# to nonmatching; the allowlist is intentionally empty and the ratchet
-# now enforces ZERO pins.
+# THIS FILE SHOULD STAY EMPTY.  Policy (revised 2026-05-30): a
+# forced-register pin is NOT a real C match.  If a function only matches
+# with a pin, it stays `INCLUDE_ASM("nonmatching", ...)` until an
+# authentic (pin-free) match is found.  The 9 originally-grandfathered
+# constructors were regressed to nonmatching on 2026-05-30; the allowlist
+# is intentionally empty and the ratchet now enforces ZERO pins.
 #
 # Format:  <path>  <max-allowed-count>
 # The ratchet (scripts/check_forced_regs.py, run by session_check.sh)
 # FAILS if any file has pins while absent from this list.  Adding an
-# entry resurrects a banned pattern — don't, unless the policy is
-# explicitly amended to reopen the exception.
+# entry resurrects a banned pattern — don't, unless a future policy
+# amendment explicitly reopens the exception.
 

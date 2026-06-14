@@ -1,19 +1,19 @@
 /* ------------------------------------------------------------------------ *
  * config/r207.lcf — r207.rel linker script (full-link stage)
  *
- * Hand-written sibling of config/SLUS_215.03.lcf, consumed by the
- * `compile.py --rel r207` target.
+ * Hand-written sibling of config/SLUS_215.03.lcf,
+ * consumed by the `compile.py --rel r207` target.
  *
  * The on-disc target is an SNR2 container (60-byte SN ProDG header +
- * code/early-data + name strings + reloc table + func table); see
- * the REL format notes.  The original build pipeline (per the
+ * code/early-data + name strings + reloc table + func table).
+ * The original build pipeline (per the
  * `OriginalImageName` field embedded in every REL,
  * `..\PS2_EE_Release\<name>.elf`) was:
  *
  *     foo.c → foo.o → ee-ld -r → foo.elf → snarl/dlltool → foo.rel
  *
  * Our matching-build pipeline is functionally equivalent but mechanically
- * simpler.  During prototyping it was found that:
+ * simpler.  A reopen-trigger fired during prototyping:
  * `ee-ld -r` cannot reproduce the retail .rel bytes because internal
  * R_MIPS_26 / HI16 / LO16 relocations stay unresolved in the partial-
  * link output (in-place value = 0), whereas the on-disc REL bytes have
@@ -23,7 +23,7 @@
  * same resolution, we use a FULL link with `.text` placed at REL-local
  * VMA 0x3C — the linker resolves internal relocs in-place and the
  * resulting .text bytes match the on-disc REL byte-for-byte.  See
- * the build-pipeline notes for the full rationale.
+ * DECISIONS.md for the full rationale.
  *
  * Concretely the build runs (per build_rel() in compile.py):
  *

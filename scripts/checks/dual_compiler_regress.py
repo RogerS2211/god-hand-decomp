@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Dual-compiler regression harness.
+"""dual-compiler regression harness.
 
 For every ``src/cod/*.c`` translation unit, compile twice — once with
 the default compiler (``cygnus-2.96``) and once with the SN opt-in
@@ -9,12 +9,14 @@ canonical ``expected/build/<rel>.o`` reference.
 Exit semantics
 --------------
 * The **default-compiler** path is the load-bearing back-compat
-  contract: every section of every ``src/cod/*.c`` TU MUST byte-match
-  the expected/build/ baseline.  Any mismatch fails the check.
+  contract: every section of every ``src/cod/*.c`` TU MUST
+  byte-match the expected/build/ baseline.  Any mismatch fails the
+  check.
 * The **sn-2.95.3-136** path is informational: it surfaces today's
   per-section diffs without blocking.  Trampoline TUs in particular
-  are expected to drift; once TU migration starts the per-section
-  table here will be the empirical record of what changes.
+  are expected to drift; once TU migration starts the
+  per-section table here will be the empirical record of what
+  changes.
 
 Output
 ------
@@ -212,8 +214,8 @@ def _compile_one(
     log: cpy.Logger,
 ) -> None:
     rel = src.relative_to(ROOT)
-    # Honour per-TU c_flags_drop so the regress harness compiles each
-    # TU with the same flags the
+    # Honour per-TU c_flags_drop (the func_00359218 near-miss)
+    # so the regress harness compiles each TU with the same flags the
     # main build path uses; otherwise TUs that need a flag-drop to match
     # retail will spuriously FAIL the contract gate here.
     entry = cfg.compile_units.get(str(rel), {})
@@ -390,7 +392,7 @@ def main(argv: list[str] | None = None) -> int:
     # Per-TU effective compiler from compile_config.json::compile_units.
     # TUs without an override use the default (cygnus-2.96); TUs with an
     # override use the named compiler as their gate, and the other
-    # compiler becomes informational.  (e.g. src/cod/001b0b70.c opts
+    # compiler becomes informational.  (e.g. src/cod/sq_pilot.c opts
     # into sn-2.95.3-136 so SN is its load-bearing gate.)
     compile_units_map = cfg.compile_units
 

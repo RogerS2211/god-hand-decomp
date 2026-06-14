@@ -1,7 +1,12 @@
 #ifndef INCLUDE_ASM_H
 #define INCLUDE_ASM_H
 
-#if !defined(M2CTX) && !defined(PERMUTER)
+/* GODHAND_PORT: the host PC-port build takes the no-op branch below so
+ * INCLUDE_ASM/INCLUDE_RODATA expand to nothing AND the file-scope
+ * `.include labels.inc` MIPS-asm directive is skipped (it cannot assemble on a
+ * host target). Additive guard — the PS2 build never defines GODHAND_PORT, so
+ * its preprocessed output and retail sha256 are unchanged. */
+#if !defined(M2CTX) && !defined(PERMUTER) && !defined(GODHAND_PORT)
 
 #ifndef INCLUDE_ASM
 /* Each carved function lives in its own `.text.<NAME>` section so the

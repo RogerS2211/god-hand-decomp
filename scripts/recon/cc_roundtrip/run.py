@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""cc-roundtrip vs decomp.me.
+"""M6 preflight — cc-roundtrip vs decomp.me.
 
 For each probe under this directory:
 
@@ -24,10 +24,11 @@ reference and just want to re-verify the local side.
 
 `--keep-tmp` preserves the temp working dir for inspection.
 The scratch slugs (`https://decomp.me/scratch/<slug>`) are
-printed so they're recoverable later.
+printed so they're recoverable for the M6 note.
 
-This script is a one-shot preflight gate.  It is not invoked by
-`compile.py` or any session sub-check.
+This script is part of the M6-preflight-cc-roundtrip task.
+It is not invoked by `compile.py` or any session sub-check —
+it's a one-shot preflight gate.
 """
 from __future__ import annotations
 
@@ -58,7 +59,7 @@ HTTP_HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
         "(KHTML, like Gecko) Chrome/120.0 Safari/537.36 "
-        "god-hand-decomp/cc-roundtrip"
+        "godhand-recomp/M6-preflight"
     ),
     "Origin": "https://decomp.me",
 }

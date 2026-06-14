@@ -30,7 +30,7 @@ Exit codes:
 See ``scripts/afs.py`` for the format reference; ``scripts/afs_extract.py``
 for the targeted extractor that produces ``disc_extract/rel/``.
 
-Acceptance: stable index table, no AFS-on-disk.
+Produces a stable index table without writing the AFS to disk.
 """
 from __future__ import annotations
 

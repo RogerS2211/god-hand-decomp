@@ -3,8 +3,9 @@
 #
 # Run this before writing your session retro.  It fails loudly if the
 # project's invariants have regressed: splat round-trip, build succeeds,
-# final ELF still byte-matches the retail copy, and objdiff
-# matched_code percent did not drop.
+# final ELF still byte-matches the retail copy, objdiff matched_code
+# percent did not drop, and STATE.md's headline metrics still agree
+# with progress/report.json.
 #
 # The harness is a thin dispatcher over scripts/checks/<name>.sh.  Each
 # sub-check is independently runnable:
@@ -20,7 +21,11 @@
 #     scripts/session_check.sh score           # objdiff ratchet
 #     scripts/session_check.sh data_decls      # data .s sync with include/ extern decls
 #     scripts/session_check.sh forced_regs     # forced-register pin ratchet
+#     scripts/session_check.sh naming_debt     # carved func_XXXX count must not grow
+#     scripts/session_check.sh naming_sync     # carve name agrees across symbol_addrs + C TU
 #     scripts/session_check.sh tu_complete     # in-progress TU is complete
+#     scripts/session_check.sh state           # STATE.md consistency
+#     scripts/session_check.sh public_parity   # public repo has every private match
 #     scripts/session_check.sh social          # advisory checks (never fails)
 #
 # Sub-check exit-code convention:
@@ -37,7 +42,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
 CHECKS_DIR="$ROOT/scripts/checks"
-DEFAULT_CHECKS=(splat rel-splat metadata build rel expected dual_compiler_regress units score diff data_decls forced_regs tu_complete social)
+DEFAULT_CHECKS=(splat rel-splat metadata build rel expected dual_compiler_regress units score diff data_decls forced_regs naming_debt naming_sync tu_complete state atlas public_parity social)
 
 usage() {
     cat <<EOF
@@ -47,7 +52,7 @@ Run end-of-session ratchet checks.  No argument runs the full suite:
 ${DEFAULT_CHECKS[*]}.
 
 CHECK may be any single sub-check name, or a comma-separated list
-(e.g. "splat,score").
+(e.g. "splat,state").
 
 Each sub-check is also independently runnable as scripts/checks/<name>.sh.
 

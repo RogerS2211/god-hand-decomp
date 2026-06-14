@@ -5,16 +5,16 @@
  * Targets retail section layout:
  *
  *   idx 1  .text             0x00100000  align 64
- *   idx 2  .reginfo          —           non-alloc, placeholder until the overlay subsystem lands
+ *   idx 2  .reginfo          —           non-alloc, placeholder until M5/M6
  *   idx 3  .data             0x003bbf80  align 128
  *   idx 4  .sndata           0x0040a400  align 128
- *   idx 5..43 .DVP.overlay[39] —          non-alloc, placeholders
+ *   idx 5..43 .DVP.overlay[39] —          non-alloc, placeholders (M5)
  *   idx 44 .rodata           0x0041b580  align 128
  *   idx 45 .mdebug.eabi64    0x00460c00  zero-size PROGBITS
  *   idx 46 .gcc_except_table 0x00460c00  align 128
  *   idx 47 .sbss             0x00460d00  align 128, NOBITS
- *   idx 48 .DVP.ovlytab      —           non-alloc, placeholder
- *   idx 49 .DVP.ovlystrtab   —           non-alloc, placeholder
+ *   idx 48 .DVP.ovlytab      —           non-alloc, placeholder (M5)
+ *   idx 49 .DVP.ovlystrtab   —           non-alloc, placeholder (M5)
  *   idx 50 .bss              0x00460e00  align 128, NOBITS
  *
  * The retail ELF has exactly **one** PT_LOAD program header (RWE) covering
@@ -23,8 +23,8 @@
  *
  * NOTE: the overlay/reginfo/ovlytab/ovlystrtab payloads are *not*
  * pulled in from bin/elf_metadata/.  Acceptance criteria explicitly allow
- * differing sizes — only order and VMAs need to match.  A later stage wires the
- * payloads in for byte-identical link.
+ * differing sizes — only order and VMAs need to match.  A later step wires
+ * the payloads in for byte-identical link.
  *
  * Entry is 0x00100008 (the second instruction of .text — boot code at
  * 0x00100000 is a 32-bit branch over the SCE module header).
@@ -52,8 +52,8 @@ PHDRS
  * (D_786758..D_7867B4, D_1FFC000, D_20000010..) refer to runtime-mapped
  * regions (BSS tail, IOP shared memory, hardware MMIO) and will resolve
  * the moment the loader maps the segment.  The forward references will
- * be re-anchored once the overlay subsystem is split and the BSS
- * symbols are decompiled.
+ * be re-anchored once the overlay subsystem is split (M5) and the BSS
+ * symbols are decompiled (M6+).
  *
  * Source-of-truth is still config/undefined_*_auto.txt — splat will
  * regenerate those on `splat split`.  Re-run scripts/sync_undefined.py
@@ -178,13 +178,13 @@ SECTIONS
     } :load
 
     /* ------------------------------------------------------------------ *
-     * idx 2: .reginfo — placeholder deferred to a later stage.
+     * idx 2: .reginfo — placeholder deferred to a later step.
      *
      * If we declare an empty `.reginfo` section here, ld auto-synthesises
      * 24 bytes of MIPS register-usage info, marks it SHF_ALLOC, and
      * emits a spurious REGINFO program header, breaking our "exactly 1
      * PHDR" invariant.  We instead discard all reginfo input below and
-     * let a later stage reattach the retail 24-byte payload via objcopy from
+     * later reattach the retail 24-byte payload via objcopy from
      * bin/elf_metadata/sec02_reginfo.bin, which can carry the correct
      * (sh_flags=0, sh_addr=0) flags through to the output.
      * ------------------------------------------------------------------ */
@@ -216,11 +216,11 @@ SECTIONS
     } :load
 
     /* ------------------------------------------------------------------ *
-     * idx 5..43: 39 .DVP.overlay[*] sections — deferred to a later stage.
+     * idx 5..43: 39 .DVP.overlay[*] sections — deferred to a later step.
      *
      * Same reasoning as .reginfo: empty placeholder output sections are
      * elided by ld and re-introducing them with `BYTE(0)` makes them
-     * SHF_ALLOC, which corrupts the program header layout.  A later stage will
+     * SHF_ALLOC, which corrupts the program header layout.  A later step will
      * reattach each overlay payload from bin/elf_metadata/ as a real
      * input section via `objcopy -I binary -O elf32-tradlittlemips`,
      * which preserves sh_flags=5 (W|X, non-alloc) and sh_type 0x7ffff421.
@@ -240,7 +240,7 @@ SECTIONS
     } :load
 
     /* ------------------------------------------------------------------ *
-     * idx 45: .mdebug.eabi64 — deferred to a later stage (zero-size PROGBITS at
+     * idx 45: .mdebug.eabi64 — deferred to a later step (zero-size PROGBITS at
      *         VMA 0x00460c00 in retail; same elision issue as above).
      * ------------------------------------------------------------------ */
 
@@ -271,13 +271,13 @@ SECTIONS
     } :load
 
     /* ------------------------------------------------------------------ *
-     * idx 48/49: .DVP.ovlytab / .DVP.ovlystrtab — deferred to a later stage.
+     * idx 48/49: .DVP.ovlytab / .DVP.ovlystrtab — deferred to a later step.
      *
      * Retail .DVP.ovlytab is a 39-entry, 12-byte-per-entry descriptor
      * table (sh_type 0x7ffff420, sh_link → .DVP.ovlystrtab) and
      * .DVP.ovlystrtab is a 1404-byte string table.  Both reattach from
      * bin/elf_metadata/sec48_DVP_ovlytab.bin + sec49_DVP_ovlystrtab.bin
-     * via objcopy at a later stage.
+     * via objcopy in a later step.
      * ------------------------------------------------------------------ */
 
     /* ------------------------------------------------------------------ *

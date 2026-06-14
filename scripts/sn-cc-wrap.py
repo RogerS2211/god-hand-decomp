@@ -3,13 +3,14 @@
 
 Companion to ``scripts/ee-cc-wrap.py`` (Cygnus 2.96 default compiler).
 This wrapper drives the **opt-in** SN-Systems ProDG v1.36 ee-gcc 2.95.3
-build for TUs in the sq-prologue failure-mode group \u2014 retail
+build for TUs in the ``sq``-prologue group \u2014 retail
 functions whose prologues emit ``sq`` callee-save stores that Cygnus
 2.96 cannot reproduce.
 
 The SN cc1.exe / cc1plus.exe / as.exe / cpp.exe binaries are Windows
 PE; we run them under ``tools/wibo`` (decompals/wibo 0.6.13, a small
-static Win32 PE loader). The pipeline mirrors an empirically-validated proof-of-concept:
+static Win32 PE loader). The pipeline mirrors the empirically-validated
+SN compile POC:
 
     cpp0       \u2192 .i   (Cygnus 2.96 cpp0, compatible with SN cc1)
     cc1.exe    \u2192 .s   (SN 2.95.3-136 cc1 via wibo)
@@ -38,14 +39,17 @@ Usage mirrors a tiny subset of ee-cc-wrap.py::
                   [-Dname[=val]]... [-Iincludedir]... INPUT.c
     sn-cc-wrap.py --asm-only [...] INPUT.c    # stop after cc1, emit .s
 
-The ``--asm-only`` mode is the smoke-test entry point: it bypasses the
-numerize + ee-as stages so the setup script can probe SN cc1's raw
-assembly output for the ``sq`` opcode without depending on the full
-pipeline being healthy. See ``scripts/setup_toolchain.sh`` \u00a7 5b.
+The ``--asm-only`` mode is the smoke-test entry point: it
+bypasses the numerize + ee-as stages so the setup script can probe
+SN cc1's raw assembly output for the ``sq`` opcode without depending
+on the full pipeline being healthy. See ``scripts/setup_toolchain.sh``
+\u00a7 5b.
 
 See also:
+- the ADR that authorises this wrapper
+- the operator guide for opt-in usage
 - the empirical probe matrix that proved the SN compiler is the
-  correct one for the sq-prologue group
+  correct one for the sq group
 """
 from __future__ import annotations
 
@@ -80,8 +84,8 @@ LAUNCH_CWD = Path.cwd().resolve()
 
 # Predefines passed to cpp0. We use Cygnus 2.96 cpp0 (not SN cpp.exe) for
 # the reasons documented in the module docstring; the predefines below
-# match what the empirical proof-of-concept used and
-# what produces sq-matching output for retail. The __GNUC_MINOR__ value
+# match what the empirical SN compile POC used and what produces
+# sq-matching output for retail. The __GNUC_MINOR__ value
 # is set to 95 (matching the SN compiler's version) rather than 96
 # (Cygnus) because some C source may #if on it and we want the SN code
 # path to see the SN version banner. The .i token stream is otherwise
@@ -115,9 +119,8 @@ SN_PREDEFINES = [
 
 # ABI-symbolic -> numeric GPR name map. Mirrors compile.py's
 # _EEAS_GPR_NAME_MAP exactly. Kept inline so this wrapper has no Python
-# dependency on compile.py (compile.py's helpers are import-safe but
-# we still prefer no cross-script imports
-# from a tools-layer wrapper).
+# dependency on compile.py (compile.py's helpers are import-safe but we
+# still prefer no cross-script imports from a tools-layer wrapper).
 _EEAS_GPR_NAME_MAP = {
     "zero": "0", "at": "1",
     "v0": "2", "v1": "3",
@@ -140,11 +143,11 @@ _EEAS_GPR_RE = re.compile(
 # Cygnus-2.96-only ``-f`` features that SN cc1 (gcc 2.95.3-based) doesn't
 # implement. Found by the dual-compiler regression harness: SN cc1
 # rejects ``-freorder-blocks`` with ``Invalid option`` and exit 33,
-# which was hiding behind the dispatch wrapper's argparse pass-through.
+# which was hiding behind the wrapper's argparse pass-through.
 # These features are *Cygnus-default-build* features (the project carries
-# ``-f=-freorder-blocks`` in ``compile_config.json::c_flags``). They are
-# silently dropped from the SN feature set; the cc1 invocation gets the
-# remaining flags. If SN-specific tuning
+# ``-f=-freorder-blocks`` in ``compile_config.json::c_flags`` for the
+# sq-prologue group's build). They are silently dropped from the SN feature
+# set; the cc1 invocation gets the remaining flags. If SN-specific tuning
 # of these behaviours is ever needed, this is the place to add a
 # Cygnus-flag -> SN-flag translation.
 SN_UNSUPPORTED_FEATURES = frozenset({
@@ -205,8 +208,8 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     # -W and -f mirror ee-cc-wrap.py so compile.py's identical argv shape
     # can be forwarded to either wrapper. The default config carries
     # ``-f=-freorder-blocks`` from compile_config.json::c_flags; without
-    # these the ee-cc-wrap.py -> sn-cc-wrap.py dispatch would SystemExit
-    # on argparse failure long before the .i / .s files exist.
+    # these the ee-cc-wrap.py -> sn-cc-wrap.py dispatch would
+    # SystemExit on argparse failure long before the .i / .s files exist.
     p.add_argument(
         "-W", dest="warnings", action="append", default=[],
         help="Pass a -W warning flag to cc1 (mirrors ee-cc-wrap.py)",
@@ -269,8 +272,9 @@ def main(argv: list[str]) -> int:
         die("ee-as missing \u2014 run scripts/setup_toolchain.sh")
 
     # Drop ``-f`` features SN cc1 doesn't understand (e.g. -freorder-blocks).
-    # compile.py's default c_flags carry this Cygnus-only
-    # flag; argparse silently accepts it via ``-f`` but SN cc1 then aborts
+    # The dual-compiler regression harness found that compile.py's default
+    # c_flags carry this Cygnus-only flag; argparse silently accepts it via
+    # ``-f`` but SN cc1 then aborts
     # with ``Invalid option``. We surface the drop on stderr once so the
     # behaviour delta is auditable.
     kept_features, dropped_features = _filter_features(args.features)
@@ -364,7 +368,7 @@ def main(argv: list[str]) -> int:
         # rationale as ee-cc-wrap.py's stage-3 comment. Forward user -I
         # for INCLUDE_ASM resolution; add the launch cwd as ee-as -I so
         # `.include "include/include_asm.h"` still resolves when ee-as
-        # runs from tempdir (the .mdebug-determinism fix — same
+        # runs from tempdir (.mdebug-determinism fix — same
         # justification as ee-cc-wrap.py).
         as_cmd = [
             str(EE_AS),

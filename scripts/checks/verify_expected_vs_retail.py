@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Verify the `expected/build/` ratchet baseline really
+"""Gap B: verify the `expected/build/` ratchet baseline really
 *is* the retail-equal build.
 
-A naive version of this check would confirm that the section bytes
+The task as originally drafted asked us to confirm that the section bytes
 of every `expected/build/<u>.o` concatenate, in lcf declaration order, to
 retail's loaded-section bytes.  That literal check **cannot pass** for a
-mechanical reason: `objcopy -O binary` of an
+mechanical reason discovered in session 12: `objcopy -O binary` of an
 unlinked `.o` returns the *unrelocated* bytes, where every absolute
 address slot is zero.  Retail's `.text`/`.data`/`.rodata`/`.sndata` are
 the *relocated* bytes ld wrote after applying the 200k+ entries in
@@ -13,9 +13,9 @@ the *relocated* bytes ld wrote after applying the 200k+ entries in
 relocation site (offset 0x11c in `.text`, ~28k relocations into `.text`
 in total).
 
-The *meaningful* invariant is:
+The *meaningful* invariant — what the task was really pointing at — is:
 
-  the ratchet baseline is exactly the byte-identical retail build.
+  the ratchet baseline is exactly the byte-identical build.
 
 That decomposes into two equivalent gates:
 
@@ -304,7 +304,7 @@ def main() -> int:
         print(f"      (current build/SLUS_215.03.elf sha256 must equal "
               f"{RETAIL_SHA256[:12]}…; verified by `scripts/checks/build.sh`)")
     else:
-        print("FAIL: baseline divergence — rebase the expected/build baseline")
+        print("FAIL: baseline divergence — open a rebase follow-up")
     return rc
 
 

@@ -7,23 +7,23 @@
  * surface either: every VU0 emission in retail code goes through
  * hand-written inline assembly.  This header is therefore a
  * project-local **idiom-stabilising** wrapper, not a vendored SDK
- * stub.  By a lazy-vendor convention, if a canonical SCE header
+ * stub.  Per the lazy-vendor rule, if a canonical SCE header
  * with these intrinsics ever surfaces, this header is superseded
  * and moved/dropped accordingly.
  *
  * # The pipeline-delay nop convention
  *
- * **Empirically: for the load/store COP2 ops covered
+ * **Empirically, for the load/store COP2 ops covered
  * here (`sqc2`, `lqc2`), ee-as does NOT auto-insert pipeline
  * nops in any tested mode (`.set noreorder`, `.set reorder`,
  * or default).**  Retail (`func_0027B768`) has 6 back-to-back
  * `sqc2 $vf0, off($s0)` with NO nops between them; a minimal
  * 3-sqc2 standalone .s file assembled with ee-as under each
  * `.set` mode also produces zero inter-op nops.  This
- * falsifies the assumption that ee-as inserts exactly 1 nop per
- * VU0 op for the quadword load/store class: ee-as does NOT insert
- * pipeline-delay nops for sqc2/lqc2 in practice, even under
- * `.set noreorder`.
+ * falsifies the assumption that ee-as inserts exactly 1 nop
+ * per VU0 op for the quadword load/store class.  The universal
+ * claim that ee-as inserts pipeline-delay nops even under `.set
+ * noreorder` does NOT hold for sqc2/lqc2 in practice.
  *
  * Each macro therefore expands to a `.set noreorder` block
  * containing **only** the COP2 instruction (no extra nop):
@@ -85,7 +85,8 @@
  * # Reopen triggers for this header
  *
  *   - First byte-match attempt that fails because the nop count
- *     is wrong: re-investigate the ee-as hazard analyser and adjust.
+ *     is wrong: re-investigate the ee-as hazard analyser (skill
+ *     § What could still go wrong #1) and adjust.
  *   - A canonical SCE `<sce/vu0.h>` surfaces: supersede + move
  *     this header to `include/sce/vu0.h` with the intrinsic
  *     names from the SDK.
@@ -157,10 +158,10 @@
  *     .set pop
  *
  * Note: `lqc2` follows the same no-explicit-nop convention as
- * the sqc2 macros (empirically falsified assumption #1 in the
- * an earlier byte-match attempt covers stores; loads are
- * expected to follow the same rule but the first lqc2 byte-
- * match attempt should re-confirm before relying on it).  If
+ * the sqc2 macros (the empirically falsified nop assumption
+ * covers stores; loads are expected to follow the same rule
+ * but the first lqc2 byte-match attempt should re-confirm
+ * before relying on it).  If
  * an `lqc2`-bearing function fails to byte-match because of a
  * missing pipeline nop, revisit the assumption and add an
  * explicit-nop variant.

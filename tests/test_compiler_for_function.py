@@ -112,7 +112,7 @@ class TestLookupBandEmpiricalCases:
     @pytest.mark.parametrize(
         "name,addr,expected_compiler,expected_band",
         [
-            # Representative band-scan samples:
+            # Session 2026-05-28-02 reps:
             ("func_002772A8", 0x002772A8, cff._COMPILER_SN, 1),
             ("func_0012CF00", 0x0012CF00, cff._COMPILER_SN, 1),
             # R-VU0 / R-VU0-2 (matched, SN-pinned):
@@ -192,7 +192,7 @@ class TestCLI:
         rc, out, err = self._run(["0xFFFFFFFF"])
         assert rc == 1
         assert "UNKNOWN" in out
-        assert "band scan" in out
+        assert "Reproducing the band scan" in out
 
     def test_invalid_target_returns_1_with_stderr_message(self) -> None:
         rc, out, err = self._run(["not_a_function"])
@@ -220,7 +220,8 @@ class TestCLI:
 #
 # Confidence-building integration: every currently-carved function whose TU
 # is SN-pinned should land in an SN-band, and every Cygnus-pinned TU's
-# functions should land in a Cygnus-band (or band-1 lucky-neutrals).
+# functions should land in a Cygnus-band (or band-1 lucky-neutrals; see
+# the dual-compiler policy notes § "Address-band predictor").
 #
 # The 132 band-predicted-SN funcs currently carved into Cygnus-pinned
 # src/cod/000000.c (lucky-neutral matches) are the documented exception.

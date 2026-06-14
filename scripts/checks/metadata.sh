@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# bin/elf_metadata/ manifest enforcement.
+# Gap D: bin/elf_metadata/ manifest enforcement.
 #
 # The 42 non-loaded payloads + shstrtab.bin + sht.bin under
 # bin/elf_metadata/ are checksummed in bin/elf_metadata/manifest.json

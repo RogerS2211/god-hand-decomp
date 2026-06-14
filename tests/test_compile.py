@@ -1,8 +1,8 @@
 """Unit tests for the pure-Python helpers inside ``compile.py``.
 
-These tests lock in the early behaviours (carving, single-file
-resolver, linker-script parsing) so later real-decomp churn can't
-silently regress them.
+These tests lock in the early behaviours (carving, single-file resolver,
+linker-script parsing) so later real-decomp churn can't silently regress
+them.
 
 Out of scope (deliberately):
   * Mocking the assembler / linker / ee-cc-wrap.  End-to-end build
@@ -67,7 +67,8 @@ def _mkcfg(**overrides) -> cm.Config:
 # Canonical 3-function synthetic monolithic.  Mirrors the real shape of
 # asm/cod/000000.s: ee-as include, .set directives, .section .text,
 # /* ... */ comment + nonmatching marker + glabel/endlabel triplets,
-# inter-function pad nop.  Verified shape against the live file.
+# inter-function pad nop.  Verified shape against the live file at
+# session 27.
 MONOLITHIC_3FN = textwrap.dedent(
     """\
     .include "macro.inc"
@@ -445,7 +446,7 @@ class TestSplitMonolithic:
 
 
 # --------------------------------------------------------------------------- #
-# _carve_unit_size_bytes
+# _carve_unit_size_bytes (Bug 3 regression)
 #
 # The LCF location counter needs the carve unit's TRUE byte span (body +
 # trailing nop pad), not just the function body size.  Without the
@@ -456,7 +457,7 @@ class TestSplitMonolithic:
 
 
 class TestCarveUnitSizeBytes:
-    """Coverage for ``_carve_unit_size_bytes``.
+    """Coverage for ``_carve_unit_size_bytes`` (Bug 3).
 
     The function counts instruction lines in a carved-fragment .s text
     (the form spimdisasm emits with ``/* FILE_OFF VRAM HEX_BYTES */``
@@ -514,8 +515,8 @@ class TestCarveUnitSizeBytes:
 
     def test_eight_byte_body_with_large_trailing_pad(self):
         """Mirror of ``func_00138BB8``'s shape: 2-insn 8-B body + 8
-        trailing nops = 40-B carve unit.  This is the drift case that
-        the LCF size fix addresses."""
+        trailing nops = 40-B carve unit.  This is the case that drifted
+        T2 batch 1 in session 94."""
         text = (
             ".section .text.foo, \"ax\"\n"
             ".align 3\n"
@@ -538,10 +539,109 @@ class TestCarveUnitSizeBytes:
 
 
 # --------------------------------------------------------------------------- #
+# _emit_build_lcf — boundary-safe SUBALIGN(8)
+# --------------------------------------------------------------------------- #
+class TestEmitBuildLcfSubalign:
+    """The build-time lcf must force every carved-output `.text*` input to
+    8-byte alignment (`SUBALIGN(8)`), so a fragment whose carve directive
+    lands it at an 8-but-not-16-aligned address is not bumped up to 16 by
+    ld's default `.text` (2**4) alignment.  Without this, a carve whose end
+    VRAM is 8-but-not-16-aligned shifts every following function and the
+    next carve's `. = cod_TEXT_START + 0x<end>;` directive moves the location
+    counter backwards ("cannot move location counter backwards").  The us
+    carves dodged it by hand-curated 16-aligned boundaries; cross-version
+    landing cannot, so the fix lives in the build system.  See
+    scripts/port_version.py.
+    """
+
+    def _committed_lcf(self, tmp_path: Path) -> Path:
+        lcf = tmp_path / "config/SLUS_215.03.lcf"
+        lcf.parent.mkdir(parents=True, exist_ok=True)
+        lcf.write_text(textwrap.dedent("""\
+            SECTIONS
+            {
+                .text 0x00100000 : ALIGN(64)
+                {
+                    cod_TEXT_START = .;
+                    build/asm/cod/000000.o(.text*)
+                    *(.text .text.*)
+                    cod_TEXT_END = .;
+                }
+            }
+        """))
+        return lcf
+
+    def _emit(self, tmp_path, monkeypatch):
+        monkeypatch.setattr(cm, "ROOT", tmp_path)
+        lcf = self._committed_lcf(tmp_path)
+        # One non-tu carve out of a 2-fragment split.
+        frags = []
+        for i in range(2):
+            fp = tmp_path / f"build/asm/cod/000000.part{i}.s"
+            fp.parent.mkdir(parents=True, exist_ok=True)
+            fp.write_text(f"; frag {i}\n")
+            frags.append(fp)
+        carved_s = tmp_path / "build/asm/nonmatching/func_00100000.s"
+        carved_s.parent.mkdir(parents=True, exist_ok=True)
+        carved_s.write_text("; carve\n")
+        cfg = cm.Config(raw={**_mkcfg().raw,
+                             "linker_scripts": ["config/SLUS_215.03.lcf"],
+                             "carved_funcs": [{
+                                 "name": "func_00100000",
+                                 "unit": "asm/cod/000000",
+                                 "vaddr": "0x00100000",
+                                 "size": 8,
+                             }]})
+        out = cm._emit_build_lcf(
+            cfg, frags, {"func_00100000": carved_s},
+            [("func_00100000", 0, 1)], {"func_00100000": 8},
+            carve_unit="asm/cod/000000",
+        )
+        return out.read_text()
+
+    def test_subalign_injected_into_text_section(self, tmp_path, monkeypatch):
+        text = self._emit(tmp_path, monkeypatch)
+        assert ".text 0x00100000 : ALIGN(64) SUBALIGN(8)" in text
+        # Injected exactly once, and the catch-all is preserved.
+        assert text.count("SUBALIGN(8)") == 1
+        assert "*(.text .text.*)" in text
+
+    def test_missing_text_header_raises(self, tmp_path, monkeypatch):
+        monkeypatch.setattr(cm, "ROOT", tmp_path)
+        lcf = tmp_path / "config/SLUS_215.03.lcf"
+        lcf.parent.mkdir(parents=True, exist_ok=True)
+        # Has the carve anchor but NOT the `.text ... : ALIGN(64)` header.
+        lcf.write_text("SECTIONS {\n        build/asm/cod/000000.o(.text*)\n}\n")
+        frags = []
+        for i in range(2):
+            fp = tmp_path / f"build/asm/cod/000000.part{i}.s"
+            fp.parent.mkdir(parents=True, exist_ok=True)
+            fp.write_text(f"; frag {i}\n")
+            frags.append(fp)
+        carved_s = tmp_path / "build/asm/nonmatching/func_00100000.s"
+        carved_s.parent.mkdir(parents=True, exist_ok=True)
+        carved_s.write_text("; carve\n")
+        cfg = cm.Config(raw={**_mkcfg().raw,
+                             "linker_scripts": ["config/SLUS_215.03.lcf"],
+                             "carved_funcs": [{
+                                 "name": "func_00100000",
+                                 "unit": "asm/cod/000000",
+                                 "vaddr": "0x00100000",
+                                 "size": 8,
+                             }]})
+        with pytest.raises(cm.BuildError, match="ALIGN\\(64\\)"):
+            cm._emit_build_lcf(
+                cfg, frags, {"func_00100000": carved_s},
+                [("func_00100000", 0, 1)], {"func_00100000": 8},
+                carve_unit="asm/cod/000000",
+            )
+
+
+# --------------------------------------------------------------------------- #
 # _resolve_single_file_targets
 # --------------------------------------------------------------------------- #
 class TestResolveSingleFileTargets:
-    """Five happy paths + three error shapes from the authoritative
+    """Five happy paths + three error shapes per session 15's authoritative
     catalog.  Uses synthetic ``CompileUnit`` and ``CarveState`` objects so
     we don't need a real build tree.
     """
@@ -877,8 +977,8 @@ class TestRealMonolithic:
             pytest.skip("asm/cod/000000.s not present (pre-splat checkout)")
         lines = mono.read_text().splitlines(keepends=True)
         idx = cm._index_functions(lines)
-        # Live count is ~11,140 glabels in the monolithic text section.
-        # Lower bound 1,000 catches regressions while
+        # Live count at session 27 is ~11,140 glabels in the monolithic
+        # text section.  Lower bound 1,000 catches regressions while
         # tolerating future re-splat shape drift.
         assert len(idx) > 1000
 
@@ -924,7 +1024,7 @@ class TestConfigRels:
         assert _mkcfg().rels == []
 
     def test_missing_key_returns_empty(self):
-        # No "rels" key at all is treated the same as []; the early
+        # No "rels" key at all is treated the same as []; the M1…M4
         # baseline never had this field, and configs from that era
         # must keep working without modification.
         cfg = _mkcfg()
@@ -1078,10 +1178,70 @@ class TestRelDiscoveryExclusion:
         assert bin_p.resolve() not in paths
 
 
+class TestForeignVersionExclusion:
+    """Sibling-version source trees must be excluded from a build's discover().
+
+    The US (default) config uses recursive globs (``src/**/*.c`` /
+    ``asm/**/*.s``) that would otherwise sweep the committed ``src/eu/`` /
+    ``src/jp/`` ports into the US unit list — drifting the ``units`` ratchet and
+    wastefully recompiling cross-version objects. A version root is pruned only
+    when the config's own globs don't target it (``src/eu/**`` keeps ``src/eu``
+    for the EU build but still prunes ``src/jp``). Mirrors the REL-part skip.
+    """
+
+    def test_untargeted_version_dirs_are_foreign(self):
+        # A config whose globs target no version dir (here: empty globs) treats
+        # every on-disk registered version root as foreign. Harmless — such a
+        # config discovers nothing under them anyway — but documents that the
+        # predicate is glob-driven, not contents-driven.
+        roots = cm._foreign_version_roots(_mkcfg())
+        on_disk = {(cm.ROOT / sub).resolve()
+                   for sub in ("src/eu", "src/jp", "asm/eu", "asm/jp")
+                   if (cm.ROOT / sub).is_dir()}
+        assert roots == on_disk
+
+    def test_scoped_glob_keeps_own_version_prunes_siblings(self):
+        # An EU-shaped config (scoped globs) keeps src/eu but prunes src/jp.
+        cfg = _mkcfg(
+            asm_sources_glob=["asm/eu/**/*.s", "src/eu/**/*.s"],
+            c_sources_glob=["src/eu/**/*.c"],
+        )
+        roots = cm._foreign_version_roots(cfg)
+        # src/eu is targeted -> not foreign; src/jp is not -> foreign (if it
+        # exists on disk in this checkout).
+        if (cm.ROOT / "src/eu").is_dir():
+            assert (cm.ROOT / "src/eu").resolve() not in roots
+        if (cm.ROOT / "src/jp").is_dir():
+            assert (cm.ROOT / "src/jp").resolve() in roots
+
+    def test_recursive_glob_prunes_all_version_dirs(self):
+        # A US-shaped config (recursive sweep) targets no specific version dir,
+        # so every registered version's source root is foreign.
+        cfg = _mkcfg(
+            asm_sources_glob=["asm/**/*.s", "src/**/*.s"],
+            c_sources_glob=["src/**/*.c"],
+        )
+        roots = cm._foreign_version_roots(cfg)
+        for sub in ("src/eu", "src/jp", "asm/eu", "asm/jp"):
+            d = cm.ROOT / sub
+            if d.is_dir():
+                assert d.resolve() in roots
+
+    def test_us_discover_excludes_cross_version_sources(self):
+        # End-to-end: the real US config's discover() must yield no units under
+        # any sibling-version source root.
+        cfg = cm.Config.load(cm.DEFAULT_CONFIG)
+        carve = cm.maybe_carve(cfg, cm.Logger(verbose=False))
+        rels = [str(u.rel) for u in cm.discover(cfg, carve)]
+        foreign = [r for r in rels
+                   if r.startswith(("src/eu/", "src/jp/",
+                                    "asm/eu/", "asm/jp/"))]
+        assert foreign == [], f"US discover() swept cross-version units: {foreign[:5]}"
+
+
 class TestRelObjdiffUnits:
     """REL units join the auto-emitted main-ELF unit list with a
-    ``metadata.rel = <name>`` tag so downstream tooling can tell them
-    apart.
+    ``metadata.rel = <name>`` tag so M6+ tooling can tell them apart.
     """
 
     def test_rel_unit_emitted_with_rel_metadata(self):
@@ -1117,4 +1277,99 @@ class TestRelObjdiffUnits:
         )
         units = cm._objdiff_units(cfg, carve=None)
         assert [u for u in units if u.get("metadata", {}).get("rel")] == []
+
+
+# --------------------------------------------------------------------------- #
+# resolve_config_path  — multi-version registry selection
+# --------------------------------------------------------------------------- #
+class TestResolveConfigPath:
+    """Locks in the --version / --config resolution against a fake registry."""
+
+    @staticmethod
+    def _setup(tmp_path: Path, monkeypatch, *, registry: dict | None,
+               make_configs=("compile_config.json",)) -> None:
+        monkeypatch.setattr(cm, "ROOT", tmp_path)
+        monkeypatch.setattr(cm, "DEFAULT_CONFIG", tmp_path / "compile_config.json")
+        monkeypatch.setattr(cm, "DEFAULT_VERSIONS", tmp_path / "config" / "versions.json")
+        for rel in make_configs:
+            p = tmp_path / rel
+            p.parent.mkdir(parents=True, exist_ok=True)
+            p.write_text("{}")
+        if registry is not None:
+            vp = tmp_path / "config" / "versions.json"
+            vp.parent.mkdir(parents=True, exist_ok=True)
+            vp.write_text(json.dumps(registry))
+
+    _REG = {
+        "default": "us",
+        "versions": {
+            "us": {"compile_config": "compile_config.json"},
+            "eu": {"compile_config": "config/eu/compile_config.json"},
+        },
+    }
+
+    def test_explicit_config_wins(self, tmp_path, monkeypatch):
+        self._setup(tmp_path, monkeypatch, registry=self._REG)
+        explicit = tmp_path / "whatever.json"
+        assert cm.resolve_config_path("eu", explicit) == explicit
+
+    def test_default_version_is_us(self, tmp_path, monkeypatch):
+        self._setup(tmp_path, monkeypatch, registry=self._REG)
+        assert cm.resolve_config_path(None, None) == tmp_path / "compile_config.json"
+
+    def test_named_version_resolves(self, tmp_path, monkeypatch):
+        self._setup(tmp_path, monkeypatch, registry=self._REG,
+                    make_configs=("compile_config.json", "config/eu/compile_config.json"))
+        assert cm.resolve_config_path("eu", None) == tmp_path / "config/eu/compile_config.json"
+
+    def test_unknown_version_raises(self, tmp_path, monkeypatch):
+        self._setup(tmp_path, monkeypatch, registry=self._REG)
+        with pytest.raises(cm.BuildError):
+            cm.resolve_config_path("zz", None)
+
+    def test_not_bootstrapped_version_raises(self, tmp_path, monkeypatch):
+        # 'eu' is registered but its compile_config file does not exist yet.
+        self._setup(tmp_path, monkeypatch, registry=self._REG)
+        with pytest.raises(cm.BuildError):
+            cm.resolve_config_path("eu", None)
+
+    def test_missing_registry_falls_back_to_default_config(self, tmp_path, monkeypatch):
+        self._setup(tmp_path, monkeypatch, registry=None)
+        assert cm.resolve_config_path(None, None) == tmp_path / "compile_config.json"
+
+
+def test_unit_categories_mapping():
+    """Library carve units -> their subcategory; everything else -> ['engine']."""
+    lib = {"func_0017F5D0": "cri-middleware", "func_00195EF8": "sce-runtime"}
+    # library carve unit (standalone nonmatching .o for a library func)
+    assert cm._unit_categories("asm/nonmatching/func_0017F5D0", lib) == ["cri-middleware"]
+    assert cm._unit_categories("asm/nonmatching/func_00195EF8", lib) == ["sce-runtime"]
+    # nonmatching carve that is NOT a library func -> engine
+    assert cm._unit_categories("asm/nonmatching/func_00ABCDEF", lib) == ["engine"]
+    # fragment unit (uncarved engine funcs) -> engine
+    assert cm._unit_categories("asm/cod/000000.part5", lib) == ["engine"]
+    # decomp TU -> engine
+    assert cm._unit_categories("src/cod/000293", lib) == ["engine"]
+
+
+def test_unit_categories_maps_lib_vaddr_to_subcategory(tmp_path):
+    import compile as cm
+    fc = tmp_path / "function_categories.json"
+    fc.write_text(json.dumps({
+        "_schema": "function_categories/1",
+        "categories": {
+            "cri-middleware": ["0X0017F5D0"],
+            "crt": ["0X00200100"],
+            "sce-runtime": [],
+        },
+    }))
+    cat_map = cm._load_category_map(fc)
+    assert cat_map == {0x0017F5D0: "cri-middleware", 0x00200100: "crt"}
+
+    lib_cats = {"func_0017F5D0": "cri-middleware"}
+    assert cm._unit_categories("asm/nonmatching/func_0017F5D0", lib_cats) == ["cri-middleware"]
+    assert cm._unit_categories("asm/nonmatching/func_DEADBEEF", lib_cats) == ["engine"]
+    # src/cod/<subsys>/ TUs roll up to engine AND their engine.<subsys> drill-down
+    # bar (the decomp.dev subcategory tree); 'system' is in _ENGINE_SUBSYSTEMS.
+    assert cm._unit_categories("src/cod/system/cCoreSave", lib_cats) == ["engine", "engine.system"]
 
