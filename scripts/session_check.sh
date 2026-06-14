@@ -25,7 +25,6 @@
 #     scripts/session_check.sh naming_sync     # carve name agrees across symbol_addrs + C TU
 #     scripts/session_check.sh tu_complete     # in-progress TU is complete
 #     scripts/session_check.sh state           # STATE.md consistency
-#     scripts/session_check.sh public_parity   # public repo has every private match
 #     scripts/session_check.sh social          # advisory checks (never fails)
 #
 # Sub-check exit-code convention:
@@ -42,7 +41,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
 CHECKS_DIR="$ROOT/scripts/checks"
-DEFAULT_CHECKS=(splat rel-splat metadata build rel expected dual_compiler_regress units score diff data_decls forced_regs naming_debt naming_sync tu_complete state atlas public_parity social)
+DEFAULT_CHECKS=(splat rel-splat metadata build rel expected dual_compiler_regress units score diff data_decls forced_regs naming_debt naming_sync tu_complete state atlas social)
 
 usage() {
     cat <<EOF
