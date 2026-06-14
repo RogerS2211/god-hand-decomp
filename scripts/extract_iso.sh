@@ -2,14 +2,11 @@
 # Extract the boot ELF and small tables from your own ISO dump.
 # Idempotent: safe to re-run; verifies the boot-ELF hash against the registry.
 #
-# Multi-version: the disc layout for every release is described in
-# config/versions.json. Select one with --version (default: the registry's
-# default version, us).
+# The disc layout for the release is described in config/versions.json.
+# Select a version with --version (default: the registry's default version, us).
 #
 # Usage:
 #   ./scripts/extract_iso.sh                       # us, from God Hand (USA).iso
-#   ./scripts/extract_iso.sh --version eu          # eu, from its registered ISO
-#   ./scripts/extract_iso.sh --version jp /path/to/jp.iso
 #   ./scripts/extract_iso.sh /path/to/usa.iso      # us, explicit ISO path
 #
 # The boot ELF lands at disc_extract/<boot_elf> (e.g. disc_extract/SLUS_215.03);
@@ -70,9 +67,9 @@ echo "[extract_iso] version=$VERSION  boot=$BOOT_ELF"
 echo "[extract_iso] Extracting from: $ISO"
 
 # Boot ELF is always extracted. SYSTEM.CNF / disc tables share filenames
-# across regions, so only the default (us) version writes them into the flat
+# across versions, so only the default (us) version writes them into the flat
 # disc_extract/ dir — that keeps the historical us layout intact and avoids
-# clobbering it when extracting a sibling region's disc.
+# clobbering it when extracting another version's disc.
 7z e -o"$OUT" "$ISO" "$BOOT_ELF" -y >/dev/null
 if [[ "$VERSION" == "us" ]]; then
   7z e -o"$OUT" "$ISO" SYSTEM.CNF 0FLISTDV.DIR GODHAND.FST -y >/dev/null 2>&1 || true

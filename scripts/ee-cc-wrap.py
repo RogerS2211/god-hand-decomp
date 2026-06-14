@@ -219,7 +219,7 @@ def _dispatch_sn(argv: list[str]) -> int:
     to sn-cc-wrap.py — it already runs the same Cygnus cpp0 + Cygnus
     ee-as backend this wrapper does, and the cc1 stage is the only
     real difference (SN cc1.exe via wibo vs. Cygnus cc1).  Keeping the
-    two wrappers as siblings (rather than inlining SN here) preserves
+    two wrappers separate (rather than inlining SN here) preserves
     sn-cc-wrap.py as the canonical SN entry point that
     ``scripts/setup_toolchain.sh`` § 5b's smoke test exercises.
     """

@@ -12,9 +12,3 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
-
-# The private pipeline lives under .private/scripts/ (separated from the public
-# scripts/ tree); add it so its modules import by bare name under pytest.
-PRIV_SCRIPTS = REPO_ROOT / ".private" / "scripts"
-if str(PRIV_SCRIPTS) not in sys.path:
-    sys.path.insert(0, str(PRIV_SCRIPTS))

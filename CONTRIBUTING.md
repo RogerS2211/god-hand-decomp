@@ -70,7 +70,6 @@ repo** and none should ever be committed.
 ```bash
 # 1. Put your own dump at the repo root as 'God Hand (USA).iso'.
 ./scripts/extract_iso.sh            # extracts + sha256-verifies the boot ELF
-                                    # (add --version eu / --version jp for siblings)
 
 # 2. Vendor the SCE PS2 SDK 3.0.20 toolchain (ee-gcc 2.96 + SN linker + dvp-as),
 #    plus splat / m2c / objdiff / asm-differ / decomp-permuter:
@@ -145,7 +144,7 @@ dispatchers and anything with VU0 microcode or 64-bit runtime shifts until
 you're comfortable — those hit toolchain-fidelity walls (see
 [`STATE.md`](./STATE.md)).
 
-To browse the worklist, the cross-region atlas census is the map:
+To browse the worklist, the function atlas census is the map:
 
 ```bash
 .venv/bin/python scripts/function_atlas.py     # -> progress/function_atlas.summary.md
@@ -311,32 +310,10 @@ guard.
 
 ---
 
-## 6. Multi-version porting (free progress)
-
-All three regional masters (`us`, `eu`, `jp`) were built with the same
-compiler/SDK, so a function matched on `us` is — modulo relocations — the same
-machine code on the siblings. You usually **don't re-decompile** for `eu`/`jp`;
-you port:
+## 6. Measuring progress
 
 ```bash
-.venv/bin/python scripts/port_version.py --version eu   # find sibling addresses
-.venv/bin/python scripts/land_verify.py ...             # land matched us C, keep only byte-verified TUs
-.venv/bin/python compile.py --version eu                # build the sibling
-scripts/checks/build_version.sh eu                      # verify vs retail ELF
-```
-
-A function that matches `us` but has **no** sibling counterpart is a strong
-overfit signal — it's flagged, not ported. See
-[`MULTIVERSION.md`](./MULTIVERSION.md).
-
----
-
-## 7. Measuring progress
-
-```bash
-scripts/progress.sh                      # us: regenerate report + print headline
-scripts/progress.sh --version eu         # a sibling
-scripts/checks/progress_all.sh           # one-screen dashboard across all versions
+scripts/progress.sh                      # regenerate report + print headline
 .venv/bin/python scripts/render_state.py # refresh STATE.md's metric block
 ```
 
@@ -346,7 +323,7 @@ metric; that's why it's generated now.)
 
 ---
 
-## 8. Quick reference
+## 7. Quick reference
 
 | You want to… | Command |
 |---|---|
@@ -358,19 +335,18 @@ metric; that's why it's generated now.)
 | Integrate a match | `integrate_match.py <name> cand.c` |
 | Integrate + verify + commit | `scripts/match_and_commit.sh <name> cand.c` |
 | Pre-commit gate | `scripts/session_check.sh` |
-| Build the ELF | `compile.py [--version us\|eu\|jp]` |
+| Build the ELF | `compile.py` |
 | Build one TU only | `compile.py --single-file src/cod/<x>.c` |
 | Progress headline | `scripts/progress.sh` |
 | Browse the worklist | `scripts/function_atlas.py` |
 
 ---
 
-## 9. Where to go deeper
+## 8. Where to go deeper
 
 - [`README.md`](./README.md) — project overview, goals, legal
 - [`ORIENT.md`](./ORIENT.md) — full orientation contract (what the agents follow)
 - [`program.md`](./program.md) — the success spec and milestones
-- [`MULTIVERSION.md`](./MULTIVERSION.md) — the three-region architecture
 - [`notes/`](./notes/) — every recon report and retro; the project's memory
 
 Welcome aboard. Match one small function end-to-end first — it teaches the

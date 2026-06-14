@@ -1,21 +1,16 @@
 # godhand-recomp
 
 Matching decompilation of **God Hand** (PS2, 2006, Clover Studio / Capcom),
-orchestrated by the [pi coding agent]. The build targets **all three regional
-masters** from one source tree, selected by a short version key.
+orchestrated by the [pi coding agent]. The build targets the NTSC-U retail
+master (`SLUS-21503`) from one source tree.
 
 | key | serial | region | disc | boot ELF | status |
 |-----|--------|--------|------|----------|--------|
 | `us` | SLUS-21503 | NTSC-U | 1.00 | `SLUS_215.03` | matching (primary) |
-| `eu` | SLES-54490 | PAL | 1.00 | `SLES_544.90` | byte-identical + 533 ported funcs |
-| `jp` | SLPM-66550 | NTSC-J | 1.01 | `SLPM_665.50` | byte-identical + 538 ported funcs |
 
-All three build **byte-identical to their retail boot ELF** (`elf_sha256` in
-[`config/versions.json`](./config/versions.json)). `us` carries the active C
-decompilation; `eu`/`jp` are byte-identical empty-carve baselines that the
-[cross-version port tooling](#multi-version-support) fills in from the matched
-`us` C. The same compiler/SDK built all three, so a matched `us` function is
-the same machine code on the siblings — see [`MULTIVERSION.md`](./MULTIVERSION.md).
+The build is **byte-identical to the retail boot ELF** (`elf_sha256` in
+[`config/versions.json`](./config/versions.json)) and carries the active C
+decompilation. Omitting `--version` reproduces the original build byte-for-byte.
 
 See [`program.md`](./program.md) for the success spec and the `notes/`
 directory for the recon report.
@@ -108,14 +103,9 @@ python compile.py --setup
 # 6. Build the project (empty matching link to start):
 python compile.py            # default version is 'us'
 
-# 7. Run the unit tests (parsers, carve splitter, ELF reglue, cross-version
-#    mapper, cross-region atlas). Wall time < 1 s.
+# 7. Run the unit tests (parsers, carve splitter, ELF reglue). Wall time < 1 s.
 .venv/bin/python -m pytest tests/
 ```
-
-Add `--version eu` / `--version jp` to any `compile.py` invocation to target a
-sibling (the registry in `config/versions.json` resolves the per-version
-config). Omitting `--version` reproduces the original `us` build byte-for-byte.
 
 ## Nix dev environment (optional)
 
@@ -139,88 +129,39 @@ fetches and only does the venv, Python tools, assembler patches, and git hooks.
     nix develop --extra-experimental-features 'nix-command flakes' --command bash
   ```
 
-## Multi-version support
-
-One source tree builds all three regional masters. Full architecture is in
-[`MULTIVERSION.md`](./MULTIVERSION.md); the short version:
-
-```bash
-./scripts/extract_iso.sh --version eu        # extract that region's boot ELF (hash-checked)
-python compile.py --version eu               # build it
-scripts/checks/build_version.sh eu           # build + verify vs retail (full-ELF sha256)
-scripts/checks/build_all_versions.sh         # build + verify every bootstrapped version
-python scripts/bootstrap_version.py <key>    # bring up a brand-new region from its ELF
-```
-
-**Cross-version porting.** Because all three were built with the same
-compiler/SDK, a function matched on `us` is — modulo relocations — the same
-machine code on `eu`/`jp`. `scripts/port_version.py` finds each `us` function's
-sibling counterpart by a **relocation-masked opcode signature** and writes:
-
-```bash
-python scripts/port_version.py --version eu  # -> config/eu/symbol_addrs.txt + progress/port_plan.eu.json
-```
-
-`config/<ver>/symbol_addrs.txt` maps the canonical `us` name to the sibling's
-address; `progress/port_plan.<ver>.json` reports how many matched functions are
-landable on the sibling. A function that matches `us` but has **no** sibling
-counterpart is a strong overfit signal and is flagged rather than ported.
-
 ## Measuring progress
 
-Progress is measured per version, the same way for all three:
+Progress is measured two complementary ways:
 
 - **`matched_code_percent` / `matched_functions`** — the fine-grained metric.
   [objdiff](https://github.com/encounter/objdiff) diffs every compiled unit
   against the frozen retail-disassembly target and counts the `.text` bytes (in
-  real C units) that compile byte-identical to retail. Each version has its own
-  objdiff project (`objdiff.json` for `us`, `config/<ver>/objdiff.json` for the
-  siblings) and report (`progress/report.<ver>.json`):
+  real C units) that compile byte-identical to retail. The objdiff project
+  (`objdiff.json`) and report (`progress/report.json`):
 
   ```bash
-  python compile.py --version eu --setup     # build units + write config/eu/objdiff.json
-  scripts/progress.sh --version eu           # -> progress/report.eu.json + headline
-  scripts/checks/progress_all.sh             # one-screen dashboard across all versions
+  python compile.py --setup                  # build units + write objdiff.json
+  scripts/progress.sh                         # -> progress/report.json + headline
   ```
 
-- **Full-ELF byte identity** — the binary pass/fail gate. `build_version.sh`
-  checks the built ELF's sha256 against the retail boot ELF. The empty-carve
-  baselines already pass it at 0% C; as functions are carved to C it stays green
-  only while every carved function reproduces retail exactly, so 100% matched
-  code ⇒ a byte-identical ELF.
+- **Full-ELF byte identity** — the binary pass/fail gate. The build checks the
+  built ELF's sha256 against the retail boot ELF. The empty-carve baseline
+  already passes it at 0% C; as functions are carved to C it stays green only
+  while every carved function reproduces retail exactly, so 100% matched code ⇒
+  a byte-identical ELF.
 
 The two are complementary: objdiff shows *how far in* the decomp is; the sha256
-gate shows whether the binary still reproduces. The shared compiler also makes
-progress *transferable* — porting matched `us` C lifts the siblings' numbers
-without re-decompiling.
+gate shows whether the binary still reproduces.
 
-**The worklist (cross-region function atlas).** To know *how far there is to
-go* across all three masters at once, `scripts/function_atlas.py` aligns the
-function sequences of every region (anchored address-order alignment) into a
-single census — every function, grouped into a cross-region equivalence class
-with a match tier, plus the genuine per-region deltas:
+**The worklist.** To know *how far there is to go*,
+`scripts/function_atlas.py` aligns the function sequence of the master into a
+single census — every function, grouped with a match tier:
 
 ```bash
 python scripts/function_atlas.py             # -> progress/function_atlas.{json,summary.md}
 ```
 
-It currently maps **11113 / 11144** eu and **11115 / 11115** jp functions to
-their `us` counterpart — ~**11,200 distinct logical functions** across all three
-masters, of which **10979** land byte-exact in both siblings with only a name +
-address remap (1727 of them already decompiled).
-`progress/function_atlas.summary.md` is the human-readable headline; see
-[`MULTIVERSION.md`](./MULTIVERSION.md#cross-region-function-atlas-the-worklist)
-for the method.
-
-**Porting is real and byte-verified.** A cross-version *data* map
-(`scripts/data_map.py`) re-points the `D_*`/`jtbl_*` symbols a matched function
-touches, and `scripts/land_verify.py` lands matched `us` C onto a sibling while
-keeping only the TUs that hold the **full-ELF build byte-identical to retail**.
-Once **boundary-safe carving** removed the linker's carve-unit alignment trap
-(a one-line `SUBALIGN(8)` in the build-time linker script), this carried
-**533 functions onto eu and 538 onto jp** straight from the `us` C — no
-re-decompilation — lifting both siblings to ~0.75–0.86% matched code (see
-[`MULTIVERSION.md`](./MULTIVERSION.md#verified-landing)).
+`progress/function_atlas.summary.md` is the human-readable headline.
 
 ## Contributing
 

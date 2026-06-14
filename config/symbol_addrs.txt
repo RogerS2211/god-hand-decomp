@@ -48331,14 +48331,13 @@ cOl29_setClose = 0x0017F9D8; // type:func
 cCoreSave_getReelItem = 0x001FAEE0; // type:func
 
 // === hand-added 2026-06-07 (library-name US-table drift sync) ===
-// 53 library/middleware/CRT names applied by 298e1cd6 to carved_funcs + the EU/JP
-// symbol tables, but never written to THIS (US) table: apply_library_names.py only
-// rewrites pre-existing func_<ADDR> tokens, and these auto-named US addresses had no
-// explicit func_ line to rewrite.  A clean resplat therefore labels them func_<ADDR>,
-// so maybe_carve() cannot find them by their library name -> build rc=1.  Adding the
-// names here makes splat label them, restoring a byte-identical build (sha256=retail).
-// 52/53 are cross-validated by their presence in config/{eu,jp}/symbol_addrs.txt;
-// SUD_AnalyTypeDivField is US/carved-only (absent from eu/jp) -- byte-identity gate confirms placement.
+// 53 library/middleware/CRT names applied by 298e1cd6 to carved_funcs, but never
+// written to THIS (US) table: apply_library_names.py only rewrites pre-existing
+// func_<ADDR> tokens, and these auto-named US addresses had no explicit func_
+// line to rewrite.  A clean resplat therefore labels them func_<ADDR>, so
+// maybe_carve() cannot find them by their library name -> build rc=1.  Adding
+// the names here makes splat label them, restoring a byte-identical build
+// (sha256=retail).  The byte-identity gate confirms each placement.
 adxm_ResumeThread = 0x003252F8; // type:func
 ADXSTM_SetSj = 0x00328E78; // type:func
 ADXT_ClearErrCode = 0x0032B148; // type:func

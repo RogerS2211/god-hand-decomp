@@ -71,11 +71,11 @@ from scripts.carver import (
 DEFAULT_CONFIG = ROOT / "compile_config.json"
 DEFAULT_PARALLELISM = 8
 
-# Multi-version registry. `config/versions.json` maps a short version key
-# (us/eu/jp) to its build metadata, including which compile_config.json holds
-# that version's carve schema + output paths. `us` resolves to the repo-root
-# `compile_config.json` (the historical single-version path), so omitting
-# --version reproduces the original US build byte-for-byte.
+# Version registry. `config/versions.json` maps a short version key to its
+# build metadata, including which compile_config.json holds that version's
+# carve schema + output paths. `us` resolves to the repo-root
+# `compile_config.json`, so omitting --version reproduces the original US
+# build byte-for-byte.
 DEFAULT_VERSIONS = ROOT / "config" / "versions.json"
 
 
@@ -576,16 +576,15 @@ def maybe_carve(cfg: "Config", log: Logger) -> Optional[CarveState]:
     _carve_t0 = time.monotonic()
 
     # All entries must target one monolithic unit; that unit is the carve
-    # source.  us carves out of "asm/cod/000000"; a sibling version carves out
-    # of its own "asm/<ver>/cod/000000" (cross-version port, scripts/
-    # port_version.py).  Multi-unit carving in one build is still out of scope.
+    # source.  us carves out of "asm/cod/000000".  Multi-unit carving in one
+    # build is still out of scope.
     units = {e.unit for e in entries}
     if len(units) != 1:
         raise BuildError(
             f"carve: all carved_funcs must target a single monolithic unit; "
             f"got units = {sorted(units)}"
         )
-    carve_unit = next(iter(units))            # e.g. "asm/cod/000000" or "asm/eu/cod/000000"
+    carve_unit = next(iter(units))            # e.g. "asm/cod/000000"
     original_rel = Path(carve_unit + ".s")
     original_abs = ROOT / original_rel
     if not original_abs.exists():
@@ -846,14 +845,12 @@ def _emit_build_lcf(
     # by 8 bytes — every subsequent function shifts and the next carve's
     # `. = cod_TEXT_START + 0x<end>;` directive then moves the location
     # counter *backwards* ("cannot move location counter backwards").  The us
-    # carves were hand-curated onto 16-aligned boundaries to dodge this;
-    # cross-version landing (scripts/port_version.py) cannot pick boundaries,
-    # so it tripped on ~85% of candidate TUs.  SUBALIGN(8) overrides the input
-    # alignment *downward* so fragments land exactly at the carve directive's
-    # 8-aligned target with no fill.  Byte-neutral for an already-16-aligned
-    # layout (the us build verifies byte-identical), so it is applied to every
-    # version's build-time lcf.  Verified downward-override empirically against
-    # mipsel-linux-gnu-ld 2.42.
+    # carves were hand-curated onto 16-aligned boundaries to dodge this.
+    # SUBALIGN(8) overrides the input alignment *downward* so fragments land
+    # exactly at the carve directive's 8-aligned target with no fill.
+    # Byte-neutral for an already-16-aligned layout (the us build verifies
+    # byte-identical), so it is applied to the build-time lcf.  Verified
+    # downward-override empirically against mipsel-linux-gnu-ld 2.42.
     subalign_anchor = "    .text 0x00100000 : ALIGN(64)"
     if subalign_anchor in new_text:
         new_text = new_text.replace(
@@ -922,17 +919,16 @@ def _foreign_version_roots(cfg: Config) -> set[Path]:
     that this config's own globs do not explicitly target.
 
     The US (default) config uses recursive globs (``src/**/*.c``, ``asm/**/*.s``)
-    that would otherwise sweep the committed sibling-version ports — ``src/eu/``,
-    ``src/jp/`` (and the gitignored ``asm/eu/`` / ``asm/jp/``) — into the US unit
-    list. Those belong to the per-version builds (``--version eu/jp``, whose
-    configs use scoped ``src/eu/**`` globs and link their own ELF); the US
-    main-ELF lcf never references them, so discovering them produced a
-    ``units`` ratchet drift *and* made every US build wastefully recompile
-    ~127 cross-version objects into colliding ``build/src/eu/*.o`` paths.
+    that would otherwise sweep any per-version source root into the US unit
+    list. Those belong to the per-version builds (whose configs use scoped
+    ``src/<ver>/**`` globs and link their own ELF); the US main-ELF lcf never
+    references them, so discovering them would produce a ``units`` ratchet
+    drift *and* make every US build wastefully recompile foreign objects into
+    colliding ``build/src/<ver>/*.o`` paths.
 
     A version's root is pruned only when NONE of this config's glob patterns
-    start with it (``src/eu/**`` keeps ``src/eu`` for the EU build but still
-    prunes ``src/jp``). This mirrors the REL-part skip in :func:`discover`.
+    start with it (a scoped ``src/<ver>/**`` keeps its own root but still
+    prunes the others). This mirrors the REL-part skip in :func:`discover`.
     """
     own_globs = list(cfg.asm_globs) + list(cfg.c_globs) + list(cfg.vsm_globs)
     roots: set[Path] = set()
@@ -968,7 +964,7 @@ def discover(cfg: Config, carve: Optional[CarveState] = None) -> list[CompileUni
     # ELF lcf doesn't reference) on every full build.
     skip_src |= _rel_asm_part_paths(cfg)
 
-    # Sibling-version source trees (``src/eu/``, ``src/jp/`` …) that this
+    # Per-version source trees (``src/<ver>/``, ``asm/<ver>/`` …) that this
     # config's globs don't target — owned by the per-version builds, never
     # by this lcf. Pruned here (not in the units check) so the recursive US
     # globs neither drift the units ratchet nor wastefully recompile them.
@@ -1266,8 +1262,8 @@ def _postprocess_elf(cfg: Config, log: Logger) -> None:
         log.warn(f"missing {script.relative_to(ROOT)}; skipping post-link patch")
         return
     # Per-version metadata dir (retail invariants + non-loaded payloads).
-    # US omits the key and falls back to the flat bin/elf_metadata; eu/jp
-    # nest under bin/elf_metadata/<key>. See scripts/extract_elf_metadata.py.
+    # US omits the key and falls back to the flat bin/elf_metadata; a version
+    # may nest under bin/elf_metadata/<key>. See scripts/extract_elf_metadata.py.
     metadata_dir = ROOT / cfg.raw.get("metadata_dir", "bin/elf_metadata")
     run(
         [sys.executable, str(script), str(cfg.output_elf),
@@ -1762,9 +1758,9 @@ def do_objdiff_setup(cfg: Config, log: Logger) -> Path:
         "units": unit_entries,
     }
     # Per-version objdiff project: us writes the repo-root objdiff.json (the
-    # default), siblings write config/<ver>/objdiff.json so the three projects
+    # default); a version may write config/<ver>/objdiff.json so the projects
     # don't clobber each other.  The unit paths are version-namespaced
-    # (asm/eu/... vs asm/cod/...), so all three share one expected/build/ tree.
+    # (asm/<ver>/... vs asm/cod/...), so they share one expected/build/ tree.
     #
     # `objdiff-cli report generate -p <dir>` resolves unit paths relative to the
     # project *directory*, so when the project file is not at the repo root we
@@ -2088,7 +2084,7 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         type=str,
         default=None,
         metavar="KEY",
-        help="which release to build (us/eu/jp; from config/versions.json). "
+        help="which release to build (version key from config/versions.json). "
              "Default: the registry's 'default' version (us).",
     )
     p.add_argument(

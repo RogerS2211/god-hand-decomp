@@ -57,8 +57,8 @@ DEFAULT_METADATA_DIR = ROOT / "bin" / "elf_metadata"
 # --------------------------------------------------------------------------- #
 # These reproduce the original US-hardcoded constants and are used ONLY when a
 # manifest predates the ``retail`` block (a stale US ``bin/elf_metadata``).
-# Every freshly extracted manifest — US, eu, jp — carries ``manifest["retail"]``
-# and these are never consulted.  Kept so a stale US clone still byte-matches.
+# Every freshly extracted manifest carries ``manifest["retail"]`` and these are
+# never consulted.  Kept so a stale US clone still byte-matches.
 _LEGACY_US_LOADED_SECTION_PATCHES = {
     ".text":              {"sh_size": 0x2BBF20, "sh_flags": 0x00000007},  # WAX
     ".data":              {"sh_size": 0x4E460,  "sh_flags": 0x00000007},  # WAX
@@ -95,8 +95,7 @@ EHDR_OFF_SHSTRNDX   = 0x32
 # the slot stays "taken" in some series).  binutils 2.45 leaves it 0.
 # Retail SLUS_215.03 has it 0.  Stamping bytes 7..16 to all-zero makes
 # the build retail-byte-identical on every binutils version we've
-# tested (2.40, 2.44, 2.45).  This is constant across all
-# three regional masters (identical e_ident).
+# tested (2.40, 2.44, 2.45).
 EHDR_OFF_EIDENT_NORM = 7
 EHDR_LEN_EIDENT_NORM = 16 - 7
 

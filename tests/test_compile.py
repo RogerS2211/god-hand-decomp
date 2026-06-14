@@ -549,9 +549,8 @@ class TestEmitBuildLcfSubalign:
     VRAM is 8-but-not-16-aligned shifts every following function and the
     next carve's `. = cod_TEXT_START + 0x<end>;` directive moves the location
     counter backwards ("cannot move location counter backwards").  The us
-    carves dodged it by hand-curated 16-aligned boundaries; cross-version
-    landing cannot, so the fix lives in the build system.  See
-    scripts/port_version.py.
+    carves dodged it by hand-curated 16-aligned boundaries; the SUBALIGN(8)
+    fix lives in the build system so it holds for any carve layout.
     """
 
     def _committed_lcf(self, tmp_path: Path) -> Path:
@@ -1179,64 +1178,78 @@ class TestRelDiscoveryExclusion:
 
 
 class TestForeignVersionExclusion:
-    """Sibling-version source trees must be excluded from a build's discover().
+    """Per-version source trees must be excluded from a build's discover().
 
     The US (default) config uses recursive globs (``src/**/*.c`` /
-    ``asm/**/*.s``) that would otherwise sweep the committed ``src/eu/`` /
-    ``src/jp/`` ports into the US unit list — drifting the ``units`` ratchet and
-    wastefully recompiling cross-version objects. A version root is pruned only
-    when the config's own globs don't target it (``src/eu/**`` keeps ``src/eu``
-    for the EU build but still prunes ``src/jp``). Mirrors the REL-part skip.
+    ``asm/**/*.s``) that would otherwise sweep any per-version source root into
+    the US unit list — drifting the ``units`` ratchet and wastefully
+    recompiling foreign objects. A version root is pruned only when the
+    config's own globs don't target it (a scoped ``src/<ver>/**`` keeps its own
+    root but still prunes the others). Mirrors the REL-part skip.
     """
 
-    def test_untargeted_version_dirs_are_foreign(self):
+    @staticmethod
+    def _registry_with(*keys: str) -> dict:
+        return {"default": "us",
+                "versions": {k: {"compile_config": "compile_config.json"}
+                             for k in ("us", *keys)}}
+
+    def test_untargeted_version_dirs_are_foreign(self, tmp_path, monkeypatch):
         # A config whose globs target no version dir (here: empty globs) treats
-        # every on-disk registered version root as foreign. Harmless — such a
-        # config discovers nothing under them anyway — but documents that the
+        # every on-disk registered version root as foreign. Documents that the
         # predicate is glob-driven, not contents-driven.
+        monkeypatch.setattr(cm, "ROOT", tmp_path)
+        monkeypatch.setattr(cm, "DEFAULT_VERSIONS", tmp_path / "versions.json")
+        (tmp_path / "versions.json").write_text(json.dumps(self._registry_with("v2")))
+        (tmp_path / "src" / "v2").mkdir(parents=True)
+        (tmp_path / "asm" / "v2").mkdir(parents=True)
         roots = cm._foreign_version_roots(_mkcfg())
-        on_disk = {(cm.ROOT / sub).resolve()
-                   for sub in ("src/eu", "src/jp", "asm/eu", "asm/jp")
-                   if (cm.ROOT / sub).is_dir()}
+        on_disk = {(tmp_path / sub).resolve() for sub in ("src/v2", "asm/v2")}
         assert roots == on_disk
 
-    def test_scoped_glob_keeps_own_version_prunes_siblings(self):
-        # An EU-shaped config (scoped globs) keeps src/eu but prunes src/jp.
+    def test_scoped_glob_keeps_own_version_prunes_others(self, tmp_path, monkeypatch):
+        # A scoped config keeps its own version root but prunes the others.
+        monkeypatch.setattr(cm, "ROOT", tmp_path)
+        monkeypatch.setattr(cm, "DEFAULT_VERSIONS", tmp_path / "versions.json")
+        (tmp_path / "versions.json").write_text(
+            json.dumps(self._registry_with("v2", "v3")))
+        for sub in ("src/v2", "asm/v2", "src/v3", "asm/v3"):
+            (tmp_path / sub).mkdir(parents=True)
         cfg = _mkcfg(
-            asm_sources_glob=["asm/eu/**/*.s", "src/eu/**/*.s"],
-            c_sources_glob=["src/eu/**/*.c"],
+            asm_sources_glob=["asm/v2/**/*.s", "src/v2/**/*.s"],
+            c_sources_glob=["src/v2/**/*.c"],
         )
         roots = cm._foreign_version_roots(cfg)
-        # src/eu is targeted -> not foreign; src/jp is not -> foreign (if it
-        # exists on disk in this checkout).
-        if (cm.ROOT / "src/eu").is_dir():
-            assert (cm.ROOT / "src/eu").resolve() not in roots
-        if (cm.ROOT / "src/jp").is_dir():
-            assert (cm.ROOT / "src/jp").resolve() in roots
+        assert (tmp_path / "src/v2").resolve() not in roots
+        assert (tmp_path / "src/v3").resolve() in roots
 
-    def test_recursive_glob_prunes_all_version_dirs(self):
+    def test_recursive_glob_prunes_all_version_dirs(self, tmp_path, monkeypatch):
         # A US-shaped config (recursive sweep) targets no specific version dir,
         # so every registered version's source root is foreign.
+        monkeypatch.setattr(cm, "ROOT", tmp_path)
+        monkeypatch.setattr(cm, "DEFAULT_VERSIONS", tmp_path / "versions.json")
+        (tmp_path / "versions.json").write_text(
+            json.dumps(self._registry_with("v2", "v3")))
+        for sub in ("src/v2", "asm/v2", "src/v3", "asm/v3"):
+            (tmp_path / sub).mkdir(parents=True)
         cfg = _mkcfg(
             asm_sources_glob=["asm/**/*.s", "src/**/*.s"],
             c_sources_glob=["src/**/*.c"],
         )
         roots = cm._foreign_version_roots(cfg)
-        for sub in ("src/eu", "src/jp", "asm/eu", "asm/jp"):
-            d = cm.ROOT / sub
-            if d.is_dir():
-                assert d.resolve() in roots
+        for sub in ("src/v2", "asm/v2", "src/v3", "asm/v3"):
+            assert (tmp_path / sub).resolve() in roots
 
-    def test_us_discover_excludes_cross_version_sources(self):
+    def test_us_discover_excludes_foreign_sources(self):
         # End-to-end: the real US config's discover() must yield no units under
-        # any sibling-version source root.
+        # any foreign-version source root.
         cfg = cm.Config.load(cm.DEFAULT_CONFIG)
         carve = cm.maybe_carve(cfg, cm.Logger(verbose=False))
-        rels = [str(u.rel) for u in cm.discover(cfg, carve)]
-        foreign = [r for r in rels
-                   if r.startswith(("src/eu/", "src/jp/",
-                                    "asm/eu/", "asm/jp/"))]
-        assert foreign == [], f"US discover() swept cross-version units: {foreign[:5]}"
+        foreign_roots = cm._foreign_version_roots(cfg)
+        rels = [u.src.resolve() for u in cm.discover(cfg, carve)]
+        swept = [str(r) for r in rels
+                 if any(root in r.parents for root in foreign_roots)]
+        assert swept == [], f"US discover() swept foreign units: {swept[:5]}"
 
 
 class TestRelObjdiffUnits:
@@ -1280,7 +1293,7 @@ class TestRelObjdiffUnits:
 
 
 # --------------------------------------------------------------------------- #
-# resolve_config_path  — multi-version registry selection
+# resolve_config_path  — version registry selection
 # --------------------------------------------------------------------------- #
 class TestResolveConfigPath:
     """Locks in the --version / --config resolution against a fake registry."""
@@ -1304,14 +1317,14 @@ class TestResolveConfigPath:
         "default": "us",
         "versions": {
             "us": {"compile_config": "compile_config.json"},
-            "eu": {"compile_config": "config/eu/compile_config.json"},
+            "v2": {"compile_config": "config/v2/compile_config.json"},
         },
     }
 
     def test_explicit_config_wins(self, tmp_path, monkeypatch):
         self._setup(tmp_path, monkeypatch, registry=self._REG)
         explicit = tmp_path / "whatever.json"
-        assert cm.resolve_config_path("eu", explicit) == explicit
+        assert cm.resolve_config_path("v2", explicit) == explicit
 
     def test_default_version_is_us(self, tmp_path, monkeypatch):
         self._setup(tmp_path, monkeypatch, registry=self._REG)
@@ -1319,8 +1332,8 @@ class TestResolveConfigPath:
 
     def test_named_version_resolves(self, tmp_path, monkeypatch):
         self._setup(tmp_path, monkeypatch, registry=self._REG,
-                    make_configs=("compile_config.json", "config/eu/compile_config.json"))
-        assert cm.resolve_config_path("eu", None) == tmp_path / "config/eu/compile_config.json"
+                    make_configs=("compile_config.json", "config/v2/compile_config.json"))
+        assert cm.resolve_config_path("v2", None) == tmp_path / "config/v2/compile_config.json"
 
     def test_unknown_version_raises(self, tmp_path, monkeypatch):
         self._setup(tmp_path, monkeypatch, registry=self._REG)
@@ -1328,10 +1341,10 @@ class TestResolveConfigPath:
             cm.resolve_config_path("zz", None)
 
     def test_not_bootstrapped_version_raises(self, tmp_path, monkeypatch):
-        # 'eu' is registered but its compile_config file does not exist yet.
+        # 'v2' is registered but its compile_config file does not exist yet.
         self._setup(tmp_path, monkeypatch, registry=self._REG)
         with pytest.raises(cm.BuildError):
-            cm.resolve_config_path("eu", None)
+            cm.resolve_config_path("v2", None)
 
     def test_missing_registry_falls_back_to_default_config(self, tmp_path, monkeypatch):
         self._setup(tmp_path, monkeypatch, registry=None)

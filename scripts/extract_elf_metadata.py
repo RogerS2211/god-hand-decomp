@@ -35,7 +35,7 @@ them here from the retail ELF makes the whole pipeline version-agnostic.
 
 Usage:
     python scripts/extract_elf_metadata.py                 # us (default)
-    python scripts/extract_elf_metadata.py --version eu    # eu/jp/...
+    python scripts/extract_elf_metadata.py --version KEY   # a registered version
     python scripts/extract_elf_metadata.py path/to/ELF     # explicit ELF
     python scripts/extract_elf_metadata.py path/to/ELF --out-dir DIR
 
@@ -225,7 +225,7 @@ def build_retail_block(elf: dict) -> dict:
 
     Replaces the formerly US-hardcoded RETAIL_LOAD / LOADED_SECTION_PATCHES /
     LOAD_FILE_END constants — every value here is read straight from the
-    retail boot ELF, so eu/jp/... get correct values for free.
+    retail boot ELF, so any registered version gets correct values for free.
     """
     load = next((p for p in elf["phdrs"] if p["p_type"] == PT_LOAD), None)
     if load is None:
