@@ -22,8 +22,7 @@
  * 8 externals).  Rather than write a Python clone of dlltool to do the
  * same resolution, we use a FULL link with `.text` placed at REL-local
  * VMA 0x3C — the linker resolves internal relocs in-place and the
- * resulting .text bytes match the on-disc REL byte-for-byte.  See
- * DECISIONS.md for the full rationale.
+ * resulting .text bytes match the on-disc REL byte-for-byte.
  *
  * Concretely the build runs (per build_rel() in compile.py):
  *

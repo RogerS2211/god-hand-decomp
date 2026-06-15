@@ -355,14 +355,11 @@ class TestPhase2Reexports:
 
 
 class TestCarveSessionShape:
-    """`CarveSession` is a thin facade over the private primitives
-    (per Phase 2 / Q3 decision: behaviour-preserving; no internal
-    atomic wrap; the bash `cleanup_on_fail` trap in
-    `scripts/match_and_commit.sh` continues to handle
-    `auto_carve_func.py`'s rollback). These smoke tests cover the
-    public surface shape; the underlying primitives
-    `_auto_carve_uncarved` / `_atomic_auto_carve` are exercised
-    elsewhere.
+    """`CarveSession` is a thin facade over the carve primitives
+    (behaviour-preserving; no internal atomic wrap; the caller handles
+    rollback). These smoke tests cover the facade's shape; the
+    underlying primitives `_auto_carve_uncarved` / `_atomic_auto_carve`
+    are exercised elsewhere.
     """
 
     def test_session_default_root_is_module_root(self):
@@ -468,20 +465,16 @@ class TestCarveSessionAtomicSmoke:
     def test_auto_carve_func_script_invocation_resolves_imports(
         self, tmp_path: Path
     ):
-        """Regression test for the deferred-smoke discovery: when
-        ``scripts/match_and_commit.sh`` invokes
+        """Regression test: when ``auto_carve_func.py`` is invoked as
         ``python3 scripts/auto_carve_func.py NAME``, Python
         auto-prepends only the script's own directory (``scripts/``) to
-        ``sys.path``.  The Phase-2 carver extraction changed the
-        in-script import to ``from scripts.carver import ...``, which
-        requires the **repo root** (parent of ``scripts/``) on
-        ``sys.path``.  Pytest doesn't
-        exercise this invocation path (it uses ``-m`` /
-        ``pytest`` runner hooks), so the smoke surfaced a
-        ``ModuleNotFoundError: scripts`` regression that pytest's
-        1030/1030 GREEN missed.  This test invokes ``auto_carve_func.py``
-        the same way ``match_and_commit.sh`` does and asserts the
-        import resolves.
+        ``sys.path``.  The carver extraction changed the in-script import
+        to ``from scripts.carver import ...``, which requires the
+        **repo root** (parent of ``scripts/``) on ``sys.path``.  Pytest
+        doesn't exercise this invocation path (it uses ``-m`` /
+        ``pytest`` runner hooks), so this is the only thing that catches a
+        ``ModuleNotFoundError: scripts`` regression.  This test invokes
+        ``auto_carve_func.py`` that way and asserts the import resolves.
 
         Invoked with a bogus function name so the script short-circuits
         before any real carve mutation; we just exercise the import path.
@@ -493,10 +486,10 @@ class TestCarveSessionAtomicSmoke:
         script = repo_root / "scripts" / "auto_carve_func.py"
         assert script.is_file(), f"{script} missing"
 
-        # Mirror match_and_commit.sh L159: cwd=repo_root, relative
-        # script path. Pass a name that doesn't exist in
-        # decomp_targets.json so the script exits early with rc=2
-        # ("no candidate metadata") rather than attempting a real carve.
+        # Run from repo root with a relative script path. Pass a name
+        # that doesn't exist in the target metadata so the script exits
+        # early with rc=2 ("no candidate metadata") rather than
+        # attempting a real carve.
         cp = subprocess.run(
             [sys.executable, "scripts/auto_carve_func.py",
              "func_TEST_DOES_NOT_EXIST_AUTO_CARVE_REGRESSION"],

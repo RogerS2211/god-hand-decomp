@@ -19,8 +19,6 @@ Inventory (one ``-k`` slice per behaviour):
     _cc() argv shape          — --compiler= flag forwarded to ee-cc-wrap
     ee-cc-wrap dispatch       — argparse accepts --compiler; sn dispatch
                                 strips the flag and re-execs sn-cc-wrap
-
-See DECISIONS.md.
 """
 from __future__ import annotations
 

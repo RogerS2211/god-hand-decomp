@@ -17,8 +17,8 @@ Usage::
                                   [-o disc_extract/rel]
                                   [--filter '*.rel'] [--filter PAT ...]
 
-If no ``--filter`` is given, ``*.rel`` is implied (the default; see
-``DECISIONS.md``).  Pass ``--filter '*'`` to extract
+If no ``--filter`` is given, ``*.rel`` is implied (the default).
+Pass ``--filter '*'`` to extract
 everything (NOT recommended; ``_DATA.AFS`` is 1.5 GB).
 
 Idempotent: re-running yields byte-identical outputs and an unchanged

@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """Patch ee-as 2.10 to disable the R5900 short-loop assemble-time check.
 
-This is the first instance of the policy ratified by DECISIONS.md
-(patch vendored toolchain binaries when the alternative is significantly
-more invasive).
+This follows the project's policy of patching vendored toolchain
+binaries when the alternative is significantly more invasive.
 
 What this changes (one byte):
   At file offset 0x20f54 the ee-as binary contains a `je` (0x74)
@@ -19,8 +18,7 @@ What this changes (one byte):
   Flipping the byte from 0x74 (`je`) to 0xeb (`jmp`) makes the
   skip-error path *always* taken — the short-loop check is dead.
   Byte output for accepted inputs is unchanged (empirically verified
-  by full retail-rebuild sha256 hold; see task body AC and the
-  session retro for the regression-carve preflight evidence).
+  by a full retail-rebuild sha256 hold).
 
 Idempotency contract:
   * If the file's sha256 already equals POST_SHA256, we log

@@ -18,19 +18,17 @@ two-step (carve, then integrate) need not be done by hand.
 
 Behaviour:
 
-- Look up the candidate dict from the local target metadata, falling
-  back to per-function settings + best-effort defaults when the metadata
-  has aged out.
+- Look up the candidate dict from the local target metadata.
 - Idempotent: re-running on an already-carved function exits 0 with
   no writes (the underlying ``_auto_carve_uncarved`` returns
   ``"already_carved"``).
 - Exit codes:
 
   * ``0`` — carve already present OR newly written; ``compile_config.json``
-    + the TU now have what ``integrate_match.py`` needs.
-  * ``2`` — candidate metadata could not be resolved (not in
-    ``decomp_targets.json``, no usable ``prompts/<name>/settings.yaml``,
-    etc.).  Stable rc so the bash caller can branch.
+    + the TU now have what integration needs.
+  * ``2`` — candidate metadata could not be resolved (not in the local
+    target metadata, no usable per-function settings, etc.).  Stable rc
+    so the bash caller can branch.
   * ``3`` — auto-carve raised :exc:`scripts.carver.CarveError` (I/O
     or structural failure).  The wrapper's ``cleanup_on_fail`` trap
     reverts any partial writes. (Pre-Phase 2 the carve primitive lived
@@ -55,7 +53,7 @@ ROOT = Path(__file__).resolve().parent.parent
 # refactor moved the carve helpers to ``scripts.carver``; the import
 # ``from scripts.carver import ...`` requires the **repo root** (parent
 # of ``scripts/``) on ``sys.path`` so the ``scripts`` package is
-# discoverable.  When ``match_and_commit.sh`` invokes us via
+# discoverable.  When invoked as
 # ``python3 scripts/auto_carve_func.py NAME``, Python auto-prepends only
 # ``scripts/`` to ``sys.path`` (the script's own directory), which is why
 # the pre-extraction bare-module import worked but
@@ -68,7 +66,6 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(1, str(ROOT / "scripts"))
 
 DECOMP_TARGETS = ROOT / "progress" / "decomp_targets.json"
-PROMPTS_DIR = ROOT / "prompts"
 
 
 def _load_from_decomp_targets(name: str) -> dict | None:
@@ -84,49 +81,8 @@ def _load_from_decomp_targets(name: str) -> dict | None:
     return None
 
 
-def _load_from_settings_yaml(name: str) -> dict | None:
-    settings = PROMPTS_DIR / name / "settings.yaml"
-    if not settings.exists():
-        return None
-    try:
-        import yaml  # noqa: PLC0415
-    except ImportError:
-        return None
-    try:
-        s = yaml.safe_load(settings.read_text()) or {}
-    except (OSError, yaml.YAMLError):
-        return None
-    asm = s.get("asm", "") or ""
-    addr_hex = "0x00000000"
-    for line in asm.splitlines():
-        if "/*" in line and "*/" in line:
-            try:
-                parts = line.split("/*", 1)[1].split("*/", 1)[0].split()
-                if len(parts) >= 2 and len(parts[1]) == 8:
-                    int(parts[1], 16)
-                    addr_hex = "0x" + parts[1]
-                    break
-            except (ValueError, IndexError):
-                continue
-    insns = sum(1 for ln in asm.splitlines() if "/*" in ln and "*/" in ln)
-    size = max(insns * 4, 4)
-    return {
-        "name": name,
-        "address": addr_hex,
-        "size_bytes": size,
-        "instruction_count": insns,
-        "asm_module_path": s.get("targetObjectPath_asm")
-            or "asm/cod/000000.s",
-        "tier": "auto-carve-fallback",
-        "shape_class": "",
-    }
-
-
 def load_candidate_dict(name: str) -> dict | None:
-    cand = _load_from_decomp_targets(name)
-    if cand is not None:
-        return cand
-    return _load_from_settings_yaml(name)
+    return _load_from_decomp_targets(name)
 
 
 def main(argv: list[str]) -> int:
@@ -148,8 +104,7 @@ def main(argv: list[str]) -> int:
     if cand is None:
         print(
             f"auto_carve_func: no candidate metadata for {name!r}; "
-            f"not found in {DECOMP_TARGETS.name} or "
-            f"{PROMPTS_DIR.name}/{name}/settings.yaml",
+            f"not found in {DECOMP_TARGETS.name}",
             file=sys.stderr,
         )
         return 2
@@ -157,9 +112,8 @@ def main(argv: list[str]) -> int:
     # Carving primitives now live in `scripts.carver`; this script
     # consumes the module's
     # `CarveSession.carve_one()` (behaviour-preserving — no internal
-    # atomic wrap, the bash `cleanup_on_fail` trap in
-    # `scripts/match_and_commit.sh` continues to handle worker-side
-    # rollback). The exception class becomes `CarveError`.
+    # atomic wrap, the caller's rollback handling stays in place). The
+    # exception class becomes `CarveError`.
     try:
         from scripts.carver import (  # noqa: PLC0415
             CarveSession,

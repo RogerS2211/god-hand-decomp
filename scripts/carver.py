@@ -52,9 +52,9 @@ if TYPE_CHECKING:
     from compile import Config  # noqa: F401
 
 # `ROOT` matches the project-root convention used by the other
-# `scripts/` tools (`Path(__file__).resolve().parent.parent`), e.g.
-# `scripts/integrate_match.py`. `compile.py` uses
-# `Path(__file__).resolve().parent` because it sits at the repo root.
+# `scripts/` tools (`Path(__file__).resolve().parent.parent`).
+# `compile.py` uses `Path(__file__).resolve().parent` because it sits
+# at the repo root.
 ROOT = Path(__file__).resolve().parent.parent
 
 
@@ -649,7 +649,7 @@ def _corrected_size_bytes(
     is cosmetic in that case — ``check_tu_complete.py`` warns but does
     not gate).
 
-    Why both layers: ``list_decomp_targets.py`` was fixed at the source
+    Why both layers: the upstream target list was fixed at the source
     (use ``body_opcodes`` instead of unbounded ``insn_count``), but the
     corpus file is regenerated only at tranche boundaries, so this
     helper protects in-flight batches that read a stale corpus.
@@ -717,10 +717,10 @@ class CarveSnapshot:
 
     Captured BEFORE the carve mutates `compile_config.json` /
     `src/<tu>.c`; restored by `_revert_auto_carve` when the
-    subsequent `integrate_match` fails.
+    subsequent integration fails.
 
     The rollback bug this guards against: pre-fix, the three
-    `_auto_carve_uncarved` + `integrate_match` call-pairs leaked
+    `_auto_carve_uncarved` + integration call-pairs leaked
     compile_config.json `carved_funcs` entries +
     `INCLUDE_ASM("nonmatching", <name>);` lines + orphan
     `build/asm/nonmatching/<name>.s` fragments whenever integrate
@@ -868,7 +868,7 @@ def _atomic_auto_carve(
 
         try:
             with _atomic_auto_carve(name, cand, config_path=..., root=...):
-                integrate_match(name, c_source, ...)
+                integrate(name, c_source, ...)
         except CarveError as exc:
             integrate_failures.append({"name": name, "reason": str(exc)})
 
@@ -915,7 +915,7 @@ def _auto_carve_uncarved(
        ``INCLUDE_ASM(…, name)`` pattern is already present, skip the
        TU write (idempotent).  If the function is already integrated
        (``__attribute__((section(".text.<name>")))`` pattern present),
-       also skip — ``integrate_match.py`` will surface a clean error.
+       also skip — integration will surface a clean error.
     4. Append ``\nINCLUDE_ASM("nonmatching", <name>);\n`` to the TU.
 
     Returns ``"carved"`` when at least one write was performed, or
@@ -1040,10 +1040,8 @@ class CarveSession:
     the existing exact behaviour can also use those primitives
     directly; new callers should prefer this class for discoverability.
 
-    Per the Phase-2 design (Q3 decision), `auto_carve_func.py`
-    consumes `carve_one()` (no internal atomic wrap; the bash
-    `cleanup_on_fail` trap in `scripts/match_and_commit.sh` continues
-    to handle worker-side rollback). The atomic wrap is available to
+    `auto_carve_func.py` consumes `carve_one()` (no internal atomic
+    wrap; the caller handles rollback). The atomic wrap is available to
     any caller that wants it via `atomic()` or the
     `_atomic_auto_carve` private alias.
 
@@ -1063,8 +1061,8 @@ class CarveSession:
     Example (atomic, with downstream rollback)::
 
         with session.atomic(name, candidate, config_path=cfg_path):
-            integrate_match(name, c_source, ...)
-        # If integrate_match raises, the carve is reverted before the
+            integrate(name, c_source, ...)
+        # If integration raises, the carve is reverted before the
         # exception propagates.
     """
 

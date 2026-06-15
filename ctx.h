@@ -66,7 +66,7 @@ typedef s64  M2C_UNK64;
 #endif
 
 /* -- 3. Opaque struct shapes ---------------------------------------- */
-/* Naming convention (loose-seed per ORIENT.md):
+/* Naming convention (loose-seed):
  *
  *     CGUnk_<seed-addr>_t      — opaque shape with byte-padding to the
  *                                highest observed field offset + 4,
@@ -151,8 +151,8 @@ typedef struct CGUnk_00134648 { u8 unk[0x10]; } CGUnk_00134648_t;
  * the C-side typedef doesn't have to cover them; size will bump if a
  * later decomp surfaces a higher offset, per the sizing rule.
  * Field names are seed-conservative (`b_<off>` / `w_<off>`)
- * pending Ghidra-side naming; rename here in the same commit per
- * ORIENT.md § "Name what you understand".
+ * pending Ghidra-side naming; rename here in the same commit once the
+ * field is understood.
  */
 typedef struct CGObj293 { u8 unk[0x590]; } CGObj293_t;
 

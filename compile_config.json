@@ -1,8 +1,7 @@
 {
   "_comment": [
     "compile.py configuration for the God Hand matching-decomp build.",
-    "Paths are relative to the repo root.  See DECISIONS.md for the",
-    "toolchain rationale."
+    "Paths are relative to the repo root."
   ],
   "tools": {
     "ee_cc_wrap": "scripts/ee-cc-wrap.py",
@@ -70,8 +69,8 @@
     "Two reasons: (1) the input .o's .data is genuinely data, not code,",
     "so giving it the X bit poisons objdiff's section classification:",
     "objdiff infers section kind from flags (X -> code) and would count",
-    "those bytes under total_code instead of total_data (M2-VERIFY-",
-    "followup-objdiff-data-scoring). (2) The X bit on the OUTPUT .data",
+    "those bytes under total_code instead of total_data. (2) The X bit",
+    "on the OUTPUT .data",
     "is stamped back on after the link by scripts/elf_postprocess.py's",
     "LOADED_SECTION_PATCHES table, which forces retail sh_flags=0x07",
     "(WAX) onto .data unconditionally. So objdiff sees .data as WA in",

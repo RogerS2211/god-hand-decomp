@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# data_decls sub-check (M3-objdiff-data-scoring-resplat).
+# data_decls sub-check.
 #
 # Verifies that asm/data/cod/*.s is in sync with the data-decl policy:
 # `nonmatching <SYM>` macros are emitted iff there is no `extern <type>

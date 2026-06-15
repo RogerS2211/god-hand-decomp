@@ -24,11 +24,10 @@ reference and just want to re-verify the local side.
 
 `--keep-tmp` preserves the temp working dir for inspection.
 The scratch slugs (`https://decomp.me/scratch/<slug>`) are
-printed so they're recoverable for the M6 note.
+printed so they're recoverable for later reference.
 
-This script is part of the M6-preflight-cc-roundtrip task.
-It is not invoked by `compile.py` or any session sub-check —
-it's a one-shot preflight gate.
+It is not invoked by `compile.py` or any sub-check — it's a
+standalone one-shot check.
 """
 from __future__ import annotations
 

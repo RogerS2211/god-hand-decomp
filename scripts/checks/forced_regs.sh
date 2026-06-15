@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# forced_regs sub-check (DECISIONS.md).
+# forced_regs sub-check.
 #
 # Ratchet gate on forced-register variables (`register T x __asm__("$N");`).
 # These are a matching-decompile anti-pattern: they reproduce a register-

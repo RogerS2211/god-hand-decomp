@@ -1,7 +1,7 @@
 # config/forced_regs_allowlist.txt
 #
 # Allowlist of files permitted to contain forced-register variables
-# (`register T x __asm__("$N");`).  See DECISIONS.md.
+# (`register T x __asm__("$N");`).
 #
 # THIS FILE SHOULD STAY EMPTY.  Policy (revised 2026-05-30): a
 # forced-register pin is NOT a real C match.  If a function only matches

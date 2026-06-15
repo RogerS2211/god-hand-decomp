@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 # session_check.sh — end-of-session ratchet harness.
 #
-# Run this before writing your session retro.  It fails loudly if the
-# project's invariants have regressed: splat round-trip, build succeeds,
-# final ELF still byte-matches the retail copy, objdiff matched_code
-# percent did not drop, and STATE.md's headline metrics still agree
-# with progress/report.json.
+# Run this before finishing up.  It fails loudly if the project's
+# invariants have regressed: splat round-trip, build succeeds, final
+# ELF still byte-matches the retail copy, objdiff matched_code percent
+# did not drop, and the progress report's headline metrics still agree.
 #
 # The harness is a thin dispatcher over scripts/checks/<name>.sh.  Each
 # sub-check is independently runnable:
@@ -24,7 +23,7 @@
 #     scripts/session_check.sh naming_debt     # carved func_XXXX count must not grow
 #     scripts/session_check.sh naming_sync     # carve name agrees across symbol_addrs + C TU
 #     scripts/session_check.sh tu_complete     # in-progress TU is complete
-#     scripts/session_check.sh state           # STATE.md consistency
+#     scripts/session_check.sh state           # local state-doc consistency
 #     scripts/session_check.sh social          # advisory checks (never fails)
 #
 # Sub-check exit-code convention:

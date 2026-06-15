@@ -11,8 +11,8 @@
 #   GODHAND_NO_HOOK=1           skip the hook (env: this commit or your shell)
 #   GODHAND_PRECOMMIT_CHECKS=…  run a fast subset, e.g. "build,score,state"
 #                               (default: the full session_check.sh suite)
-#   git commit --no-verify      bypass once (only for a ratchet-loosening
-#                               task with a DECISIONS.md entry)
+#   git commit --no-verify      bypass once (only for an explicit
+#                               ratchet-loosening change)
 set -euo pipefail
 
 if [[ -n "${GODHAND_NO_HOOK:-}" ]]; then
@@ -44,8 +44,8 @@ Refusing the commit because the ratchet has regressed.  See output
 above for which sub-check failed.  Fix, re-run scripts/session_check.sh
 to confirm green, then commit again.
 
-To bypass (only for an explicit ratchet-loosening task that has a
-DECISIONS.md entry):  git commit --no-verify
+To bypass (only for an explicit ratchet-loosening change):
+git commit --no-verify
 EOF
     exit 1
 fi
