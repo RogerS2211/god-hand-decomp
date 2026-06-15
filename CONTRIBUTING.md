@@ -5,10 +5,10 @@ Capcom). The job is to rewrite the game's machine code as C/C++ that, when
 compiled with the original toolchain, produces **byte-for-byte the same** boot
 ELF and `.rel` overlays as the retail disc.
 
-> **Status.** Not yet accepting external pull requests — the build and workflow
-> are still stabilizing. This guide documents the loop so you can reproduce it
-> locally and follow along. If you want to help while the door is closed, open an
-> issue first.
+> **Contributions welcome.** This guide walks through setup and the per-function
+> matching loop end to end. Good first contributions are small leaf functions
+> (see §4); open an issue if you'd like to coordinate on something larger or have
+> a question.
 
 ---
 

@@ -152,9 +152,10 @@ gate shows whether the binary still reproduces.
 
 ## Contributing
 
-Not yet accepting external pull requests — the build and workflow are still
-stabilizing. See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for how the matching loop
-works and how to reproduce it locally. If you'd like to help, open an issue first.
+Contributions are welcome. See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for how the
+matching loop works, how to set up locally, and how to take a function from raw
+asm to a byte-identical match. Good first targets are small leaf functions; open
+an issue if you'd like to coordinate on something larger or have a question.
 
 ## Legal
 
