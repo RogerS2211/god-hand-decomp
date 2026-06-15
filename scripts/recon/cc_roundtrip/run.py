@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""M6 preflight — cc-roundtrip vs decomp.me.
+"""Compiler round-trip check — local cc vs decomp.me.
 
 For each probe under this directory:
 
@@ -59,7 +59,7 @@ HTTP_HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
         "(KHTML, like Gecko) Chrome/120.0 Safari/537.36 "
-        "godhand-recomp/M6-preflight"
+        "god-hand-decomp"
     ),
     "Origin": "https://decomp.me",
 }

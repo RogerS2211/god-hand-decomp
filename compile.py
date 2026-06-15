@@ -1747,7 +1747,7 @@ def do_objdiff_setup(cfg: Config, log: Logger) -> Path:
 
     out: dict = {
         "min_version": objdiff_cfg.get("min_version", "2.0.0"),
-        "name": objdiff_cfg.get("name", "godhand-recomp"),
+        "name": objdiff_cfg.get("name", "god-hand-decomp"),
         "custom_make": objdiff_cfg.get("custom_make", "python"),
         "custom_args": list(
             objdiff_cfg.get("custom_args", ["compile.py", "--single-file"])
@@ -1861,7 +1861,7 @@ def do_reseed_expected(name: str, cfg: Config, log: Logger) -> None:
     objdiff_cfg = cfg.objdiff_cfg
     out: dict = {
         "min_version": objdiff_cfg.get("min_version", "2.0.0"),
-        "name": objdiff_cfg.get("name", "godhand-recomp"),
+        "name": objdiff_cfg.get("name", "god-hand-decomp"),
         "custom_make": objdiff_cfg.get("custom_make", "python"),
         "custom_args": list(
             objdiff_cfg.get("custom_args", ["compile.py", "--single-file"])
@@ -1925,7 +1925,7 @@ def do_reseed_expected_rel(
     objdiff_cfg = cfg.objdiff_cfg
     out: dict = {
         "min_version": objdiff_cfg.get("min_version", "2.0.0"),
-        "name": objdiff_cfg.get("name", "godhand-recomp"),
+        "name": objdiff_cfg.get("name", "god-hand-decomp"),
         "custom_make": objdiff_cfg.get("custom_make", "python"),
         "custom_args": list(
             objdiff_cfg.get("custom_args", ["compile.py", "--single-file"])

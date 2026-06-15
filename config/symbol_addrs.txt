@@ -48427,7 +48427,7 @@ InitObjectVtables_100280 = 0x00100280; // type:func
 ResetGlobalStateFields_107DE0 = 0x00107DE0; // type:func
 InitObjStateFlags_12CD70 = 0x0012CD70; // type:func
 
-// --- oracle-carve followup 2026-06-08: func entries for glabel'd oracle funcs ---
+// --- follow-up 2026-06-08: func entries for glabel'd funcs ---
 pl00_CkSubScreen = 0x0012BAB8; // type:func
 cCollisionScroll_SetLayerCollEnable = 0x00133330; // type:func
 cCockScroll_OnScroll = 0x00146978; // type:func

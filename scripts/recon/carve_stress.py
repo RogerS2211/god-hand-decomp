@@ -5,8 +5,7 @@ Generate a synthetic compile_config.json with N (default 100) randomly
 chosen carved functions, run `python compile.py`, and confirm:
 
   1. ELF sha256 still equals retail (1742f95b…f3cd).
-  2. Wall time of the carve step itself is well under the 2 s
-     revisit trigger.
+  2. Wall time of the carve step itself stays well under a 2 s budget.
   3. The build-time lcf is well-formed (parseable by _ld_script_objects
      and contains the expected number of fragment + carve input lines).
 

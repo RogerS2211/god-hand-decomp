@@ -51,7 +51,7 @@ Each ``Entry`` is::
                                 /* type=3: 0 */
 
 The AFS table is the authoritative source of byte offset & size; the FST's
-``size_hint`` is captured for recon but never used for extraction.
+``size_hint`` is captured for reference but never used for extraction.
 
 The first sub-table starts at ``entries[0]`` and terminates at the first
 type=3 marker; recursion follows ``value`` offsets for directories.

@@ -1,8 +1,9 @@
-# godhand-recomp
+# god-hand-decomp
 
-Matching decompilation of **God Hand** (PS2, 2006, Clover Studio / Capcom),
-orchestrated by the [pi coding agent]. The build targets the NTSC-U retail
-master (`SLUS-21503`) from one source tree.
+Matching decompilation of **God Hand** (PS2, 2006, Clover Studio / Capcom). The
+goal is to rewrite the game's machine code as C/C++ that, compiled with the
+original toolchain, reproduces the NTSC-U retail master (`SLUS-21503`)
+**byte-for-byte** from a single source tree.
 
 | key | serial | region | disc | boot ELF | status |
 |-----|--------|--------|------|----------|--------|
@@ -10,117 +11,115 @@ master (`SLUS-21503`) from one source tree.
 
 The build is **byte-identical to the retail boot ELF** (`elf_sha256` in
 [`config/versions.json`](./config/versions.json)) and carries the active C
-decompilation. Omitting `--version` reproduces the original build byte-for-byte.
-
-See [`program.md`](./program.md) for the success spec and the `notes/`
-directory for the recon report.
+decompilation. An empty carve already reproduces retail; as functions are
+decompiled it stays byte-identical, so 100% matched code means a byte-identical
+ELF.
 
 ## Goals
 
 1. Produce C/C++ that compiles back into a byte-identical `SLUS_215.03` plus
-   matching `.rel` overlays, using the original SCE PS2 SDK 3.0.20 toolchain.
-2. From the same source tree, build a **native PC port** with a thin platform
-   abstraction layer (SDL, modern graphics API, modern audio).
-3. Drive the per-function matching loop with an orchestration layer that
-   runs parallel attempts and ratchets git on a single matched-code metric.
+   matching `.rel` overlays, using the original PS2 toolchain (ee-gcc 2.96 + the
+   SN linker + dvp-as).
+2. From the same source tree, eventually build a **native PC port** behind a
+   thin platform layer (SDL, a modern graphics API, modern audio).
 
-## How it works (the orchestration model)
+## How it works
+
+This is a **matching** decompilation: the bar is reproducing the *exact bytes*
+the original compiler emitted, not writing equivalent code.
+
+- **splat** disassembles the retail boot ELF into one monolithic assembly file
+  (`asm/cod/000000.s`), with the retail bytes embedded in each instruction
+  comment.
+- Every function starts as raw assembly `#include`d from C via `INCLUDE_ASM(...)`.
+  Functions are rewritten to C one at a time — **carving** — and the
+  `INCLUDE_ASM` line is replaced by real C once it matches.
+- **objdiff** scores each compiled unit against the retail disassembly. A
+  function is *matched* when its compiled `.text` is identical down to register
+  allocation and instruction order.
+- One ratchet drives everything: every commit keeps the full ELF byte-identical
+  to retail, and `matched_code_percent` only ever goes up.
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│  outer loop  ── reads program.md, picks next function/REL,     │
-│                  spawns worktree workers, integrates results,   │
-│                  ratchets git on matched_text_percent           │
-└────────────────────────┬────────────────────────────────────────┘
-                         │ per-function
-                         ▼
-┌─────────────────────────────────────────────────────────────────┐
-│  inner loop  ── per-function: m2c → edit → compile/view asm →   │
-│                  objdiff → decomp-permuter → matched or          │
-│                  escalated                                       │
-└────────────────────────┬────────────────────────────────────────┘
-                         │
-                         ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │  splat + ee-gcc 2.96 + dvp-as + ee-ld + objdiff + asm-differ    │
 │  ground truth: disc_extract/SLUS_215.03 (sha256 1742f95b…f3cd)  │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-The inspirations are explicit:
-- [decomp.me](https://decomp.me) — collaborative matching scratches model
-- a single-metric git ratchet — every commit only ever raises matched code
-- [recvx-decomp](https://github.com/fmil95/recvx-decomp) — PS2 matching-decomp template (same era, same publisher)
+Inspirations:
+- [decomp.me](https://decomp.me) — the collaborative matching-scratch model
+- [recvx-decomp](https://github.com/fmil95/recvx-decomp) — a PS2 matching-decomp
+  template from the same era and publisher
 
 ## Layout
 
 ```
 .
 ├── God Hand (USA).iso       your own dump, gitignored
-├── disc_extract/             extracted boot ELF + tables, gitignored except hashes
-├── program.md                research spec / success ratchet
-├── notes/                    recon, design decisions, retros
+├── disc_extract/            extracted boot ELF + tables, gitignored
 ├── config/
 │   ├── SLUS_215.03.yaml      splat config
 │   ├── SLUS_215.03.lcf       ee-ld linker script
-│   ├── symbol_addrs.txt      seeded from Ghidra
-│   └── reloc_addrs.txt
-├── compiler/                 ee-gcc 2.96 + SN linker, vendored, gitignored
-├── tools/                    splat, m2c, asm-differ, objdiff, decomp-permuter
-├── src/                      decompiled C/C++
-├── include/                  shared headers (sce/, cri/, capcom/, gh/)
-├── asm/                      splat output, INCLUDE_ASM'd from src
-├── bin/                      splat data dumps
-├── expected/                 disassembled-from-original .o files (objdiff target)
-├── build/                    compile output (.o, .elf, .map), gitignored
-├── ghidra/                   local Ghidra project for static analysis, gitignored
-├── scripts/                  small utilities (iso extraction, afs reader, …)
-├── .pi/
-│   ├── agents/               custom decomp-* workers (scout, worker, oracle, integrator)
-│   ├── chains/               saved orchestration workflows
-│   └── extensions/           tools wrapping the GhidraMCP HTTP API
-├── compile.py                top-level build entry point
-└── objdiff.json              objdiff project (per-.o scoring)
+│   ├── symbol_addrs.txt      name → address map (seeded from Ghidra)
+│   ├── reloc_addrs.txt
+│   └── versions.json         per-version serials + retail hashes
+├── src/                     decompiled C/C++
+├── include/                 shared headers (sce/, cri/, capcom/, gh/)
+├── asm/                     splat output, INCLUDE_ASM'd from src (gitignored)
+├── bin/                     splat data dumps (gitignored)
+├── expected/                disassembled-from-retail .o files (objdiff target, gitignored)
+├── build/                   compile output (.o, .elf, .map), gitignored
+├── tools/                   splat, m2c, asm-differ, objdiff, decomp-permuter (provisioned by setup)
+├── scripts/                 build entry helpers + utilities
+├── compile.py               top-level build entry point
+└── objdiff.json             objdiff project (per-.o scoring)
 ```
 
-## Setup (will be filled in once toolchain is vendored)
+## Setup
+
+You need your own legally-dumped NTSC-U disc. **No game data ships in this
+repo** and none should ever be committed.
 
 ```bash
-# 1. Place your own dumped ISO at the repo root as 'God Hand (USA).iso'.
-#    Expected sha256: TBD (matches NTSC-U serial SLUS-21503).
-# 2. Extract the boot ELF:
+# 1. Place your own dumped ISO at the repo root as 'God Hand (USA).iso',
+#    then extract + verify the boot ELF:
 ./scripts/extract_iso.sh
 
-# 3. Vendor the SCE PS2 SDK 3.0.20 toolchain (ee-gcc 2.96 + SN linker + dvp-as):
+# 2. Provision the toolchain (ee-gcc 2.96 + SN linker + dvp-as, splat, m2c,
+#    objdiff, asm-differ, decomp-permuter), the venv, and the git hooks:
 ./scripts/setup_toolchain.sh
 
-# 4. Install Python build deps (splat, etc.):
-pip install -r scripts/requirements.txt
+# 3. One-time host dependency (the cross assembler the build calls):
+#    install your distro's mipsel-linux-gnu binutils.
 
-# 5. Generate the asm split + objdiff project:
-python compile.py --setup
+# 4. Generate the asm split + objdiff scoring project:
+.venv/bin/python compile.py --setup
 
-# 6. Build the project (empty matching link to start):
-python compile.py            # default version is 'us'
+# 5. Build (an empty matching link to start — every byte comes from re-assembled asm):
+.venv/bin/python compile.py          # default version is 'us'
 
-# 7. Run the unit tests (parsers, carve splitter, ELF reglue). Wall time < 1 s.
-.venv/bin/python -m pytest tests/
+# 6. Sanity-check the tooling:
+.venv/bin/python -m pytest tests/    # parsers, carve splitter, mappers — wall < 1 s
 ```
 
-## Nix dev environment (optional)
+After step 5 you should have a `build/SLUS_215.03.elf` whose sha256 equals the
+retail boot ELF. If that holds, your environment is correct.
+
+## Nix dev environment
 
 `nix develop` provisions a sealed toolchain (compiler, wibo, objdiff,
-cross-binutils, python, node). It is **additive** to
-`scripts/setup_toolchain.sh`: the shellHook symlinks the pinned blobs into the
-exact gitignored paths the script already guards, so the script skips the blob
-fetches and only does the venv, Python tools, assembler patches, and git hooks.
+cross-binutils, python, node). It is **additive** to `scripts/setup_toolchain.sh`:
+the shellHook symlinks the pinned blobs into the exact gitignored paths the
+script already guards, so the script skips the blob fetches and only sets up the
+venv, the Python tools, the assembler patches, and the git hooks.
 
 - **Linux (x86_64 or ARM):** `nix develop`, then `./scripts/setup_toolchain.sh`
   (the blobs are already provisioned), then `python compile.py`. On x86_64 the
   i386 compiler blobs run natively; on ARM they run transparently under
   `qemu-i386` (wired into the shell).
-- **Without Nix:** install the host prereqs and run `./scripts/setup_toolchain.sh`
-  as before, then `python compile.py`.
+- **Without Nix:** install the host prerequisites and run
+  `./scripts/setup_toolchain.sh` as before, then `python compile.py`.
 - **macOS:** the compiler is an i386-Linux binary, so run the Linux flow inside a
   `linux/amd64` container:
 
@@ -136,48 +135,36 @@ Progress is measured two complementary ways:
 - **`matched_code_percent` / `matched_functions`** — the fine-grained metric.
   [objdiff](https://github.com/encounter/objdiff) diffs every compiled unit
   against the frozen retail-disassembly target and counts the `.text` bytes (in
-  real C units) that compile byte-identical to retail. The objdiff project
-  (`objdiff.json`) and report (`progress/report.json`):
+  real C units) that compile byte-identical to retail:
 
   ```bash
-  python compile.py --setup                  # build units + write objdiff.json
-  scripts/progress.sh                         # -> progress/report.json + headline
+  python compile.py --setup     # build units + write objdiff.json
+  scripts/progress.sh           # -> progress/report.json + headline
   ```
 
 - **Full-ELF byte identity** — the binary pass/fail gate. The build checks the
-  built ELF's sha256 against the retail boot ELF. The empty-carve baseline
-  already passes it at 0% C; as functions are carved to C it stays green only
-  while every carved function reproduces retail exactly, so 100% matched code ⇒
-  a byte-identical ELF.
+  built ELF's sha256 against the retail boot ELF: it stays green only while every
+  carved function reproduces retail exactly, so 100% matched code ⇒ a
+  byte-identical ELF.
 
 The two are complementary: objdiff shows *how far in* the decomp is; the sha256
 gate shows whether the binary still reproduces.
 
-**The worklist.** To know *how far there is to go*,
-`scripts/function_atlas.py` aligns the function sequence of the master into a
-single census — every function, grouped with a match tier:
-
-```bash
-python scripts/function_atlas.py             # -> progress/function_atlas.{json,summary.md}
-```
-
-`progress/function_atlas.summary.md` is the human-readable headline.
-
 ## Contributing
 
-Solo / private right now — not yet accepting external contributors. Will revisit
-once the build is reproducible and the orchestration loop is stable.
+Not yet accepting external pull requests — the build and workflow are still
+stabilizing. See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for how the matching loop
+works and how to reproduce it locally. If you'd like to help, open an issue first.
 
 ## Legal
 
-This repository contains no copyrighted Capcom or Sony assets. The boot ELF
-hash recorded in the recon notes identifies the legitimately-dumped NTSC-U
-retail disc, but no game data is distributed here. The original SCE PS2 SDK binaries used for matching builds
-are not redistributed in this repo; the setup script downloads them from
-public archives maintained by the PS2 decomp community.
+This repository contains no copyrighted Capcom or Sony assets. The boot ELF hash
+recorded in [`config/versions.json`](./config/versions.json) identifies the
+legitimately-dumped NTSC-U retail disc, but no game data is distributed here. The
+original PS2 SDK binaries used for matching builds are not redistributed; the
+setup script downloads them from public archives maintained by the PS2 decomp
+community.
 
 Trademarks of *God Hand*, *Clover Studio*, and *Capcom* belong to their
 respective holders. This project is for preservation, education, and
 non-commercial research.
-
-[pi coding agent]: https://github.com/Earendil-Works/pi

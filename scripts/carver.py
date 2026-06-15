@@ -725,7 +725,7 @@ class CarveSnapshot:
     `INCLUDE_ASM("nonmatching", <name>);` lines + orphan
     `build/asm/nonmatching/<name>.s` fragments whenever integrate
     raised.  One batch compounded this into 20 orphan entries before
-    the orchestrator hand-cleaned.
+    it was caught and cleaned up by hand.
 
     The expected-rollback bug this guards against: pre-fix, the
     expected/build/asm/cod/*.o files were not snapshotted, so failed

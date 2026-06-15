@@ -1,36 +1,26 @@
 #!/usr/bin/env python3
-"""auto_carve_func.py — single-function auto-carve helper for
-``scripts/match_and_commit.sh`` (Bug B, 2026-05-24).
+"""auto_carve_func.py — ensure a single function has a carve entry.
 
-The matched-but-uncarved path threads matched candidates through the
+Before a matched function can be integrated, it needs a carve: the
 carve helpers in :mod:`scripts.carver` (:func:`_atomic_auto_carve` +
-:func:`_auto_carve_uncarved`) before invoking
-``integrate_match.py``.  That carve step writes:
+:func:`_auto_carve_uncarved`) write the two things integration requires:
 
   1. A new ``carved_funcs[]`` entry in ``compile_config.json``.
   2. An ``INCLUDE_ASM("nonmatching", <name>);`` line in the target TU.
 
-Without those two writes, ``integrate_match.py`` rejects the match
-with::
+Without those two writes, integration rejects the match::
 
-    integrate_match: no carve entry for '<name>' in compile_config.json;
+    no carve entry for '<name>' in compile_config.json;
     add one before integrating.
 
-The worker-self-commit path (``.pi/agents/decomp-matcher.md`` ->
-``scripts/match_and_commit.sh``) historically did NOT auto-carve,
-which meant matched-but-uncarved candidates (e.g. cascade tier-4
-``func_003B9F60``, 2026-05-23) would land as
-``matched-but-not-committed, commit_rc: 2`` and require a manual
-harvest.  This helper closes that gap: ``match_and_commit.sh`` now
-calls it before ``integrate_match.py`` so the wrapper is autonomous
-end-to-end.
+This helper performs exactly that carve for one named function so the
+two-step (carve, then integrate) need not be done by hand.
 
 Behaviour:
 
-- Look up the candidate dict from ``progress/decomp_targets.json``
-  (canonical source).  Fall back to ``prompts/<name>/settings.yaml``
-  + best-effort defaults when the canonical corpus has aged out
-  (mirrors ``scripts/harvest_bakeoff_matches.load_candidate_dict``).
+- Look up the candidate dict from the local target metadata, falling
+  back to per-function settings + best-effort defaults when the metadata
+  has aged out.
 - Idempotent: re-running on an already-carved function exits 0 with
   no writes (the underlying ``_auto_carve_uncarved`` returns
   ``"already_carved"``).

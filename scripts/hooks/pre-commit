@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# pre-commit hook for godhand-recomp — the commit-time ratchet.
+# pre-commit hook for god-hand-decomp — the commit-time ratchet.
 #
 # Installed automatically by scripts/setup_toolchain.sh, which points
 # core.hooksPath at scripts/hooks/ so this version-tracked file runs on

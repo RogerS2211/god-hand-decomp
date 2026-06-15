@@ -1,10 +1,9 @@
 """Offline unit tests for ``scripts/check_tu_complete.py``.
 
 Pure-Python — no real compile.py, objdiff, or repo-tree dependency;
-covers the script's helpers + the orchestrator (``check_one``) +
+covers the script's helpers + the top-level driver (``check_one``) +
 the marker-mode wrapper (``check_marker``) against tmpdir-staged
-minimal project trees.  Mirrors ``tests/test_integrate_match.py``
-style: small focused tests that pin the contract.
+minimal project trees.  Small focused tests that pin the contract.
 """
 from __future__ import annotations
 
@@ -107,7 +106,7 @@ class TestPureHelpers:
 
 
 # --------------------------------------------------------------------------- #
-# check_one orchestrator
+# check_one driver
 # --------------------------------------------------------------------------- #
 
 

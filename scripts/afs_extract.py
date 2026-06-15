@@ -148,7 +148,7 @@ def main(argv: list[str] | None = None) -> int:
 
     # Guard against basename collisions in the matched set.  Different
     # FST paths with the same basename would clobber each other in the
-    # flat extraction layout.  Prior recon verified zero collisions for *.rel;
+    # flat extraction layout.  Prior analysis verified zero collisions for *.rel;
     # this check makes the assumption explicit for future filter changes.
     seen_bn: dict[str, str] = {}
     for f in matched:

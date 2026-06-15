@@ -6,9 +6,9 @@ the recommended compiler tag for that function's text-section address.
 Based on the empirical address-band layout documented in the
 dual-compiler policy notes § "Address-band predictor".
 
-This is the canonical CLI for the address → compiler decision that future
-hand-author / smoke / bulk-migration work would otherwise re-derive
-empirically per-candidate (which cost ~3 hours of prior recon).
+This is the canonical CLI for the address → compiler decision that later
+work would otherwise re-derive empirically per-candidate (which cost
+~3 hours of prior investigation).
 
 Examples::
 

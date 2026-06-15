@@ -1,7 +1,7 @@
 """Offline unit tests for ``scripts/afs.py``.
 
 Locks in the AFS-header / GODHAND.FST schema we reverse-engineered so a
-future schema-discovery agent can't silently shift the parser without
+future change to the parser can't silently shift its behaviour without
 flipping at least one of these tests.
 
 All fixtures are synthetic byte strings — none of these tests touches the

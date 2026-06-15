@@ -1,7 +1,7 @@
 # God Hand (USA) — r207.rel — splat config
 #
-# First REL splat target. Chosen on size/simplicity per
-# recon (`progress/rel_inventory.json`):
+# First REL splat target. Chosen on size/simplicity per the per-REL
+# inventory (`scripts/recon/rel_inventory.py`):
 #
 #   r207.rel       1720 B  15 funcs  4 externals  8 relocs
 #   r502.rel       1720 B  15 funcs  4 externals  8 relocs (tied)
@@ -13,7 +13,7 @@
 # subsegments for the header + tail and a single `asm` subsegment for
 # the code/early-data region.  The carve points are:
 #
-#   [0x000, 0x03C)  SNR2 header (60 B; fields documented in the recon notes)
+#   [0x000, 0x03C)  SNR2 header (60 B; fields parsed by scripts/recon/rel_inventory.py)
 #   [0x03C, 0x488)  code + early data (1100 B; spans .text + ctor/dtor
 #                   lists at 0x400/0x408; spimdisasm will emit data
 #                   words for the non-instruction tail of the range

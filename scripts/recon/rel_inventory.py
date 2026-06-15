@@ -116,7 +116,7 @@ RELOC_ENTRY_SIZE = 12
 FUNC_ENTRY_SIZE = 12
 
 # MIPS relocation types observed (per emoose's IDA loader: only 2/4/5/6 ever
-# seen across PS2 SNR2 corpora). Keep the enum minimal — recon-only.
+# seen across PS2 SNR2 corpora). Keep the enum minimal.
 MIPS_RELOC_NAMES = {
     0: "R_MIPS_NONE",
     1: "R_MIPS_16",
@@ -292,7 +292,7 @@ def main(argv: list[str]) -> int:
     for path in rels:
         try:
             rows.append(parse_rel(path))
-        except Exception as exc:  # noqa: BLE001 — recon, surface everything
+        except Exception as exc:  # noqa: BLE001 — surface everything
             print(f"error parsing {path.name}: {exc}", file=sys.stderr)
             return 2
 

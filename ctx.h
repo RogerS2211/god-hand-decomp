@@ -1,4 +1,4 @@
-/* m2c per-function context header for godhand-recomp.
+/* m2c per-function context header for god-hand-decomp.
  *
  * Concatenated ahead of the generated C code while iterating an
  * `m2c`-direct function toward a byte match.  This file is NOT in the
@@ -73,9 +73,9 @@ typedef s64  M2C_UNK64;
  *                                rounded up to multiple of 16.
  *
  * "Seed-addr" is the VRAM of the first candidate observed to
- * operate on that shape (so the symbol is greppable to the recon
- * trail).  When/if the shape is named in Ghidra, rename here in the
- * same commit per ORIENT.md contract point 9.
+ * operate on that shape (so the symbol is greppable back to where it
+ * was first seen).  When/if the shape is named in Ghidra, rename here
+ * in the same commit.
  *
  * Each shape gets a forward decl so callers can use the pointer-form
  * without depending on the size baked in below.  The size is the

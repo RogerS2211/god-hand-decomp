@@ -18,7 +18,7 @@ descriptor; these fields are tentatively interpreted as
 (EE-virtual load address, VU-microcode local address) based on the
 naming convention `.DVP.overlay..0x<c>.<namehash>.<count>.<chunk>`
 embedded in the section names.  Confirmation of the precise semantics
-is later work; here we are pure recon.
+is later work; this is a read-only inventory.
 
 Pure read-only.  Output is a Markdown table written to stdout.
 """

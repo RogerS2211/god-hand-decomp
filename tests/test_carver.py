@@ -344,12 +344,10 @@ class TestCarveUnitSizeBytes:
 
 
 class TestPhase2Reexports:
-    """Phase-2 session-half re-export back-compat alias.
+    """Re-export back-compat alias.
 
-    The legacy re-export shim that once threaded the carver's session
-    symbols through the orchestrator module is exercised by a private
-    test (it imports a module outside the public surface); this keeps the
-    live back-compat alias check that still passes here.
+    Checks the live back-compat alias on the carve snapshot type, so the
+    legacy name keeps resolving to the current one.
     """
 
     def test_carve_snapshot_back_compat_alias(self):
