@@ -43,6 +43,14 @@ cd "$ROOT"
 CHECKS_DIR="$ROOT/scripts/checks"
 DEFAULT_CHECKS=(splat rel-splat metadata build rel expected dual_compiler_regress units score diff data_decls forced_regs naming_debt naming_sync tu_complete state atlas social)
 
+# Optional checks read local-only working files (running notes, the in-progress
+# struct atlas, naming bookkeeping) that aren't tracked in the repo, so their
+# scripts aren't shipped either. A fresh clone won't have them: a *missing*
+# optional check is skipped, not failed. A missing NON-optional check is still a
+# hard error — that catches a typo in DEFAULT_CHECKS or an accidentally-deleted
+# tracked check.
+OPTIONAL_CHECKS=(naming_debt naming_sync state atlas)
+
 usage() {
     cat <<EOF
 Usage: scripts/session_check.sh [CHECK]
@@ -95,8 +103,13 @@ printf "session_check: running %d sub-check(s) [%s]\n" \
 for c in "${selected[@]}"; do
     SCRIPT="$CHECKS_DIR/$c.sh"
     if [[ ! -x "$SCRIPT" ]]; then
-        printf "%b %-7s  no such check (%s)\n" "$FAIL_MARK" "$c" "$SCRIPT"
-        FAILED+=1
+        if [[ " ${OPTIONAL_CHECKS[*]} " == *" $c "* ]]; then
+            SKIPPED+=1
+            printf "%b %-7s   0s  skipped (check not present in this checkout)\n" "$SKIP_MARK" "$c"
+        else
+            printf "%b %-7s  no such check (%s)\n" "$FAIL_MARK" "$c" "$SCRIPT"
+            FAILED+=1
+        fi
         continue
     fi
     sub_start=$SECONDS
