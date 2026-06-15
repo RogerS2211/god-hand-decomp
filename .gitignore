@@ -19,6 +19,7 @@
 !scripts/hooks/
 !scripts/recon/
 !scripts/recon/cc_roundtrip/
+!sessions/
 !src/
 !src/cod/
 !src/cod/battle/
@@ -129,6 +130,7 @@
 !scripts/sn-cc-wrap.py
 !scripts/verify_rel_splat_roundtrip.py
 !scripts/verify_splat_roundtrip.py
+!sessions/2026-06-15-01-match-2cf-gameobject-tu.md
 !src/.gitkeep
 !src/cod/000000.c
 !src/cod/000293.c
@@ -258,6 +260,7 @@
 !src/cod/002c4de0.c
 !src/cod/002cb778.c
 !src/cod/002cc4b8.c
+!src/cod/002cf258.c
 !src/cod/002fbcc8.c
 !src/cod/00306200.c
 !src/cod/0030e0.c
