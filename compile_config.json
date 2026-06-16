@@ -1028,6 +1028,10 @@
     {
       "path": "src/cod/003903.c",
       "compiler": "ee-2.9-991111"
+    },
+    {
+      "path": "src/cod/0038ff.c",
+      "compiler": "ee-2.9-991111"
     }
   ],
   "_carved_funcs_doc": [
@@ -18278,7 +18282,7 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0038FFE0",
       "size": 148,
-      "lib": true
+      "tu": "src/cod/0038ff.c"
     },
     {
       "name": "b2d",

@@ -35450,14 +35450,15 @@
       }
     },
     {
-      "name": "asm/nonmatching/ulp",
-      "target_path": "expected/build/asm/nonmatching/ulp.o",
-      "base_path": "build/asm/nonmatching/ulp.o",
+      "name": "src/cod/0038ff",
+      "target_path": "expected/build/src/cod/0038ff.o",
+      "base_path": "build/src/cod/0038ff.o",
       "metadata": {
         "auto_generated": true,
         "progress_categories": [
-          "crt"
-        ]
+          "engine"
+        ],
+        "complete": true
       }
     },
     {
