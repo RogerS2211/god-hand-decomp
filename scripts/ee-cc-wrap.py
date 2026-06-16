@@ -51,6 +51,14 @@ GCCLIB_PREFIX = COMPILER / "lib" / "gcc-lib" / "ee" / "2.96-ee-001003-1"
 CPP0 = GCCLIB_PREFIX / "cpp0"
 CC1 = GCCLIB_PREFIX / "cc1"
 CC1PLUS = GCCLIB_PREFIX / "cc1plus"
+# Older Sony/Cygnus ee-gcc 2.9-991111-01 cc1 (Linux native).  This is the
+# compiler the PS2 SDK used to build its statically-linked newlib: it emits
+# 64-bit `sd` callee-saves in 16-byte (quadword) stack slots, the prologue
+# shape retail's mprec/dtoa functions need — which neither cygnus-2.96 (sd /
+# 8-byte slots) nor SN 2.95.3-136 (sq / 16-byte slots) reproduces.  Shares
+# this wrapper's cpp0 + ee-as backends; emits cygnus-style numeric register
+# names, so no numerize stage is required (unlike sn-cc-wrap.py).
+CC1_991111 = COMPILER / "lib" / "gcc-lib" / "ee" / "2.9-ee-991111-01" / "cc1"
 EE_AS = COMPILER / "bin" / "ee-as"
 EE_DVP_AS = COMPILER / "bin" / "ee-dvp-as"
 
@@ -183,13 +191,15 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     )
     p.add_argument(
         "--compiler",
-        choices=("cygnus-2.96", "sn-2.95.3-136"),
+        choices=("cygnus-2.96", "sn-2.95.3-136", "ee-2.9-991111"),
         default="cygnus-2.96",
         help=(
             "Which cc1 frontend to invoke. 'cygnus-2.96' "
             "(default) keeps today's behaviour; 'sn-2.95.3-136' dispatches "
-            "to scripts/sn-cc-wrap.py for the sq-prologue group. cpp0 + "
-            "ee-as stages stay shared."
+            "to scripts/sn-cc-wrap.py for the sq-prologue group; "
+            "'ee-2.9-991111' uses the older Sony/Cygnus cc1 for the newlib "
+            "sd-in-16-byte-slot group (mprec/dtoa). cpp0 + ee-as stages "
+            "stay shared."
         ),
     )
     return p.parse_args(argv)
@@ -270,7 +280,12 @@ def main(argv: list[str]) -> int:
         die(f"toolchain missing: {COMPILER} (run scripts/setup_toolchain.sh)")
 
     language = detect_language(args.input, args.x)
-    cc1_bin = CC1PLUS if language == "c++" else CC1
+    if args.compiler == "ee-2.9-991111":
+        if language == "c++":
+            die("ee-2.9-991111 is C-only (no cc1plus in this build)")
+        cc1_bin = CC1_991111
+    else:
+        cc1_bin = CC1PLUS if language == "c++" else CC1
 
     src_ext = args.input.suffix.lower()
     is_assembly = src_ext == ".s"
@@ -314,6 +329,12 @@ def main(argv: list[str]) -> int:
 
         # Stage 2: compile (skipped for .s input)
         if not is_assembly:
+            features = args.features
+            if args.compiler == "ee-2.9-991111":
+                # gcc 2.9 cc1 predates -freorder-blocks (exit 33 "Invalid
+                # option"); drop it, exactly as sn-cc-wrap.py does for the
+                # SN cc1.  The newlib sd-prologue group never needs it.
+                features = [f for f in features if f != "-freorder-blocks"]
             cc1_cmd = [
                 str(cc1_bin),
                 "-quiet",
@@ -322,7 +343,7 @@ def main(argv: list[str]) -> int:
                 f"-O{args.optlevel}",
                 f"-G{args.sdata_thresh}",
                 *args.warnings,
-                *args.features,
+                *features,
             ]
             if args.g:
                 cc1_cmd.append("-gstabs")

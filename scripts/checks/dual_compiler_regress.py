@@ -52,7 +52,7 @@ sys.path.insert(0, str(ROOT))
 import compile as cpy  # noqa: E402
 
 EXPECTED_ROOT = ROOT / "expected" / "build"
-COMPILERS = ("cygnus-2.96", "sn-2.95.3-136")
+COMPILERS = ("cygnus-2.96", "sn-2.95.3-136", "ee-2.9-991111")
 
 
 # --------------------------------------------------------------------------- #
@@ -415,11 +415,13 @@ def main(argv: list[str] | None = None) -> int:
             cyg_verdict = _tu_verdict(cyg_rows)
             sn_verdict = _tu_verdict(sn_rows)
             gate_compiler = _gate_compiler_for(rep.rel)
-            gate_verdict = (
-                sn_verdict if gate_compiler == "sn-2.95.3-136" else cyg_verdict
-            )
+            gate_verdict = _tu_verdict(rep.rows_by_compiler.get(gate_compiler))
             gate_tag = (
-                " [SN-gated]" if gate_compiler == "sn-2.95.3-136" else ""
+                ""
+                if gate_compiler == "cygnus-2.96"
+                else " [SN-gated]"
+                if gate_compiler == "sn-2.95.3-136"
+                else f" [{gate_compiler}-gated]"
             )
             marker = "✓" if gate_verdict == "OK" else "✗"
             print(f"{marker} {rep.rel}{gate_tag}")

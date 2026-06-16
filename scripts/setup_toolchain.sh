@@ -43,6 +43,16 @@ EE_DVP_AS_SHA256="9011fe9218487cb97aa6ffc2b59ce19ae3a5f3ec575bc0f0e30c4cd00f65cd
 SN_EE_GCC_URL="https://github.com/decompme/compilers/releases/download/compilers/ee-gcc2.95.3-136.tar.gz"
 SN_EE_GCC_SHA256="3b6ae6897229ad005aaf1b0afaa1f3cb46e74b4c21a42e01130c07c0c598067f"
 
+# ee-gcc 2.9-991111-01 (older Sony/Cygnus, Linux native).  Third compiler in
+# the matching setup: opt-in per-TU for the newlib mprec/dtoa group whose
+# retail prologue uses 64-bit `sd` callee-saves in 16-byte (quadword) slots —
+# a shape neither cygnus-2.96 (sd / 8-byte slots) nor SN 2.95.3-136 (sq /
+# 16-byte slots) reproduces.  This is the compiler the PS2 SDK used to build
+# its statically-linked newlib (same lineage KH1 uses for src/lib/).  Only its
+# cc1 is needed; cpp0 + ee-as backends are shared with cygnus-2.96.
+EE_GCC_991111_URL="https://github.com/decompme/compilers/releases/download/compilers/ee-gcc2.9-991111-01.tar.xz"
+EE_GCC_991111_SHA256="ed684fd98f89d36b0121caab311052089103e3b36241fcef4338cc9ea41c75b8"
+
 # wibo — decompals/wibo 0.6.13. A small Win32 PE loader for Linux-x86_64,
 # similar in role to wine but pure-static (~2 MB, no install). Pinned to
 # 0.6.13 because that's the version mh1j (the precedent project for
@@ -108,6 +118,21 @@ if [[ ! -x "$CC_DIR/lib/gcc-lib/ee/2.96-ee-001003-1/cc1" ]]; then
     ok "ee-gcc 2.96 → $CC_DIR/"
 else
     ok "ee-gcc 2.96 already installed"
+fi
+
+# ee-gcc 2.9-991111-01 cc1 (newlib sd-in-16-byte-slot prologue group).  Only
+# the cc1 member is extracted; cpp0 + ee-as are shared with ee-gcc 2.96 above.
+if [[ ! -x "$CC_DIR/lib/gcc-lib/ee/2.9-ee-991111-01/cc1" ]]; then
+    log "Downloading ee-gcc 2.9-991111-01 (newlib sd-prologue cc1)"
+    mkdir -p "$CC_DIR/lib/gcc-lib/ee/2.9-ee-991111-01"
+    curl -fL --progress-bar -o /tmp/ee-gcc2.9-991111-01.tar.xz "$EE_GCC_991111_URL"
+    verify_sha /tmp/ee-gcc2.9-991111-01.tar.xz "$EE_GCC_991111_SHA256"
+    tar -xf /tmp/ee-gcc2.9-991111-01.tar.xz -C "$CC_DIR" lib/gcc-lib/ee/2.9-ee-991111-01/cc1
+    chmod +x "$CC_DIR/lib/gcc-lib/ee/2.9-ee-991111-01/cc1"
+    rm /tmp/ee-gcc2.9-991111-01.tar.xz
+    ok "ee-gcc 2.9-991111-01 → $CC_DIR/"
+else
+    ok "ee-gcc 2.9-991111-01 already installed"
 fi
 
 # -----------------------------------------------------------------------------

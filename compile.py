@@ -885,11 +885,14 @@ def _emit_build_lcf(
 # Source discovery
 # --------------------------------------------------------------------------- #
 # Per-TU compiler choice.  The default (cygnus-2.96) is today's
-# behaviour for all 735 currently-matched TUs; the alternative
-# (sn-2.95.3-136) is the opt-in SN ee-gcc for the `sq`-prologue group.
-# Anything not in this set is a config error — see Config.compile_units.
+# behaviour for all 735 currently-matched TUs; the alternatives are
+# (sn-2.95.3-136) the opt-in SN ee-gcc for the `sq`-prologue group, and
+# (ee-2.9-991111) the older Sony/Cygnus ee-gcc for the newlib mprec/dtoa
+# group whose retail prologue uses 64-bit `sd` callee-saves in 16-byte
+# slots.  Anything not in this set is a config error — see
+# Config.compile_units.
 DEFAULT_COMPILER = "cygnus-2.96"
-SUPPORTED_COMPILERS = frozenset({"cygnus-2.96", "sn-2.95.3-136"})
+SUPPORTED_COMPILERS = frozenset({"cygnus-2.96", "sn-2.95.3-136", "ee-2.9-991111"})
 
 
 @dataclasses.dataclass(frozen=True)
