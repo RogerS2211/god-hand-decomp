@@ -144,8 +144,11 @@ instead of through a temp, fix a return-value's liveness, get a cast right.
 
 Some functions were built with a different compiler in the SDK. The per-TU
 compiler is recorded in `compile_config.json`; if a function won't match under
-the default, try the alternate (the SN compiler is used for sq-prologue
-functions, among others).
+the default (`cygnus-2.96`), try an alternate. The SN compiler
+(`sn-2.95.3-136`) reproduces `sq`-prologue functions; the older
+`ee-2.9-991111` cc1 reproduces the statically-linked newlib (mprec/dtoa, and
+much of the libc/libm region) whose prologues use 64-bit `sd` callee-saves in
+16-byte stack slots — a shape neither of the other two emits.
 
 ### Step 4 — brute-force the last mile with decomp-permuter
 
