@@ -15788,7 +15788,7 @@
       "lib": true
     },
     {
-      "name": "func_0031EE80",
+      "name": "__rtti_class",
       "unit": "asm/cod/000000",
       "vaddr": "0x0031EE80",
       "size": 36,
@@ -15851,7 +15851,7 @@
       "lib": true
     },
     {
-      "name": "func_0031FA40",
+      "name": "__rtti_attr",
       "unit": "asm/cod/000000",
       "vaddr": "0x0031FA40",
       "size": 36,
@@ -17986,7 +17986,7 @@
       "lib": true
     },
     {
-      "name": "func_0038B698",
+      "name": "is_open__3ios",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038B698",
       "size": 36,
@@ -18014,7 +18014,7 @@
       "lib": true
     },
     {
-      "name": "func_0038C048",
+      "name": "setf__3iosUlUl",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038C048",
       "size": 28,
@@ -18035,7 +18035,7 @@
       "lib": true
     },
     {
-      "name": "func_0038C208",
+      "name": "_IO_link_in",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038C208",
       "size": 48,
@@ -18049,14 +18049,14 @@
       "lib": true
     },
     {
-      "name": "func_0038C280",
+      "name": "_IO_switch_to_main_get_area",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038C280",
       "size": 56,
       "lib": true
     },
     {
-      "name": "func_0038C2B8",
+      "name": "_IO_switch_to_backup_area",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038C2B8",
       "size": 52,
@@ -18182,7 +18182,7 @@
       "lib": true
     },
     {
-      "name": "func_0038F4C0",
+      "name": "Binit",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038F4C0",
       "size": 40,
@@ -18224,7 +18224,7 @@
       "lib": true
     },
     {
-      "name": "func_0038F838",
+      "name": "hi0bits",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038F838",
       "size": 132,
@@ -18406,7 +18406,7 @@
       "lib": true
     },
     {
-      "name": "func_00396048",
+      "name": "sceGsSetHalfOffset",
       "unit": "asm/cod/000000",
       "vaddr": "0x00396048",
       "size": 136,
@@ -18595,7 +18595,7 @@
       "lib": true
     },
     {
-      "name": "func_00398638",
+      "name": "cmd_sem_init",
       "unit": "asm/cod/000000",
       "vaddr": "0x00398638",
       "size": 228,
@@ -18644,7 +18644,7 @@
       "lib": true
     },
     {
-      "name": "func_00399D70",
+      "name": "_clearOnce",
       "unit": "asm/cod/000000",
       "vaddr": "0x00399D70",
       "size": 204,
@@ -18672,7 +18672,7 @@
       "lib": true
     },
     {
-      "name": "func_0039A9A8",
+      "name": "sceMpegGetPicture",
       "unit": "asm/cod/000000",
       "vaddr": "0x0039A9A8",
       "size": 72,
@@ -18742,14 +18742,14 @@
       "lib": true
     },
     {
-      "name": "func_0039BFF8",
+      "name": "_ch3dmaCSC",
       "unit": "asm/cod/000000",
       "vaddr": "0x0039BFF8",
       "size": 328,
       "lib": true
     },
     {
-      "name": "func_0039C228",
+      "name": "_sceMpegStopIpuDma",
       "unit": "asm/cod/000000",
       "vaddr": "0x0039C228",
       "size": 160,
@@ -18777,7 +18777,7 @@
       "lib": true
     },
     {
-      "name": "func_0039ECB8",
+      "name": "_waitIpuIdle",
       "unit": "asm/cod/000000",
       "vaddr": "0x0039ECB8",
       "size": 52,
@@ -18861,7 +18861,7 @@
       "lib": true
     },
     {
-      "name": "func_003A0F88",
+      "name": "flushByteBoundary",
       "unit": "asm/cod/000000",
       "vaddr": "0x003A0F88",
       "size": 80,
@@ -19190,7 +19190,7 @@
       "lib": true
     },
     {
-      "name": "func_003B3F08",
+      "name": "_sceFs_Poff_Intr",
       "unit": "asm/cod/000000",
       "vaddr": "0x003B3F08",
       "size": 68,
@@ -19274,7 +19274,7 @@
       "lib": true
     },
     {
-      "name": "func_003B6408",
+      "name": "supplement_crt0",
       "unit": "asm/cod/000000",
       "vaddr": "0x003B6408",
       "size": 96,
@@ -19323,7 +19323,7 @@
       "lib": true
     },
     {
-      "name": "func_003B7130",
+      "name": "iGetTimerSystemTime",
       "unit": "asm/cod/000000",
       "vaddr": "0x003B7130",
       "size": 76,
@@ -19337,7 +19337,7 @@
       "lib": true
     },
     {
-      "name": "func_003B7200",
+      "name": "iAllocTimerCounter",
       "unit": "asm/cod/000000",
       "vaddr": "0x003B7200",
       "size": 112,
@@ -19372,7 +19372,7 @@
       "lib": true
     },
     {
-      "name": "func_003B76B8",
+      "name": "_InitAlarm",
       "unit": "asm/cod/000000",
       "vaddr": "0x003B76B8",
       "size": 76,
