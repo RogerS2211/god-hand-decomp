@@ -986,6 +986,12 @@
       "c_flags_drop": [
         "-f=-freorder-blocks"
       ]
+    },
+    {
+      "path": "src/cod/003329.c",
+      "c_flags_drop": [
+        "-f=-freorder-blocks"
+      ]
     }
   ],
   "_carved_funcs_doc": [
@@ -16157,7 +16163,7 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x003329E8",
       "size": 120,
-      "lib": true
+      "tu": "src/cod/003329.c"
     },
     {
       "name": "func_00332BA8",
@@ -16521,7 +16527,7 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0033F348",
       "size": 136,
-      "lib": true
+      "tu": "src/cod/0033f3.c"
     },
     {
       "name": "DTR_Create",
