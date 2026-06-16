@@ -155,6 +155,7 @@
 !src/cod/001339c0.c
 !src/cod/00133a80.c
 !src/cod/00133ba0.c
+!src/cod/001347e8.c
 !src/cod/00134880.c
 !src/cod/001351d8.c
 !src/cod/001352f8.c
@@ -263,6 +264,7 @@
 !src/cod/002cc4b8.c
 !src/cod/002cf258.c
 !src/cod/002fbcc8.c
+!src/cod/00302918.c
 !src/cod/00306200.c
 !src/cod/0030e0.c
 !src/cod/00313510.c
@@ -411,4 +413,3 @@
 !tools/splat_ext/sndata.py
 !tools/strip_data_nonmatching.py
 !tools/test_strip_data_nonmatching.py
-.osgrep
