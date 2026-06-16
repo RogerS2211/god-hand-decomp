@@ -980,6 +980,12 @@
       "c_flags_drop": [
         "-f=-freorder-blocks"
       ]
+    },
+    {
+      "path": "src/cod/00335b.c",
+      "c_flags_drop": [
+        "-f=-freorder-blocks"
+      ]
     }
   ],
   "_carved_funcs_doc": [
@@ -15927,7 +15933,7 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x00323ED8",
       "size": 60,
-      "lib": true
+      "tu": "src/cod/00323e.c"
     },
     {
       "name": "func_00324500",
@@ -16130,7 +16136,7 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x00332090",
       "size": 76,
-      "lib": true
+      "tu": "src/cod/003320.c"
     },
     {
       "name": "DTX_Destroy",
@@ -16284,7 +16290,7 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x00335BC8",
       "size": 100,
-      "lib": true
+      "tu": "src/cod/00335b.c"
     },
     {
       "name": "func_00335CA8",
@@ -16473,14 +16479,14 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0033D320",
       "size": 88,
-      "lib": true
+      "tu": "src/cod/0033d3.c"
     },
     {
       "name": "ADXB_CopyExtraBufSte",
       "unit": "asm/cod/000000",
       "vaddr": "0x0033D508",
       "size": 108,
-      "lib": true
+      "tu": "src/cod/0033d5.c"
     },
     {
       "name": "func_0033DD50",

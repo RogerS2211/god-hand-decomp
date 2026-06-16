@@ -21959,14 +21959,15 @@
       }
     },
     {
-      "name": "asm/nonmatching/ADXF_ReadNw",
-      "target_path": "expected/build/asm/nonmatching/ADXF_ReadNw.o",
-      "base_path": "build/asm/nonmatching/ADXF_ReadNw.o",
+      "name": "src/cod/00323e",
+      "target_path": "expected/build/src/cod/00323e.o",
+      "base_path": "build/src/cod/00323e.o",
       "metadata": {
         "auto_generated": true,
         "progress_categories": [
-          "cri-middleware"
-        ]
+          "engine"
+        ],
+        "complete": true
       }
     },
     {
@@ -24018,14 +24019,15 @@
       }
     },
     {
-      "name": "asm/nonmatching/dtx_destroy_rmt",
-      "target_path": "expected/build/asm/nonmatching/dtx_destroy_rmt.o",
-      "base_path": "build/asm/nonmatching/dtx_destroy_rmt.o",
+      "name": "src/cod/003320",
+      "target_path": "expected/build/src/cod/003320.o",
+      "base_path": "build/src/cod/003320.o",
       "metadata": {
         "auto_generated": true,
         "progress_categories": [
-          "cri-middleware"
-        ]
+          "engine"
+        ],
+        "complete": true
       }
     },
     {
@@ -24634,14 +24636,15 @@
       }
     },
     {
-      "name": "asm/nonmatching/LSC_SetFlowLimit",
-      "target_path": "expected/build/asm/nonmatching/LSC_SetFlowLimit.o",
-      "base_path": "build/asm/nonmatching/LSC_SetFlowLimit.o",
+      "name": "src/cod/00335b",
+      "target_path": "expected/build/src/cod/00335b.o",
+      "base_path": "build/src/cod/00335b.o",
       "metadata": {
         "auto_generated": true,
         "progress_categories": [
-          "cri-middleware"
-        ]
+          "engine"
+        ],
+        "complete": true
       }
     },
     {
@@ -25922,14 +25925,15 @@
       }
     },
     {
-      "name": "asm/nonmatching/ADXB_EvokeExpandSte",
-      "target_path": "expected/build/asm/nonmatching/ADXB_EvokeExpandSte.o",
-      "base_path": "build/asm/nonmatching/ADXB_EvokeExpandSte.o",
+      "name": "src/cod/0033d3",
+      "target_path": "expected/build/src/cod/0033d3.o",
+      "base_path": "build/src/cod/0033d3.o",
       "metadata": {
         "auto_generated": true,
         "progress_categories": [
-          "cri-middleware"
-        ]
+          "engine"
+        ],
+        "complete": true
       }
     },
     {
@@ -25944,14 +25948,15 @@
       }
     },
     {
-      "name": "asm/nonmatching/ADXB_CopyExtraBufSte",
-      "target_path": "expected/build/asm/nonmatching/ADXB_CopyExtraBufSte.o",
-      "base_path": "build/asm/nonmatching/ADXB_CopyExtraBufSte.o",
+      "name": "src/cod/0033d5",
+      "target_path": "expected/build/src/cod/0033d5.o",
+      "base_path": "build/src/cod/0033d5.o",
       "metadata": {
         "auto_generated": true,
         "progress_categories": [
-          "cri-middleware"
-        ]
+          "engine"
+        ],
+        "complete": true
       }
     },
     {
