@@ -51,7 +51,7 @@ int AllocSlotEntry_1FFC60(int a0, int a1) {
     int s2 = EnsureInitThenForward_2A9538_30EE08(s0 << 11, 0x40, &D_00754200);
     func_00323E80(s1, s0, s2);
     while (func_003244C8(s1) != 3) {
-        func_00395398(0);
+        sceGsSyncV(0);
     }
     return s2;
 }
@@ -67,7 +67,7 @@ int LoadEntryByValue_1FFD00(int a0, int a1, int a2) {
     s0 = func_00323918(0, v0);
     func_00323E80(s0, sp0, a2);
     while (func_003244C8(s0) != 3) {
-        func_00395398(0);
+        sceGsSyncV(0);
     }
     return func_00323A70(s0);
 }

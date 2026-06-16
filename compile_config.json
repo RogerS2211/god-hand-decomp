@@ -18483,7 +18483,7 @@
       "lib": true
     },
     {
-      "name": "func_00397780",
+      "name": "_pad_intr_hdr",
       "unit": "asm/cod/000000",
       "vaddr": "0x00397780",
       "size": 72,
@@ -18602,14 +18602,14 @@
       "lib": true
     },
     {
-      "name": "func_00398720",
+      "name": "cdvd_exit",
       "unit": "asm/cod/000000",
       "vaddr": "0x00398720",
       "size": 160,
       "lib": true
     },
     {
-      "name": "func_003987C0",
+      "name": "_sceCd_Poff_Intr",
       "unit": "asm/cod/000000",
       "vaddr": "0x003987C0",
       "size": 84,
@@ -18630,7 +18630,7 @@
       "lib": true
     },
     {
-      "name": "func_00398E40",
+      "name": "sceCdSyncS",
       "unit": "asm/cod/000000",
       "vaddr": "0x00398E40",
       "size": 108,
@@ -18658,14 +18658,14 @@
       "lib": true
     },
     {
-      "name": "func_0039A078",
+      "name": "_clearEach",
       "unit": "asm/cod/000000",
       "vaddr": "0x0039A078",
       "size": 200,
       "lib": true
     },
     {
-      "name": "func_0039A8E8",
+      "name": "sceMpegInit",
       "unit": "asm/cod/000000",
       "vaddr": "0x0039A8E8",
       "size": 176,
@@ -18679,7 +18679,7 @@
       "lib": true
     },
     {
-      "name": "func_0039A9F0",
+      "name": "sceMpegGetPictureRAW8",
       "unit": "asm/cod/000000",
       "vaddr": "0x0039A9F0",
       "size": 68,
@@ -18756,7 +18756,7 @@
       "lib": true
     },
     {
-      "name": "func_0039C2C8",
+      "name": "_sceMpegErrorBdec",
       "unit": "asm/cod/000000",
       "vaddr": "0x0039C2C8",
       "size": 200,
@@ -18770,7 +18770,7 @@
       "lib": true
     },
     {
-      "name": "func_0039D398",
+      "name": "_doMC",
       "unit": "asm/cod/000000",
       "vaddr": "0x0039D398",
       "size": 540,
@@ -18784,7 +18784,7 @@
       "lib": true
     },
     {
-      "name": "func_0039EF68",
+      "name": "dmaRefImage",
       "unit": "asm/cod/000000",
       "vaddr": "0x0039EF68",
       "size": 380,
@@ -18945,7 +18945,7 @@
       "lib": true
     },
     {
-      "name": "func_003B0510",
+      "name": "SyncDCache",
       "unit": "asm/cod/000000",
       "vaddr": "0x003B0510",
       "size": 124,
@@ -19029,7 +19029,7 @@
       "lib": true
     },
     {
-      "name": "func_003B1E90",
+      "name": "_sceSnprintf_pf",
       "unit": "asm/cod/000000",
       "vaddr": "0x003B1E90",
       "size": 76,
@@ -19113,7 +19113,7 @@
       "lib": true
     },
     {
-      "name": "func_003B2AA0",
+      "name": "sceSifExitRpc",
       "unit": "asm/cod/000000",
       "vaddr": "0x003B2AA0",
       "size": 36,
@@ -19330,7 +19330,7 @@
       "lib": true
     },
     {
-      "name": "func_003B7180",
+      "name": "GetTimerSystemTime",
       "unit": "asm/cod/000000",
       "vaddr": "0x003B7180",
       "size": 124,
@@ -19365,7 +19365,7 @@
       "lib": true
     },
     {
-      "name": "func_003B7638",
+      "name": "TimerUSec2BusClock",
       "unit": "asm/cod/000000",
       "vaddr": "0x003B7638",
       "size": 112,
@@ -19379,7 +19379,7 @@
       "lib": true
     },
     {
-      "name": "func_003B7708",
+      "name": "AlarmHandler",
       "unit": "asm/cod/000000",
       "vaddr": "0x003B7708",
       "size": 92,
@@ -19421,7 +19421,7 @@
       "lib": true
     },
     {
-      "name": "func_003BA978",
+      "name": "setD4_CHCR",
       "unit": "asm/cod/000000",
       "vaddr": "0x003BA978",
       "size": 116,
