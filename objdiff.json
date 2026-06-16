@@ -21903,14 +21903,15 @@
       }
     },
     {
-      "name": "asm/nonmatching/adxf_ChkPrmPt",
-      "target_path": "expected/build/asm/nonmatching/adxf_ChkPrmPt.o",
-      "base_path": "build/asm/nonmatching/adxf_ChkPrmPt.o",
+      "name": "src/cod/003229",
+      "target_path": "expected/build/src/cod/003229.o",
+      "base_path": "build/src/cod/003229.o",
       "metadata": {
         "auto_generated": true,
         "progress_categories": [
-          "cri-middleware"
-        ]
+          "engine"
+        ],
+        "complete": true
       }
     },
     {
@@ -22002,14 +22003,15 @@
       }
     },
     {
-      "name": "asm/nonmatching/adxf_ChkPrmGfr",
-      "target_path": "expected/build/asm/nonmatching/adxf_ChkPrmGfr.o",
-      "base_path": "build/asm/nonmatching/adxf_ChkPrmGfr.o",
+      "name": "src/cod/003245",
+      "target_path": "expected/build/src/cod/003245.o",
+      "base_path": "build/src/cod/003245.o",
       "metadata": {
         "auto_generated": true,
         "progress_categories": [
-          "cri-middleware"
-        ]
+          "engine"
+        ],
+        "complete": true
       }
     },
     {
@@ -23652,14 +23654,15 @@
       }
     },
     {
-      "name": "asm/nonmatching/ADXT_IsEndcode",
-      "target_path": "expected/build/asm/nonmatching/ADXT_IsEndcode.o",
-      "base_path": "build/asm/nonmatching/ADXT_IsEndcode.o",
+      "name": "src/cod/0032b7",
+      "target_path": "expected/build/src/cod/0032b7.o",
+      "base_path": "build/src/cod/0032b7.o",
       "metadata": {
         "auto_generated": true,
         "progress_categories": [
-          "cri-middleware"
-        ]
+          "engine"
+        ],
+        "complete": true
       }
     },
     {
@@ -25610,14 +25613,15 @@
       }
     },
     {
-      "name": "asm/nonmatching/ADXAMP_Destroy",
-      "target_path": "expected/build/asm/nonmatching/ADXAMP_Destroy.o",
-      "base_path": "build/asm/nonmatching/ADXAMP_Destroy.o",
+      "name": "src/cod/0033c0",
+      "target_path": "expected/build/src/cod/0033c0.o",
+      "base_path": "build/src/cod/0033c0.o",
       "metadata": {
         "auto_generated": true,
         "progress_categories": [
-          "cri-middleware"
-        ]
+          "engine"
+        ],
+        "complete": true
       }
     },
     {
@@ -26622,14 +26626,15 @@
       }
     },
     {
-      "name": "asm/nonmatching/ADX_DecodeInfoAiff",
-      "target_path": "expected/build/asm/nonmatching/ADX_DecodeInfoAiff.o",
-      "base_path": "build/asm/nonmatching/ADX_DecodeInfoAiff.o",
+      "name": "src/cod/00340e",
+      "target_path": "expected/build/src/cod/00340e.o",
+      "base_path": "build/src/cod/00340e.o",
       "metadata": {
         "auto_generated": true,
         "progress_categories": [
-          "cri-middleware"
-        ]
+          "engine"
+        ],
+        "complete": true
       }
     },
     {
@@ -26644,14 +26649,15 @@
       }
     },
     {
-      "name": "asm/nonmatching/ADXB_CheckAu",
-      "target_path": "expected/build/asm/nonmatching/ADXB_CheckAu.o",
-      "base_path": "build/asm/nonmatching/ADXB_CheckAu.o",
+      "name": "src/cod/003417",
+      "target_path": "expected/build/src/cod/003417.o",
+      "base_path": "build/src/cod/003417.o",
       "metadata": {
         "auto_generated": true,
         "progress_categories": [
-          "cri-middleware"
-        ]
+          "engine"
+        ],
+        "complete": true
       }
     },
     {
@@ -26662,17 +26668,6 @@
         "auto_generated": true,
         "progress_categories": [
           "engine"
-        ]
-      }
-    },
-    {
-      "name": "asm/nonmatching/ADX_DecodeInfoAu",
-      "target_path": "expected/build/asm/nonmatching/ADX_DecodeInfoAu.o",
-      "base_path": "build/asm/nonmatching/ADX_DecodeInfoAu.o",
-      "metadata": {
-        "auto_generated": true,
-        "progress_categories": [
-          "cri-middleware"
         ]
       }
     },
