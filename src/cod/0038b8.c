@@ -36,7 +36,7 @@ int Obj38B8_IsField38_NonNegative(char *a0) {
 }
 
 INCLUDE_ASM("nonmatching", func_0038B8B0);
-INCLUDE_ASM("nonmatching", func_0038B900);
+INCLUDE_ASM("nonmatching", stossc__9streambuf);
 INCLUDE_ASM("nonmatching", func_0038B9F0);
 INCLUDE_ASM("nonmatching", func_0038BA10);
 INCLUDE_ASM("nonmatching", func_0038BA38);
