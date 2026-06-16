@@ -3935,7 +3935,7 @@
       "tu": "src/cod/0035d0.c"
     },
     {
-      "name": "Obj35D0_ClearFields_4Words_D188",
+      "name": "sfuo_InitUoch",
       "unit": "asm/cod/000000",
       "vaddr": "0x0035D188",
       "size": 36,
@@ -4173,14 +4173,14 @@
       "tu": "src/cod/0035d0.c"
     },
     {
-      "name": "func_0035D610",
+      "name": "SFH_Create",
       "unit": "asm/cod/000000",
       "vaddr": "0x0035D610",
       "size": 200,
       "tu": "src/cod/0035d0.c"
     },
     {
-      "name": "func_0035D6D8",
+      "name": "SFH_Destroy",
       "unit": "asm/cod/000000",
       "vaddr": "0x0035D6D8",
       "size": 48,
@@ -4278,14 +4278,14 @@
       "tu": "src/cod/0034d8.c"
     },
     {
-      "name": "func_0034DA50",
+      "name": "sfhds_CallN",
       "unit": "asm/cod/000000",
       "vaddr": "0x0034DA50",
       "size": 52,
       "tu": "src/cod/0034d8.c"
     },
     {
-      "name": "func_0034DA88",
+      "name": "sfhds_CallS",
       "unit": "asm/cod/000000",
       "vaddr": "0x0034DA88",
       "size": 56,
@@ -4530,7 +4530,7 @@
       "tu": "src/cod/0035c0.c"
     },
     {
-      "name": "Obj35C0_Init_7_8_C120",
+      "name": "sftrn_BuildUsr",
       "unit": "asm/cod/000000",
       "vaddr": "0x0035C120",
       "size": 28,
@@ -4551,14 +4551,14 @@
       "tu": "src/cod/0035c0.c"
     },
     {
-      "name": "Obj35C0_Set_a1_1_a2_C180",
+      "name": "sftrn_ConnTrnBufA",
       "unit": "asm/cod/000000",
       "vaddr": "0x0035C180",
       "size": 28,
       "tu": "src/cod/0035c0.c"
     },
     {
-      "name": "Obj35C0_Set_a1_2_a2_C1A0",
+      "name": "sftrn_ConnTrnBufU",
       "unit": "asm/cod/000000",
       "vaddr": "0x0035C1A0",
       "size": 28,
@@ -6621,7 +6621,7 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "Obj0000_Pack_U64_Fields",
+      "name": "scTag2",
       "unit": "asm/cod/000000",
       "vaddr": "0x003558E8",
       "size": 36,
@@ -6635,7 +6635,7 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "Obj0000_Set_D_00766CD8_Check_Field_0_NE_1",
+      "name": "MPSLIB_CheckHn",
       "unit": "asm/cod/000000",
       "vaddr": "0x00368FC0",
       "size": 36,
@@ -9663,7 +9663,7 @@
       "tu": "src/cod/0013c618.c"
     },
     {
-      "name": "Forward33B938_348B00",
+      "name": "MWSFSVM_DeleteIdleFunc",
       "unit": "asm/cod/000000",
       "vaddr": "0x00348B00",
       "size": 32,
@@ -15697,7 +15697,7 @@
       "tu": "src/cod/00346828.c"
     },
     {
-      "name": "FormatVarargsToStaticBuf_348BE0",
+      "name": "MWSFSVM_Error",
       "unit": "asm/cod/000000",
       "vaddr": "0x00348BE0",
       "size": 148,
@@ -16635,21 +16635,21 @@
       "lib": true
     },
     {
-      "name": "func_00344648",
+      "name": "mwsfcre_UsrMalloc",
       "unit": "asm/cod/000000",
       "vaddr": "0x00344648",
       "size": 52,
       "lib": true
     },
     {
-      "name": "func_003446D8",
+      "name": "mwsfcre_UsrFree",
       "unit": "asm/cod/000000",
       "vaddr": "0x003446D8",
       "size": 52,
       "lib": true
     },
     {
-      "name": "func_00344E18",
+      "name": "mwPlyCalcYccPlane",
       "unit": "asm/cod/000000",
       "vaddr": "0x00344E18",
       "size": 52,
@@ -16663,21 +16663,21 @@
       "lib": true
     },
     {
-      "name": "func_00345598",
+      "name": "MWSFD_GetUsePicUsr",
       "unit": "asm/cod/000000",
       "vaddr": "0x00345598",
       "size": 32,
       "lib": true
     },
     {
-      "name": "func_003455B8",
+      "name": "MWSFD_GetPauseBdr",
       "unit": "asm/cod/000000",
       "vaddr": "0x003455B8",
       "size": 32,
       "lib": true
     },
     {
-      "name": "func_00346478",
+      "name": "mwrsc_WaitSprDmaEnd",
       "unit": "asm/cod/000000",
       "vaddr": "0x00346478",
       "size": 32,
@@ -16705,7 +16705,7 @@
       "lib": true
     },
     {
-      "name": "func_00346BB8",
+      "name": "MWSFSFX_Init",
       "unit": "asm/cod/000000",
       "vaddr": "0x00346BB8",
       "size": 40,
@@ -16747,14 +16747,14 @@
       "lib": true
     },
     {
-      "name": "func_003496F0",
+      "name": "MWSFSVR_SetMwsfdSvrFlg",
       "unit": "asm/cod/000000",
       "vaddr": "0x003496F0",
       "size": 40,
       "lib": true
     },
     {
-      "name": "func_00349778",
+      "name": "MWSFD_GetReqSvrBdrLib",
       "unit": "asm/cod/000000",
       "vaddr": "0x00349778",
       "size": 32,
@@ -16768,7 +16768,7 @@
       "lib": true
     },
     {
-      "name": "func_00349A40",
+      "name": "MWSTM_IsFsStatErr",
       "unit": "asm/cod/000000",
       "vaddr": "0x00349A40",
       "size": 36,
@@ -16803,7 +16803,7 @@
       "lib": true
     },
     {
-      "name": "func_0034ABD0",
+      "name": "sfadxt_IsEndDecinfo",
       "unit": "asm/cod/000000",
       "vaddr": "0x0034ABD0",
       "size": 36,
@@ -16845,7 +16845,7 @@
       "lib": true
     },
     {
-      "name": "func_0034B778",
+      "name": "sfaoap_OutputServer",
       "unit": "asm/cod/000000",
       "vaddr": "0x0034B778",
       "size": 48,
@@ -16929,7 +16929,7 @@
       "lib": true
     },
     {
-      "name": "func_0034CD48",
+      "name": "SFCON_IsEndcodeSkip",
       "unit": "asm/cod/000000",
       "vaddr": "0x0034CD48",
       "size": 32,
@@ -16957,7 +16957,7 @@
       "lib": true
     },
     {
-      "name": "func_0034D160",
+      "name": "sfhds_IsPrvate2PketStart",
       "unit": "asm/cod/000000",
       "vaddr": "0x0034D160",
       "size": 36,
@@ -17097,7 +17097,7 @@
       "lib": true
     },
     {
-      "name": "func_00355818",
+      "name": "setD3_CHCR",
       "unit": "asm/cod/000000",
       "vaddr": "0x00355818",
       "size": 100,
@@ -17146,7 +17146,7 @@
       "lib": true
     },
     {
-      "name": "func_003570D0",
+      "name": "sfpl2_TrPause",
       "unit": "asm/cod/000000",
       "vaddr": "0x003570D0",
       "size": 40,
@@ -17181,7 +17181,7 @@
       "lib": true
     },
     {
-      "name": "func_00357648",
+      "name": "sfply_AdjustPrepEnd",
       "unit": "asm/cod/000000",
       "vaddr": "0x00357648",
       "size": 48,
@@ -17202,7 +17202,7 @@
       "lib": true
     },
     {
-      "name": "func_00358940",
+      "name": "sfply_TrStart",
       "unit": "asm/cod/000000",
       "vaddr": "0x00358940",
       "size": 40,
@@ -17230,7 +17230,7 @@
       "lib": true
     },
     {
-      "name": "func_00359AB0",
+      "name": "sfsee_IsMpsStream",
       "unit": "asm/cod/000000",
       "vaddr": "0x00359AB0",
       "size": 32,
@@ -17258,7 +17258,7 @@
       "lib": true
     },
     {
-      "name": "func_0035AA50",
+      "name": "SFD_GetTime",
       "unit": "asm/cod/000000",
       "vaddr": "0x0035AA50",
       "size": 116,
@@ -17279,21 +17279,21 @@
       "lib": true
     },
     {
-      "name": "func_0035B218",
+      "name": "sftim_Tc2Time23N",
       "unit": "asm/cod/000000",
       "vaddr": "0x0035B218",
       "size": 56,
       "lib": true
     },
     {
-      "name": "func_0035B250",
+      "name": "sftim_Tc2Time29N",
       "unit": "asm/cod/000000",
       "vaddr": "0x0035B250",
       "size": 56,
       "lib": true
     },
     {
-      "name": "func_0035B288",
+      "name": "sftim_Tc2Time59N",
       "unit": "asm/cod/000000",
       "vaddr": "0x0035B288",
       "size": 56,
@@ -17391,7 +17391,7 @@
       "lib": true
     },
     {
-      "name": "func_0035FFD8",
+      "name": "SFXZ_SetTagInf",
       "unit": "asm/cod/000000",
       "vaddr": "0x0035FFD8",
       "size": 40,

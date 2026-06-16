@@ -233,8 +233,8 @@ int Forward33B938_348A50(void){ return func_0033B938(2, D_00760D84); }
 __attribute__((section(".text.Forward33B938_348AA8")))
 int Forward33B938_348AA8(void){ return func_0033B938(6, D_00760D88); }
 
-__attribute__((section(".text.Forward33B938_348B00")))
-int Forward33B938_348B00(int a0, int a1, int a2, int a3) { return func_0033B938(5, D_00760D8C, a2, a3); }
+__attribute__((section(".text.MWSFSVM_DeleteIdleFunc")))
+int MWSFSVM_DeleteIdleFunc(int a0, int a1, int a2, int a3) { return func_0033B938(5, D_00760D8C, a2, a3); }
 
 __attribute__((section(".text.Forward3466C0_348B78")))
 int Forward3466C0_348B78(int a0, int a1, int a2, int a3) { return Forward3462D8_3466C0(a0, a1, a2, a3); }

@@ -60,8 +60,8 @@ INCLUDE_ASM("nonmatching", sfuo_InitInf);
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035D188 — tail-call wrapper: Obj35D0_SetFields_0_4_8_C_D1B0(a0, 0, 0, 0, 0)          */
 /* ════════════════════════════════════════════════════════════════════════ */
-__attribute__((section(".text.Obj35D0_ClearFields_4Words_D188")))
-void Obj35D0_ClearFields_4Words_D188(char *a0)
+__attribute__((section(".text.sfuo_InitUoch")))
+void sfuo_InitUoch(char *a0)
 {
     Obj35D0_SetFields_0_4_8_C_D1B0(a0, 0, 0, 0, 0);
 }
@@ -346,12 +346,12 @@ INCLUDE_ASM("nonmatching", SFH_Finish);
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035D610 — PERMANENT (beql); stays in monolithic asm                  */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("permanent", func_0035D610);
+INCLUDE_ASM("permanent", SFH_Create);
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035D6D8 — call-chain (jal)                                           */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", func_0035D6D8);
+INCLUDE_ASM("nonmatching", SFH_Destroy);
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035D708 — zero 3 word fields: a0[0]=0, a0[4]=0, a0[8]=0             */

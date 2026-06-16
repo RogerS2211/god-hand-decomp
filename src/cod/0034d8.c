@@ -21,8 +21,8 @@ extern char *D_003EE0B8;   /* set by Obj34D8_SetGlobalEE0B8_IfField48 */
 /* ── INCLUDE_ASM("nonmatching") — complex call-chain / jalr / odd ─────────── */
 INCLUDE_ASM("nonmatching", sfhds_AnlyAudio);
 INCLUDE_ASM("nonmatching", sfhds_AnlyVideo);
-INCLUDE_ASM("nonmatching", func_0034DA50);
-INCLUDE_ASM("nonmatching", func_0034DA88);
+INCLUDE_ASM("nonmatching", sfhds_CallN);
+INCLUDE_ASM("nonmatching", sfhds_CallS);
 
 /* ── Obj34D8_CopyVec3_From98_To934: copy 3 words via intermediate pointer ───────────────── */
 /* addiu a1,a0,0x98; addiu a0,a0,0x90C; lw v0,4(a1); sw v0,0x24(a0);

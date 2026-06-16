@@ -1112,7 +1112,7 @@ void Obj0000_Call_003395A0_Field_1C4_1C8_1CC(CGUnk_00343E00_t *arg0) {
     func_003395A0(a0, a1, a2);
 }
 
-extern int func_00359EC0(int);
+extern int SFD_SetCond(int);
 
 __attribute__((section(".text.Obj0000_Call_00359EC0_Field_3C")))
 int Obj0000_Call_00359EC0_Field_3C(int *a0) {
@@ -1120,10 +1120,10 @@ int Obj0000_Call_00359EC0_Field_3C(int *a0) {
     if (a0 != 0) {
         v0 = *(int *)((char *)a0 + 0x3C);
     }
-    return func_00359EC0(v0);
+    return SFD_SetCond(v0);
 }
 
-extern int func_0035A128(int);
+extern int SFD_GetCond(int);
 
 __attribute__((section(".text.Obj0000_Call_0035A128_Field_3C")))
 int Obj0000_Call_0035A128_Field_3C(unsigned char *arg0) {
@@ -1133,7 +1133,7 @@ int Obj0000_Call_0035A128_Field_3C(unsigned char *arg0) {
     } else {
         v0 = *(int *)(arg0 + 0x3C);
     }
-    return func_0035A128(v0);
+    return SFD_GetCond(v0);
 }
 
 extern void func_00328C80(void *);
@@ -1162,8 +1162,8 @@ void Obj0000_Set_Field_E48_If_Field_E6C_NE_MAX(unsigned char *a0) {
     *(int *)(ptr) = 1;
 }
 
-__attribute__((section(".text.Obj0000_Pack_U64_Fields")))
-void Obj0000_Pack_U64_Fields(unsigned long long *a0, unsigned int a1, unsigned int a2, unsigned int a3) {
+__attribute__((section(".text.scTag2")))
+void scTag2(unsigned long long *a0, unsigned int a1, unsigned int a2, unsigned int a3) {
     *a0 = ((unsigned long long)a1 << 32) | ((unsigned long long)a2 << 28) | (unsigned long long)a3;
 }
 
@@ -1179,9 +1179,9 @@ int Obj0000_Get_Field_44_LT_1_If_Field_48_In_1_4(unsigned char *a0) {
 
 extern int D_00766CD8;
 
-__attribute__((section(".text.Obj0000_Set_D_00766CD8_Check_Field_0_NE_1")))
-__attribute__((section(".text.Obj0000_Set_D_00766CD8_Check_Field_0_NE_1")))
-int Obj0000_Set_D_00766CD8_Check_Field_0_NE_1(int *a0) {
+__attribute__((section(".text.MPSLIB_CheckHn")))
+__attribute__((section(".text.MPSLIB_CheckHn")))
+int MPSLIB_CheckHn(int *a0) {
     int v1;
     int v0;
     D_00766CD8 = (int)a0;
@@ -2872,10 +2872,10 @@ int Forward345250_344F18(int a0, int a1, int a2, int a3) {
     return func_00345250(a0, a1, a2, a3);
 }
 
-extern int FormatVarargsToStaticBuf_348BE0(int a0);
+extern int MWSFSVM_Error(int a0);
 __attribute__((section(".text.Forward348BE0_3452C0")))
 int Forward348BE0_3452C0(int a0, int a1) {
-    return FormatVarargsToStaticBuf_348BE0(a1);
+    return MWSFSVM_Error(a1);
 }
 
 extern int func_00345D58(int a0, int a1, int a2, int a3);
@@ -2920,10 +2920,10 @@ int Forward346368_3466D8(int a0, int a1, int a2, int a3) {
     return func_00346368(a0, a1, a2, a3);
 }
 
-extern int FormatVarargsToStaticBuf_348BE0(int a0);
+extern int MWSFSVM_Error(int a0);
 __attribute__((section(".text.Forward348BE0_346BE0")))
 int Forward348BE0_346BE0(int a0, int a1) {
-    return FormatVarargsToStaticBuf_348BE0(a1);
+    return MWSFSVM_Error(a1);
 }
 INCLUDE_ASM("nonmatching", chack_point_line);
 INCLUDE_ASM("nonmatching", MotionGetParam);

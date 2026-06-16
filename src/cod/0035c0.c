@@ -26,8 +26,8 @@ INCLUDE_ASM("permanent", func_0035C5A0);
 /* ════════════════════════════════════════════════════════════════════════════ */
 
 /* 0x0035C120 — set a1=7, a2=8, tail-call func_0035C200                        */
-__attribute__((section(".text.Obj35C0_Init_7_8_C120")))
-void Obj35C0_Init_7_8_C120(char *a0)
+__attribute__((section(".text.sftrn_BuildUsr")))
+void sftrn_BuildUsr(char *a0)
 {
     func_0035C200(a0, 7, 8);
 }
@@ -47,15 +47,15 @@ void Obj35C0_Set_a1_0_a2_C160(char *a0, int a1, int a2)
 }
 
 /* 0x0035C180 — move a2→a3, set a2=1, tail-call func_0035C1C0                  */
-__attribute__((section(".text.Obj35C0_Set_a1_1_a2_C180")))
-void Obj35C0_Set_a1_1_a2_C180(char *a0, int a1, int a2)
+__attribute__((section(".text.sftrn_ConnTrnBufA")))
+void sftrn_ConnTrnBufA(char *a0, int a1, int a2)
 {
     func_0035C1C0(a0, a1, 1, a2);
 }
 
 /* 0x0035C1A0 — move a2→a3, set a2=2, tail-call func_0035C1C0                  */
-__attribute__((section(".text.Obj35C0_Set_a1_2_a2_C1A0")))
-void Obj35C0_Set_a1_2_a2_C1A0(char *a0, int a1, int a2)
+__attribute__((section(".text.sftrn_ConnTrnBufU")))
+void sftrn_ConnTrnBufU(char *a0, int a1, int a2)
 {
     func_0035C1C0(a0, a1, 2, a2);
 }
