@@ -15781,7 +15781,7 @@
       "lib": true
     },
     {
-      "name": "func_002D5D80",
+      "name": "CustomIDWork__dtor",
       "unit": "asm/cod/000000",
       "vaddr": "0x002D5D80",
       "size": 36,
