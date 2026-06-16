@@ -112,6 +112,12 @@ func_00369FB0   = 0x369FB0;
 func_0036CCC8   = 0x36CCC8;
 func_003984D8   = 0x3984D8;
 
+/* libgcc soft-float helpers — emitted by the C float operators in carved
+ * newlib TUs (e.g. `/` on doubles in src/cod/003903.c::ratio), aliased to
+ * their retail addresses.  Not splat-discoverable (the disasm references
+ * the numeric func_<addr> label), so maintained here by hand. */
+dpdiv           = 0x31E5F0;
+
 /* undefined_syms_auto.txt (49 entries) */
 D_1000          = 0x1000;
 D_4000          = 0x4000;

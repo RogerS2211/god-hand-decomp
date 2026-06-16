@@ -35370,14 +35370,15 @@
       }
     },
     {
-      "name": "asm/nonmatching/multadd",
-      "target_path": "expected/build/asm/nonmatching/multadd.o",
-      "base_path": "build/asm/nonmatching/multadd.o",
+      "name": "src/cod/0038f6",
+      "target_path": "expected/build/src/cod/0038f6.o",
+      "base_path": "build/src/cod/0038f6.o",
       "metadata": {
         "auto_generated": true,
         "progress_categories": [
-          "crt"
-        ]
+          "engine"
+        ],
+        "complete": true
       }
     },
     {
@@ -35426,14 +35427,15 @@
       }
     },
     {
-      "name": "asm/nonmatching/pow5mult",
-      "target_path": "expected/build/asm/nonmatching/pow5mult.o",
-      "base_path": "build/asm/nonmatching/pow5mult.o",
+      "name": "src/cod/0038fb",
+      "target_path": "expected/build/src/cod/0038fb.o",
+      "base_path": "build/src/cod/0038fb.o",
       "metadata": {
         "auto_generated": true,
         "progress_categories": [
-          "crt"
-        ]
+          "engine"
+        ],
+        "complete": true
       }
     },
     {
@@ -35470,14 +35472,15 @@
       }
     },
     {
-      "name": "asm/nonmatching/b2d",
-      "target_path": "expected/build/asm/nonmatching/b2d.o",
-      "base_path": "build/asm/nonmatching/b2d.o",
+      "name": "src/cod/003900",
+      "target_path": "expected/build/src/cod/003900.o",
+      "base_path": "build/src/cod/003900.o",
       "metadata": {
         "auto_generated": true,
         "progress_categories": [
-          "crt"
-        ]
+          "engine"
+        ],
+        "complete": true
       }
     },
     {
@@ -35492,14 +35495,15 @@
       }
     },
     {
-      "name": "asm/nonmatching/d2b",
-      "target_path": "expected/build/asm/nonmatching/d2b.o",
-      "base_path": "build/asm/nonmatching/d2b.o",
+      "name": "src/cod/003901",
+      "target_path": "expected/build/src/cod/003901.o",
+      "base_path": "build/src/cod/003901.o",
       "metadata": {
         "auto_generated": true,
         "progress_categories": [
-          "crt"
-        ]
+          "engine"
+        ],
+        "complete": true
       }
     },
     {
@@ -35514,14 +35518,15 @@
       }
     },
     {
-      "name": "asm/nonmatching/ratio",
-      "target_path": "expected/build/asm/nonmatching/ratio.o",
-      "base_path": "build/asm/nonmatching/ratio.o",
+      "name": "src/cod/003903",
+      "target_path": "expected/build/src/cod/003903.o",
+      "base_path": "build/src/cod/003903.o",
       "metadata": {
         "auto_generated": true,
         "progress_categories": [
-          "crt"
-        ]
+          "engine"
+        ],
+        "complete": true
       }
     },
     {

@@ -1008,6 +1008,26 @@
     {
       "path": "src/cod/0038f5.c",
       "compiler": "ee-2.9-991111"
+    },
+    {
+      "path": "src/cod/0038f6.c",
+      "compiler": "ee-2.9-991111"
+    },
+    {
+      "path": "src/cod/0038fb.c",
+      "compiler": "ee-2.9-991111"
+    },
+    {
+      "path": "src/cod/003900.c",
+      "compiler": "ee-2.9-991111"
+    },
+    {
+      "path": "src/cod/003901.c",
+      "compiler": "ee-2.9-991111"
+    },
+    {
+      "path": "src/cod/003903.c",
+      "compiler": "ee-2.9-991111"
     }
   ],
   "_carved_funcs_doc": [
@@ -18237,7 +18257,7 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0038F630",
       "size": 208,
-      "lib": true
+      "tu": "src/cod/0038f6.c"
     },
     {
       "name": "hi0bits",
@@ -18251,7 +18271,7 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0038FBF0",
       "size": 120,
-      "lib": true
+      "tu": "src/cod/0038fb.c"
     },
     {
       "name": "ulp",
@@ -18265,21 +18285,21 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x00390078",
       "size": 300,
-      "lib": true
+      "tu": "src/cod/003900.c"
     },
     {
       "name": "d2b",
       "unit": "asm/cod/000000",
       "vaddr": "0x003901A8",
       "size": 364,
-      "lib": true
+      "tu": "src/cod/003901.c"
     },
     {
       "name": "ratio",
       "unit": "asm/cod/000000",
       "vaddr": "0x00390318",
       "size": 204,
-      "lib": true
+      "tu": "src/cod/003903.c"
     },
     {
       "name": "_IO_file_init",
