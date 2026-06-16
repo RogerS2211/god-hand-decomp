@@ -14,11 +14,11 @@ extern void *func_002C0ED0(void *obj, void *a2);
  * needs branch-likely suppression (a per-TU `-mno-branch-likely` would
  * destabilize the other SN TUs); left for a focused codegen-flag pass. */
 
-/* IsActorTypeThree_297C20: gated predicate.  If a global flag bit is set, return
+/* cEvent__isPlaying: gated predicate.  If a global flag bit is set, return
  * whether obj->byte_4 == 3; else 0. */
 extern int D_00747A84;
-__attribute__((section(".text.IsActorTypeThree_297C20")))
-int IsActorTypeThree_297C20(signed char *a0) {
+__attribute__((section(".text.cEvent__isPlaying")))
+int cEvent__isPlaying(signed char *a0) {
     if (!(D_00747A84 & 0x20000000))
         return 0;
     return a0[4] == 3;

@@ -33,8 +33,8 @@ void KillEffect(int a0, int a1, int a2) {
     }
 }
 
-__attribute__((section(".text.Forward0030FB20_30FA98")))
-int Forward0030FB20_30FA98(int a0)
+__attribute__((section(".text.CreateObj")))
+int CreateObj(int a0)
 {
     return func_0030FB20(a0, func_0030FAC8(a0));
 }

@@ -126,7 +126,7 @@ int BuildObjEntry_387160(short arg1, const void *src) {
 /* ──────────────────────────── large picks ─────────────────────────────── */
 
 /* func_001F35C0: 183 insns, 732 B — sq-prologue, saves $s0..$s4,$ra. */
-INCLUDE_ASM("nonmatching", func_001F35C8);
+INCLUDE_ASM("nonmatching", ColiseumEmSelect__Initialize);
 
 /* func_001F4928: 147 insns, 588 B — sq-prologue, saves $s0..$s5,$ra. */
 INCLUDE_ASM("nonmatching", func_001F4928);
