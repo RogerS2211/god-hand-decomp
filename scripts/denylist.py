@@ -30,11 +30,20 @@ INLINE_ASM_PATTERNS: tuple[tuple[str, "re.Pattern[str]"], ...] = (
 # --- identifier-suffix naming guard ------------------------------------------ #
 # A short uppercase-letter + 1-2 digit (+ optional a-f) suffix appended to a
 # CamelCase identifier. Two surface variants:
-#   CONTENT — scanning free text / diffs: the suffix may sit mid-string, so it
-#     needs a preceding lowercase letter and ends on a word boundary.
+#   CONTENT — scanning free text / diffs: the label may sit mid-identifier
+#     (preceded by a lowercase letter, the `<lower>W<NN>` fused form) OR stand
+#     alone as its own word (a `W<NN>` token in a commit message). The lead-in
+#     therefore accepts a lowercase letter, a word boundary, or string start;
+#     it ends on a word boundary. (This comment intentionally uses the `W<NN>`
+#     placeholder, never a real `W`+digit literal — otherwise this very file
+#     would trip the gate it defines, as the runtime-built test fixtures avoid.)
 #   NAME — scanning a single identifier: it may also sit at the very start and
 #     ends at end-of-string.
-# Case-SENSITIVE: an uppercase letter + 1-2 digits discriminates a real suffix
-# from all-caps acronyms (`HW2`) and 3+-digit data symbols.
-WAVE_LABEL_CONTENT_RE = re.compile(r"[a-z]W\d{1,2}[a-f]?(?=[A-Z]|_|\b)")
+# Case-SENSITIVE (capital `W` only): an uppercase letter + 1-2 digits
+# discriminates a real wave label from all-caps acronyms (`HW2`), 3+-digit data
+# symbols, and — crucially — ordinary lowercase code (`w2` vars, the vector `.w`
+# component), which must never trip the broad net. A bare *lowercase* wave token
+# in freeform prose is a deliberate non-catch for that reason; the private
+# `snw\d` spelling (denylist_private.PROSE_TOKENS_RE) covers the lowercased form.
+WAVE_LABEL_CONTENT_RE = re.compile(r"(?:^|[a-z_]|\b)W\d{1,2}[a-f]?(?=[A-Z]|_|\b)")
 WAVE_LABEL_NAME_RE = re.compile(r"(?:^|[a-z_])W\d{1,2}[a-f]?(?=[A-Z]|_|$)")
