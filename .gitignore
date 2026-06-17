@@ -144,6 +144,7 @@
 !src/cod/00124e68.c
 !src/cod/00124f60.c
 !src/cod/0012ac28.c
+!src/cod/0012c4f0.c
 !src/cod/0012c758.c
 !src/cod/0012cc00.c
 !src/cod/0012cd70.c
@@ -436,3 +437,4 @@
 !tools/splat_ext/sndata.py
 !tools/strip_data_nonmatching.py
 !tools/test_strip_data_nonmatching.py
+.osgrep
