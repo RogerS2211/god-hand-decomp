@@ -224,6 +224,7 @@ func_0012BFB8 = 0x0012BFB8; // type:func
 func_0012C000 = 0x0012C000; // type:func
 func_0012C348 = 0x0012C348; // type:func
 pl00_reset = 0x0012C418; // type:func
+func_0012C4F0 = 0x0012C4F0; // type:func
 func_0012C540 = 0x0012C540; // type:func
 func_0012C7D0 = 0x0012C7D0; // type:func
 func_0012C8D8 = 0x0012C8D8; // type:func
