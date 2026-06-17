@@ -148,7 +148,10 @@ the default (`cygnus-2.96`), try an alternate. The SN compiler
 (`sn-2.95.3-136`) reproduces `sq`-prologue functions; the older
 `ee-2.9-991111` cc1 reproduces the statically-linked newlib (mprec/dtoa, and
 much of the libc/libm region) whose prologues use 64-bit `sd` callee-saves in
-16-byte stack slots — a shape neither of the other two emits.
+16-byte stack slots — a shape neither of the other two emits. The same
+`ee-2.9-991111` toolchain ships a `cc1plus`, selected automatically for C++
+TUs (`.cc`/`.cpp`), for the C++ iostream/streambuf/filebuf runtime, which uses
+that same `sd`-in-16-byte-slot prologue.
 
 ### Step 4 — brute-force the last mile with decomp-permuter
 

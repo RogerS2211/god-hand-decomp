@@ -48,5 +48,7 @@ mirroring the register the compiler assigned.
 - Compilers (per-TU, recorded in the carve records): `cygnus-2.96` (default),
   `sn-2.95.3-136` (SN ProDG cc1, `sq`-prologue group), and `ee-2.9-991111`
   (older Sony/Cygnus cc1 for the statically-linked newlib — 64-bit `sd`
-  callee-saves in 16-byte slots). The original game mixed all three.
+  callee-saves in 16-byte slots; its `cc1plus`, auto-selected for C++ TUs,
+  covers the C++ iostream/streambuf runtime with the same prologue). The
+  original game mixed all three.
 - Flags: `-O2 -G0` with per-TU overrides recorded in `compile_config.json`.
