@@ -120,15 +120,22 @@ else
     ok "ee-gcc 2.96 already installed"
 fi
 
-# ee-gcc 2.9-991111-01 cc1 (newlib sd-in-16-byte-slot prologue group).  Only
-# the cc1 member is extracted; cpp0 + ee-as are shared with ee-gcc 2.96 above.
-if [[ ! -x "$CC_DIR/lib/gcc-lib/ee/2.9-ee-991111-01/cc1" ]]; then
-    log "Downloading ee-gcc 2.9-991111-01 (newlib sd-prologue cc1)"
+# ee-gcc 2.9-991111-01 cc1 + cc1plus (newlib/libio sd-in-16-byte-slot group).
+# Both compiler members are extracted: cc1 for the C newlib (mprec/dtoa, libio
+# _IO_*) and cc1plus for the C++ iostream/streambuf/filebuf runtime, which
+# carries the same sd-in-16-byte-slot prologue (verified: cc1plus saves at
+# 0/16/32/48..., vs cygnus-2.96 cc1plus at 0/8/16/24...).  cpp0 + ee-as are
+# shared with ee-gcc 2.96 above.
+if [[ ! -x "$CC_DIR/lib/gcc-lib/ee/2.9-ee-991111-01/cc1" \
+      || ! -x "$CC_DIR/lib/gcc-lib/ee/2.9-ee-991111-01/cc1plus" ]]; then
+    log "Downloading ee-gcc 2.9-991111-01 (newlib sd-prologue cc1 + cc1plus)"
     mkdir -p "$CC_DIR/lib/gcc-lib/ee/2.9-ee-991111-01"
     curl -fL --progress-bar -o /tmp/ee-gcc2.9-991111-01.tar.xz "$EE_GCC_991111_URL"
     verify_sha /tmp/ee-gcc2.9-991111-01.tar.xz "$EE_GCC_991111_SHA256"
-    tar -xf /tmp/ee-gcc2.9-991111-01.tar.xz -C "$CC_DIR" lib/gcc-lib/ee/2.9-ee-991111-01/cc1
-    chmod +x "$CC_DIR/lib/gcc-lib/ee/2.9-ee-991111-01/cc1"
+    tar -xf /tmp/ee-gcc2.9-991111-01.tar.xz -C "$CC_DIR" \
+        lib/gcc-lib/ee/2.9-ee-991111-01/cc1 \
+        lib/gcc-lib/ee/2.9-ee-991111-01/cc1plus
+    chmod +x "$CC_DIR/lib/gcc-lib/ee/2.9-ee-991111-01/"{cc1,cc1plus}
     rm /tmp/ee-gcc2.9-991111-01.tar.xz
     ok "ee-gcc 2.9-991111-01 → $CC_DIR/"
 else

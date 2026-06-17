@@ -59,6 +59,11 @@ CC1PLUS = GCCLIB_PREFIX / "cc1plus"
 # this wrapper's cpp0 + ee-as backends; emits cygnus-style numeric register
 # names, so no numerize stage is required (unlike sn-cc-wrap.py).
 CC1_991111 = COMPILER / "lib" / "gcc-lib" / "ee" / "2.9-ee-991111-01" / "cc1"
+# C++ sibling of CC1_991111 (same archive).  The retail C++ iostream/streambuf/
+# filebuf runtime carries the same sd-in-16-byte-slot prologue as the newlib C
+# group, so its cc1plus is the correct-lineage C++ compiler (cygnus-2.96 cc1plus
+# emits sd/8-byte slots, SN cc1plus emits sq/16-byte — both wrong shape).
+CC1PLUS_991111 = COMPILER / "lib" / "gcc-lib" / "ee" / "2.9-ee-991111-01" / "cc1plus"
 EE_AS = COMPILER / "bin" / "ee-as"
 EE_DVP_AS = COMPILER / "bin" / "ee-dvp-as"
 
@@ -281,9 +286,7 @@ def main(argv: list[str]) -> int:
 
     language = detect_language(args.input, args.x)
     if args.compiler == "ee-2.9-991111":
-        if language == "c++":
-            die("ee-2.9-991111 is C-only (no cc1plus in this build)")
-        cc1_bin = CC1_991111
+        cc1_bin = CC1PLUS_991111 if language == "c++" else CC1_991111
     else:
         cc1_bin = CC1PLUS if language == "c++" else CC1
 
