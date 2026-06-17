@@ -302,6 +302,7 @@
 !src/cod/0033c8.c
 !src/cod/0033d3.c
 !src/cod/0033d5.c
+!src/cod/0033f130.c
 !src/cod/0033f3.c
 !src/cod/0033f8.c
 !src/cod/00340e.c
@@ -437,4 +438,3 @@
 !tools/splat_ext/sndata.py
 !tools/strip_data_nonmatching.py
 !tools/test_strip_data_nonmatching.py
-.osgrep
