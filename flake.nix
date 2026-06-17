@@ -40,6 +40,19 @@
               url = "https://github.com/decompme/compilers/releases/download/compilers/ee-gcc2.96.tar.xz";
               sha256 = "0590d2ca9da8f5903889d66761220d14b47a8d14ba987ca53db84a1650a1fd0a";
             }} -C $out
+            # Third compiler: ee-gcc 2.9-991111-01 cc1 + cc1plus, extracted into
+            # the SAME tree (matching setup_toolchain.sh's $CC_DIR layout). cc1
+            # builds the newlib mprec/dtoa + libio _IO_* group; cc1plus the C++
+            # iostream/streambuf runtime — both carry retail's sd-in-16-byte-slot
+            # prologue that neither cygnus-2.96 nor SN 2.95.3 emit. cpp0 + ee-as
+            # are shared with the 2.96 tree above, so only these two members are
+            # taken. Pin mirrors setup_toolchain.sh EE_GCC_991111_{URL,SHA256}.
+            tar -xf ${pkgs.fetchurl {
+              url = "https://github.com/decompme/compilers/releases/download/compilers/ee-gcc2.9-991111-01.tar.xz";
+              sha256 = "ed684fd98f89d36b0121caab311052089103e3b36241fcef4338cc9ea41c75b8";
+            }} -C $out \
+              lib/gcc-lib/ee/2.9-ee-991111-01/cc1 \
+              lib/gcc-lib/ee/2.9-ee-991111-01/cc1plus
             install -Dm755 ${pkgs.fetchurl {
               url = "https://raw.githubusercontent.com/fmil95/recvx-decomp/master/compiler/linux/ee/gcc/bin/ee-dvp-as";
               sha256 = "9011fe9218487cb97aa6ffc2b59ce19ae3a5f3ec575bc0f0e30c4cd00f65cdeb";
@@ -121,7 +134,9 @@
             { nativeBuildInputs = [ pkgs.makeWrapper ]; } ''
             cp -r ${ee-gcc} $out; chmod -R u+w $out
             _g=$out/lib/gcc-lib/ee/2.96-ee-001003-1
-            for f in "$_g/cc1" "$_g/cc1plus" "$_g/cpp0" "$out/bin/ee-dvp-as"; do
+            _g9=$out/lib/gcc-lib/ee/2.9-ee-991111-01
+            for f in "$_g/cc1" "$_g/cc1plus" "$_g/cpp0" "$out/bin/ee-dvp-as" \
+                     "$_g9/cc1" "$_g9/cc1plus"; do
               mv "$f" "$f.real"
               makeWrapper ${pkgs.qemu}/bin/qemu-i386 "$f" --add-flags "$f.real"
             done
