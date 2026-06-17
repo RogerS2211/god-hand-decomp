@@ -66,6 +66,11 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(1, str(ROOT / "scripts"))
 
 DECOMP_TARGETS = ROOT / "progress" / "decomp_targets.json"
+FUNCTION_ATLAS = ROOT / "progress" / "function_atlas.json"
+# Mirrors scripts.carver._DEFAULT_ASM_MODULE — the monolith every uncarved game
+# function still lives in. Hard-coded (not imported) to keep this resolver free
+# of the heavier carver import at module load.
+_MONOLITH_ASM = "asm/cod/000000.s"
 
 
 def _load_from_decomp_targets(name: str) -> dict | None:
@@ -81,8 +86,42 @@ def _load_from_decomp_targets(name: str) -> dict | None:
     return None
 
 
+def _load_from_atlas(name: str) -> dict | None:
+    """Fallback when ``name`` is absent from ``decomp_targets.json``.
+
+    ``decomp_targets.json`` only emits a per-tier *quota* subset of candidates,
+    so the vast majority of live monolith functions never appear there — a found
+    byte-match for any of them used to fail the carve with "no candidate
+    metadata" even though the function is perfectly carveable. Derive the minimal
+    carve metadata (address + size) from the full ``function_atlas.json`` instead;
+    the boundary is then cross-checked against the real asm by
+    ``carver._corrected_size_bytes``, so a slightly-stale size self-corrects.
+
+    Scoped to monolith functions (``asm/cod/000000.s``). A name not present in
+    the monolith still fails the carve cleanly downstream, exactly as before.
+    """
+    if not FUNCTION_ATLAS.exists():
+        return None
+    try:
+        data = json.loads(FUNCTION_ATLAS.read_text())
+    except (OSError, json.JSONDecodeError):
+        return None
+    for f in data.get("functions", []) or []:
+        if isinstance(f, dict) and f.get("name") == name and f.get("vaddr"):
+            return {
+                "name": name,
+                "address": f["vaddr"],
+                "size_bytes": int(f.get("size", 4)),
+                "asm_module_path": _MONOLITH_ASM,
+                "include_asm_permanent": False,
+                "permanent_reason": "",
+                "notes": "atlas-fallback (absent from decomp_targets quota)",
+            }
+    return None
+
+
 def load_candidate_dict(name: str) -> dict | None:
-    return _load_from_decomp_targets(name)
+    return _load_from_decomp_targets(name) or _load_from_atlas(name)
 
 
 def main(argv: list[str]) -> int:
