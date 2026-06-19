@@ -48632,3 +48632,6 @@ new_iob = 0x003B38D0; // type:func
 SetT2 = 0x003B6990; // type:func
 SetNextComp = 0x003B6C28; // type:func
 iStartTimerCounter = 0x003B72D0; // type:func
+func_002B5E50 = 0x002B5E50; // type:func
+func_00373A50 = 0x00373A50; // type:func
+func_0032B300 = 0x0032B300; // type:func
