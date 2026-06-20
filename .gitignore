@@ -452,3 +452,5 @@
 !scripts/recon/ghidra/
 !scripts/recon/ghidra/GodHandApplySymbols.py
 !scripts/recon/ghidra/gh_engine.h
+!scripts/recon/ghidra/gh_symbols.csv
+!scripts/recon/ghidra/GHIDRA_MCP.md
