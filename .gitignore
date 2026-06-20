@@ -449,3 +449,6 @@
 !src/cod/00324858.c
 !scripts/recon/re4_byte_identical_worklist.md
 !src/cod/00352dc0.c
+!scripts/recon/ghidra/
+!scripts/recon/ghidra/GodHandApplySymbols.py
+!scripts/recon/ghidra/gh_engine.h
