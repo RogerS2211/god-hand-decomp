@@ -48765,3 +48765,11 @@ SetEffectParts = 0x00306900; // type:func
 FileNameFromObjId = 0x00307918; // type:func
 HideModelMgr_ClearHiddenModelList = 0x00308D40; // type:func
 classPAD_WORK_Pad_act_all_stop = 0x0031BD88; // type:func
+
+// boundary-split functions (reflection entries splat merged into the preceding func)
+cDataManager_isUnload = 0x001FEFD0; // type:func
+cEmSetParam_stopEmSet1Time = 0x002955F0; // type:func
+cObjSimple_SetOneBodyFlag = 0x002B83B8; // type:func
+cSceAtManager_AtHitCheckNo = 0x002C2F08; // type:func
+cWorldLight_Gaibu_set_off = 0x002D8DE0; // type:func
+EffEventDataRegist = 0x002FA0B0; // type:func
