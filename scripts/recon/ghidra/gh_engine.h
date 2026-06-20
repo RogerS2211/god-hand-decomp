@@ -28,16 +28,16 @@ typedef struct cUnit {         /* 0x0C  base, has vtable */
 
 typedef struct cCoord {        /* 0xC4  cCoord : cUnit  (transform node) */
     cUnit     base;            /* 0x00 */
-    u8        body[0xC4 - 0x0C];
+    u8        body[184];        /* 0x0C..0xC4 */
 } cCoord;
 
 typedef struct cModel {        /* 0x324 cModel : cCoord */
     cCoord    base;            /* 0x00 */
-    u8        body[0xF8 - 0xC4];
+    u8        body[52];          /* 0xC4..0xF8 */
     u32       guid_F8;         /* 0xF8 */
     u8        r_no_0_FC;       /* 0xFC  routine selectors r0..r3 */
     u8        r_no_1_FD;       /* 0xFD */
     u8        r_no_2_FE;       /* 0xFE */
     u8        r_no_3_FF;       /* 0xFF */
-    u8        tail[0x324 - 0x100];
+    u8        tail[548];         /* 0x100..0x324 */
 } cModel;
