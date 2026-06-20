@@ -445,3 +445,6 @@
 !tools/splat_ext/sndata.py
 !tools/strip_data_nonmatching.py
 !tools/test_strip_data_nonmatching.py
+!src/cod/0033c270.c
+!src/cod/00324858.c
+!scripts/recon/re4_byte_identical_worklist.md
