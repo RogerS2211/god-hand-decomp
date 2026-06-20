@@ -485,3 +485,6 @@
 !tools/splat_ext/sndata.py
 !tools/strip_data_nonmatching.py
 !tools/test_strip_data_nonmatching.py
+!scripts/recon/ghidra/
+!scripts/recon/ghidra/GodHandApplySymbols.py
+!scripts/recon/ghidra/gh_engine.h
