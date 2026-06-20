@@ -42,7 +42,7 @@ int FindNodeByHit_2C2490(int a0, int a1, float *a2) {
     while ((s0 = func_002C30C8(a0, s0)) != 0) {
         if ((*(int*)(s0 + 0x34) & 0xFF01) == 0xB01) {
             func_002C1D68(a0, (int)sp, s0);
-            if (func_001F83E8((int)sp, a1) == 1) {
+            if (cArea_HitCheck_1F83E8((int)sp, a1) == 1) {
                 if (a2 != 0) {
                     a2[0] = *(float*)(s0 + 0x5C);
                     a2[1] = *(float*)(s0 + 0x60);
@@ -63,7 +63,7 @@ int FindNodeByType_2C2568(int a0, int a1, float *a2) {
     while ((s0 = func_002C30C8(a0, s0)) != 0) {
         if (*(unsigned char*)(s0 + 0x35) == 0xD) {
             func_002C1D68(a0, (int)sp, s0);
-            if (func_001F83E8((int)sp, a1) == 1) {
+            if (cArea_HitCheck_1F83E8((int)sp, a1) == 1) {
                 if (a2 != 0) {
                     a2[0] = *(float*)(s0 + 0x5C);
                     a2[1] = *(float*)(s0 + 0x60);
@@ -85,7 +85,7 @@ int FindEntityAtPosition_2C2638(int a0, int a1, int a2, float *a3) {
         if (((*(unsigned char *)(s0 + 0x34) ^ 1) & 1) != 0) continue;
         if (*(unsigned char *)(s0 + 0x35) != 0xC) continue;
         func_002C1D68(a0, buf, s0);
-        if (func_001F83E8(buf, a1) != 1) continue;
+        if (cArea_HitCheck_1F83E8(buf, a1) != 1) continue;
         if (a2 != 0) cSceAtUnit_getCenterPos(s0, a2);
         if (a3 != 0) *a3 = *(float *)(s0 + 0x10);
         return 1;

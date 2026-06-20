@@ -4,8 +4,8 @@ struct vtbl {
     void (*fn)(int);
 };
 
-__attribute__((section(".text.func_00138600")))
-void func_00138600(int a0) {
+__attribute__((section(".text.cCamera_move")))
+void cCamera_move(int a0) {
     struct vtbl *v0 = *(struct vtbl**)((char*)a0 + 0x35C);
     v0->fn(a0 + v0->off);
     func_00138558(a0);

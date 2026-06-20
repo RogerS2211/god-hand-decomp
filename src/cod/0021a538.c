@@ -3266,15 +3266,15 @@ block_740:
         if (temp_v0_168 != 0) {
             temp_s0_2 = (*(s32 *)((u8 *)(arg0) + 0xF0));
             (*(s32 *)((u8 *)(arg0) + 0x5F0)) = (s32) (temp_v0_168 - 1);
-            temp_f0 = func_002DA038(temp_s0_2, (*(s32 *)((u8 *)(Obj0000_Get_D_00747A94_2DB6B0()) + 0xF0)), (*(f32 *)((u8 *)(arg0) + 0x600)), (*(f32 *)((u8 *)(arg0) + 0x5A8)) * 0.19634955f);
+            temp_f0 = Turn_dest(temp_s0_2, (*(s32 *)((u8 *)(Obj0000_Get_D_00747A94_2DB6B0()) + 0xF0)), (*(f32 *)((u8 *)(arg0) + 0x600)), (*(f32 *)((u8 *)(arg0) + 0x5A8)) * 0.19634955f);
             temp_f1_2 = (*(f32 *)((u8 *)(arg0) + 0x600)) + temp_f0;
             (*(f32 *)((u8 *)(arg0) + 0x600)) = temp_f1_2;
-            (*(f32 *)((u8 *)(arg0) + 0x600)) = func_001F7D48(temp_f1_2);
+            (*(f32 *)((u8 *)(arg0) + 0x600)) = Adjust_theta(temp_f1_2);
             temp_f1_3 = (*(f32 *)((u8 *)(arg0) + 0x104)) + temp_f0;
             (*(f32 *)((u8 *)(arg0) + 0x104)) = temp_f1_3;
-            (*(f32 *)((u8 *)(arg0) + 0x104)) = func_001F7D48(temp_f1_3);
+            (*(f32 *)((u8 *)(arg0) + 0x104)) = Adjust_theta(temp_f1_3);
         }
-        if (func_00157C18(arg0) == 0) {
+        if (moveMotion(arg0) == 0) {
             (*(f32 *)((u8 *)(arg0) + 0x338)) = (f32) ((*(f32 *)((u8 *)(arg0) + 0x338)) * (*(f32 *)((u8 *)(arg0) + 0x608)));
             AddScaledVecToField_100_14F9F0(arg0, 0x3F800000);
             AddScaledXfmVecToField_F0_14F928(arg0, 0x3F800000);

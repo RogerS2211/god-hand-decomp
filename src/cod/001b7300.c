@@ -6,7 +6,7 @@ extern char D_005CAE50[];
 extern char D_00462FC0[];
 extern void func_002BECB0(void *a0, long a1);
 extern void func_001331B8(void *a0, long a1, int a2);
-extern void func_001347E8(void *a0, void *a1);
+extern void cCollisionSolidManage_ReleaseUnit(void *a0, void *a1);
 extern void func_001B7BB8(void *a0);
 extern int *D_003C2384;
 extern void func_002A9DF8(int a0);
@@ -23,7 +23,7 @@ void SetField5B0Bit2ClearBit8_1B7908(int a0)
     }
     func_002BECB0(D_005E8658, *(long*)(a0 + 0x538));
     func_001331B8(D_005CAE50, *(long*)(a0 + 0x540), 0);
-    func_001347E8(D_00462FC0, (void*)a0);
+    cCollisionSolidManage_ReleaseUnit(D_00462FC0, (void*)a0);
     func_001B7BB8((void*)a0);
     *(int*)(a0 + 0x5B0) = (*(int*)(a0 + 0x5B0) | 2) & ~8;
 }

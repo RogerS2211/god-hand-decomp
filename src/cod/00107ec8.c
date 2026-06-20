@@ -2,7 +2,7 @@
 
 extern int D_0041D220[];
 extern int D_00462FC0[];
-extern void func_001347E8(void *a0, void *a1);
+extern void cCollisionSolidManage_ReleaseUnit(void *a0, void *a1);
 extern void InitObjectVtableAndRegister_1002C0(void *a0, void *a1);
 extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
 extern float SetField444SignedByFlag434_158288(void *a0, float f);
@@ -35,7 +35,7 @@ void ResetAnimSlotArray_13F510(char *a0) {
 __attribute__((section(".text.InitActorWithVtable_107EC8")))
 void InitActorWithVtable_107EC8(void *a0, void *a1) {
     *(int **)((char*)a0+0x214) = D_0041D220;
-    func_001347E8(D_00462FC0, a0);
+    cCollisionSolidManage_ReleaseUnit(D_00462FC0, a0);
     InitObjectVtableAndRegister_1002C0(a0, a1);
 }
 
@@ -56,13 +56,13 @@ void UpdateBossPhase_10B780(void *a0) {
         *(unsigned char*)((char*)a0 + 0x2F6) = *(unsigned char*)((char*)a0 + 0x2F6) + 1;
         /* fallthrough */
     case 1:
-        func_00157C18(a0);
+        moveMotion(a0);
         break;
     case 2:
         *(unsigned char*)((char*)a0 + 0x2F6) = st + 1;
         /* fallthrough */
     case 3:
-        if (func_00157C18(a0) != 0) {
+        if (moveMotion(a0) != 0) {
             *(unsigned char*)((char*)a0 + 0x2F6) = 0;
         }
         break;

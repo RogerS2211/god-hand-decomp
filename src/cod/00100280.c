@@ -3,7 +3,7 @@
 extern int D_0041B598;
 extern int D_0041B590;
 extern int D_00462FC0;
-extern void func_001347E8(void *, void *);
+extern void cCollisionSolidManage_ReleaseUnit(void *, void *);
 extern void func_002A73C8(void *, void *);
 extern int D_007854C8;
 extern int D_0041B638;
@@ -43,7 +43,7 @@ void *InitObjectVtables_100280(void *a0) {
 __attribute__((section(".text.InitObjectVtableAndRegister_1002C0")))
 void InitObjectVtableAndRegister_1002C0(void *a0, void *a1) {
     *(int **)((char*)a0 + 0x214) = &D_0041B598;
-    func_001347E8(&D_00462FC0, a0);
+    cCollisionSolidManage_ReleaseUnit(&D_00462FC0, a0);
     func_002A73C8(a0, a1);
 }
 
@@ -77,7 +77,7 @@ void UpdateAttackMoveState_102BD8(void *a0) {
     }
     case 1:
         *(float *)((char *)r + 0x15F0) = D_003BC7C0;
-        if (func_00157C18(a0) != 0) {
+        if (moveMotion(a0) != 0) {
             *(unsigned char *)((char *)a0 + 0x2F4) = 0;
             *(unsigned char *)((char *)a0 + 0x2F5) = 0;
             *(unsigned char *)((char *)a0 + 0x2F6) = 0;

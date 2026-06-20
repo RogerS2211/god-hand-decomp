@@ -1278,7 +1278,7 @@ void Obj0000_Set_D_003FAE30_Field_10_Zero(void) {
 __attribute__((section(".text.Tramp_001F7DF8_00101E28")))
 __attribute__((section(".text.Tramp_001F7DF8_00101E28"))) void Tramp_001F7DF8_00101E28(void)
 {
- do { func_001F7DF8(); } while (0);
+ do { capVu0Length(); } while (0);
 }
 
 __attribute__((section(".text.Tramp_func_0014EA50_0010B760")))

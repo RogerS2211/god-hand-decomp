@@ -80,7 +80,7 @@ int GetBuiltPackedAddr_1FFA28(int a0) {
 
 __attribute__((section(".text.ForwardDispatchByMode_27F170")))
 void ForwardDispatchByMode_27F170(void *a0) {
-    func_001347E8(D_00462FC0, a0);
+    cCollisionSolidManage_ReleaseUnit(D_00462FC0, a0);
     KillEffect(a0, 1, 2);
 }
 

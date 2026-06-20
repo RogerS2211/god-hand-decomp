@@ -8,7 +8,7 @@ extern unsigned char D_0044A958[];
 extern unsigned char D_005E8640[];
 extern void cRelSys_unlinkNoFree(void *a0, int a1);
 extern void func_00297660(void);
-extern void func_00299320(void *a0, int a1);
+extern void cEventConfig_setEventNo(void *a0, int a1);
 extern unsigned char D_00586B30[];
 
 __attribute__((section(".text.LoadDisplayText_297450")))
@@ -48,7 +48,7 @@ void InitSubState_2975F8(void *a0, int a1) {
     if (((t >> 1) & 1) == 0) {
         func_00297660();
         *(int *)(s0 + 0x18) = a1;
-        func_00299320(D_00586B30, a1);
+        cEventConfig_setEventNo(D_00586B30, a1);
         *(int *)(s0 + 8) = *(int *)(s0 + 8) | 2;
     }
 }

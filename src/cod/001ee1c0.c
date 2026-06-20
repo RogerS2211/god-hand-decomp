@@ -9,8 +9,8 @@ int Forward30A2B0_2DA9B8(char *a0)
 	return func_0030A2B0(*(int *)(a0 + 0xF0), (int)(a0 + 0x80), (int)(a0 + 0x330));
 }
 
-__attribute__((section(".text.func_002AA078")))
-int func_002AA078(int *a0)
+__attribute__((section(".text.cIDBase_release")))
+int cIDBase_release(int *a0)
 {
     int a1;
     a1 = a0[1];

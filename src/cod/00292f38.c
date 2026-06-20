@@ -1,6 +1,6 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
-extern void func_002FB020(void *a0);
+extern void PushEsp(void *a0);
 extern int PTR_DAT_003fa62c;
 extern void func_003A8048(int a0);
 extern void func_003ACA28(int a0, int a1);
@@ -13,7 +13,7 @@ void UpdateObjByIndexedOp_2FBE50(void *a0) {
     int r;
     r = func_002B5E50(a0);
     func_002B5CF0(a0, r);
-    func_002FB020(a0);
+    PushEsp(a0);
 }
 
 __attribute__((section(".text.UpdateGlobalPtrWithParam_3A7CC0")))

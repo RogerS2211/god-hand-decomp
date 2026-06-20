@@ -4,7 +4,7 @@
  * Builds a 0x7C-byte stack descriptor (3x sqc2 $vf0 zero-quads at 0x10/0x20/
  * 0x60, floats initialised to 1.0, sentinel bytes, scratch ints cleared),
  * writes t0 -> *(a0+0x574) and a3 -> *(u16*)(a0+0x570), then dispatches to
- * func_00306528(a1, a2, src, &desc, a3, a0) on the t1!=0 / t1==0 branch.
+ * SetEffect(a1, a2, src, &desc, a3, a0) on the t1!=0 / t1==0 branch.
  * Hot: 180 call sites via func_0021A538's siblings.
  *
  * NON_MATCHING partial.  Default `us` build uses the byte-exact
@@ -17,7 +17,7 @@
 #include "include_asm.h"
 #include "godhand/vu0.h"
 
-extern int func_00306528();
+extern int SetEffect();
 
 #ifdef NON_MATCHING
 typedef struct {
@@ -80,7 +80,7 @@ void InitRenderStruct_2A8608(void *a0, int a1, void *a2, int a3, int t0, void *t
         if (a0 != 0) {
             s.f40 = *(float *)((char *)a0 + 0x114);
         }
-        func_00306528(a1, a2, t1, &s, a3, a0);
+        SetEffect(a1, a2, t1, &s, a3, a0);
     } else {
         if (a0 != 0) {
             if (*(unsigned short *)((char *)a0 + 0x434) & 2) {
@@ -88,7 +88,7 @@ void InitRenderStruct_2A8608(void *a0, int a1, void *a2, int a3, int t0, void *t
                 s.f40 = *(float *)((char *)a0 + 0x114);
             }
         }
-        func_00306528(a1, a2, a0, &s, a3, a0);
+        SetEffect(a1, a2, a0, &s, a3, a0);
     }
 }
 #else

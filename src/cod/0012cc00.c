@@ -70,6 +70,6 @@ void MtxInitCoord(void *a0, int a1, int a2, int a3, int t0)
 
 	e = t0;
 	BuildTranslationMatrix_1476D0(a0);
-	func_00147B60(a0, a0, a2, e);
+	MtxMulRotVec(a0, a0, a2, e);
 	BuildAltMatrixAndForward_147BF8(a0, a0, a3);
 }

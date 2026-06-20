@@ -8,7 +8,7 @@ extern unsigned int D_00747A78;
 extern char D_00463050[];
 extern void cCamManager_setMotCamera(void *a0, int a1);
 extern void cMotCamera_setMotion(void *a0, int a1, int a2, int a3, float f12, int t0, int t1);
-extern void func_00138600(void *a0);
+extern void cCamera_move(void *a0);
 extern void cPlCamera_setCamUpdate(void *a0, int a1);
 extern void cCamManager_setPlCamera(void *a0, int a1);
 extern void ClearField15F4Bit1_124F60(int a0, int a1, int a2);
@@ -37,7 +37,7 @@ int LoadScreenOverlay_2C3F10(void *a0, int a1) {
     s0 = D_00463050 + 0x530;
     cMotCamera_setMotion(s0, a1, 0, 0, 0.0f, 0, 0);
     *(float *)(s0 + 0x3A8) = 0.0f;
-    func_00138600(s0);
+    cCamera_move(s0);
     *(char *)((char *)a0 + 0x111) = 1;
     return 1;
 }
@@ -55,8 +55,8 @@ void ClearCameraOverlayState_2C3FC0(void *a0) {
     *(char *)((char *)a0 + 0x111) = 0;
 }
 
-__attribute__((section(".text.func_002C4078")))
-void func_002C4078(void *a0) {
+__attribute__((section(".text.cScenario_waitCam")))
+void cScenario_waitCam(void *a0) {
     while (cScenario_isCamEnd(a0) == 0) {
         SetFieldsCESignalSemaSleep_2D5AA0(*(int *)((char *)PTR_DAT_003c2f84 + 0x20), 1);
     }
@@ -122,8 +122,8 @@ void SetObjectTransform_2C4440(int a0, char *a1, float p0, float p1, float p2, f
     }
 }
 
-__attribute__((section(".text.func_002C43D8")))
-void func_002C43D8(char *a0) {
+__attribute__((section(".text.cScenario_waitMess")))
+void cScenario_waitMess(char *a0) {
     while (func_002C4350(a0) == 1) {
         SetFieldsCESignalSemaSleep_2D5AA0(*(int*)((char*)PTR_DAT_003c2f84 + 0x20), 1);
     }

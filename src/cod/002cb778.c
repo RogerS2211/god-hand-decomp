@@ -12,7 +12,7 @@ int IsSlotAvailable_2CB778(int a0, int a1)
     p = GetIndexedEntry_2CC4B8(a0, a1);
     if (p[0x3C/4] == -1) return 1;
     p = GetIndexedEntry_2CC4B8(a0, a1);
-    return func_002CFC68(p);
+    return cSeData_IsAlive(p);
 }
 
 /* REGRESSED to nonmatching: the byte-match required a

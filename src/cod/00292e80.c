@@ -7,7 +7,7 @@ void UpdateConditionalNotify_292E80(int a0)
 {
     if ((D_00747A30 & 0x800) == 0) {
         if (func_00292F08() == 0) {
-            func_00306528(0, 0xF, 0, 0, -1, 0xFFFFFFFFu);
+            SetEffect(0, 0xF, 0, 0, -1, 0xFFFFFFFFu);
             MaxByte538_292EF0(a0, 2);
         }
     }

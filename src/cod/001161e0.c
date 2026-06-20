@@ -4,7 +4,7 @@ extern void func_001268F0(void *a0);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void func_00124EC0(void *a0);
-extern void func_00157C18(void *a0);
+extern void moveMotion(void *a0);
 extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
 extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
 
@@ -28,7 +28,7 @@ void UpdateAttackState2F6_1161E0(void *a0) {
     case 1:
         one = 1.0f;
         func_00124EC0(s0);
-        func_00157C18(s0);
+        moveMotion(s0);
         AddScaledVecToField_100_14F9F0(s0, one);
         AddScaledXfmVecToField_F0_14F928(s0, one);
         break;

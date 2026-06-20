@@ -53,7 +53,7 @@ void ForwardAndSyncPosition_102EE0(void *a0) {
                 *(float *)(d + 8) = *(float *)(s + 8);
             }
         }
-        func_00157C18(a0);
+        moveMotion(a0);
         break;
     }
 }
@@ -66,11 +66,11 @@ void UpdateAttackMovePhase_102FE8(void *a0) {
         g = *(int *)((char *)a0 + 0x304);
         func_002A8578(a0, (void *)(*(int *)((char *)g + 0x54) + g),
                       (void *)(*(int *)((char *)g + 0x58) + g), 0.0f, 0, 0, 0);
-        if (func_00306528(0, 0x51, a0, 0, -1, 0xFFFFFFFF)) { }
+        if (SetEffect(0, 0x51, a0, 0, -1, 0xFFFFFFFF)) { }
         (*(unsigned char *)((char *)a0 + 0x2F6))++;
         /* fallthrough */
     case 1:
-        if (func_00157C18(a0)) {
+        if (moveMotion(a0)) {
             *(unsigned char *)((char *)a0 + 0x2F4) = 0;
             *(unsigned char *)((char *)a0 + 0x2F5) = 0;
             *(unsigned char *)((char *)a0 + 0x2F6) = 0;

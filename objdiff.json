@@ -3480,9 +3480,9 @@
       }
     },
     {
-      "name": "asm/nonmatching/func_0015F2E0",
-      "target_path": "expected/build/asm/nonmatching/func_0015F2E0.o",
-      "base_path": "build/asm/nonmatching/func_0015F2E0.o",
+      "name": "asm/nonmatching/drawCircleLine",
+      "target_path": "expected/build/asm/nonmatching/drawCircleLine.o",
+      "base_path": "build/asm/nonmatching/drawCircleLine.o",
       "metadata": {
         "auto_generated": true,
         "progress_categories": [
@@ -3513,9 +3513,9 @@
       }
     },
     {
-      "name": "asm/nonmatching/func_0015F700",
-      "target_path": "expected/build/asm/nonmatching/func_0015F700.o",
-      "base_path": "build/asm/nonmatching/func_0015F700.o",
+      "name": "asm/nonmatching/drawLocator",
+      "target_path": "expected/build/asm/nonmatching/drawLocator.o",
+      "base_path": "build/asm/nonmatching/drawLocator.o",
       "metadata": {
         "auto_generated": true,
         "progress_categories": [
@@ -33704,9 +33704,9 @@
       }
     },
     {
-      "name": "asm/nonmatching/func_00389438",
-      "target_path": "expected/build/asm/nonmatching/func_00389438.o",
-      "base_path": "build/asm/nonmatching/func_00389438.o",
+      "name": "asm/nonmatching/endl",
+      "target_path": "expected/build/asm/nonmatching/endl.o",
+      "base_path": "build/asm/nonmatching/endl.o",
       "metadata": {
         "auto_generated": true,
         "progress_categories": [
