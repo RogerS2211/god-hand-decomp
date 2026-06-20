@@ -12,7 +12,7 @@ extern char *InitFields_1B6E90(char *a0);
 extern void func_00305908(void);
 extern void LookupSlotPopulateFieldsAndDispatch_1F7858(void *a0, int a1, int a2, int a3, int a4, int a5, int a6);
 extern char D_00568288;
-extern void func_00147728(void *a0, int a1, int a2);
+extern void MtxInitRotVec(void *a0, int a1, int a2);
 extern void Tramp_func_0030A2E0_00147548(int a0, int a1, void *a2);
 
 __attribute__((section(".text.func_002A8578")))
@@ -126,6 +126,6 @@ __attribute__((section(".text.func_00147B60")))
 void func_00147B60(int a0, int a1, int a2, int a3)
 {
     struct buf_00147B60 buf;
-    func_00147728(&buf, a2, a3 & 0xFF);
+    MtxInitRotVec(&buf, a2, a3 & 0xFF);
     Tramp_func_0030A2E0_00147548(a0, a1, &buf);
 }

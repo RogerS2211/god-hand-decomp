@@ -75,7 +75,7 @@ int LoadEntryByValue_1FFD00(int a0, int a1, int a2) {
 __attribute__((section(".text.SetColorRgba_1FFE60")))
 void SetColorRgba_1FFE60(int a0, int a1, int a2, int a3, int t0) {
     if (cDoor_getJumpData(a0, a1 & 0xFF, a2 & 0xFF, a3 & 0xFF, 0, t0 & 0xFF) == 1)
-        func_001FFF80(a0);
+        cDoor_setDoorJump(a0);
 }
 
 __attribute__((section(".text.InitSlotParams_200658")))

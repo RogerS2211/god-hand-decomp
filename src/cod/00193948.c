@@ -112,7 +112,7 @@ void FreeMultiResource_193FD8(void *a0, int a1) {
         func_0012EC58(&D_005CAE50, v5);
         *(int *)((char *)a0 + 0x614) = 0;
     }
-    func_00305778(&D_007419A0, 0x177);
+    espSys_effDataRelease(&D_007419A0, 0x177);
     SetField214PtrThenInit_1B6F38(a0, a1);
 }
 

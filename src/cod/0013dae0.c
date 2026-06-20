@@ -44,7 +44,7 @@ void SetStateEntry0x258_16F438(int *a0, int a1) {
         ClearAndResetFields_1FE278(D_00574380, *(int *)((char *)a0 + 0x600));
         *(int *)((char *)a0 + 0x600) = 0;
     }
-    func_00305778(D_007419A0, 0x258);
+    espSys_effDataRelease(D_007419A0, 0x258);
     ResetField214FreeField180_1C2820(a0, a1);
 }
 
@@ -55,7 +55,7 @@ void SetStateEntry0x259_16F720(int *a0, int a1) {
         ClearAndResetFields_1FE278(D_00574380, *(int *)((char *)a0 + 0x600));
         *(int *)((char *)a0 + 0x600) = 0;
     }
-    func_00305778(D_007419A0, 0x259);
+    espSys_effDataRelease(D_007419A0, 0x259);
     ResetField214FreeField180_1C2820(a0, a1);
 }
 
@@ -66,6 +66,6 @@ void SetStateEntry0x25A_16FA10(int *a0, int a1) {
         ClearAndResetFields_1FE278(D_00574380, *(int *)((char *)a0 + 0x600));
         *(int *)((char *)a0 + 0x600) = 0;
     }
-    func_00305778(D_007419A0, 0x25A);
+    espSys_effDataRelease(D_007419A0, 0x25A);
     ResetField214FreeField180_1C2820(a0, a1);
 }

@@ -9,7 +9,7 @@ int FindAndForwardEntry_3059A8(void *a0, int a1, void *a2) {
     if (r != 0) {
         return func_00305858(r, a2);
     }
-    func_003053C0(sp, a1);
+    getEffTypeString(sp, a1);
     return 0;
 }
 
@@ -34,9 +34,9 @@ void ClearLinkedTarget_12CC00(char *a0)
 	if (p != 0) {
 		if ((*(int *)(a0 + 0x15F4) & 0x800000) == 0) {
 			if (*(int *)(p + 0x564) == 0x26A) {
-				func_00306168(0, 0x79, 2);
+				KillEffect_306168(0, 0x79, 2);
 			}
-			func_00306168(0, 0x61, 2);
+			KillEffect_306168(0, 0x61, 2);
 			*(int *)(a0 + 0x644) = 0;
 		}
 	}

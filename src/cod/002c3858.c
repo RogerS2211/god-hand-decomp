@@ -7,9 +7,9 @@ extern void SetFieldsCESignalSemaSleep_2D5AA0(int a0, int a1);
 extern unsigned int D_00747A78;
 extern char D_00463050[];
 extern void cCamManager_setMotCamera(void *a0, int a1);
-extern void func_001390B8(void *a0, int a1, int a2, int a3, float f12, int t0, int t1);
+extern void cMotCamera_setMotion(void *a0, int a1, int a2, int a3, float f12, int t0, int t1);
 extern void func_00138600(void *a0);
-extern void func_0013B9B8(void *a0, int a1);
+extern void cPlCamera_setCamUpdate(void *a0, int a1);
 extern void cCamManager_setPlCamera(void *a0, int a1);
 extern void ClearField15F4Bit1_124F60(int a0, int a1, int a2);
 extern int *PTR_DAT_003c2f84;
@@ -35,7 +35,7 @@ int LoadScreenOverlay_2C3F10(void *a0, int a1) {
     s0 = D_00463050;
     cCamManager_setMotCamera(s0, 0);
     s0 = D_00463050 + 0x530;
-    func_001390B8(s0, a1, 0, 0, 0.0f, 0, 0);
+    cMotCamera_setMotion(s0, a1, 0, 0, 0.0f, 0, 0);
     *(float *)(s0 + 0x3A8) = 0.0f;
     func_00138600(s0);
     *(char *)((char *)a0 + 0x111) = 1;
@@ -48,7 +48,7 @@ void ClearCameraOverlayState_2C3FC0(void *a0) {
     D_00747A78 = D_00747A78 & 0xFFDFFFFF;
     s0 = D_00463050;
     if (s0) {
-        func_0013B9B8(s0, 0);
+        cPlCamera_setCamUpdate(s0, 0);
     }
     cCamManager_setPlCamera(s0, 0);
     ClearField15F4Bit1_124F60(Obj0000_Get_D_00747A94_2DB6B0(), 0, 1);
@@ -66,7 +66,7 @@ __attribute__((section(".text.ForwardWithResolvedHandle_2C40C8")))
 int ForwardWithResolvedHandle_2C40C8(void *a0, unsigned short a1, int a2, int a3, unsigned char t0, int t1) {
     int v0;
     if (a2 != 0) {
-        v0 = func_0031CE38(a2);
+        v0 = SearchCameraData(a2);
     } else {
         v0 = 0;
     }
@@ -78,7 +78,7 @@ void SetSoundSlot_2C42E0(char *a0, int a1) {
     if (*(unsigned short*)(a0 + 0x112) != 0xFFFF) {
         ClearSoundSlot_2C4390(a0);
     }
-    if (func_002AEB68(PTR_DAT_003c23a4, a1, 0, 0, 0) != 0xFFFF) {
+    if (cMessage_create(PTR_DAT_003c23a4, a1, 0, 0, 0) != 0xFFFF) {
         *(unsigned short*)(a0 + 0x112) = a1;
     }
 }

@@ -3,7 +3,7 @@ extern int D_003BF160[];
 struct S001FA690 { char pad[0x10]; unsigned short f10; };
 struct W001FA690 { struct S001FA690 *p; };
 extern void func_001FA820(void *);
-extern int func_001FB830(int *a0, unsigned int a1);
+extern int cCoreSave_getComboMax(int *a0, unsigned int a1);
 extern int D_00747A34;
 #include "include_asm.h"
 extern int D_00747A38;
@@ -202,7 +202,7 @@ int cCoreSave_getCombo(int *a0, unsigned int a1, unsigned int a2)
     unsigned int n;
     if (*a0 == 0) return 0;
     if (a2 >= 6) return 0;
-    n = func_001FB830(a0, a1);
+    n = cCoreSave_getComboMax(a0, a1);
     if (a2 >= n) return 0;
     if (a1 >= 6) return 0;
     return *(int *)(*a0 + (a1 * 0x24 + a2 * 4) + 0x1B0);

@@ -1284,13 +1284,13 @@ __attribute__((section(".text.Tramp_001F7DF8_00101E28"))) void Tramp_001F7DF8_00
 __attribute__((section(".text.Tramp_func_0014EA50_0010B760")))
 __attribute__((section(".text.Tramp_func_0014EA50_0010B760"))) void Tramp_func_0014EA50_0010B760(void)
 {
- do { func_0014EA50(); } while (0);
+ do { cObjBase_R0_scenario(); } while (0);
 }
 
 __attribute__((section(".text.Tramp_func_0014EFA8_0012BBE0")))
 void Tramp_func_0014EFA8_0012BBE0(void)
 {
- do { func_0014EFA8(); } while (0);
+ do { cObjBase_KageDraw(); } while (0);
 }
 
 __attribute__((section(".text.Tramp_func_002AAC28_0013C508")))
@@ -1790,7 +1790,7 @@ __attribute__((section(".text.Tramp_func_0014EFA8_001866A0")))
 __attribute__((section(".text.Tramp_func_0014EFA8_001866A0")))
 void Tramp_func_0014EFA8_001866A0(void)
 {
-  func_0014EFA8();
+  cObjBase_KageDraw();
   do { } while (0);
 }
 

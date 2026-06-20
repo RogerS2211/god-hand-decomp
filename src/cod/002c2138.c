@@ -5,7 +5,7 @@ extern char *PTR_DAT_003c23a4;
 extern void func_002C4150(char *a0, int a1, int a2, int a3, int t0, int t1);
 extern void cTaskWork_exit(int a0);
 extern void func_002C1D68(int a0, int a1, int a2);
-extern void func_002C0E78(int a0, int a1);
+extern void cSceAtUnit_getCenterPos(int a0, int a1);
 extern void func_002D56A8(void *a0);
 extern char D_007474A0[];
 extern char D_0061A990[];
@@ -86,7 +86,7 @@ int FindEntityAtPosition_2C2638(int a0, int a1, int a2, float *a3) {
         if (*(unsigned char *)(s0 + 0x35) != 0xC) continue;
         func_002C1D68(a0, buf, s0);
         if (func_001F83E8(buf, a1) != 1) continue;
-        if (a2 != 0) func_002C0E78(s0, a2);
+        if (a2 != 0) cSceAtUnit_getCenterPos(s0, a2);
         if (a3 != 0) *a3 = *(float *)(s0 + 0x10);
         return 1;
     }

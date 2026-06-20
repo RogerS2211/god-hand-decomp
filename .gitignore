@@ -117,6 +117,7 @@
 !scripts/progress.sh
 !scripts/proj-find.sh
 !scripts/recon/carve_stress.py
+!scripts/recon/extract_reflection_symbols.py
 !scripts/recon/cc_roundtrip/leaf_identity.c
 !scripts/recon/cc_roundtrip/run.py
 !scripts/recon/cc_roundtrip/sum_two.c

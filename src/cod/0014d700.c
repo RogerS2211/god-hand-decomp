@@ -31,7 +31,7 @@ void ResetActorState_1BBF00(int a0, int a1)
         ClearAndResetFields_1FE278(D_00574380, v1);
         *(int *)(a0 + 0x600) = 0;
     }
-    func_001BD3F0(a0);
+    cOmDoor_releaseObjCollision(a0);
     SetField214PtrThenInit_1B6F38(a0, a1);
 }
 

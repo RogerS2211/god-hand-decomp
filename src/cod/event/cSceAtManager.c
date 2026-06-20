@@ -5,7 +5,7 @@ int cSceAtManager_SetEnable_2C28F8(int *a0, int a1) {
     if (*a0 == 0) return 0;
     if (a1 == 0) return 0;
     if (func_002C0E68(a1) != 0) return 1;
-    func_002C0DE8(a1, 0);
+    cSceAtUnit_SetEnable(a1, 0);
     return 1;
 }
 
@@ -23,7 +23,7 @@ int cSceAtManager_SetDisable(int *a0, int a1) {
     if (*a0 == 0) return 0;
     if (a1 == 0) return 0;
     if (func_002C0E68(a1) != 0) {
-        func_002C0E28(a1, 0);
+        cSceAtUnit_SetDisable(a1, 0);
     }
     return 1;
 }
@@ -34,7 +34,7 @@ void cSceAtManager_getCenterPos(int *a0, unsigned short a1, int a2) {
     if (*a0) {
         v0 = cSceAtManager_getUnit(a0, a1);
         if (v0) {
-            func_002C0E78(v0, a2);
+            cSceAtUnit_getCenterPos(v0, a2);
         }
     }
 }

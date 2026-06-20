@@ -51,8 +51,8 @@ void *InitObjVU0Fields_16FC80(void *obj)
 __attribute__((section(".text.func_0016FEA0")))
 void func_0016FEA0(void *obj)
 {
-    func_002CBA48(D_005FEE00, 2, 0, obj, 0, 0, 0, 0);
-    func_002CBA48(D_005FEE00, 2, 2, obj, 0, 0, 0, 0);
+    cSnd_SeCall_2CBA48(D_005FEE00, 2, 0, obj, 0, 0, 0, 0);
+    cSnd_SeCall_2CBA48(D_005FEE00, 2, 2, obj, 0, 0, 0, 0);
 }
 
 __attribute__((section(".text.GetOrInitSingleton7857C8_16FF18")))
@@ -104,8 +104,8 @@ void FreeObjResourceAndDestroy_16FFF0(void *a0, void *a1) {
 
 __attribute__((section(".text.func_00170188")))
 void func_00170188(void *a0) {
-    func_002CBA48(&D_005FEE00, 2, 0, a0, 0, 0, 0, 0);
-    func_002CBA48(&D_005FEE00, 2, 2, a0, 0, 0, 0, 0);
+    cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0, a0, 0, 0, 0, 0);
+    cSnd_SeCall_2CBA48(&D_005FEE00, 2, 2, a0, 0, 0, 0, 0);
 }
 
 __attribute__((section(".text.GetOrInitSingleton7857D8_170200")))
