@@ -454,3 +454,4 @@
 !scripts/recon/ghidra/gh_engine.h
 !scripts/recon/ghidra/gh_symbols.csv
 !scripts/recon/ghidra/GHIDRA_MCP.md
+!scripts/recon/ghidra/GodHandFixDisasm.py
