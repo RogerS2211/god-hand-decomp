@@ -121,6 +121,8 @@
 !scripts/recon/cc_roundtrip/leaf_identity.c
 !scripts/recon/cc_roundtrip/run.py
 !scripts/recon/cc_roundtrip/sum_two.c
+!scripts/recon/re4_struct_reference.md
+!scripts/recon/re4ps2_fingerprint.py
 !scripts/recon/rel_inventory.py
 !scripts/recon/rel_overlay_inventory.py
 !scripts/resplat.sh
