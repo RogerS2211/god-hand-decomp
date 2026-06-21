@@ -265,4 +265,30 @@
         "vaddy.x $vf" #dst ", $vf" #s1 ", $vf" #s1 "\n"              \
         ".set pop\n")
 
+/* Element-wise min/max (used by vector clamp/sort helpers). */
+#define VU0_VMINI_XYZW(dst, s1, s2)                                    \
+    __asm__ __volatile__ (                                             \
+        ".set push\n.set noreorder\n"                                  \
+        "vmini.xyzw $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n"           \
+        ".set pop\n")
+#define VU0_VMAX_XYZW(dst, s1, s2)                                     \
+    __asm__ __volatile__ (                                             \
+        ".set push\n.set noreorder\n"                                  \
+        "vmax.xyzw $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n"            \
+        ".set pop\n")
+
+/* Full-width (xyzw) arithmetic and float<->fixed conversion. */
+#define VU0_VADD_XYZW(dst, s1, s2)                                     \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vadd.xyzw $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n.set pop\n")
+#define VU0_VSUB_XYZW(dst, s1, s2)                                     \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vsub.xyzw $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n.set pop\n")
+#define VU0_VMUL_XYZW(dst, s1, s2)                                     \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vmul.xyzw $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n.set pop\n")
+#define VU0_VFTOI4_XYZW(dst, src)                                      \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vftoi4.xyzw $vf" #dst ", $vf" #src "\n.set pop\n")
+
 #endif /* GODHAND_VU0_H */
