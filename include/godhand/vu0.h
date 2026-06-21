@@ -237,4 +237,15 @@
         "vaddz.x $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n"              \
         ".set pop\n")
 
+/* Q-pipeline (sqrt) helpers. ee-as encodes `vsqrt Q, $vfNx` differently from
+ * retail, so callers emit the exact `.word` for vsqrt; vwaitq/vaddq assemble
+ * fine. The bare `Q` register (no `$`) mirrors the ACC convention. */
+#define VU0_VWAITQ()                                                   \
+    __asm__ __volatile__(".set push\n.set noreorder\nvwaitq\n.set pop\n")
+#define VU0_VADDQ_X(dst, s1)                                           \
+    __asm__ __volatile__ (                                             \
+        ".set push\n.set noreorder\n"                                  \
+        "vaddq.x $vf" #dst ", $vf" #s1 ", Q\n"                        \
+        ".set pop\n")
+
 #endif /* GODHAND_VU0_H */
