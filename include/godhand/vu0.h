@@ -248,4 +248,21 @@
         "vaddq.x $vf" #dst ", $vf" #s1 ", Q\n"                        \
         ".set pop\n")
 
+/* xyz-masked ops for the 3D length/distance helpers. */
+#define VU0_VMUL_XYZ(dst, s1, s2)                                      \
+    __asm__ __volatile__ (                                             \
+        ".set push\n.set noreorder\n"                                  \
+        "vmul.xyz $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n"             \
+        ".set pop\n")
+#define VU0_VSUB_XYZ(dst, s1, s2)                                      \
+    __asm__ __volatile__ (                                             \
+        ".set push\n.set noreorder\n"                                  \
+        "vsub.xyz $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n"             \
+        ".set pop\n")
+#define VU0_VADDY_X(dst, s1)                                           \
+    __asm__ __volatile__ (                                             \
+        ".set push\n.set noreorder\n"                                  \
+        "vaddy.x $vf" #dst ", $vf" #s1 ", $vf" #s1 "\n"              \
+        ".set pop\n")
+
 #endif /* GODHAND_VU0_H */
