@@ -2029,9 +2029,9 @@ int Obj0000_Call_Vtbl6_Vtbl8_Field_1_0034C680(ObjVT *obj, int a1, int a2) {
     return local[1];
 }
 
-void func_003A6D78(void);
-void func_003A6DE0(void);
-void func_003A6E60(void);
+void __sread(void);
+void __swrite(void);
+void __sseek(void);
 void func_003A6EC8(void);
 
 typedef struct {
@@ -2062,9 +2062,9 @@ void Obj0000_Setup_Fields_00_04_08_0C_0E_10_18_1C_20_24_28_2C_54(CGUnk_3A6188_t 
     a0->unk_10 = 0;
     a0->unk_18 = 0;
     a0->unk_1C = (void *)a0;
-    a0->fn_20 = func_003A6D78;
-    a0->fn_24 = func_003A6DE0;
-    a0->fn_28 = func_003A6E60;
+    a0->fn_20 = __sread;
+    a0->fn_24 = __swrite;
+    a0->fn_28 = __sseek;
     a0->fn_2C = func_003A6EC8;
     a0->unk_54 = a3;
 }
