@@ -8,7 +8,7 @@ they are shared engine/runtime code. Regenerate the source list with
 Match approach: write C, compile with the project flags, compare .text bytes.
 ~30%% match first-try (clean compute-and-return); the rest need register/
 schedule tweaks (permuter) or canonical library source. Matched so far:
-func_0033C270, func_00324858, func_0035A518, func_00369130.
+func_0033C270, func_00324858, func_0035A518, func_00369130, func_003520B0, func_00369158.
 
 Store-order trick (func_0035A518/func_00369130): when retail stores struct
 fields in an unusual order with one field in the jr delay slot, the ee-gcc
