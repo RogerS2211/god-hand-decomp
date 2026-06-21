@@ -176,4 +176,15 @@
         : "r"((void *)(base)), "i"((int)(off))                         \
         : "memory")
 
+/* VU0_VADD_XYZ(dst, s1, s2): $vf<dst>.xyz = $vf<s1>.xyz + $vf<s2>.xyz.
+ * A compute-class COP2 op with no inter-op nop (same empirical finding as the
+ * lqc2/sqc2 load/store class — see the header preamble); the `.set noreorder`
+ * framing only pins order around the inline asm. */
+#define VU0_VADD_XYZ(dst, s1, s2)                                      \
+    __asm__ __volatile__ (                                             \
+        ".set push\n"                                                  \
+        ".set noreorder\n"                                             \
+        "vadd.xyz $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n"               \
+        ".set pop\n")
+
 #endif /* GODHAND_VU0_H */
