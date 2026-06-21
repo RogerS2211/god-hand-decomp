@@ -343,4 +343,15 @@
 #define VU0_VNOP()                                                     \
     __asm__ __volatile__(".set push\n.set noreorder\nvnop\n.set pop\n")
 
+/* Reciprocal against the w field: Q = $vf<num>.w / $vf<den>.w (perspective
+ * divide by w). */
+#define VU0_VDIV_W_W(num, den)                                         \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vdiv Q, $vf" #num "w, $vf" #den "w\n.set pop\n")
+
+/* vftoi0.zw: float->int (0 fractional bits) on the z and w fields only. */
+#define VU0_VFTOI0_ZW(dst, src)                                        \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vftoi0.zw $vf" #dst ", $vf" #src "\n.set pop\n")
+
 #endif /* GODHAND_VU0_H */
