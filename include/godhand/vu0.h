@@ -201,4 +201,23 @@
         "vmr32.xyzw $vf" #dst ", $vf" #src "\n"                        \
         ".set pop\n")
 
+/* COP2 accumulator (matrix x vector) ops. Note: the ACC register assembles as
+ * bare `ACC` (no `$`) — the disassembler prints it as `$ACC`. The x/y/z
+ * broadcast is encoded in the mnemonic, so the second source is a plain $vf. */
+#define VU0_VMULAX_XYZW(s1, s2)                                        \
+    __asm__ __volatile__ (                                             \
+        ".set push\n.set noreorder\n"                                  \
+        "vmulax.xyzw ACC, $vf" #s1 ", $vf" #s2 "\n"                    \
+        ".set pop\n")
+#define VU0_VMADDAY_XYZW(s1, s2)                                       \
+    __asm__ __volatile__ (                                             \
+        ".set push\n.set noreorder\n"                                  \
+        "vmadday.xyzw ACC, $vf" #s1 ", $vf" #s2 "\n"                   \
+        ".set pop\n")
+#define VU0_VMADDZ_XYZW(dst, s1, s2)                                   \
+    __asm__ __volatile__ (                                             \
+        ".set push\n.set noreorder\n"                                  \
+        "vmaddz.xyzw $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n"            \
+        ".set pop\n")
+
 #endif /* GODHAND_VU0_H */
