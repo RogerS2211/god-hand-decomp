@@ -8,7 +8,14 @@ they are shared engine/runtime code. Regenerate the source list with
 Match approach: write C, compile with the project flags, compare .text bytes.
 ~30%% match first-try (clean compute-and-return); the rest need register/
 schedule tweaks (permuter) or canonical library source. Matched so far:
-func_0033C270, func_00324858.
+func_0033C270, func_00324858, func_0035A518, func_00369130.
+
+Store-order trick (func_0035A518/func_00369130): when retail stores struct
+fields in an unusual order with one field in the jr delay slot, the ee-gcc
+scheduler ROTATES the trailing source store to the front. Write the field that
+must land FIRST as the LAST store in source and the rest match byte-for-byte —
+no permuter needed. func_0035B188 (pure-arithmetic weighted sum) is permuter-
+RESISTANT: single expression, full register permutation, plateaus ~600.
 
 | insns | GH addr | RE4 addr | RE4 name |
 |------:|---------|----------|----------|
