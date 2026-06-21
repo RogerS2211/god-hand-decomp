@@ -220,4 +220,21 @@
         "vmaddz.xyzw $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n"            \
         ".set pop\n")
 
+/* Field-masked vector ops used by the cap* distance/magnitude helpers. */
+#define VU0_VSUB_XZ(dst, s1, s2)                                       \
+    __asm__ __volatile__ (                                             \
+        ".set push\n.set noreorder\n"                                  \
+        "vsub.xz $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n"               \
+        ".set pop\n")
+#define VU0_VMUL_XZ(dst, s1, s2)                                       \
+    __asm__ __volatile__ (                                             \
+        ".set push\n.set noreorder\n"                                  \
+        "vmul.xz $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n"               \
+        ".set pop\n")
+#define VU0_VADDZ_X(dst, s1, s2)                                       \
+    __asm__ __volatile__ (                                             \
+        ".set push\n.set noreorder\n"                                  \
+        "vaddz.x $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n"              \
+        ".set pop\n")
+
 #endif /* GODHAND_VU0_H */
