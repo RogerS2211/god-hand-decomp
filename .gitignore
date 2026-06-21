@@ -457,3 +457,4 @@
 !scripts/recon/ghidra/GodHandFixDisasm.py
 !scripts/recon/ghidra/GodHandNameAfterAnalysis.py
 !src/cod/002955f0.c
+!scripts/recon/uncarved_leaves_worklist.md
