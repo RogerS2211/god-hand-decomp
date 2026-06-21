@@ -184,6 +184,7 @@
 !src/cod/001506f0.c
 !src/cod/001507b8.c
 !src/cod/0015f0.c
+!src/cod/0015fba8.c
 !src/cod/0016fc30.c
 !src/cod/00170250.c
 !src/cod/00170990.c
@@ -311,7 +312,9 @@
 !src/cod/0031e2e0.c
 !src/cod/0031eea8.c
 !src/cod/003202e0.c
+!src/cod/003203b0.c
 !src/cod/003229.c
+!src/cod/003229d0.c
 !src/cod/00322c18.c
 !src/cod/00323e.c
 !src/cod/003245.c
