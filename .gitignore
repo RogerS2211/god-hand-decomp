@@ -494,3 +494,4 @@
 !scripts/recon/ghidra/GodHandNameAfterAnalysis.py
 !scripts/recon/uncarved_leaves_worklist.md
 !scripts/recon/extract_reflection_symbols.py
+!scripts/recon/re4_byte_identical_worklist.md
