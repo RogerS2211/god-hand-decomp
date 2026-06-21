@@ -187,4 +187,18 @@
         "vadd.xyz $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n"               \
         ".set pop\n")
 
+/* VU0_VMOVE_XYZW(dst, src): $vf<dst> = $vf<src> (all four fields). */
+#define VU0_VMOVE_XYZW(dst, src)                                       \
+    __asm__ __volatile__ (                                             \
+        ".set push\n.set noreorder\n"                                  \
+        "vmove.xyzw $vf" #dst ", $vf" #src "\n"                        \
+        ".set pop\n")
+
+/* VU0_VMR32_XYZW(dst, src): $vf<dst> = $vf<src> rotated (x<-y<-z<-w<-x). */
+#define VU0_VMR32_XYZW(dst, src)                                       \
+    __asm__ __volatile__ (                                             \
+        ".set push\n.set noreorder\n"                                  \
+        "vmr32.xyzw $vf" #dst ", $vf" #src "\n"                        \
+        ".set pop\n")
+
 #endif /* GODHAND_VU0_H */
