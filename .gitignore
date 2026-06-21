@@ -182,6 +182,7 @@
 !src/cod/0014d700.c
 !src/cod/0014fe08.c
 !src/cod/001506f0.c
+!src/cod/001507b8.c
 !src/cod/0015f0.c
 !src/cod/0016fc30.c
 !src/cod/00170250.c
@@ -265,6 +266,7 @@
 !src/cod/002a8608.c
 !src/cod/002ace28.c
 !src/cod/002af638.c
+!src/cod/002afc08.c
 !src/cod/002b28.c
 !src/cod/002b5bb8.c
 !src/cod/002b5e50.c
@@ -303,6 +305,7 @@
 !src/cod/00317810.c
 !src/cod/00317c70.c
 !src/cod/0031eea8.c
+!src/cod/003202e0.c
 !src/cod/003229.c
 !src/cod/00322c18.c
 !src/cod/00323e.c
@@ -311,6 +314,7 @@
 !src/cod/003270.c
 !src/cod/003290.c
 !src/cod/0032b7.c
+!src/cod/0032dd18.c
 !src/cod/003320.c
 !src/cod/003329.c
 !src/cod/00335b.c
