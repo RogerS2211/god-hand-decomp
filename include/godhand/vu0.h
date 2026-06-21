@@ -311,4 +311,29 @@
     __asm__ __volatile__ (".set push\n.set noreorder\n"               \
         "vadd.w $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n.set pop\n")
 
+/* VU0_LOAD_SCALAR(dst, fval): move a float scalar into $vf<dst> via the
+ * mfc1/qmtc2 path (broadcast source for vmulx/vdiv).  Uses $8 as the scratch
+ * GPR to match retail's hand-written intrinsics. */
+#define VU0_LOAD_SCALAR(dst, fval)                                     \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "mfc1 $8, %0\n"                                                \
+        "qmtc2.ni $8, $vf" #dst "\n.set pop\n"                         \
+        :: "f"(fval) : "$8")
+
+/* Broadcast-x multiply: $vf<dst> = $vf<s1> * $vf<s2>.x (scalar*vector). */
+#define VU0_VMULX_XYZW(dst, s1, s2)                                    \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vmulx.xyzw $vf" #dst ", $vf" #s1 ", $vf" #s2 "x\n.set pop\n")
+#define VU0_VMULX_XYZ(dst, s1, s2)                                     \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vmulx.xyz $vf" #dst ", $vf" #s1 ", $vf" #s2 "x\n.set pop\n")
+
+/* Reciprocal via Q-pipeline: Q = $vf<num>.w / $vf<den>.x (vf0.w == 1.0). */
+#define VU0_VDIV_W_X(num, den)                                         \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vdiv Q, $vf" #num "w, $vf" #den "x\n.set pop\n")
+#define VU0_VMULQ_XYZW(dst, s1)                                        \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vmulq.xyzw $vf" #dst ", $vf" #s1 ", Q\n.set pop\n")
+
 #endif /* GODHAND_VU0_H */
