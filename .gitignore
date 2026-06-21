@@ -455,3 +455,4 @@
 !scripts/recon/ghidra/gh_symbols.csv
 !scripts/recon/ghidra/GHIDRA_MCP.md
 !scripts/recon/ghidra/GodHandFixDisasm.py
+!scripts/recon/ghidra/GodHandNameAfterAnalysis.py
