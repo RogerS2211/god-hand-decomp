@@ -169,3 +169,18 @@ community.
 Trademarks of *God Hand*, *Clover Studio*, and *Capcom* belong to their
 respective holders. This project is for preservation, education, and
 non-commercial research.
+
+## License
+
+The original code, tooling, and documentation in this repository are released
+under the [MIT License](./LICENSE). This covers only the project's own authored
+work: the reconstructed C, the build scripts, and the configuration.
+
+It grants no rights to *God Hand* itself. The game, its code, and its assets
+remain the property of Capcom. This is an independent, unofficial
+reverse-engineering project, and it is not affiliated with, authorized by, or
+endorsed by Capcom or Clover Studio. See [Legal](#legal) for what is and is not
+distributed here.
+
+By contributing, you agree that your contributions are licensed under the same
+MIT License.

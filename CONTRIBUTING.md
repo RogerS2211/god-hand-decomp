@@ -8,7 +8,8 @@ ELF and `.rel` overlays as the retail disc.
 > **Contributions welcome.** This guide walks through setup and the per-function
 > matching loop end to end. Good first contributions are small leaf functions
 > (see §4); open an issue if you'd like to coordinate on something larger or have
-> a question.
+> a question. By submitting a contribution you agree it is licensed under the
+> project's [MIT License](./LICENSE).
 
 ---
 
