@@ -8,7 +8,7 @@ they are shared engine/runtime code. Regenerate the source list with
 Match approach: write C, compile with the project flags, compare .text bytes.
 ~30%% match first-try (clean compute-and-return); the rest need register/
 schedule tweaks (permuter) or canonical library source. Matched so far:
-func_0033C270, func_00324858, func_0035A518, func_00369130, func_003520B0, func_00369158.
+func_0033C270, func_00324858, func_0035A518, func_00369130, func_003520B0, func_00369158, func_0036CB58.
 
 Store-order trick (func_0035A518/func_00369130): when retail stores struct
 fields in an unusual order with one field in the jr delay slot, the ee-gcc
@@ -16,6 +16,18 @@ scheduler ROTATES the trailing source store to the front. Write the field that
 must land FIRST as the LAST store in source and the rest match byte-for-byte —
 no permuter needed. func_0035B188 (pure-arithmetic weighted sum) is permuter-
 RESISTANT: single expression, full register permutation, plateaus ~600.
+
+Two more reorder levers (cracked func_003520B0 / func_0036CB58):
+- BASE POINTERS: when retail addresses sub-fields via `addiu vN,a0,off` and
+  indexes off it, write an explicit `T *q = (T*)(p+off); q[i]=...` so the
+  compiler recreates that base register (direct `*(T*)(p+off+...)` won't).
+- CONSTANT ORDER: when only the constant->register mapping differs, declare the
+  constants as NAMED locals in retail's materialisation order; the allocator then
+  assigns registers to match. func_0036CB58 went from a permuter near-miss
+  (base 75) to an exact hand match this way.
+
+Loop inits (func_0034FDF0, func_0035BD88) have R5900 short-loop NOP padding that
+the project assembler doesn't emit — a toolchain-fidelity wall, deferred.
 
 | insns | GH addr | RE4 addr | RE4 name |
 |------:|---------|----------|----------|
