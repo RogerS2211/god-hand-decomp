@@ -8,7 +8,7 @@ they are shared engine/runtime code. Regenerate the source list with
 Match approach: write C, compile with the project flags, compare .text bytes.
 ~30%% match first-try (clean compute-and-return); the rest need register/
 schedule tweaks (permuter) or canonical library source. Matched so far:
-func_0033C270, func_00324858, func_0035A518, func_00369130, func_003520B0, func_00369158, func_0036CB58, func_0034FDF0, func_0035BD88, func_003B67E8, func_003B0D48, func_003B2B90, func_003217F0, func_00333288, func_00334B58, func_00349F80, func_0035A5E0.
+func_0033C270, func_00324858, func_0035A518, func_00369130, func_003520B0, func_00369158, func_0036CB58, func_0034FDF0, func_0035BD88, func_003B67E8, func_003B0D48, func_003B2B90, func_003217F0, func_00333288, func_00334B58, func_00349F80, func_0035A5E0, func_003A93A8, func_00321938.
 
 NEWLIB COMPILER (ee-2.9-991111): the 0x003Bxxxx library region is newlib code,
 NOT cygnus. Functions there that look 1 insn short under the default compiler
