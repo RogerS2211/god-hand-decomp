@@ -8,7 +8,14 @@ they are shared engine/runtime code. Regenerate the source list with
 Match approach: write C, compile with the project flags, compare .text bytes.
 ~30%% match first-try (clean compute-and-return); the rest need register/
 schedule tweaks (permuter) or canonical library source. Matched so far:
-func_0033C270, func_00324858, func_0035A518, func_00369130, func_003520B0, func_00369158, func_0036CB58, func_0034FDF0, func_0035BD88.
+func_0033C270, func_00324858, func_0035A518, func_00369130, func_003520B0, func_00369158, func_0036CB58, func_0034FDF0, func_0035BD88, func_003B67E8, func_003B0D48.
+
+NEWLIB COMPILER (ee-2.9-991111): the 0x003Bxxxx library region is newlib code,
+NOT cygnus. Functions there that look 1 insn short under the default compiler
+(cygnus fills the loop branch delay slot; newlib leaves a nop) match exactly when
+carved with `{"path":..., "compiler":"ee-2.9-991111"}` in compile_units. Matched
+func_003B67E8 (byte memcpy) and func_003B0D48 (EE I/O poll) this way. Try this
+compiler FIRST for any 0x3Bxxxx near-miss.
 
 Store-order trick (func_0035A518/func_00369130): when retail stores struct
 fields in an unusual order with one field in the jr delay slot, the ee-gcc
