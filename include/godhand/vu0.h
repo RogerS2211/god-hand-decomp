@@ -307,5 +307,8 @@
 #define VU0_VMADDW_XYZW(dst, s1, s2)                                   \
     __asm__ __volatile__ (".set push\n.set noreorder\n"               \
         "vmaddw.xyzw $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n.set pop\n")
+#define VU0_VADD_W(dst, s1, s2)                                        \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vadd.w $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n.set pop\n")
 
 #endif /* GODHAND_VU0_H */
