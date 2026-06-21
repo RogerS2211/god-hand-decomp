@@ -112,3 +112,22 @@ exists at all.
 | 173 | 0x0039A2F8 | 0x002E6D18 |  |
 | 227 | 0x00340B00 | 0x00199528 |  |
 | 281 | 0x003670E8 | 0x002D8AF8 |  |
+
+
+ATTEMPTED, RESISTANT (2026-06-21 — logic understood, exact match not yet found):
+- func_003A4E00 (isnanf), func_0034CCB0 (64-bit hi+borrow pack): tiny
+  register-allocation near-misses (~7-word diff, all 3 compilers); mfc1/dsll
+  destination regs are compiler-chosen. Permuter-resistant like func_0035B188.
+- func_003A95A8 (strrev), func_0032F988 (big-endian 0x10-byte deserializer):
+  longer than my C (retail uses per-field base pointers + load-delay nops +
+  a specific byte-read schedule). Need exact upstream source or a big scheduling
+  hill-climb; base-pointer reconstruction gets the size close but not exact.
+- func_003B6468 (word memcpy): opens with a DEAD `lw v0,0x1C(v1)` off an
+  uninitialised v1 — can't reproduce without knowing what emits it.
+- func_003B64A8 (word find/memchr): convoluted movz control flow.
+- func_0035BB60 (min/max/sum/count accumulator): diff=2, a daddu/movn scheduler
+  tie; func_00368EE0 (cond vcall): retail emits a redundant move all compilers
+  drop. Both genuine near-misses.
+Large libgcc/libm still untouched: __divdi3 (0x3A region), 0x3A54D8 (104),
+0x3A5DA0 (114), 0x366110/0x366368 (149), 0x39A2F8 (173), 0x340B00 (227),
+0x3670E8 (281) — these want canonical library source, not hand-derived C.
