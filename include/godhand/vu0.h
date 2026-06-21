@@ -291,4 +291,21 @@
     __asm__ __volatile__ (".set push\n.set noreorder\n"               \
         "vftoi4.xyzw $vf" #dst ", $vf" #src "\n.set pop\n")
 
+/* Cross product (outer-product multiply/subtract) and the full matrix-row ops. */
+#define VU0_VOPMULA_XYZ(s1, s2)                                        \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vopmula.xyz ACC, $vf" #s1 ", $vf" #s2 "\n.set pop\n")
+#define VU0_VOPMSUB_XYZ(dst, s1, s2)                                   \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vopmsub.xyz $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n.set pop\n")
+#define VU0_VSUB_W(dst, s1, s2)                                        \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vsub.w $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n.set pop\n")
+#define VU0_VMADDAZ_XYZW(s1, s2)                                       \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vmaddaz.xyzw ACC, $vf" #s1 ", $vf" #s2 "\n.set pop\n")
+#define VU0_VMADDW_XYZW(dst, s1, s2)                                   \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vmaddw.xyzw $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n.set pop\n")
+
 #endif /* GODHAND_VU0_H */
