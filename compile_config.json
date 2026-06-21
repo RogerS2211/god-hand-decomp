@@ -1104,6 +1104,10 @@
     {
       "path": "src/cod/001fb830.c",
       "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/002bf108.c",
+      "compiler": "ee-2.9-991111"
     }
   ],
   "_carved_funcs_doc": [
@@ -22156,6 +22160,13 @@
       "vaddr": "0x001FB830",
       "size": 52,
       "tu": "src/cod/001fb830.c"
+    },
+    {
+      "name": "cRoomSave_getFree",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002BF108",
+      "size": 40,
+      "tu": "src/cod/002bf108.c"
     }
   ],
   "build_dir": "build",
