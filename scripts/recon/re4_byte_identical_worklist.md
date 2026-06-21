@@ -8,7 +8,7 @@ they are shared engine/runtime code. Regenerate the source list with
 Match approach: write C, compile with the project flags, compare .text bytes.
 ~30%% match first-try (clean compute-and-return); the rest need register/
 schedule tweaks (permuter) or canonical library source. Matched so far:
-func_0033C270, func_00324858, func_0035A518, func_00369130, func_003520B0, func_00369158, func_0036CB58, func_0034FDF0.
+func_0033C270, func_00324858, func_0035A518, func_00369130, func_003520B0, func_00369158, func_0036CB58, func_0034FDF0, func_0035BD88.
 
 Store-order trick (func_0035A518/func_00369130): when retail stores struct
 fields in an unusual order with one field in the jr delay slot, the ee-gcc
@@ -34,8 +34,11 @@ loop+nops reproduce directly; the init-block store SCHEDULE was solved by a
 hill-climb over source statement order (cc1's list scheduler is sensitive to
 source order as a tiebreaker — the permuter plateaued at the base, but a direct
 adjacent-swap hill-climb over the 13 stores reached the exact pre-image), and the
-tail by the store-rotation rule. func_0035BD88's loop still differs (3 nops not
-emitted for its count=2 / 3-iteration shape) — a separate, smaller open case.
+tail by the store-rotation rule. func_0035BD88 ALSO matched: its "missing loop nops" was a misdiagnosis — cc1
+emits the nops fine; the real diff was a v0/v1 register swap (counter vs loop
+pointer). Writing the counter first in the for-init (`for(i=2,q=...;...)`) puts
+the counter in $v1 and the pointer in $v0, matching retail. So NO loop-nop wall
+exists at all.
 
 | insns | GH addr | RE4 addr | RE4 name |
 |------:|---------|----------|----------|

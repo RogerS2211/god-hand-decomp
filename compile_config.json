@@ -21990,6 +21990,13 @@
       "vaddr": "0x0034FDF0",
       "size": 136,
       "tu": "src/cod/0034fdf0.c"
+    },
+    {
+      "name": "func_0035BD88",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0035BD88",
+      "size": 72,
+      "tu": "src/cod/0035bd88.c"
     }
   ],
   "build_dir": "build",
