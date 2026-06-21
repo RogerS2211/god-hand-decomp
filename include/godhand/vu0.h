@@ -335,5 +335,12 @@
 #define VU0_VMULQ_XYZW(dst, s1)                                        \
     __asm__ __volatile__ (".set push\n.set noreorder\n"               \
         "vmulq.xyzw $vf" #dst ", $vf" #s1 ", Q\n.set pop\n")
+#define VU0_VMULQ_XYZ(dst, s1)                                         \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vmulq.xyz $vf" #dst ", $vf" #s1 ", Q\n.set pop\n")
+
+/* vnop: VU0 pipeline bubble (explicit in the hand-written intrinsics). */
+#define VU0_VNOP()                                                     \
+    __asm__ __volatile__(".set push\n.set noreorder\nvnop\n.set pop\n")
 
 #endif /* GODHAND_VU0_H */
