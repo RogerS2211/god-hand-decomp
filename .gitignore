@@ -65,6 +65,7 @@
 !flake.nix
 !include/.gitkeep
 !include/godhand/vu0.h
+!include/godhand/mmi.h
 !include/include_asm.h
 !include/labels.inc
 !include/macro.inc
@@ -908,3 +909,6 @@
 !src/cod/002a38e8.c
 !src/cod/002a3930.c
 !src/cod/002717d0.c
+!src/cod/0030a3b0.c
+!src/cod/0030a3f8.c
+!src/cod/0030a508.c

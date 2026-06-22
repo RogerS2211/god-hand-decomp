@@ -49203,3 +49203,5 @@ func_0030A370 = 0x0030A370; // type:func
 func_0030A348 = 0x0030A348; // type:func
 func_002A38E8 = 0x002A38E8; // type:func
 func_002A3930 = 0x002A3930; // type:func
+func_0030A3F8 = 0x0030A3F8; // type:func
+func_0030A508 = 0x0030A508; // type:func
