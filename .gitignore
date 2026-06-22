@@ -957,3 +957,6 @@
 !src/cod/espsys_sstclearsetflag.c
 !src/cod/csceatunit_setdisable.c
 !src/cod/csceatunit_setenable.c
+!src/cod/delobj.c
+!src/cod/cemsetparam_setemdata.c
+!src/cod/cmessage_closemessno.c
