@@ -1444,6 +1444,10 @@
     {
       "path": "src/cod/csceatmanager_atdatareset_2c2838.c",
       "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/effeventdataregist.c",
+      "compiler": "sn-2.95.3-136"
     }
   ],
   "_carved_funcs_doc": [
@@ -25821,6 +25825,13 @@
       "vaddr": "0x002C2838",
       "size": 56,
       "tu": "src/cod/csceatmanager_atdatareset_2c2838.c"
+    },
+    {
+      "name": "EffEventDataRegist",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002FA0B0",
+      "size": 52,
+      "tu": "src/cod/effeventdataregist.c"
     }
   ],
   "build_dir": "build",

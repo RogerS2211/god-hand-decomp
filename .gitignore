@@ -966,3 +966,4 @@
 !src/cod/csceatmanager_atdatareset_2c2838.c
 !src/cod/comdoor_releaseobjcollision.c
 !src/cod/ccollisionsolidmanage_setpriority.c
+!src/cod/effeventdataregist.c
