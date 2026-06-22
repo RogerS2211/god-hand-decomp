@@ -936,3 +936,7 @@
 !src/cod/002a98a8.c
 !src/cod/mtxinitrotz.c
 !src/cod/mtxinitroty.c
+!src/cod/cworldtime_setglobaltime.c
+!src/cod/cworldtime_gameinit.c
+!src/cod/cgameobj_getrot.c
+!src/cod/ccoresave_setkeycardnum.c

@@ -1336,6 +1336,10 @@
     {
       "path": "src/cod/mtxinitrotz.c",
       "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/ccoresave_setkeycardnum.c",
+      "compiler": "sn-2.95.3-136"
     }
   ],
   "_carved_funcs_doc": [
@@ -25503,6 +25507,34 @@
       "vaddr": "0x001479C8",
       "size": 60,
       "tu": "src/cod/mtxinitrotz.c"
+    },
+    {
+      "name": "cGameObj_getRot",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002A9460",
+      "size": 8,
+      "tu": "src/cod/cgameobj_getrot.c"
+    },
+    {
+      "name": "cWorldTime_gameInit",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002D9BC0",
+      "size": 8,
+      "tu": "src/cod/cworldtime_gameinit.c"
+    },
+    {
+      "name": "cWorldTime_setGlobalTime",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002D9D40",
+      "size": 8,
+      "tu": "src/cod/cworldtime_setglobaltime.c"
+    },
+    {
+      "name": "cCoreSave_setKeyCardNum",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001FA908",
+      "size": 68,
+      "tu": "src/cod/ccoresave_setkeycardnum.c"
     }
   ],
   "build_dir": "build",
