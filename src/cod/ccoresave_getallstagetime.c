@@ -1,10 +1,10 @@
-/* func_001FC650 — split the total play time ((*a0)->0xBBC, in
+/* cCoreSave_getAllStageTime — split the total play time ((*a0)->0xBBC, in
  * 1/30s ticks) into hours / minutes / seconds, written through the optional
  * out-pointers a1/a2/a3 (0x1A5E0 ticks/hour, 0x708/min, 0x1E/sec).
  * sn-2.95.3-136. */
 
-__attribute__((section(".text.func_001FC650")))
-void func_001FC650(void *a0, int *a1, int *a2, int *a3) {
+__attribute__((section(".text.cCoreSave_getAllStageTime")))
+void cCoreSave_getAllStageTime(void *a0, int *a1, int *a2, int *a3) {
     void *p;
     unsigned int t, h, m, s;
     p = *(void **)a0;

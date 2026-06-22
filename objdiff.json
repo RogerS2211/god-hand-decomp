@@ -11128,9 +11128,9 @@
       }
     },
     {
-      "name": "src/cod/001b1f58",
-      "target_path": "expected/build/src/cod/001b1f58.o",
-      "base_path": "build/src/cod/001b1f58.o",
+      "name": "src/cod/com71_setmotionrun",
+      "target_path": "expected/build/src/cod/com71_setmotionrun.o",
+      "base_path": "build/src/cod/com71_setmotionrun.o",
       "metadata": {
         "auto_generated": true,
         "progress_categories": [
@@ -13545,9 +13545,9 @@
       }
     },
     {
-      "name": "src/cod/001dfd50",
-      "target_path": "expected/build/src/cod/001dfd50.o",
-      "base_path": "build/src/cod/001dfd50.o",
+      "name": "src/cod/slot1_setactbtn",
+      "target_path": "expected/build/src/cod/slot1_setactbtn.o",
+      "base_path": "build/src/cod/slot1_setactbtn.o",
       "metadata": {
         "auto_generated": true,
         "progress_categories": [
@@ -13613,9 +13613,9 @@
       }
     },
     {
-      "name": "src/cod/001e48e0",
-      "target_path": "expected/build/src/cod/001e48e0.o",
-      "base_path": "build/src/cod/001e48e0.o",
+      "name": "src/cod/slot2_setactbtn",
+      "target_path": "expected/build/src/cod/slot2_setactbtn.o",
+      "base_path": "build/src/cod/slot2_setactbtn.o",
       "metadata": {
         "auto_generated": true,
         "progress_categories": [
@@ -15922,9 +15922,9 @@
       }
     },
     {
-      "name": "src/cod/001fc650",
-      "target_path": "expected/build/src/cod/001fc650.o",
-      "base_path": "build/src/cod/001fc650.o",
+      "name": "src/cod/ccoresave_getallstagetime",
+      "target_path": "expected/build/src/cod/ccoresave_getallstagetime.o",
+      "base_path": "build/src/cod/ccoresave_getallstagetime.o",
       "metadata": {
         "auto_generated": true,
         "progress_categories": [
@@ -19275,9 +19275,9 @@
       }
     },
     {
-      "name": "src/cod/00295498",
-      "target_path": "expected/build/src/cod/00295498.o",
-      "base_path": "build/src/cod/00295498.o",
+      "name": "src/cod/cemsetparam_updatesetdataflag",
+      "target_path": "expected/build/src/cod/cemsetparam_updatesetdataflag.o",
+      "base_path": "build/src/cod/cemsetparam_updatesetdataflag.o",
       "metadata": {
         "auto_generated": true,
         "progress_categories": [
@@ -20452,9 +20452,9 @@
       }
     },
     {
-      "name": "src/cod/002a9350",
-      "target_path": "expected/build/src/cod/002a9350.o",
-      "base_path": "build/src/cod/002a9350.o",
+      "name": "src/cod/cgameobj_setsuspend",
+      "target_path": "expected/build/src/cod/cgameobj_setsuspend.o",
+      "base_path": "build/src/cod/cgameobj_setsuspend.o",
       "metadata": {
         "auto_generated": true,
         "progress_categories": [
@@ -27072,9 +27072,9 @@
       }
     },
     {
-      "name": "src/cod/002fa128",
-      "target_path": "expected/build/src/cod/002fa128.o",
-      "base_path": "build/src/cod/002fa128.o",
+      "name": "src/cod/effeventiscutdataexist",
+      "target_path": "expected/build/src/cod/effeventiscutdataexist.o",
+      "base_path": "build/src/cod/effeventiscutdataexist.o",
       "metadata": {
         "auto_generated": true,
         "progress_categories": [

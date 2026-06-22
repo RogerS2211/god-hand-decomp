@@ -1,12 +1,12 @@
-/* func_001B1F58 — play the run motion 0x5; when the global mode flag
+/* cOm71_SetMotionRun — play the run motion 0x5; when the global mode flag
  * D_00747A50 is 0x305, with a single model sub-pointer (field 0x14), otherwise
  * with a second one (field 0x18) as well.  sn-2.95.3-136. */
 
 extern unsigned short D_00747A50;
 extern void func_002A8578(void *, void *, void *, int, int, int, float);
 
-__attribute__((section(".text.func_001B1F58")))
-void func_001B1F58(void *a0) {
+__attribute__((section(".text.cOm71_SetMotionRun")))
+void cOm71_SetMotionRun(void *a0) {
     char *v0;
     if (D_00747A50 == 0x305) {
         v0 = *(char **)((char *)a0 + 0x304);
