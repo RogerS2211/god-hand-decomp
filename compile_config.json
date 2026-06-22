@@ -1360,6 +1360,14 @@
     {
       "path": "src/cod/ccoresave_getallstagetime.c",
       "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/cgameobj_setsuspend.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/cgameobj_setpos.c",
+      "compiler": "sn-2.95.3-136"
     }
   ],
   "_carved_funcs_doc": [
@@ -25590,6 +25598,20 @@
       "vaddr": "0x001FC650",
       "size": 116,
       "tu": "src/cod/ccoresave_getallstagetime.c"
+    },
+    {
+      "name": "cGameObj_setSuspend",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002A9350",
+      "size": 84,
+      "tu": "src/cod/cgameobj_setsuspend.c"
+    },
+    {
+      "name": "cGameObj_setPos",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002A93D0",
+      "size": 80,
+      "tu": "src/cod/cgameobj_setpos.c"
     }
   ],
   "build_dir": "build",

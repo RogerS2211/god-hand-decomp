@@ -945,3 +945,5 @@
 !src/cod/ccoresave_addkillemnum.c
 !src/cod/cactionbuttonunit_setexit.c
 !src/cod/ccoresave_getallstagetime.c
+!src/cod/cgameobj_setpos.c
+!src/cod/cgameobj_setsuspend.c
