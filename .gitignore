@@ -42,6 +42,7 @@
 !.github/workflows/progress.yml
 !.gitignore
 !CONTRIBUTING.md
+!LICENSE
 !README.md
 !compile.py
 !compile_config.json
@@ -143,6 +144,7 @@
 !src/cod/001161e0.c
 !src/cod/00124e68.c
 !src/cod/00124f60.c
+!src/cod/00126770.c
 !src/cod/0012ac28.c
 !src/cod/0012c4f0.c
 !src/cod/0012c758.c
@@ -180,6 +182,7 @@
 !src/cod/0014a2b0.c
 !src/cod/0014b6f8.c
 !src/cod/0014d700.c
+!src/cod/0014ea28.c
 !src/cod/0014fe08.c
 !src/cod/001506f0.c
 !src/cod/001507b8.c
@@ -227,6 +230,7 @@
 !src/cod/001ee768.c
 !src/cod/001f20.c
 !src/cod/001f29c0.c
+!src/cod/001f83e8.c
 !src/cod/001fac00.c
 !src/cod/001fcde8.c
 !src/cod/001fd2c0.c
@@ -274,6 +278,7 @@
 !src/cod/002b5bb8.c
 !src/cod/002b5e50.c
 !src/cod/002b62e0.c
+!src/cod/002b62f8.c
 !src/cod/002b6310.c
 !src/cod/002bb1f0.c
 !src/cod/002c2138.c
@@ -321,8 +326,10 @@
 !src/cod/003260.c
 !src/cod/003270.c
 !src/cod/00327890.c
+!src/cod/00327e18.c
 !src/cod/00328300.c
 !src/cod/003290.c
+!src/cod/0032a4a8.c
 !src/cod/0032b7.c
 !src/cod/0032dd18.c
 !src/cod/0032de38.c
@@ -331,6 +338,7 @@
 !src/cod/003320.c
 !src/cod/003329.c
 !src/cod/00335b.c
+!src/cod/0033b790.c
 !src/cod/0033c0.c
 !src/cod/0033c8.c
 !src/cod/0033d3.c
@@ -341,6 +349,7 @@
 !src/cod/00340e.c
 !src/cod/003417.c
 !src/cod/00346828.c
+!src/cod/00348968.c
 !src/cod/00348be0.c
 !src/cod/0034d8.c
 !src/cod/003534b0.c
@@ -473,4 +482,3 @@
 !tools/splat_ext/sndata.py
 !tools/strip_data_nonmatching.py
 !tools/test_strip_data_nonmatching.py
-!LICENSE
