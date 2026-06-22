@@ -1,9 +1,9 @@
-/* func_001FC3E8 — add a1 to the casino-ticket count
+/* cCoreSave_addCasinoTicket — add a1 to the casino-ticket count
  * ((*a0)->0xB94), clamped to [0, 9].  Re-derefs reproduce retail's aliasing
  * reloads; sn-2.95.3-136 branch-likely. */
 
-__attribute__((section(".text.func_001FC3E8")))
-void func_001FC3E8(void *a0, int a1) {
+__attribute__((section(".text.cCoreSave_addCasinoTicket")))
+void cCoreSave_addCasinoTicket(void *a0, int a1) {
     if (!*(void **)a0)
         return;
     *(int *)((char *)*(void **)a0 + 0xB94) += a1;

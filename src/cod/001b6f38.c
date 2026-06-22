@@ -11,7 +11,7 @@ extern void func_001FE370(char *a0, char *a1);
 extern void func_002A73C8(char *a0, char *a1);
 extern void Obj0000_Swap_Field_4_In_Scaled_A1_Entry_1F7800(int a0, int a1, int *a2);
 extern void UnlinkAndCoalesceNode_2A9680(int, int *);
-extern void func_001FA820(void *);
+extern void cCoreSave_initAddGold(void *);
 extern int D_00747A34;
 
 __attribute__((section(".text.SetField214PtrThenInit_1B6F38")))

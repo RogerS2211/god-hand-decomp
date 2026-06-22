@@ -2,7 +2,7 @@
 extern int D_003BF160[];
 struct S001FA690 { char pad[0x10]; unsigned short f10; };
 struct W001FA690 { struct S001FA690 *p; };
-extern void func_001FA820(void *);
+extern void cCoreSave_initAddGold(void *);
 extern int cCoreSave_getComboMax(int *a0, unsigned int a1);
 extern int D_00747A34;
 #include "include_asm.h"
@@ -50,7 +50,7 @@ void cCoreSave_addGold(int *a0, int a1, int a2) {
         *(int *)((char *)v1 + 0x24) += 1;
     }
     if (a2 == 1) {
-        func_001FA820(a0);
+        cCoreSave_initAddGold(a0);
     }
     {
         int *v0 = *(int **)a0;

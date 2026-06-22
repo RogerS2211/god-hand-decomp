@@ -1,9 +1,9 @@
-/* func_001FA908 — set the key-card count (field 0x68 of the save
+/* cCoreSave_setKeyCardNum — set the key-card count (field 0x68 of the save
  * record at *a0), clamped to [0, 9].  Re-derefs *a0 each access to reproduce
  * retail's aliasing reloads; sn-2.95.3-136 branch-likely. */
 
-__attribute__((section(".text.func_001FA908")))
-void func_001FA908(void *a0, int a1) {
+__attribute__((section(".text.cCoreSave_setKeyCardNum")))
+void cCoreSave_setKeyCardNum(void *a0, int a1) {
     if (!*(void **)a0)
         return;
     *(int *)((char *)*(void **)a0 + 0x68) = a1;

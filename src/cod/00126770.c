@@ -211,7 +211,7 @@ void func_00143A90(int a0) {
     if (p[0x94/4] != 0) {
         p[0x90/4] = GetTimerValue_1FA710((int)&D_00569B70);
         *(int *)(p[0x94/4] + 0x84) = GetTimerValue_1FA710((int)&D_00569B70);
-        func_001FA820((int)&D_00569B70);
+        cCoreSave_initAddGold((int)&D_00569B70);
     }
 }
 
