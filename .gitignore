@@ -942,3 +942,4 @@
 !src/cod/ccoresave_setkeycardnum.c
 !src/cod/ccoresave_addcasinoticket.c
 !src/cod/ccoresave_subgold.c
+!src/cod/ccoresave_addkillemnum.c
