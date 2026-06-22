@@ -978,3 +978,4 @@
 !src/cod/ccollisionshape_setoffsetpos.c
 !src/cod/effeventiscutdataexist.c
 !src/cod/poker_clearpokercamera.c
+!src/cod/cnowloading_executetask.c

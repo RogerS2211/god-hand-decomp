@@ -1492,6 +1492,10 @@
     {
       "path": "src/cod/effeventdatarelease.c",
       "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/cnowloading_executetask.c",
+      "compiler": "sn-2.95.3-136"
     }
   ],
   "_carved_funcs_doc": [
@@ -25953,6 +25957,13 @@
       "vaddr": "0x002FA0E8",
       "size": 60,
       "tu": "src/cod/effeventdatarelease.c"
+    },
+    {
+      "name": "cNowLoading_executeTask",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002B65B0",
+      "size": 64,
+      "tu": "src/cod/cnowloading_executetask.c"
     }
   ],
   "build_dir": "build",
