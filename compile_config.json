@@ -1340,6 +1340,10 @@
     {
       "path": "src/cod/ccoresave_setkeycardnum.c",
       "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/ccoresave_addcasinoticket.c",
+      "compiler": "sn-2.95.3-136"
     }
   ],
   "_carved_funcs_doc": [
@@ -25535,6 +25539,13 @@
       "vaddr": "0x001FA908",
       "size": 68,
       "tu": "src/cod/ccoresave_setkeycardnum.c"
+    },
+    {
+      "name": "cCoreSave_addCasinoTicket",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001FC3E8",
+      "size": 76,
+      "tu": "src/cod/ccoresave_addcasinoticket.c"
     }
   ],
   "build_dir": "build",

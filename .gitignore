@@ -940,3 +940,4 @@
 !src/cod/cworldtime_gameinit.c
 !src/cod/cgameobj_getrot.c
 !src/cod/ccoresave_setkeycardnum.c
+!src/cod/ccoresave_addcasinoticket.c
