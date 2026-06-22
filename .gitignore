@@ -941,3 +941,4 @@
 !src/cod/cgameobj_getrot.c
 !src/cod/ccoresave_setkeycardnum.c
 !src/cod/ccoresave_addcasinoticket.c
+!src/cod/ccoresave_subgold.c
