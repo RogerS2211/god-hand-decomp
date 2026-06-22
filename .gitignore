@@ -116,6 +116,7 @@
 !scripts/gen_unit_names.py
 !scripts/hooks/pre-commit
 !scripts/mark_complete.py
+!scripts/mipsel-as-wrap.py
 !scripts/progress.sh
 !scripts/proj-find.sh
 !scripts/recon/carve_stress.py

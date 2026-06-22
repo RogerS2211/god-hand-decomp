@@ -6,7 +6,7 @@
   "tools": {
     "ee_cc_wrap": "scripts/ee-cc-wrap.py",
     "sn_cc_wrap": "scripts/sn-cc-wrap.py",
-    "mipsel_as": "mipsel-linux-gnu-as",
+    "mipsel_as": "scripts/mipsel-as-wrap.py",
     "mipsel_ld": "mipsel-linux-gnu-ld",
     "mipsel_nm": "mipsel-linux-gnu-nm",
     "mipsel_objcopy": "mipsel-linux-gnu-objcopy",
