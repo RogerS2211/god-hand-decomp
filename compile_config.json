@@ -1500,6 +1500,18 @@
     {
       "path": "src/cod/espsys_effdatarelease.c",
       "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/slot1_setactbtn.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/slot2_setactbtn.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/cmovie_stop.c",
+      "compiler": "sn-2.95.3-136"
     }
   ],
   "_carved_funcs_doc": [
@@ -25975,6 +25987,27 @@
       "vaddr": "0x00305778",
       "size": 28,
       "tu": "src/cod/espsys_effdatarelease.c"
+    },
+    {
+      "name": "Slot1_SetActBtn",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001DFD50",
+      "size": 60,
+      "tu": "src/cod/slot1_setactbtn.c"
+    },
+    {
+      "name": "Slot2_SetActBtn",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001E48E0",
+      "size": 60,
+      "tu": "src/cod/slot2_setactbtn.c"
+    },
+    {
+      "name": "cMovie_Stop",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002B4D68",
+      "size": 64,
+      "tu": "src/cod/cmovie_stop.c"
     }
   ],
   "build_dir": "build",
