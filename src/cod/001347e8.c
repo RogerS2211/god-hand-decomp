@@ -8,15 +8,15 @@ extern int cModel_getMeshPtr(int a0, int a1);
 extern void func_001344A0(int *a0);
 extern void func_00134458(int *a0, int a1);
 
-__attribute__((section(".text.func_002D2D98")))
-int func_002D2D98(int a0, int a1) {
+__attribute__((section(".text.cSnd_GetBgmData")))
+int cSnd_GetBgmData(int a0, int a1) {
     int v0 = *(int*)((char*)a0 + 0x40);
     int t = a1 * 0x44;
     return v0 + t;
 }
 
-__attribute__((section(".text.func_002AF1F8")))
-int func_002AF1F8(unsigned int a0) {
+__attribute__((section(".text.cMessCommon_getCodeSize")))
+int cMessCommon_getCodeSize(unsigned int a0) {
     a0 = a0 & 0xFFFF;
     if (a0 >> 15) {
         return a0 & 0xF;
@@ -43,8 +43,8 @@ void func_002DB7A8(void) {
     LookupSlotPopulateFieldsAndDispatch_1F7858(&D_00568288, 0xB, 0x14, 0x11, 0, 0, 0);
 }
 
-__attribute__((section(".text.func_002D6910")))
-void func_002D6910(int a0, int a1, int a2, int a3) {
+__attribute__((section(".text.CustomIDWork_SetColorAnimSin")))
+void CustomIDWork_SetColorAnimSin(int a0, int a1, int a2, int a3) {
     if (*(int*)((char*)a0 + 0x4) != 0) {
         a3 = a3 & 0xFFFF;
         *(int*)((char*)a0 + 0x50) = a1;
@@ -86,8 +86,8 @@ int func_001BFB28(int a0){
     return 1;
 }
 
-__attribute__((section(".text.func_001347E8")))
-void func_001347E8(int *a0, int a1){
+__attribute__((section(".text.cCollisionSolidManage_ReleaseUnit")))
+void cCollisionSolidManage_ReleaseUnit(int *a0, int a1){
     int *node;
     int *prev;
     int *head;

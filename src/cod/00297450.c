@@ -6,7 +6,7 @@ extern unsigned char D_0044A920[];
 extern unsigned char D_0044A940[];
 extern unsigned char D_0044A958[];
 extern unsigned char D_005E8640[];
-extern void func_002BE8B0(void *a0, int a1);
+extern void cRelSys_unlinkNoFree(void *a0, int a1);
 extern void func_00297660(void);
 extern void func_00299320(void *a0, int a1);
 extern unsigned char D_00586B30[];
@@ -25,7 +25,7 @@ void LoadDisplayText_297450(void *a0) {
         }
         a1 = *(int *)(s0 + 0x10);
         if (a1 != 0) {
-            func_002BE890(D_005E8640, a1, buf, 2);
+            cRelSys_linkNoAlloc(D_005E8640, a1, buf, 2);
             *(int *)(s0 + 8) = *(int *)(s0 + 8) | 0x80;
         }
     }
@@ -36,7 +36,7 @@ void ClearDisplayText_2974F0(void *a0) {
     unsigned char *s0 = (unsigned char *)a0;
     unsigned long v0 = *(unsigned char *)(s0 + 8);
     if (v0 >> 7) {
-        func_002BE8B0(D_005E8640, 2);
+        cRelSys_unlinkNoFree(D_005E8640, 2);
         *(int *)(s0 + 8) = *(int *)(s0 + 8) & -0x81;
     }
 }

@@ -2,9 +2,9 @@
 
 extern void func_002FB020(void *a0);
 extern int PTR_DAT_003fa62c;
-extern void func_003A8048(int a0);
+extern void __malloc_lock(int a0);
 extern void func_003ACA28(int a0, int a1);
-extern void func_003A80A8(int a0);
+extern void __malloc_unlock(int a0);
 extern float D_00741DC0;
 extern float D_00754C48;
 
@@ -18,9 +18,9 @@ void UpdateObjByIndexedOp_2FBE50(void *a0) {
 
 __attribute__((section(".text.UpdateGlobalPtrWithParam_3A7CC0")))
 void UpdateGlobalPtrWithParam_3A7CC0(int a0) {
-    func_003A8048(PTR_DAT_003fa62c);
+    __malloc_lock(PTR_DAT_003fa62c);
     func_003ACA28(PTR_DAT_003fa62c, a0);
-    func_003A80A8(PTR_DAT_003fa62c);
+    __malloc_unlock(PTR_DAT_003fa62c);
 }
 
 __attribute__((section(".text.SetField548AndGlobals_292F38")))

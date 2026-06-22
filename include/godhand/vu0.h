@@ -176,4 +176,224 @@
         : "r"((void *)(base)), "i"((int)(off))                         \
         : "memory")
 
+/* VU0_VADD_XYZ(dst, s1, s2): $vf<dst>.xyz = $vf<s1>.xyz + $vf<s2>.xyz.
+ * A compute-class COP2 op with no inter-op nop (same empirical finding as the
+ * lqc2/sqc2 load/store class — see the header preamble); the `.set noreorder`
+ * framing only pins order around the inline asm. */
+#define VU0_VADD_XYZ(dst, s1, s2)                                      \
+    __asm__ __volatile__ (                                             \
+        ".set push\n"                                                  \
+        ".set noreorder\n"                                             \
+        "vadd.xyz $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n"               \
+        ".set pop\n")
+
+/* VU0_VMOVE_XYZW(dst, src): $vf<dst> = $vf<src> (all four fields). */
+#define VU0_VMOVE_XYZW(dst, src)                                       \
+    __asm__ __volatile__ (                                             \
+        ".set push\n.set noreorder\n"                                  \
+        "vmove.xyzw $vf" #dst ", $vf" #src "\n"                        \
+        ".set pop\n")
+
+/* VU0_VMR32_XYZW(dst, src): $vf<dst> = $vf<src> rotated (x<-y<-z<-w<-x). */
+#define VU0_VMR32_XYZW(dst, src)                                       \
+    __asm__ __volatile__ (                                             \
+        ".set push\n.set noreorder\n"                                  \
+        "vmr32.xyzw $vf" #dst ", $vf" #src "\n"                        \
+        ".set pop\n")
+
+/* COP2 accumulator (matrix x vector) ops. Note: the ACC register assembles as
+ * bare `ACC` (no `$`) — the disassembler prints it as `$ACC`. The x/y/z
+ * broadcast is encoded in the mnemonic, so the second source is a plain $vf. */
+#define VU0_VMULAX_XYZW(s1, s2)                                        \
+    __asm__ __volatile__ (                                             \
+        ".set push\n.set noreorder\n"                                  \
+        "vmulax.xyzw ACC, $vf" #s1 ", $vf" #s2 "\n"                    \
+        ".set pop\n")
+#define VU0_VMADDAY_XYZW(s1, s2)                                       \
+    __asm__ __volatile__ (                                             \
+        ".set push\n.set noreorder\n"                                  \
+        "vmadday.xyzw ACC, $vf" #s1 ", $vf" #s2 "\n"                   \
+        ".set pop\n")
+#define VU0_VMADDZ_XYZW(dst, s1, s2)                                   \
+    __asm__ __volatile__ (                                             \
+        ".set push\n.set noreorder\n"                                  \
+        "vmaddz.xyzw $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n"            \
+        ".set pop\n")
+
+/* Field-masked vector ops used by the cap* distance/magnitude helpers. */
+#define VU0_VSUB_XZ(dst, s1, s2)                                       \
+    __asm__ __volatile__ (                                             \
+        ".set push\n.set noreorder\n"                                  \
+        "vsub.xz $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n"               \
+        ".set pop\n")
+#define VU0_VMUL_XZ(dst, s1, s2)                                       \
+    __asm__ __volatile__ (                                             \
+        ".set push\n.set noreorder\n"                                  \
+        "vmul.xz $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n"               \
+        ".set pop\n")
+#define VU0_VADDZ_X(dst, s1, s2)                                       \
+    __asm__ __volatile__ (                                             \
+        ".set push\n.set noreorder\n"                                  \
+        "vaddz.x $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n"              \
+        ".set pop\n")
+
+/* Q-pipeline (sqrt) helpers. ee-as encodes `vsqrt Q, $vfNx` differently from
+ * retail, so callers emit the exact `.word` for vsqrt; vwaitq/vaddq assemble
+ * fine. The bare `Q` register (no `$`) mirrors the ACC convention. */
+#define VU0_VWAITQ()                                                   \
+    __asm__ __volatile__(".set push\n.set noreorder\nvwaitq\n.set pop\n")
+#define VU0_VADDQ_X(dst, s1)                                           \
+    __asm__ __volatile__ (                                             \
+        ".set push\n.set noreorder\n"                                  \
+        "vaddq.x $vf" #dst ", $vf" #s1 ", Q\n"                        \
+        ".set pop\n")
+
+/* xyz-masked ops for the 3D length/distance helpers. */
+#define VU0_VMUL_XYZ(dst, s1, s2)                                      \
+    __asm__ __volatile__ (                                             \
+        ".set push\n.set noreorder\n"                                  \
+        "vmul.xyz $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n"             \
+        ".set pop\n")
+#define VU0_VSUB_XYZ(dst, s1, s2)                                      \
+    __asm__ __volatile__ (                                             \
+        ".set push\n.set noreorder\n"                                  \
+        "vsub.xyz $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n"             \
+        ".set pop\n")
+#define VU0_VADDY_X(dst, s1)                                           \
+    __asm__ __volatile__ (                                             \
+        ".set push\n.set noreorder\n"                                  \
+        "vaddy.x $vf" #dst ", $vf" #s1 ", $vf" #s1 "\n"              \
+        ".set pop\n")
+
+/* Element-wise min/max (used by vector clamp/sort helpers). */
+#define VU0_VMINI_XYZW(dst, s1, s2)                                    \
+    __asm__ __volatile__ (                                             \
+        ".set push\n.set noreorder\n"                                  \
+        "vmini.xyzw $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n"           \
+        ".set pop\n")
+#define VU0_VMAX_XYZW(dst, s1, s2)                                     \
+    __asm__ __volatile__ (                                             \
+        ".set push\n.set noreorder\n"                                  \
+        "vmax.xyzw $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n"            \
+        ".set pop\n")
+
+/* Full-width (xyzw) arithmetic and float<->fixed conversion. */
+#define VU0_VADD_XYZW(dst, s1, s2)                                     \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vadd.xyzw $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n.set pop\n")
+#define VU0_VSUB_XYZW(dst, s1, s2)                                     \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vsub.xyzw $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n.set pop\n")
+#define VU0_VMUL_XYZW(dst, s1, s2)                                     \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vmul.xyzw $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n.set pop\n")
+#define VU0_VFTOI4_XYZW(dst, src)                                      \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vftoi4.xyzw $vf" #dst ", $vf" #src "\n.set pop\n")
+
+/* Cross product (outer-product multiply/subtract) and the full matrix-row ops. */
+#define VU0_VOPMULA_XYZ(s1, s2)                                        \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vopmula.xyz ACC, $vf" #s1 ", $vf" #s2 "\n.set pop\n")
+#define VU0_VOPMSUB_XYZ(dst, s1, s2)                                   \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vopmsub.xyz $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n.set pop\n")
+#define VU0_VSUB_W(dst, s1, s2)                                        \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vsub.w $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n.set pop\n")
+#define VU0_VMADDAZ_XYZW(s1, s2)                                       \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vmaddaz.xyzw ACC, $vf" #s1 ", $vf" #s2 "\n.set pop\n")
+#define VU0_VMADDW_XYZW(dst, s1, s2)                                   \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vmaddw.xyzw $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n.set pop\n")
+#define VU0_VADD_W(dst, s1, s2)                                        \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vadd.w $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n.set pop\n")
+
+/* VU0_LOAD_SCALAR(dst, fval): move a float scalar into $vf<dst> via the
+ * mfc1/qmtc2 path (broadcast source for vmulx/vdiv).  Uses $8 as the scratch
+ * GPR to match retail's hand-written intrinsics. */
+#define VU0_LOAD_SCALAR(dst, fval)                                     \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "mfc1 $8, %0\n"                                                \
+        "qmtc2.ni $8, $vf" #dst "\n.set pop\n"                         \
+        :: "f"(fval) : "$8")
+
+/* Broadcast-x multiply: $vf<dst> = $vf<s1> * $vf<s2>.x (scalar*vector). */
+#define VU0_VMULX_XYZW(dst, s1, s2)                                    \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vmulx.xyzw $vf" #dst ", $vf" #s1 ", $vf" #s2 "x\n.set pop\n")
+#define VU0_VMULX_XYZ(dst, s1, s2)                                     \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vmulx.xyz $vf" #dst ", $vf" #s1 ", $vf" #s2 "x\n.set pop\n")
+
+/* Reciprocal via Q-pipeline: Q = $vf<num>.w / $vf<den>.x (vf0.w == 1.0). */
+#define VU0_VDIV_W_X(num, den)                                         \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vdiv Q, $vf" #num "w, $vf" #den "x\n.set pop\n")
+#define VU0_VMULQ_XYZW(dst, s1)                                        \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vmulq.xyzw $vf" #dst ", $vf" #s1 ", Q\n.set pop\n")
+#define VU0_VMULQ_XYZ(dst, s1)                                         \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vmulq.xyz $vf" #dst ", $vf" #s1 ", Q\n.set pop\n")
+
+/* vnop: VU0 pipeline bubble (explicit in the hand-written intrinsics). */
+#define VU0_VNOP()                                                     \
+    __asm__ __volatile__(".set push\n.set noreorder\nvnop\n.set pop\n")
+
+/* Reciprocal against the w field: Q = $vf<num>.w / $vf<den>.w (perspective
+ * divide by w). */
+#define VU0_VDIV_W_W(num, den)                                         \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vdiv Q, $vf" #num "w, $vf" #den "w\n.set pop\n")
+
+/* vftoi0.zw: float->int (0 fractional bits) on the z and w fields only. */
+#define VU0_VFTOI0_ZW(dst, src)                                        \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vftoi0.zw $vf" #dst ", $vf" #src "\n.set pop\n")
+
+/* --- COP2 -> GPR/FPU result-extraction and raw-encoded q-pipe ops --------- *
+ *
+ * The cap-magnitude/dot/length helpers read a VU0 scalar result back into a
+ * float via the canonical `qmfc2.ni $gpr, $vf` then `mtc1 $f, $gpr` chain --
+ * there is no C form for either step under ee-gcc 2.x.  Two qmfc2 shapes occur
+ * in retail: bare (the assembler reorder pass schedules around it) and
+ * `.set noreorder` framed; keep both so each call site reproduces its exact
+ * bytes.  The
+ * q-pipeline ops `vsqrt` and `vclipw` are encoded by ee-as differently from
+ * retail, so they are emitted as their exact `.word`; only the $vf4x/$vf5x
+ * (vsqrt) and $vf12 (vclipw) forms occur, so each gets a register-specific
+ * macro (lazy-vendor: add more on demand). */
+#define VU0_QMFC2_NI(out, reg)                                         \
+    __asm__ __volatile__("qmfc2.ni %0, $vf" #reg : "=r"(out))
+#define VU0_QMFC2_NI_F(out, reg)                                       \
+    __asm__ __volatile__(".set push\n.set noreorder\n"                \
+        "qmfc2.ni %0, $vf" #reg "\n.set pop\n" : "=r"(out))
+
+/* Move a GPR bit-pattern into an FPU register (tail of the extract idiom). */
+#define VU0_MTC1(fout, gpr)                                            \
+    __asm__ __volatile__("mtc1 %1, %0" : "=f"(fout) : "r"(gpr))
+
+/* vsqrt Q, $vfNx -- emitted as the exact retail .word (ee-as encodes vsqrt
+ * differently). */
+#define VU0_VSQRT_Q_VF4X()                                             \
+    __asm__ __volatile__(".set push\n.set noreorder\n"                \
+        ".word 0x4A0403BD\n.set pop\n") /* vsqrt Q, $vf4x */
+#define VU0_VSQRT_Q_VF5X()                                             \
+    __asm__ __volatile__(".set push\n.set noreorder\n"                \
+        ".word 0x4A0503BD\n.set pop\n") /* vsqrt Q, $vf5x */
+
+/* vclipw.xyz $vf12, $vf12w -- sets the clip flags ($vi18); emitted as its exact
+ * .word.  Read the flags back with VU0_CFC2_NI(r, 18). */
+#define VU0_VCLIPW_XYZ_VF12()                                          \
+    __asm__ __volatile__(".set push\n.set noreorder\n"                \
+        ".word 0x4BCC61FF\n.set pop\n") /* vclipw.xyz $vf12, $vf12w */
+
+/* Read a COP2 integer/control register ($viN) into a GPR. */
+#define VU0_CFC2_NI(out, ireg)                                         \
+    __asm__ __volatile__(".set push\n.set noreorder\n"                \
+        "cfc2.ni %0, $vi" #ireg "\n.set pop\n" : "=r"(out))
+
 #endif /* GODHAND_VU0_H */

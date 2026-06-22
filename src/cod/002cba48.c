@@ -6,11 +6,11 @@ extern void func_002FBFB0(int a0);
 extern void UpdateObjByIndexedOp_2FBE50(int a0);
 extern int D_00741DB8;
 extern unsigned char D_0044D3B0[];
-extern void func_003053C0(void *a0, int a1);
+extern void getEffTypeString(void *a0, int a1);
 extern void func_003A6C58(void *a0, void *a1, void *a2, int a3, int t0);
 
-__attribute__((section(".text.func_002CBA48")))
-int func_002CBA48(void *a0, int a1, int a2, void *a3, void *t0, int t1, int t2, int t3) {
+__attribute__((section(".text.cSnd_SeCall_2CBA48")))
+int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, void *t0, int t1, int t2, int t3) {
     void *s3 = a0;
     int s4 = (short)a1;
     int sa2 = (short)a2;
@@ -44,7 +44,7 @@ int func_002CBA48(void *a0, int a1, int a2, void *a3, void *t0, int t1, int t2, 
     }
 
     r = GetIndexedEntry_2CC4B8(s3, s4);
-    if (func_002CFC68(r) == 0)
+    if (cSeData_IsAlive(r) == 0)
         return 0;
     {
         int v = func_002CBEC0(s3);
@@ -86,6 +86,6 @@ __attribute__((section(".text.func_002D9F68")))
 void func_002D9F68(void *a0, int a1, ...) {
     char buf0[0x100];
     char localbuf[0x40];
-    func_003053C0(localbuf, *(short*)((char*)a0 + 0x23A));
+    getEffTypeString(localbuf, *(short*)((char*)a0 + 0x23A));
     func_003A6C58(buf0, D_0044D3B0, localbuf, (int)((unsigned short)*(unsigned short*)((char*)a0 + 0x23C) - 1), a1);
 }

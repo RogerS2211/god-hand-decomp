@@ -20,8 +20,8 @@ int func_00373A50(void *a0) {
     return *(int *)((char *)a0 + 0x48);
 }
 
-__attribute__((section(".text.func_002D6948")))
-void func_002D6948(void *a0) {
+__attribute__((section(".text.CustomIDWork_ResetColorAnim")))
+void CustomIDWork_ResetColorAnim(void *a0) {
     void *v1;
     int v0;
     v1 = *(void **)((char *)a0 + 4);

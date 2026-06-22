@@ -5,21 +5,21 @@ extern char D_005CAE50[];
 extern char D_00462FC0[];
 extern char D_00574380[];
 extern void func_001331B8(char *a0, long a1, int a2);
-extern void func_001347E8(char *a0, char *a1);
-extern void func_00312708(char *a0);
+extern void cCollisionSolidManage_ReleaseUnit(char *a0, char *a1);
+extern void ReleaseObj(char *a0);
 extern void func_001FE370(char *a0, char *a1);
 extern void func_002A73C8(char *a0, char *a1);
 extern void Obj0000_Swap_Field_4_In_Scaled_A1_Entry_1F7800(int a0, int a1, int *a2);
 extern void UnlinkAndCoalesceNode_2A9680(int, int *);
-extern void func_001FA820(void *);
+extern void cCoreSave_initAddGold(void *);
 extern int D_00747A34;
 
 __attribute__((section(".text.SetField214PtrThenInit_1B6F38")))
 void SetField214PtrThenInit_1B6F38(char *a0, char *a1) {
     *(int*)(a0 + 0x214) = (int)&D_00428A20;
     func_001331B8(D_005CAE50, *(long*)(a0 + 0x540), 0);
-    func_001347E8(D_00462FC0, a0);
-    func_00312708(a0);
+    cCollisionSolidManage_ReleaseUnit(D_00462FC0, a0);
+    ReleaseObj(a0);
     func_001FE370(D_00574380, a0);
     func_002A73C8(a0, a1);
 }
@@ -30,10 +30,10 @@ void ReleaseField6ECByTag564_26B1E8(void *a0)
     int x = *(int *)((char *)a0 + 0x6EC);
     if (x != 0) {
         if (*(int *)((char *)a0 + 0x564) == 0x279) {
-            func_001D0818(x);
+            cOmWeapon_SetBreak(x);
             *(int *)((char *)a0 + 0x6EC) = 0;
         } else {
-            func_001CF4A8(x);
+            cOmWeapon_setFall(x);
             *(int *)((char *)a0 + 0x6EC) = 0;
         }
     }

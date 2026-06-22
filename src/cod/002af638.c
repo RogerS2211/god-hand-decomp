@@ -1,13 +1,13 @@
 /* cygnus-2.96 matched TU. */
 
-__attribute__((section(".text.func_002AF638")))
-void func_002AF638(int *a0, int a1, int a2) {
+__attribute__((section(".text.cMessDrawFont_setRubyData")))
+void cMessDrawFont_setRubyData(int *a0, int a1, int a2) {
     a0[2] = a1;
     a0[5] = a2;
 }
 
-__attribute__((section(".text.func_002AF648")))
-void func_002AF648(int *a0, int a1, int a2) {
+__attribute__((section(".text.cMessDrawFont_setDrawCounter")))
+void cMessDrawFont_setDrawCounter(int *a0, int a1, int a2) {
     a0[6] = a1;
     a0[7] = a2;
 }

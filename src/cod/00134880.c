@@ -12,7 +12,7 @@ extern char *InitFields_1B6E90(char *a0);
 extern void func_00305908(void);
 extern void LookupSlotPopulateFieldsAndDispatch_1F7858(void *a0, int a1, int a2, int a3, int a4, int a5, int a6);
 extern char D_00568288;
-extern void func_00147728(void *a0, int a1, int a2);
+extern void MtxInitRotVec(void *a0, int a1, int a2);
 extern void Tramp_func_0030A2E0_00147548(int a0, int a1, void *a2);
 
 __attribute__((section(".text.func_002A8578")))
@@ -25,8 +25,8 @@ int func_002A8578(int a0, int a1, int a2, int a3, int t0, int t1, float f12) {
                          *(float*)((char*)a0 + 0x5A8), f12, m);
 }
 
-__attribute__((section(".text.func_002B6288")))
-void func_002B6288(int a0, int a1)
+__attribute__((section(".text.cNode_setLocalTranslation")))
+void cNode_setLocalTranslation(int a0, int a1)
 {
     char *d;
     func_002B6400(a0);
@@ -38,8 +38,8 @@ void func_002B6288(int a0, int a1)
     }
 }
 
-__attribute__((section(".text.func_00134880")))
-void func_00134880(int a0, int a1, int a2, int a3, float f) {
+__attribute__((section(".text.cCollisionSolidManage_CreateSphere")))
+void cCollisionSolidManage_CreateSphere(int a0, int a1, int a2, int a3, float f) {
     void *r = func_001346C8(a0, a1, a2, a3, f);
     if (r) {
         func_00134520(r, a2, a3, f);
@@ -74,8 +74,8 @@ void func_00299908(int a0) {
     *(long *)((char *)(*(long **)(base + 4)) + 8) = *(long *)(base + 8);
 }
 
-__attribute__((section(".text.func_002B61D8")))
-void func_002B61D8(int a0, int a1)
+__attribute__((section(".text.cNode_setLocalScale")))
+void cNode_setLocalScale(int a0, int a1)
 {
     char *d;
     func_002B6400(a0);
@@ -108,8 +108,8 @@ char *func_001C7D98(char *a0) {
     return a0;
 }
 
-__attribute__((section(".text.func_00305758")))
-void func_00305758(void)
+__attribute__((section(".text.espSys_effDataRegist")))
+void espSys_effDataRegist(void)
 {
     func_00305908();
 }
@@ -122,10 +122,10 @@ void func_002DB770(void)
 
 struct buf_00147B60 { char b[0x40]; };
 
-__attribute__((section(".text.func_00147B60")))
-void func_00147B60(int a0, int a1, int a2, int a3)
+__attribute__((section(".text.MtxMulRotVec")))
+void MtxMulRotVec(int a0, int a1, int a2, int a3)
 {
     struct buf_00147B60 buf;
-    func_00147728(&buf, a2, a3 & 0xFF);
+    MtxInitRotVec(&buf, a2, a3 & 0xFF);
     Tramp_func_0030A2E0_00147548(a0, a1, &buf);
 }

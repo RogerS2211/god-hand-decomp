@@ -17,8 +17,8 @@ void func_00381D38(int a0, int *a1) {
     }
 }
 
-__attribute__((section(".text.func_001F83E8")))
-int func_001F83E8(unsigned char *a0) {
+__attribute__((section(".text.cArea_HitCheck_1F83E8")))
+int cArea_HitCheck_1F83E8(unsigned char *a0) {
     switch (a0[1]) {
     case 1:
         return func_001F8488();
@@ -40,8 +40,8 @@ int func_0038EB28(int a0, int a1) {
     return func_0038C3F0(a1, a0 & 0xFF);
 }
 
-__attribute__((section(".text.func_001FB830")))
-int func_001FB830(int a0, unsigned int a1) {
+__attribute__((section(".text.cCoreSave_getComboMax")))
+int cCoreSave_getComboMax(int a0, unsigned int a1) {
     int p = *(int *)a0;
     if (p == 0) {
         return 0;
@@ -60,8 +60,8 @@ int func_002948C8(int a0, unsigned int a1) {
     return *(int *)(a0 + (a1 << 2) + 0x5AC);
 }
 
-__attribute__((section(".text.func_002AEAD0")))
-int func_002AEAD0(int a0, unsigned int a1) {
+__attribute__((section(".text.cMessage_getMessageAddr")))
+int cMessage_getMessageAddr(int a0, unsigned int a1) {
     int v0;
     int v1;
     a1 = a1 & 0xFFFF;

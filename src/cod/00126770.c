@@ -33,7 +33,7 @@ extern int D_0044A660;
 extern int D_00574380;
 extern int D_00462FC0;
 extern void func_001FE370(int *a0, int a1);
-extern void func_001347E8(int *a0, int a1);
+extern void cCollisionSolidManage_ReleaseUnit(int *a0, int a1);
 extern void func_002A73C8(int a0, int a1);
 extern void *D_005CAFF0;
 extern void func_00138CA8(void *a0, void *a1, void *a2, int a3);
@@ -189,11 +189,11 @@ void func_00126770(char *a0) {
     int x;
     x = *(int *)(s1 + 0x165C);
     if (x != 0) {
-        func_001F6F10(x);
+        cActionButtonUnit_setExit(x);
         *(int *)(s1 + 0x165C) = 0;
     }
     s0 = D_005FEE00;
-    func_002CBBA0(s0, *(int *)(s1 + 0x161C));
+    cSnd_SeStop(s0, *(int *)(s1 + 0x161C));
     *(int *)(s1 + 0x161C) = 0;
     v0 = *(int *)(s0 + 0xB0);
     v1 = *(int *)(s0 + 0xAC);
@@ -201,7 +201,7 @@ void func_00126770(char *a0) {
     v1 &= 0xFFBFFFFF;
     *(int *)(s0 + 0xB0) = v0;
     *(int *)(s0 + 0xAC) = v1;
-    func_002CBBA0(s0, *(int *)(s1 + 0x1620));
+    cSnd_SeStop(s0, *(int *)(s1 + 0x1620));
     *(int *)(s1 + 0x1620) = 0;
 }
 
@@ -211,7 +211,7 @@ void func_00143A90(int a0) {
     if (p[0x94/4] != 0) {
         p[0x90/4] = GetTimerValue_1FA710((int)&D_00569B70);
         *(int *)(p[0x94/4] + 0x84) = GetTimerValue_1FA710((int)&D_00569B70);
-        func_001FA820((int)&D_00569B70);
+        cCoreSave_initAddGold((int)&D_00569B70);
     }
 }
 
@@ -239,7 +239,7 @@ __attribute__((section(".text.func_0028EB88")))
 void func_0028EB88(int a0, int a1) {
     *(int **)((char *)a0 + 0x214) = &D_0044A660;
     func_001FE370(&D_00574380, a0);
-    func_001347E8(&D_00462FC0, a0);
+    cCollisionSolidManage_ReleaseUnit(&D_00462FC0, a0);
     func_002A73C8(a0, a1);
 }
 
@@ -248,12 +248,12 @@ void func_002B4768(int a0, int a1, int a2) {
     int v0;
     v0 = func_002AF218(*(int *)a2);
     *(int *)a1 = *(int *)a1 + v0;
-    v0 = func_002AF1F8(*(unsigned short *)(*(int *)a2));
+    v0 = cMessCommon_getCodeSize(*(unsigned short *)(*(int *)a2));
     *(int *)a2 = *(int *)a2 + (v0 << 1);
 }
 
-__attribute__((section(".text.func_00138E38")))
-void func_00138E38(void *a0, int a1)
+__attribute__((section(".text.cCamManager_setPartsCamera")))
+void cCamManager_setPartsCamera(void *a0, int a1)
 {
     void *s0 = a0;
     int a3 = a1 & 0xFF;

@@ -2,8 +2,8 @@
 
 extern int D_00428A20;
 extern int D_004289F0;
-extern void func_001CF4A8(int arg);
-extern void func_00312708(void);
+extern void cOmWeapon_setFall(int arg);
+extern void ReleaseObj(void);
 extern int D_00785878;
 extern int D_00428AD0;
 extern int D_007854D8;
@@ -53,13 +53,13 @@ __attribute__((section(".text.CallWithAndClearField698_12AC28")))
 void CallWithAndClearField698_12AC28(char *a0) {
     int v = *(int*)(a0 + 0x698);
     if (v) {
-        func_001CF4A8(v);
+        cOmWeapon_setFall(v);
         *(int*)(a0 + 0x698) = 0;
     }
 }
 
 __attribute__((section(".text.Tramp_00312708_1B79B0")))
-void Tramp_00312708_1B79B0(void) { func_00312708(); }
+void Tramp_00312708_1B79B0(void) { ReleaseObj(); }
 
 __attribute__((section(".text.GetOrInitGlobal785878_1B8058")))
 void *GetOrInitGlobal785878_1B8058(void) {

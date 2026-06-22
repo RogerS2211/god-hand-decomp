@@ -59,7 +59,7 @@ int cEmWrap_release(void *a0)
     }
     v = *(int *)((char *)a0 + 4);
     if (v != 0) {
-        return func_00290770(D_005864F0, v);
+        return cEmManage_ReleaseEm(D_005864F0, v);
     }
     return 0;
 }
@@ -102,7 +102,7 @@ int cEmWrap_isDead(int a0)
     if (FindResolveActor_295978(a0) == 0) {
         return 1;
     }
-    return func_0028FB38(*(int *)(a0 + 4));
+    return cEmBase_checkDeadFlag(*(int *)(a0 + 4));
 }
 
 __attribute__((section(".text.cEmWrap_StartAction")))

@@ -57,11 +57,11 @@ void *GetPilotClassDesc2_2BA948(void) {
 
 /* ─────────────────────────── medium picks ─────────────────────────────── */
 
-/* ResetAnimState_1F5EF8: jal cIDBase_restartAnim + 4-arg jal func_00307208 + 1-arg jal
+/* ResetAnimState_1F5EF8: jal cIDBase_restartAnim + 4-arg jal classFADE_start + 1-arg jal
  *                SetFieldsCESignalSemaSleep_2D5AA0 via vtable; sets bytes 0..3 of $a0 struct;
  *                29 insns, 116 B. */
 extern void cIDBase_restartAnim(void *);
-extern void func_00307208(void *p, int b, int c, int d, unsigned int e, int f, int g);
+extern void classFADE_start(void *p, int b, int c, int d, unsigned int e, int f, int g);
 extern void SetFieldsCESignalSemaSleep_2D5AA0(void *p, int a);
 extern int D_00747470;
 extern void *PTR_DAT_003c2f84;
@@ -73,7 +73,7 @@ void ResetAnimState_1F5EF8(unsigned char *this) {
     this[1] = 1;
     this[2] = 0;
     this[3] = 0;
-    func_00307208(&D_00747470, 0, 0xA, 0, 0xFF000000U, 0, 0xA);
+    classFADE_start(&D_00747470, 0, 0xA, 0, 0xFF000000U, 0, 0xA);
     SetFieldsCESignalSemaSleep_2D5AA0(*(void **)((char *)PTR_DAT_003c2f84 + 0x20), 0xA);
 }
 

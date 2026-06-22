@@ -29,7 +29,7 @@ void cEvent_playStart(void *a0) {
     *(char*)((char*)a0+7) = 0;
     b = D_00586B34;
     if (((b>>3)&1)==0) {} else {
-        func_00307208(D_00747470, 0, 0xA, 0, 0xFF000000, 0xFF000000, 0);
+        classFADE_start(D_00747470, 0, 0xA, 0, 0xFF000000, 0xFF000000, 0);
     }
 }
 #include "include_asm.h"

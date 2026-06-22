@@ -167,8 +167,8 @@ float func_0032AE10(void *a0) {
     return r;
 }
 
-__attribute__((section(".text.func_002C54E8")))
-void func_002C54E8(char *a0) {
+__attribute__((section(".text.cScrSpriteDraw_drawInit")))
+void cScrSpriteDraw_drawInit(char *a0) {
     int five = 5;
     int six = 6;
     unsigned int u = 0xFFFF;

@@ -14,7 +14,7 @@ void func_001DD218(void *a0, int a1) {
     CustomIDWork_SetNumber((char *)a0 + 0x918, a1);
 }
 
-__attribute__((section(".text.func_00305778")))
-int func_00305778(void *a0, int a1) {
+__attribute__((section(".text.espSys_effDataRelease")))
+int espSys_effDataRelease(void *a0, int a1) {
     return FindAndForwardEntry_3059A8(a0, a1, 0);
 }
