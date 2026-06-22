@@ -1,5 +1,8 @@
 # god-hand-decomp
 
+[![Code](https://decomp.dev/LucasPicoli/god-hand-decomp.svg?mode=shield&label=Code&measure=matched_code_percent)](https://decomp.dev/LucasPicoli/god-hand-decomp)
+[![Functions](https://decomp.dev/LucasPicoli/god-hand-decomp.svg?mode=shield&label=Functions&measure=matched_functions)](https://decomp.dev/LucasPicoli/god-hand-decomp)
+
 Matching decompilation of **God Hand** (PS2, 2006, Clover Studio / Capcom). The
 goal is to rewrite the game's machine code as C/C++ that, compiled with the
 original toolchain, reproduces the NTSC-U retail master (`SLUS-21503`)
@@ -149,6 +152,8 @@ Progress is measured two complementary ways:
 
 The two are complementary: objdiff shows *how far in* the decomp is; the sha256
 gate shows whether the binary still reproduces.
+
+Live progress is also tracked at [decomp.dev/LucasPicoli/god-hand-decomp](https://decomp.dev/LucasPicoli/god-hand-decomp).
 
 ## Contributing
 
