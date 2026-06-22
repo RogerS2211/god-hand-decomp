@@ -214,7 +214,23 @@ guard.
 
 ---
 
-## 6. Measuring progress
+## 6. Submitting work
+
+### Fork and pull request
+
+Work in a branch on your fork, then open a pull request against `main` on the upstream repo. That is how commits get reviewed, discussed, and merged with your authorship intact.
+
+A few things that make PRs easy to merge:
+
+- **One focused change per PR.** A single matched function, a batch of names, or a single new tool. Smaller PRs land faster and are easier to review.
+- **Open an issue first for tooling or workflow changes.** New scripts, build system changes, and workflow additions should be discussed in an issue before you put the work in, so nothing gets wasted if the direction needs adjusting.
+- **If you are unsure whether something is worth pursuing,** open an issue to ask before investing time in it.
+
+Function matches and naming fixes are always welcome directly as PRs; no prior issue needed.
+
+---
+
+## 7. Measuring progress
 
 ```bash
 scripts/progress.sh                      # regenerate report + print headline
@@ -224,7 +240,7 @@ Never hand-type the matched percentage anywhere — regenerate it.
 
 ---
 
-## 7. Quick reference
+## 8. Quick reference
 
 | You want to… | Command |
 |---|---|
