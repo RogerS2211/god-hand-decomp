@@ -1396,6 +1396,18 @@
     {
       "path": "src/cod/com71_setmotionrun.c",
       "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/csceatunit_setenable.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/csceatunit_setdisable.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/espsys_sstclearsetflag.c",
+      "compiler": "sn-2.95.3-136"
     }
   ],
   "_carved_funcs_doc": [
@@ -25689,6 +25701,27 @@
       "vaddr": "0x001B1F58",
       "size": 132,
       "tu": "src/cod/com71_setmotionrun.c"
+    },
+    {
+      "name": "cSceAtUnit_SetEnable",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002C0DE8",
+      "size": 56,
+      "tu": "src/cod/csceatunit_setenable.c"
+    },
+    {
+      "name": "cSceAtUnit_SetDisable",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002C0E28",
+      "size": 56,
+      "tu": "src/cod/csceatunit_setdisable.c"
+    },
+    {
+      "name": "espSys_sstClearSetFlag",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00305BE0",
+      "size": 48,
+      "tu": "src/cod/espsys_sstclearsetflag.c"
     }
   ],
   "build_dir": "build",

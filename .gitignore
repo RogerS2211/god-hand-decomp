@@ -954,3 +954,6 @@
 !src/cod/com71_setmotion102.c
 !src/cod/com71_setmotionkokeru.c
 !src/cod/com71_setmotionrun.c
+!src/cod/espsys_sstclearsetflag.c
+!src/cod/csceatunit_setdisable.c
+!src/cod/csceatunit_setenable.c
