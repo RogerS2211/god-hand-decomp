@@ -947,3 +947,5 @@
 !src/cod/ccoresave_getallstagetime.c
 !src/cod/cgameobj_setpos.c
 !src/cod/cgameobj_setsuspend.c
+!src/cod/cgameobj_gethitcheckpos.c
+!src/cod/cgameobj_getlockonpos.c
