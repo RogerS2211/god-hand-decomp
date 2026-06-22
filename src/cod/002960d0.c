@@ -9,8 +9,8 @@ extern int D_0044A878;
 extern void func_00289038(int a0, int a1);
 extern void cEm00_setAlphaMode(int a0, int a1);
 
-__attribute__((section(".text.func_00296180")))
-void func_00296180(void *a0, float f) {
+__attribute__((section(".text.cEmWrap_StartEscape")))
+void cEmWrap_StartEscape(void *a0, float f) {
     if (FindResolveActor_295978(a0, f)) {
         int *p = *(int **)((char *)a0 + 4);
         if (func_003A5678(&D_0044A878, p[0x4AC / 4]) == 0) {

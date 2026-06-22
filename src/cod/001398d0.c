@@ -23,7 +23,7 @@ void *InitObjectFields364_1398D0(void *a0) {
 __attribute__((section(".text.ClearFlagAndCallEffect_180648")))
 void ClearFlagAndCallEffect_180648(void *a0) {
     if (*(unsigned char *)((char *)a0 + 0xA29)) {
-        func_00306168(1, 3, 2);
+        KillEffect_306168(1, 3, 2);
         *(unsigned char *)((char *)a0 + 0xA29) = 0;
     }
 }
@@ -157,9 +157,9 @@ void FreeResourceNode_2D3710(int *a0)
 __attribute__((section(".text.UpdateD007419A0_2FA310")))
 void UpdateD007419A0_2FA310(void)
 {
-	func_002FB4C0();
-	func_00300900();
-	func_00305BE0(&D_007419A0);
+	KillEventEsp();
+	KillEventEmitter();
+	espSys_sstClearSetFlag(&D_007419A0);
 	func_00305C20(&D_007419A0);
 }
 

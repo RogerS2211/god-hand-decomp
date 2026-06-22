@@ -6,11 +6,11 @@ extern int PTR_DAT_003c23a4;
 extern int PTR_DAT_003bd6e8;
 extern int PTR_DAT_003bd930;
 extern void func_001538F0(void);
-extern void func_002C54E8(int);
-extern void func_0030F650(void);
+extern void cScrSpriteDraw_drawInit(int);
+extern void ObjTrans(void);
 extern void func_002C3818(int);
 extern void func_002AF028(int);
-extern void func_002FB310(void);
+extern void TransEsp(void);
 extern void func_001410A8(int);
 extern void func_00160B90(int);
 extern unsigned char D_005E8658[];
@@ -38,20 +38,20 @@ void func_00302930(void *a0, int a1, int a2) {
     }
 }
 
-__attribute__((section(".text.func_0015FBA8")))
-void func_0015FBA8(void) {
+__attribute__((section(".text.Trans")))
+void Trans(void) {
     func_001538F0();
-    func_002C54E8(D_003C2FB0);
-    func_0030F650();
+    cScrSpriteDraw_drawInit(D_003C2FB0);
+    ObjTrans();
     func_002C3818(PTR_DAT_003c2f84);
     func_002AF028(PTR_DAT_003c23a4);
-    func_002FB310();
+    TransEsp();
     func_001410A8(PTR_DAT_003bd6e8);
     func_00160B90(PTR_DAT_003bd930);
 }
 
-__attribute__((section(".text.func_002C52B0")))
-void func_002C52B0(int a0, signed char *a1) {
+__attribute__((section(".text.cScenario_setOmBreak")))
+void cScenario_setOmBreak(int a0, signed char *a1) {
     unsigned char *p = D_005E8658;
     long acc = 0;
     int i = 0;
@@ -66,8 +66,8 @@ void func_002C52B0(int a0, signed char *a1) {
     func_002BECB0(p, acc);
 }
 
-__attribute__((section(".text.func_003003F0")))
-void func_003003F0(void) {
+__attribute__((section(".text.InitEmitterWork")))
+void InitEmitterWork(void) {
     func_003A52F0(D_0071B940, 0, 0x26000);
     func_003A52F0(D_00741940, 0, 0x20);
     func_003A52F0(D_00741960, 0, 0x20);

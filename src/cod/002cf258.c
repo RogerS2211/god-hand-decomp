@@ -23,8 +23,8 @@ short func_002CF298(short *obj)
 __attribute__((section(".text.func_002CFC78")))
 int func_002CFC78(int *a0) { return a0[0] == 0; }
 
-__attribute__((section(".text.func_002CFC68")))
-int func_002CFC68(int *a0) { return a0[0] == 2; }
+__attribute__((section(".text.cSeData_IsAlive")))
+int cSeData_IsAlive(int *a0) { return a0[0] == 2; }
 
 __attribute__((section(".text.func_002CFC88")))
 int func_002CFC88(int *a0) { return a0[0] == 3; }
@@ -86,8 +86,8 @@ int func_002D05B8(int *a0, int a1) {
 __attribute__((section(".text.func_002D0728")))
 int func_002D0728(int *a0, int a1) { a0[20] = a1; return func_002D0820(a0); }
 
-__attribute__((section(".text.func_002D04F8")))
-int func_002D04F8(int *a0) {
+__attribute__((section(".text.cBgmData_GetHeadPtr")))
+int cBgmData_GetHeadPtr(int *a0) {
     if (!func_002CFF68(a0)) return 0;
     return a0[3];
 }
@@ -106,8 +106,8 @@ int func_002D0318(int *a0) {
     return cDvd_Check(&D_00583F20, x) == 0;
 }
 
-__attribute__((section(".text.func_002D0780")))
-int func_002D0780(int *a0, int a1) { a0[0x16] = a1; return func_002D0728(a0, a1); }
+__attribute__((section(".text.cSnd_SetBgmDefAttr")))
+int cSnd_SetBgmDefAttr(int *a0, int a1) { a0[0x16] = a1; return func_002D0728(a0, a1); }
 
 __attribute__((section(".text.func_002D07A8")))
 int func_002D07A8(int *a0, int a1) { a0[0x16] |= a1; return func_002D0748(a0, a1); }
@@ -115,8 +115,8 @@ int func_002D07A8(int *a0, int a1) { a0[0x16] |= a1; return func_002D0748(a0, a1
 __attribute__((section(".text.func_002D07D8")))
 int func_002D07D8(int *a0, int a1) { a0[0x16] &= ~a1; return func_002D0758(a0, a1); }
 
-__attribute__((section(".text.func_002D0528")))
-int func_002D0528(int *a0, int a1) {
+__attribute__((section(".text.cBgmData_GetTblPtr")))
+int cBgmData_GetTblPtr(int *a0, int a1) {
     if (!func_002CFF68(a0)) return 0;
     return a0[4] + (a1 << 5);
 }

@@ -21,8 +21,8 @@ void func_0035AEC8(void) {
     func_00366918();
 }
 
-__attribute__((section(".text.func_002AF628")))
-void func_002AF628(void *a0, void *a1, void *a2, void *a3) {
+__attribute__((section(".text.cMessDrawFont_setBodyData")))
+void cMessDrawFont_setBodyData(void *a0, void *a1, void *a2, void *a3) {
     *(void **)((char *)a0 + 0x4) = a1;
     *(void **)((char *)a0 + 0xC) = a2;
     *(void **)((char *)a0 + 0x10) = a3;

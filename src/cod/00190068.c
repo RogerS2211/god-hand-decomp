@@ -47,7 +47,7 @@ void UpdateSlotHitCounters_190BF0(void *a0) {
     int *s1 = (int *)((char *)a0 + 0x600);
     int s3 = 0;
     do {
-        int r = func_001B7380(a0, *s1);
+        int r = cOmBase_checkDamage(a0, *s1);
         if (r == 1) {
             int *obj = (int *)*s1;
             int v1 = (int)*(unsigned short *)s2 - *(int *)((char *)obj + 0x4C);

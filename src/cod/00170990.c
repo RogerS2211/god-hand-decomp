@@ -13,8 +13,8 @@ extern int D_00420920;
 
 __attribute__((section(".text.InitActorVU0Slots0A0C_170990")))
 void InitActorVU0Slots0A0C_170990(int a0) {
-    func_002CBA48(D_005FEE00, 2, 0xA, a0, 0, 0, 0, 0);
-    func_002CBA48(D_005FEE00, 2, 0xC, a0, 0, 0, 0, 0);
+    cSnd_SeCall_2CBA48(D_005FEE00, 2, 0xA, a0, 0, 0, 0, 0);
+    cSnd_SeCall_2CBA48(D_005FEE00, 2, 0xC, a0, 0, 0, 0, 0);
 }
 
 __attribute__((section(".text.GetOrInitSingleton785818_170A08")))
@@ -47,8 +47,8 @@ int FreeActorVtableState_170A90(int a0, int a1) {
 
 __attribute__((section(".text.InitActorVU0Slots0A0CB_170C20")))
 void InitActorVU0Slots0A0CB_170C20(int a0) {
-    func_002CBA48(D_005FEE00, 2, 0xA, a0, 0, 0, 0, 0);
-    func_002CBA48(D_005FEE00, 2, 0xC, a0, 0, 0, 0, 0);
+    cSnd_SeCall_2CBA48(D_005FEE00, 2, 0xA, a0, 0, 0, 0, 0);
+    cSnd_SeCall_2CBA48(D_005FEE00, 2, 0xC, a0, 0, 0, 0, 0);
 }
 
 __attribute__((section(".text.GetOrInitSingleton785828_170C98")))

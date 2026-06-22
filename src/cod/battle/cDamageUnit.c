@@ -21,7 +21,7 @@ void cDamageUnit_SetDamageCollOffset(void *a0, void *a1) {
     int *s0 = *(int **)((char*)a0 + 0x3C);
     while (s0) {
         void *v0 = *(void **)((char*)s0 + 0x28);
-        func_002BB258(*(void **)((char*)v0 + 0x34), a1);
+        cCollisionShape_setOffsetPos(*(void **)((char*)v0 + 0x34), a1);
         s0 = *(int **)((char*)s0 + 0x24);
     }
 }

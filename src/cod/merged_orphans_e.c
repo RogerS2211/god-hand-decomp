@@ -7,7 +7,7 @@ void Forward2D0658_2D0630(void) { func_002D0658(0.0f); }
  * tail-process via func_002C0ED0(obj, a2); else return 0. */
 extern void *cSceAtManager_getUnit(void *a0, void *a1);
 extern void *func_002C0ED0(void *obj, void *a2);
-/* func_002BF108: pointer-arithmetic getter — DEFERRED.  The natural body
+/* cRoomSave_getFree: pointer-arithmetic getter — DEFERRED.  The natural body
  * compiles to the right 10 insns but SN -O2 emits a branch-likely
  * (`beqzl`) with the shared `a1<<2` hoisted before the compare, whereas
  * retail uses a plain `beqz` with the shift in its delay slot.  Matching
@@ -36,15 +36,15 @@ void *GetResolvedActorVtable_295AB8(void *a0) {
 }
 
 /* InitObjVtableAndRegister_2E76F8: constructor — store vtable at obj+0xF0, register via
- * func_002D9158, then init via func_002FBE28(obj, a1). */
+ * cWorldLight_Del_LightData, then init via func_002FBE28(obj, a1). */
 extern int D_0044E640;
 extern int D_00604700;
-extern void func_002D9158(void *a, unsigned short b, int c);
+extern void cWorldLight_Del_LightData(void *a, unsigned short b, int c);
 extern void func_002FBE28(void *obj, void *a1);
 __attribute__((section(".text.InitObjVtableAndRegister_2E76F8")))
 void InitObjVtableAndRegister_2E76F8(void *obj, void *a1) {
     *(int **)((char *)obj + 0xF0) = &D_0044E640;
-    func_002D9158(&D_00604700, *(unsigned short *)((char *)obj + 0x2B2),
+    cWorldLight_Del_LightData(&D_00604700, *(unsigned short *)((char *)obj + 0x2B2),
                   *(int *)((char *)obj + 0x2B4));
     func_002FBE28(obj, a1);
 }

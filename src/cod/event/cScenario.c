@@ -12,7 +12,7 @@ void cScenario_waitEventStartOk(void *a0) {
 
 __attribute__((section(".text.cScenario_setCam")))
 int cScenario_setCam(void *a0, int a1) {
-    return LoadScreenOverlay_2C3F10(a0, func_0031CE38(a1));
+    return LoadScreenOverlay_2C3F10(a0, SearchCameraData(a1));
 }
 #include "include_asm.h"
 

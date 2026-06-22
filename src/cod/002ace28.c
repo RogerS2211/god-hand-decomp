@@ -11,7 +11,7 @@ int func_00320360(void *a0) {
 
 __attribute__((section(".text.func_002ACE28")))
 int func_002ACE28(void *a0, void *a1) {
-    return func_002ACDC8(a0, 1, a1);
+    return cIDManager_getTexAddr(a0, 1, a1);
 }
 
 __attribute__((section(".text.func_0030F550")))

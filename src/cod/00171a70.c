@@ -43,7 +43,7 @@ int func_001832A8(char *a0, char *a1)
         *(float *)(a2 + 4) = *(float *)(a1 + 4);
         *(float *)(a2 + 8) = *(float *)(a1 + 8);
     }
-    return func_00182FF8(a0, *(int *)(a0 + 0xF0), a2);
+    return cOl30_SetInitialPosition(a0, *(int *)(a0 + 0xF0), a2);
 }
 
 __attribute__((section(".text.func_001A4CF8")))
@@ -74,8 +74,8 @@ void func_00294A88(char *a0) {
     cSnd_SeCall_2CB8A0(D_005FEE00, 2, 0xA4, -1, -1, 0, 0);
 }
 
-__attribute__((section(".text.func_002BB258")))
-int func_002BB258(char *a0, char *a1)
+__attribute__((section(".text.cCollisionShape_setOffsetPos")))
+int cCollisionShape_setOffsetPos(char *a0, char *a1)
 {
     char *v0 = a0 + 0x50;
     if (v0 != a1) {
@@ -116,7 +116,7 @@ int func_0031F9D0(char *a0) {
     int v0 = 0;
     if (a0 != 0) {
         char *p = *(char **)(a0 + 4);
-        v0 = func_0031FAE8(*(int *)(p + 4), func_003201F0, 1,
+        v0 = __dynamic_cast(*(int *)(p + 4), func_003201F0, 1,
                            a0 + *(short *)p, func_0031F4A0, a0);
     }
     return v0 != 0;

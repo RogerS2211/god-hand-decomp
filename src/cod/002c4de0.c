@@ -15,7 +15,7 @@ void ForwardStoredCallback_2C4DE0(void *a0) {
 
 __attribute__((section(".text.Forward2C5110_2C51E8")))
 int Forward2C5110_2C51E8(int a0) {
-    return func_002C5110(a0, func_0014FD98(D_00754C58));
+    return cScenario_isOmBreak(a0, func_0014FD98(D_00754C58));
 }
 
 __attribute__((section(".text.ForwardListEntries_2C5470")))

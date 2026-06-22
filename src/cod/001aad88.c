@@ -8,8 +8,8 @@ extern char D_0071B840[];
 extern char D_0071B8C0[];
 extern void func_00307060(char *a0);
 
-__attribute__((section(".text.func_002DB318")))
-void func_002DB318(int a0, float f12) {
+__attribute__((section(".text.setAlphaScrollLayer")))
+void setAlphaScrollLayer(int a0, float f12) {
     char **a1;
     char *obj;
     a1 = *(char ***)((char *)D_00754C38 + 4);
@@ -56,11 +56,11 @@ int func_001FFF30(void *a0, short a1, float *a2, unsigned char a3, float f, int 
     *(unsigned char*)((char*)a0 + 0x17) = a3;
     *(int*)((char*)a0 + 0x18) = t0;
     *(unsigned char*)((char*)a0 + 0x3A) = t1;
-    return func_001FFF80(a0);
+    return cDoor_setDoorJump(a0);
 }
 
-__attribute__((section(".text.func_002A93D0")))
-void func_002A93D0(void *a0, float *a1) {
+__attribute__((section(".text.cGameObj_setPos")))
+void cGameObj_setPos(void *a0, float *a1) {
     float *d = (float*)((char*)a0 + 0x490);
     float *p;
     if (d != a1) {
@@ -76,8 +76,8 @@ void func_002A93D0(void *a0, float *a1) {
     }
 }
 
-__attribute__((section(".text.func_001AAD88")))
-void func_001AAD88(void *a0, int a1, int a2, float *a3, float *t0) {
+__attribute__((section(".text.cOm59_setParent")))
+void cOm59_setParent(void *a0, int a1, int a2, float *a3, float *t0) {
     float *d1 = (float*)((char*)a0 + 0x9B0);
     float *d2;
     *(int*)((char*)a0 + 0x9A0) = a1;
@@ -130,8 +130,8 @@ void func_002CD890(void *a0, int a1) {
     p[5] = 0;
 }
 
-__attribute__((section(".text.func_002FAA20")))
-void func_002FAA20(void) {
+__attribute__((section(".text.InitEspWork")))
+void InitEspWork(void) {
     func_003A52F0(D_0061B7C0, 0, 0x100000);
     func_003A52F0(D_0071B7C0, 0, 0x80);
     func_003A52F0(D_0071B840, 0, 0x80);

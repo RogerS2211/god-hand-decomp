@@ -6196,7 +6196,7 @@
       "tu": "src/cod/0015f0.c"
     },
     {
-      "name": "func_0015F0B8",
+      "name": "Draw_Line_sc",
       "unit": "asm/cod/000000",
       "vaddr": "0x0015F0B8",
       "size": 476,
@@ -6210,7 +6210,7 @@
       "tu": "src/cod/0015f0.c"
     },
     {
-      "name": "func_0015F2B0",
+      "name": "Draw_Poly_sc",
       "unit": "asm/cod/000000",
       "vaddr": "0x0015F2B0",
       "size": 40,
@@ -6224,7 +6224,7 @@
       "tu": "src/cod/0015f0.c"
     },
     {
-      "name": "func_0015F2E0",
+      "name": "drawCircleLine",
       "unit": "asm/cod/000000",
       "vaddr": "0x0015F2E0",
       "size": 1040
@@ -6237,7 +6237,7 @@
       "tu": "src/cod/0015f0.c"
     },
     {
-      "name": "func_0015F700",
+      "name": "drawLocator",
       "unit": "asm/cod/000000",
       "vaddr": "0x0015F700",
       "size": 1176
@@ -11840,7 +11840,7 @@
       "tu": "src/cod/0017d638.c"
     },
     {
-      "name": "func_00138600",
+      "name": "cCamera_move",
       "unit": "asm/cod/000000",
       "vaddr": "0x00138600",
       "size": 68,
@@ -14654,7 +14654,7 @@
       "tu": "src/cod/enemy/cEmWrap.c"
     },
     {
-      "name": "func_00296180",
+      "name": "cEmWrap_StartEscape",
       "unit": "asm/cod/000000",
       "vaddr": "0x00296180",
       "size": 80,
@@ -14850,7 +14850,7 @@
       "tu": "src/cod/002c3858.c"
     },
     {
-      "name": "func_002C4078",
+      "name": "cScenario_waitCam",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C4078",
       "size": 80,
@@ -14878,7 +14878,7 @@
       "tu": "src/cod/002c3858.c"
     },
     {
-      "name": "func_002C43D8",
+      "name": "cScenario_waitMess",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C43D8",
       "size": 100,
@@ -18518,7 +18518,7 @@
       "lib": true
     },
     {
-      "name": "func_00389438",
+      "name": "endl",
       "unit": "asm/cod/000000",
       "vaddr": "0x00389438",
       "size": 56,
@@ -21913,7 +21913,7 @@
       "tu": "src/cod/001ee1c0.c"
     },
     {
-      "name": "func_002AA078",
+      "name": "cIDBase_release",
       "unit": "asm/cod/000000",
       "vaddr": "0x002AA078",
       "size": 84,
@@ -21983,7 +21983,7 @@
       "tu": "src/cod/002cf258.c"
     },
     {
-      "name": "func_002CFC68",
+      "name": "cSeData_IsAlive",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CFC68",
       "size": 16,
@@ -22102,7 +22102,7 @@
       "tu": "src/cod/002cf258.c"
     },
     {
-      "name": "func_002D04F8",
+      "name": "cBgmData_GetHeadPtr",
       "unit": "asm/cod/000000",
       "vaddr": "0x002D04F8",
       "size": 48,
@@ -22123,7 +22123,7 @@
       "tu": "src/cod/002cf258.c"
     },
     {
-      "name": "func_002D0780",
+      "name": "cSnd_SetBgmDefAttr",
       "unit": "asm/cod/000000",
       "vaddr": "0x002D0780",
       "size": 36,
@@ -22144,7 +22144,7 @@
       "tu": "src/cod/002cf258.c"
     },
     {
-      "name": "func_002D0528",
+      "name": "cBgmData_GetTblPtr",
       "unit": "asm/cod/000000",
       "vaddr": "0x002D0528",
       "size": 72,
@@ -22200,14 +22200,14 @@
       "tu": "src/cod/00134880.c"
     },
     {
-      "name": "func_002B6288",
+      "name": "cNode_setLocalTranslation",
       "unit": "asm/cod/000000",
       "vaddr": "0x002B6288",
       "size": 84,
       "tu": "src/cod/00134880.c"
     },
     {
-      "name": "func_00134880",
+      "name": "cCollisionSolidManage_CreateSphere",
       "unit": "asm/cod/000000",
       "vaddr": "0x00134880",
       "size": 84,
@@ -22242,7 +22242,7 @@
       "tu": "src/cod/00134880.c"
     },
     {
-      "name": "func_002B61D8",
+      "name": "cNode_setLocalScale",
       "unit": "asm/cod/000000",
       "vaddr": "0x002B61D8",
       "size": 84,
@@ -22298,7 +22298,7 @@
       "tu": "src/cod/002b6310.c"
     },
     {
-      "name": "func_00305758",
+      "name": "espSys_effDataRegist",
       "unit": "asm/cod/000000",
       "vaddr": "0x00305758",
       "size": 28,
@@ -22319,7 +22319,7 @@
       "tu": "src/cod/002b6310.c"
     },
     {
-      "name": "func_00147B60",
+      "name": "MtxMulRotVec",
       "unit": "asm/cod/000000",
       "vaddr": "0x00147B60",
       "size": 76,
@@ -22361,21 +22361,21 @@
       "tu": "src/cod/001c8f30.c"
     },
     {
-      "name": "func_002ACDC8",
+      "name": "cIDManager_getTexAddr",
       "unit": "asm/cod/000000",
       "vaddr": "0x002ACDC8",
       "size": 96,
       "tu": "src/cod/001c8f30.c"
     },
     {
-      "name": "func_002D2D98",
+      "name": "cSnd_GetBgmData",
       "unit": "asm/cod/000000",
       "vaddr": "0x002D2D98",
       "size": 20,
       "tu": "src/cod/001347e8.c"
     },
     {
-      "name": "func_002AF1F8",
+      "name": "cMessCommon_getCodeSize",
       "unit": "asm/cod/000000",
       "vaddr": "0x002AF1F8",
       "size": 32,
@@ -22403,7 +22403,7 @@
       "tu": "src/cod/001347e8.c"
     },
     {
-      "name": "func_002D6910",
+      "name": "CustomIDWork_SetColorAnimSin",
       "unit": "asm/cod/000000",
       "vaddr": "0x002D6910",
       "size": 56,
@@ -22431,7 +22431,7 @@
       "tu": "src/cod/001347e8.c"
     },
     {
-      "name": "func_001347E8",
+      "name": "cCollisionSolidManage_ReleaseUnit",
       "unit": "asm/cod/000000",
       "vaddr": "0x001347E8",
       "size": 148,
@@ -22536,7 +22536,7 @@
       "tu": "src/cod/002b5e50.c"
     },
     {
-      "name": "func_002D6948",
+      "name": "CustomIDWork_ResetColorAnim",
       "unit": "asm/cod/000000",
       "vaddr": "0x002D6948",
       "size": 32,
@@ -22634,7 +22634,7 @@
       "tu": "src/cod/001dd218.c"
     },
     {
-      "name": "func_00305778",
+      "name": "espSys_effDataRelease",
       "unit": "asm/cod/000000",
       "vaddr": "0x00305778",
       "size": 28,
@@ -22662,7 +22662,7 @@
       "tu": "src/cod/002ace28.c"
     },
     {
-      "name": "func_002CBA48",
+      "name": "cSnd_SeCall_2CBA48",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CBA48",
       "size": 340,
@@ -22767,7 +22767,7 @@
       "tu": "src/cod/0028fe28.c"
     },
     {
-      "name": "func_002A9460",
+      "name": "cGameObj_getRot",
       "unit": "asm/cod/000000",
       "vaddr": "0x002A9460",
       "size": 8,
@@ -23152,14 +23152,14 @@
       "tu": "src/cod/0019aba8.c"
     },
     {
-      "name": "func_002AF638",
+      "name": "cMessDrawFont_setRubyData",
       "unit": "asm/cod/000000",
       "vaddr": "0x002AF638",
       "size": 12,
       "tu": "src/cod/002af638.c"
     },
     {
-      "name": "func_002AF648",
+      "name": "cMessDrawFont_setDrawCounter",
       "unit": "asm/cod/000000",
       "vaddr": "0x002AF648",
       "size": 12,
@@ -23698,7 +23698,7 @@
       "tu": "src/cod/00171a70.c"
     },
     {
-      "name": "func_002BB258",
+      "name": "cCollisionShape_setOffsetPos",
       "unit": "asm/cod/000000",
       "vaddr": "0x002BB258",
       "size": 60,
@@ -23985,7 +23985,7 @@
       "tu": "src/cod/002c54e8.c"
     },
     {
-      "name": "func_002C54E8",
+      "name": "cScrSpriteDraw_drawInit",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C54E8",
       "size": 68,
@@ -24125,7 +24125,7 @@
       "tu": "src/cod/0032ef00.c"
     },
     {
-      "name": "func_002DB318",
+      "name": "setAlphaScrollLayer",
       "unit": "asm/cod/000000",
       "vaddr": "0x002DB318",
       "size": 84,
@@ -24146,14 +24146,14 @@
       "tu": "src/cod/001aad88.c"
     },
     {
-      "name": "func_002A93D0",
+      "name": "cGameObj_setPos",
       "unit": "asm/cod/000000",
       "vaddr": "0x002A93D0",
       "size": 80,
       "tu": "src/cod/001aad88.c"
     },
     {
-      "name": "func_001AAD88",
+      "name": "cOm59_setParent",
       "unit": "asm/cod/000000",
       "vaddr": "0x001AAD88",
       "size": 84,
@@ -24174,7 +24174,7 @@
       "tu": "src/cod/001aad88.c"
     },
     {
-      "name": "func_002FAA20",
+      "name": "InitEspWork",
       "unit": "asm/cod/000000",
       "vaddr": "0x002FAA20",
       "size": 100,
@@ -24293,21 +24293,21 @@
       "tu": "src/cod/0015fba8.c"
     },
     {
-      "name": "func_0015FBA8",
+      "name": "Trans",
       "unit": "asm/cod/000000",
       "vaddr": "0x0015FBA8",
       "size": 104,
       "tu": "src/cod/0015fba8.c"
     },
     {
-      "name": "func_002C52B0",
+      "name": "cScenario_setOmBreak",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C52B0",
       "size": 104,
       "tu": "src/cod/0015fba8.c"
     },
     {
-      "name": "func_003003F0",
+      "name": "InitEmitterWork",
       "unit": "asm/cod/000000",
       "vaddr": "0x003003F0",
       "size": 104,
@@ -24377,7 +24377,7 @@
       "tu": "src/cod/001f83e8.c"
     },
     {
-      "name": "func_001F83E8",
+      "name": "cArea_HitCheck_1F83E8",
       "unit": "asm/cod/000000",
       "vaddr": "0x001F83E8",
       "size": 76,
@@ -24391,7 +24391,7 @@
       "tu": "src/cod/001f83e8.c"
     },
     {
-      "name": "func_001FB830",
+      "name": "cCoreSave_getComboMax",
       "unit": "asm/cod/000000",
       "vaddr": "0x001FB830",
       "size": 52,
@@ -24405,7 +24405,7 @@
       "tu": "src/cod/001f83e8.c"
     },
     {
-      "name": "func_002AEAD0",
+      "name": "cMessage_getMessageAddr",
       "unit": "asm/cod/000000",
       "vaddr": "0x002AEAD0",
       "size": 44,
@@ -24643,7 +24643,7 @@
       "tu": "src/cod/00126770.c"
     },
     {
-      "name": "func_00138E38",
+      "name": "cCamManager_setPartsCamera",
       "unit": "asm/cod/000000",
       "vaddr": "0x00138E38",
       "size": 128,
@@ -24818,14 +24818,14 @@
       "tu": "src/cod/0014ea28.c"
     },
     {
-      "name": "func_0014EF50",
+      "name": "cObjBase_KageInit",
       "unit": "asm/cod/000000",
       "vaddr": "0x0014EF50",
       "size": 88,
       "tu": "src/cod/0014ea28.c"
     },
     {
-      "name": "func_002D5470",
+      "name": "cTaskManager_execute",
       "unit": "asm/cod/000000",
       "vaddr": "0x002D5470",
       "size": 128,
@@ -24874,7 +24874,7 @@
       "tu": "src/cod/002af628.c"
     },
     {
-      "name": "func_002AF628",
+      "name": "cMessDrawFont_setBodyData",
       "unit": "asm/cod/000000",
       "vaddr": "0x002AF628",
       "size": 16,
@@ -24916,14 +24916,14 @@
       "tu": "src/cod/003b2b90.c"
     },
     {
-      "name": "func_00201F48",
+      "name": "cScenario_debugPrint",
       "unit": "asm/cod/000000",
       "vaddr": "0x00201F48",
       "size": 52,
       "tu": "src/cod/00201f48.c"
     },
     {
-      "name": "func_002BF108",
+      "name": "cRoomSave_getFree",
       "unit": "asm/cod/000000",
       "vaddr": "0x002BF108",
       "size": 40,

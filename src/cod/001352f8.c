@@ -17,7 +17,7 @@ void Forward1352F8_135328(void) {
 __attribute__((section(".text.func_00138F98")))
 void func_00138F98(void *a0) {
     if (*(int *)((char *)a0 + 0x1028) & 4) {
-        func_00138600(D_005CAFF0);
+        cCamera_move(D_005CAFF0);
     }
 }
 

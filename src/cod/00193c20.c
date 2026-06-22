@@ -115,7 +115,7 @@ void UpdateSlotTimerState_1968A0(void *a0) {
     p600 = (int *)((char*)a0 + 0x600);
     i = 0;
     do {
-        int r = func_001B7380(a0, *p600);
+        int r = cOmBase_checkDamage(a0, *p600);
         if (r == 1) {
             int p = *p600;
             int diff = (int)*p9D8 - *(int*)((char*)p + 0x4C);

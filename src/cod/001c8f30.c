@@ -57,8 +57,8 @@ void *func_001C8F30(void)
 	return &D_007858B8;
 }
 
-__attribute__((section(".text.func_002ACDC8")))
-int func_002ACDC8(int a0, int a1, unsigned int a2)
+__attribute__((section(".text.cIDManager_getTexAddr")))
+int cIDManager_getTexAddr(int a0, int a1, unsigned int a2)
 {
 	int e, p, t, r;
 

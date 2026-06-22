@@ -66,7 +66,7 @@ void UpdateSlotTimerStateB_197EC8(void *a0) {
     int *p = (int *)((char *)a0 + 0x600);
     int i = 0;
     do {
-        int r = func_001B7380(a0, *p);
+        int r = cOmBase_checkDamage(a0, *p);
         if (r == 1) {
             void *obj = (void *)*p;
             int diff = (int)*(unsigned short *)q - *(int *)((char *)obj + 0x4C);
@@ -173,7 +173,7 @@ void FreeObjSlotD_199040(void *a0, int a1) {
 __attribute__((section(".text.UpdateSlotHpState_1993C8")))
 void UpdateSlotHpState_1993C8(void *a0) {
     int v1;
-    v1 = func_001B7380(a0, *(int *)((char*)a0 + 0x650));
+    v1 = cOmBase_checkDamage(a0, *(int *)((char*)a0 + 0x650));
     if (v1 == 1) {
         if (*(short *)((char*)a0 + 0x54A) <= 0) {
             int v3 = *(int *)((char*)a0 + 0x5B0);

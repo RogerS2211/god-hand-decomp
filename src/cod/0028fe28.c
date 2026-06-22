@@ -39,8 +39,8 @@ __attribute__((section(".text.func_00299860")))
 void func_00299860(void) {
 }
 
-__attribute__((section(".text.func_002A9460")))
-int func_002A9460(int a0) {
+__attribute__((section(".text.cGameObj_getRot")))
+int cGameObj_getRot(int a0) {
     return a0 + 0x100;
 }
 

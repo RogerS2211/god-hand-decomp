@@ -10,12 +10,12 @@ extern void func_0031C900(int a0);
 extern void func_003A6290(void);
 extern void Obj0000_Setup_Fields_00_04_08_0C_0E_10_18_1C_20_24_28_2C_54(int a0, int a1, int a2, int a3);
 extern int PTR_DAT_003fa62c;
-extern void func_003A8048(int a0);
-extern void func_003A80A8(int a0);
+extern void __malloc_lock(int a0);
+extern void __malloc_unlock(int a0);
 extern int PTR_DAT_003c2388;
 extern int D_00583F20[];
 extern int D_00754230[];
-extern void func_002ACFA8(int a0, void *a1, int a2, int a3);
+extern void cIDManager_getLocalFileName(int a0, void *a1, int a2, int a3);
 extern int cDvd_ReadAlloc(void *a0, void *a1, void *a2, void *a3, int t0, int t1, int t2, int t3);
 extern int cDvd_CheckWait(void *a0, int a1);
 extern void func_0015EAC8(int a0);
@@ -77,9 +77,9 @@ __attribute__((section(".text.func_003A7C70")))
 int func_003A7C70(int a0)
 {
     int r;
-    func_003A8048(PTR_DAT_003fa62c);
+    __malloc_lock(PTR_DAT_003fa62c);
     r = func_003AC2F8(PTR_DAT_003fa62c, a0);
-    func_003A80A8(PTR_DAT_003fa62c);
+    __malloc_unlock(PTR_DAT_003fa62c);
     return r;
 }
 
@@ -89,7 +89,7 @@ int func_00161500(int a0, int a1)
     int local[16];
     if (*(int*)((char*)a0+0x50) == 0) {
         int r;
-        func_002ACFA8(PTR_DAT_003c2388, &local, a1, -1);
+        cIDManager_getLocalFileName(PTR_DAT_003c2388, &local, a1, -1);
         r = cDvd_ReadAlloc(D_00583F20, &local, (void*)((char*)a0+0x50), D_00754230, 0, 0, 0, 0);
         *(int*)((char*)a0+0x54) = r;
         cDvd_CheckWait(D_00583F20, r);
@@ -97,8 +97,8 @@ int func_00161500(int a0, int a1)
     return *(int*)((char*)a0+0x50);
 }
 
-__attribute__((section(".text.func_0014EF50")))
-void func_0014EF50(int a0, int a1, int a2)
+__attribute__((section(".text.cObjBase_KageInit")))
+void cObjBase_KageInit(int a0, int a1, int a2)
 {
     int s2 = 0;
     int s1 = 1;
@@ -111,8 +111,8 @@ void func_0014EF50(int a0, int a1, int a2)
     } while (s1 >= 0);
 }
 
-__attribute__((section(".text.func_002D5470")))
-int func_002D5470(int a0, int a1, int a2)
+__attribute__((section(".text.cTaskManager_execute")))
+int cTaskManager_execute(int a0, int a1, int a2)
 {
     int *v1 = *(int**)((char*)a0+0x30);
     int (*fp)(int, int) = (int (*)(int, int))v1[5];
