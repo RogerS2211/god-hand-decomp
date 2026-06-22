@@ -950,3 +950,5 @@
 !src/cod/cgameobj_gethitcheckpos.c
 !src/cod/cgameobj_getlockonpos.c
 !src/cod/cobjbase_kageinit.c
+!src/cod/com71_setmotion010.c
+!src/cod/com71_setmotion102.c

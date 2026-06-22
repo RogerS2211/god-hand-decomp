@@ -1380,6 +1380,14 @@
     {
       "path": "src/cod/cobjbase_kageinit.c",
       "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/com71_setmotion010.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/com71_setmotion102.c",
+      "compiler": "sn-2.95.3-136"
     }
   ],
   "_carved_funcs_doc": [
@@ -25645,6 +25653,20 @@
       "vaddr": "0x0014EF50",
       "size": 88,
       "tu": "src/cod/cobjbase_kageinit.c"
+    },
+    {
+      "name": "cOm71_SetMotion010",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001B2018",
+      "size": 56,
+      "tu": "src/cod/com71_setmotion010.c"
+    },
+    {
+      "name": "cOm71_SetMotion102",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001B20E0",
+      "size": 56,
+      "tu": "src/cod/com71_setmotion102.c"
     }
   ],
   "build_dir": "build",
