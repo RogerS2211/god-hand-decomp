@@ -40,11 +40,19 @@ import struct
 import sys
 
 # --------------------------------------------------------------------------
-# Paths
+# Paths.  Repo root is auto-detected from this file's location; the RE4 ELF
+# and the optional GH reflection map come from the environment so the tool is
+# portable (RE4 is third-party data and lives outside the repo).
+#   GODHAND_REPO       override the auto-detected repo root
+#   GODHAND_RE4_ELF    path to the RE4 PS2 ELF (SLUS-21134)
+#   GODHAND_GH_REFLECT optional name->addr map for nicer GH names
 # --------------------------------------------------------------------------
-REPO = "/home/rog3r/Decompilation/god-hand-decomp"
+REPO = os.environ.get(
+    "GODHAND_REPO",
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
+)
 GH_ASM = os.path.join(REPO, "asm/cod/000000.s")
-RE4_ELF = "/tmp/re4ps2/SLUS_211.34"
+RE4_ELF = os.environ.get("GODHAND_RE4_ELF", "/tmp/re4ps2/SLUS_211.34")
 
 # RE4 LOAD segment (from `objdump -p`):  off 0x1000 vaddr 0x100000 filesz 0x2c9f28
 RE4_LOAD_OFF = 0x1000
@@ -56,7 +64,7 @@ RE4_TEXT_FILEOFF = 0x1000
 RE4_TEXT_SIZE = 0x1EF91C
 RE4_TEXT_END = RE4_TEXT_VADDR + RE4_TEXT_SIZE
 
-GH_REFLECT = "/tmp/gh_reflect_map.txt"
+GH_REFLECT = os.environ.get("GODHAND_GH_REFLECT", "/tmp/gh_reflect_map.txt")
 
 # Known shared mangled names (verified seeds).  RE4 stores the mangled form;
 # the God Hand asm listing uses the demangled-ish label, so we key the GH side
