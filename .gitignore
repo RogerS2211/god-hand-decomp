@@ -967,3 +967,5 @@
 !src/cod/comdoor_releaseobjcollision.c
 !src/cod/ccollisionsolidmanage_setpriority.c
 !src/cod/effeventdataregist.c
+!src/cod/createeventobj.c
+!src/cod/cscenario_taskexec_2c3890.c

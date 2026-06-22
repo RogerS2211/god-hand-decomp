@@ -1448,6 +1448,14 @@
     {
       "path": "src/cod/effeventdataregist.c",
       "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/createeventobj.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/cscenario_taskexec_2c3890.c",
+      "compiler": "sn-2.95.3-136"
     }
   ],
   "_carved_funcs_doc": [
@@ -25832,6 +25840,20 @@
       "vaddr": "0x002FA0B0",
       "size": 52,
       "tu": "src/cod/effeventdataregist.c"
+    },
+    {
+      "name": "CreateEventObj",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00312A80",
+      "size": 48,
+      "tu": "src/cod/createeventobj.c"
+    },
+    {
+      "name": "cScenario_taskExec_2C3890",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002C3890",
+      "size": 68,
+      "tu": "src/cod/cscenario_taskexec_2c3890.c"
     }
   ],
   "build_dir": "build",
