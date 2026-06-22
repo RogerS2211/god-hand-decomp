@@ -974,3 +974,7 @@
 !src/cod/cscenario_setombreak_2c5318.c
 !src/cod/crelsys_linknoalloc.c
 !src/cod/cmessage_ckmessage.c
+!src/cod/effeventdatarelease.c
+!src/cod/ccollisionshape_setoffsetpos.c
+!src/cod/effeventiscutdataexist.c
+!src/cod/poker_clearpokercamera.c

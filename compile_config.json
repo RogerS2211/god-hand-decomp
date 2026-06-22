@@ -1476,6 +1476,22 @@
     {
       "path": "src/cod/cemsetparam_roominit.c",
       "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/poker_clearpokercamera.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/effeventiscutdataexist.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/ccollisionshape_setoffsetpos.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/effeventdatarelease.c",
+      "compiler": "sn-2.95.3-136"
     }
   ],
   "_carved_funcs_doc": [
@@ -25909,6 +25925,34 @@
       "vaddr": "0x00294B38",
       "size": 36,
       "tu": "src/cod/cemsetparam_roominit.c"
+    },
+    {
+      "name": "Poker_ClearPokerCamera",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001DBDF0",
+      "size": 36,
+      "tu": "src/cod/poker_clearpokercamera.c"
+    },
+    {
+      "name": "EffEventIsCutDataExist",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002FA128",
+      "size": 44,
+      "tu": "src/cod/effeventiscutdataexist.c"
+    },
+    {
+      "name": "cCollisionShape_setOffsetPos",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002BB258",
+      "size": 60,
+      "tu": "src/cod/ccollisionshape_setoffsetpos.c"
+    },
+    {
+      "name": "EffEventDataRelease",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002FA0E8",
+      "size": 60,
+      "tu": "src/cod/effeventdatarelease.c"
     }
   ],
   "build_dir": "build",
