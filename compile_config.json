@@ -1352,6 +1352,10 @@
     {
       "path": "src/cod/ccoresave_addkillemnum.c",
       "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/cactionbuttonunit_setexit.c",
+      "compiler": "sn-2.95.3-136"
     }
   ],
   "_carved_funcs_doc": [
@@ -25568,6 +25572,13 @@
       "vaddr": "0x001FBE40",
       "size": 120,
       "tu": "src/cod/ccoresave_addkillemnum.c"
+    },
+    {
+      "name": "cActionButtonUnit_setExit",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001F6F10",
+      "size": 68,
+      "tu": "src/cod/cactionbuttonunit_setexit.c"
     }
   ],
   "build_dir": "build",

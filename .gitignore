@@ -943,3 +943,4 @@
 !src/cod/ccoresave_addcasinoticket.c
 !src/cod/ccoresave_subgold.c
 !src/cod/ccoresave_addkillemnum.c
+!src/cod/cactionbuttonunit_setexit.c
