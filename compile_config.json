@@ -1542,6 +1542,134 @@
     {
       "path": "src/cod/0033c270.c",
       "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/0033d190.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/0033d2b8.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/0033d2c0.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/00340128.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/00340308.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/00342e80.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/00344790.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/00349718.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/00349720.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/00349728.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/0034d080.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/0034d098.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/0034f1f8.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/0034fdf0.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/003520b0.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/00352dc0.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/00355258.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/00357980.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/00358678.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/003592d0.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/0035a518.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/0035a5e0.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/0035ba48.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/0035ba50.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/0035bd88.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/0035f830.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/0035ff98.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/00368e80.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/00368fb0.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/00369118.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/00369130.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/00369158.c",
+      "compiler": "cygnus-2.96"
     }
   ],
   "_carved_funcs_doc": [
@@ -25149,6 +25277,230 @@
       "vaddr": "0x0033C270",
       "size": 32,
       "tu": "src/cod/0033c270.c"
+    },
+    {
+      "name": "func_0033D190",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0033D190",
+      "size": 8,
+      "tu": "src/cod/0033d190.c"
+    },
+    {
+      "name": "func_0033D2B8",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0033D2B8",
+      "size": 8,
+      "tu": "src/cod/0033d2b8.c"
+    },
+    {
+      "name": "func_0033D2C0",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0033D2C0",
+      "size": 8,
+      "tu": "src/cod/0033d2c0.c"
+    },
+    {
+      "name": "func_00340128",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00340128",
+      "size": 8,
+      "tu": "src/cod/00340128.c"
+    },
+    {
+      "name": "func_00340308",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00340308",
+      "size": 16,
+      "tu": "src/cod/00340308.c"
+    },
+    {
+      "name": "func_00342E80",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00342E80",
+      "size": 8,
+      "tu": "src/cod/00342e80.c"
+    },
+    {
+      "name": "func_00344790",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00344790",
+      "size": 8,
+      "tu": "src/cod/00344790.c"
+    },
+    {
+      "name": "func_00349718",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00349718",
+      "size": 8,
+      "tu": "src/cod/00349718.c"
+    },
+    {
+      "name": "func_00349720",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00349720",
+      "size": 8,
+      "tu": "src/cod/00349720.c"
+    },
+    {
+      "name": "func_00349728",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00349728",
+      "size": 8,
+      "tu": "src/cod/00349728.c"
+    },
+    {
+      "name": "func_0034D080",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0034D080",
+      "size": 24,
+      "tu": "src/cod/0034d080.c"
+    },
+    {
+      "name": "func_0034D098",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0034D098",
+      "size": 16,
+      "tu": "src/cod/0034d098.c"
+    },
+    {
+      "name": "func_0034F1F8",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0034F1F8",
+      "size": 8,
+      "tu": "src/cod/0034f1f8.c"
+    },
+    {
+      "name": "func_0034FDF0",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0034FDF0",
+      "size": 136,
+      "tu": "src/cod/0034fdf0.c"
+    },
+    {
+      "name": "func_003520B0",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x003520B0",
+      "size": 40,
+      "tu": "src/cod/003520b0.c"
+    },
+    {
+      "name": "func_00352DC0",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00352DC0",
+      "size": 80,
+      "tu": "src/cod/00352dc0.c"
+    },
+    {
+      "name": "func_00355258",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00355258",
+      "size": 8,
+      "tu": "src/cod/00355258.c"
+    },
+    {
+      "name": "func_00357980",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00357980",
+      "size": 8,
+      "tu": "src/cod/00357980.c"
+    },
+    {
+      "name": "func_00358678",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00358678",
+      "size": 16,
+      "tu": "src/cod/00358678.c"
+    },
+    {
+      "name": "func_003592D0",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x003592D0",
+      "size": 24,
+      "tu": "src/cod/003592d0.c"
+    },
+    {
+      "name": "func_0035A518",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0035A518",
+      "size": 40,
+      "tu": "src/cod/0035a518.c"
+    },
+    {
+      "name": "func_0035A5E0",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0035A5E0",
+      "size": 60,
+      "tu": "src/cod/0035a5e0.c"
+    },
+    {
+      "name": "func_0035BA48",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0035BA48",
+      "size": 8,
+      "tu": "src/cod/0035ba48.c"
+    },
+    {
+      "name": "func_0035BA50",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0035BA50",
+      "size": 8,
+      "tu": "src/cod/0035ba50.c"
+    },
+    {
+      "name": "func_0035BD88",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0035BD88",
+      "size": 72,
+      "tu": "src/cod/0035bd88.c"
+    },
+    {
+      "name": "func_0035F830",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0035F830",
+      "size": 8,
+      "tu": "src/cod/0035f830.c"
+    },
+    {
+      "name": "func_0035FF98",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0035FF98",
+      "size": 24,
+      "tu": "src/cod/0035ff98.c"
+    },
+    {
+      "name": "func_00368E80",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00368E80",
+      "size": 16,
+      "tu": "src/cod/00368e80.c"
+    },
+    {
+      "name": "func_00368FB0",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00368FB0",
+      "size": 12,
+      "tu": "src/cod/00368fb0.c"
+    },
+    {
+      "name": "func_00369118",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00369118",
+      "size": 24,
+      "tu": "src/cod/00369118.c"
+    },
+    {
+      "name": "func_00369130",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00369130",
+      "size": 40,
+      "tu": "src/cod/00369130.c"
+    },
+    {
+      "name": "func_00369158",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00369158",
+      "size": 44,
+      "tu": "src/cod/00369158.c"
     }
   ],
   "build_dir": "build",
