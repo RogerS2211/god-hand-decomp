@@ -1716,6 +1716,30 @@
     {
       "path": "src/cod/001b56d8.c",
       "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/0017d3d8.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/0017e828.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/0017f270.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/00181638.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/001835a0.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/001a8150.c",
+      "compiler": "sn-2.95.3-136"
     }
   ],
   "_carved_funcs_doc": [
@@ -26569,6 +26593,48 @@
       "vaddr": "0x001B56D8",
       "size": 144,
       "tu": "src/cod/001b56d8.c"
+    },
+    {
+      "name": "func_0017D3D8",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0017D3D8",
+      "size": 132,
+      "tu": "src/cod/0017d3d8.c"
+    },
+    {
+      "name": "func_0017E828",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0017E828",
+      "size": 132,
+      "tu": "src/cod/0017e828.c"
+    },
+    {
+      "name": "func_0017F270",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0017F270",
+      "size": 132,
+      "tu": "src/cod/0017f270.c"
+    },
+    {
+      "name": "func_00181638",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00181638",
+      "size": 132,
+      "tu": "src/cod/00181638.c"
+    },
+    {
+      "name": "func_001835A0",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001835A0",
+      "size": 132,
+      "tu": "src/cod/001835a0.c"
+    },
+    {
+      "name": "func_001A8150",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001A8150",
+      "size": 132,
+      "tu": "src/cod/001a8150.c"
     }
   ],
   "build_dir": "build",
