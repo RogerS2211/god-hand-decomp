@@ -949,3 +949,4 @@
 !src/cod/cgameobj_setsuspend.c
 !src/cod/cgameobj_gethitcheckpos.c
 !src/cod/cgameobj_getlockonpos.c
+!src/cod/cobjbase_kageinit.c
