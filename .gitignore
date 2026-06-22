@@ -1012,6 +1012,12 @@
 !src/cod/002be550.c
 !src/cod/002d36e8.c
 !src/cod/0031be58.c
+!src/cod/002bedc8.c
+!src/cod/00346fa0.c
+!src/cod/003554f8.c
+!src/cod/0035fb78.c
+!src/cod/00360940.c
+!src/cod/003b2048.c
 !src/cod/mtxinitrotz.c
 !src/cod/mtxinitroty.c
 !src/cod/cworldtime_setglobaltime.c
