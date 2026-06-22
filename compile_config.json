@@ -1420,6 +1420,18 @@
     {
       "path": "src/cod/delobj.c",
       "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/cemsetparam_updatesetdataflag.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/pl00_discardweapon.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/crelsys_unlinknofree.c",
+      "compiler": "sn-2.95.3-136"
     }
   ],
   "_carved_funcs_doc": [
@@ -25755,6 +25767,27 @@
       "vaddr": "0x00312778",
       "size": 52,
       "tu": "src/cod/delobj.c"
+    },
+    {
+      "name": "cEmSetParam_updateSetDataFlag",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00295498",
+      "size": 52,
+      "tu": "src/cod/cemsetparam_updatesetdataflag.c"
+    },
+    {
+      "name": "pl00_DiscardWeapon",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0012AC60",
+      "size": 56,
+      "tu": "src/cod/pl00_discardweapon.c"
+    },
+    {
+      "name": "cRelSys_unlinkNoFree",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002BE8B0",
+      "size": 52,
+      "tu": "src/cod/crelsys_unlinknofree.c"
     }
   ],
   "build_dir": "build",

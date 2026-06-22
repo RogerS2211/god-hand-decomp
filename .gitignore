@@ -960,3 +960,6 @@
 !src/cod/delobj.c
 !src/cod/cemsetparam_setemdata.c
 !src/cod/cmessage_closemessno.c
+!src/cod/crelsys_unlinknofree.c
+!src/cod/pl00_discardweapon.c
+!src/cod/cemsetparam_updatesetdataflag.c
