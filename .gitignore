@@ -969,3 +969,8 @@
 !src/cod/effeventdataregist.c
 !src/cod/createeventobj.c
 !src/cod/cscenario_taskexec_2c3890.c
+!src/cod/cemsetparam_roominit.c
+!src/cod/cdvd_fileexist.c
+!src/cod/cscenario_setombreak_2c5318.c
+!src/cod/crelsys_linknoalloc.c
+!src/cod/cmessage_ckmessage.c
