@@ -181,9 +181,11 @@ _HAZARD_FP_CMP_RE = re.compile(r"^\s*c\.[a-z]+\.[sd]\b")
 
 def _is_ee_fp_hazard_producer(line: str) -> bool:
     """True if *line* is an EE FP op a following op must stall on (mtc1/ctc1
-    GPR->COP1 move, or an FP compare feeding bc1*).  See ee-cc-wrap.py."""
+    GPR->COP1 move, incl. the li.s/li.d float-immediate macro, or an FP compare
+    feeding bc1*).  FP loads interlock, so they're excluded.  See ee-cc-wrap.py."""
     op = line.strip()
-    return op.startswith(("mtc1", "ctc1", "li.s", "li.d")) or bool(_HAZARD_FP_CMP_RE.match(line))
+    return op.startswith(("mtc1", "ctc1", "li.s", "li.d")) \
+        or bool(_HAZARD_FP_CMP_RE.match(line))
 
 
 def _materialize_hazard_nops(text: str) -> str:

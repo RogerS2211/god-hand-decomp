@@ -123,14 +123,17 @@ def _is_ee_fp_hazard_producer(line: str) -> bool:
     """True if *line* is an EE FP op whose result a following op stalls on.
 
     Two R5900 hazards need a nop that cc1 only emits as a commented ``#nop``:
-    a GPR->COP1 move (``mtc1``/``ctc1``) feeding an FP op, and an FP compare
-    (``c.<cond>.s``) feeding a ``bc1*`` branch.  FP *loads* (lwc1/l.s) and
-    integer loads interlock on the R5900, so their ``#nop`` hints are NOT
-    materialised (retail didn't) — restricting to these two producers keeps
-    every already-matched function byte-identical.
+    a GPR->COP1 move (``mtc1``/``ctc1``, incl. the ``li.s``/``li.d``
+    float-immediate macro that expands to lui+mtc1) feeding an FP op, and an FP
+    compare (``c.<cond>.s``) feeding a ``bc1*`` branch.  FP *loads* (lwc1/l.s)
+    and integer loads interlock on the R5900, so their ``#nop`` hints are NOT
+    materialised (retail didn't); a register-dependency-aware rule would be
+    needed to safely include lwc1->FPU, so we stay with these producers, which
+    keep every already-matched function byte-identical.
     """
     op = line.strip()
-    return op.startswith(("mtc1", "ctc1", "li.s", "li.d")) or bool(_HAZARD_FP_CMP_RE.match(line))
+    return op.startswith(("mtc1", "ctc1", "li.s", "li.d")) \
+        or bool(_HAZARD_FP_CMP_RE.match(line))
 
 
 def _materialize_hazard_nops(s_path: Path) -> None:
