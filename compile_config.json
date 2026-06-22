@@ -1516,6 +1516,10 @@
     {
       "path": "src/cod/ostream___ls_38a478.c",
       "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/csceatmanager_addunitdata.c",
+      "compiler": "sn-2.95.3-136"
     }
   ],
   "_carved_funcs_doc": [
@@ -26019,6 +26023,13 @@
       "vaddr": "0x0038A478",
       "size": 28,
       "tu": "src/cod/ostream___ls_38a478.c"
+    },
+    {
+      "name": "cSceAtManager_addUnitData",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002C2F90",
+      "size": 72,
+      "tu": "src/cod/csceatmanager_addunitdata.c"
     }
   ],
   "build_dir": "build",
