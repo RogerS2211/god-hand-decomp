@@ -354,4 +354,46 @@
     __asm__ __volatile__ (".set push\n.set noreorder\n"               \
         "vftoi0.zw $vf" #dst ", $vf" #src "\n.set pop\n")
 
+/* --- COP2 -> GPR/FPU result-extraction and raw-encoded q-pipe ops --------- *
+ *
+ * The cap-magnitude/dot/length helpers read a VU0 scalar result back into a
+ * float via the canonical `qmfc2.ni $gpr, $vf` then `mtc1 $f, $gpr` chain --
+ * there is no C form for either step under ee-gcc 2.x.  Two qmfc2 shapes occur
+ * in retail: bare (the assembler reorder pass schedules around it) and
+ * `.set noreorder` framed; keep both so each call site reproduces its exact
+ * bytes.  The
+ * q-pipeline ops `vsqrt` and `vclipw` are encoded by ee-as differently from
+ * retail, so they are emitted as their exact `.word`; only the $vf4x/$vf5x
+ * (vsqrt) and $vf12 (vclipw) forms occur, so each gets a register-specific
+ * macro (lazy-vendor: add more on demand). */
+#define VU0_QMFC2_NI(out, reg)                                         \
+    __asm__ __volatile__("qmfc2.ni %0, $vf" #reg : "=r"(out))
+#define VU0_QMFC2_NI_F(out, reg)                                       \
+    __asm__ __volatile__(".set push\n.set noreorder\n"                \
+        "qmfc2.ni %0, $vf" #reg "\n.set pop\n" : "=r"(out))
+
+/* Move a GPR bit-pattern into an FPU register (tail of the extract idiom). */
+#define VU0_MTC1(fout, gpr)                                            \
+    __asm__ __volatile__("mtc1 %1, %0" : "=f"(fout) : "r"(gpr))
+
+/* vsqrt Q, $vfNx -- emitted as the exact retail .word (ee-as encodes vsqrt
+ * differently). */
+#define VU0_VSQRT_Q_VF4X()                                             \
+    __asm__ __volatile__(".set push\n.set noreorder\n"                \
+        ".word 0x4A0403BD\n.set pop\n") /* vsqrt Q, $vf4x */
+#define VU0_VSQRT_Q_VF5X()                                             \
+    __asm__ __volatile__(".set push\n.set noreorder\n"                \
+        ".word 0x4A0503BD\n.set pop\n") /* vsqrt Q, $vf5x */
+
+/* vclipw.xyz $vf12, $vf12w -- sets the clip flags ($vi18); emitted as its exact
+ * .word.  Read the flags back with VU0_CFC2_NI(r, 18). */
+#define VU0_VCLIPW_XYZ_VF12()                                          \
+    __asm__ __volatile__(".set push\n.set noreorder\n"                \
+        ".word 0x4BCC61FF\n.set pop\n") /* vclipw.xyz $vf12, $vf12w */
+
+/* Read a COP2 integer/control register ($viN) into a GPR. */
+#define VU0_CFC2_NI(out, ireg)                                         \
+    __asm__ __volatile__(".set push\n.set noreorder\n"                \
+        "cfc2.ni %0, $vi" #ireg "\n.set pop\n" : "=r"(out))
+
 #endif /* GODHAND_VU0_H */
