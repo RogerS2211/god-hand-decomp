@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
-__attribute__((section(".text.func_002A9BC0")))
-int func_002A9BC0(int a0) {
+__attribute__((section(".text.cHeatSys_GetHeatLv")))
+int cHeatSys_GetHeatLv(int a0) {
     float a = *(float*)((char*)a0 + 0x4);
     float b = *(float*)((char*)a0 + 0xC);
     if (a < b) {

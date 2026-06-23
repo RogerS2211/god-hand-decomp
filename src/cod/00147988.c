@@ -1,12 +1,12 @@
 #include "godhand/vu0.h"
 
-/* func_00147988 — build an identity matrix in a0, then apply a Y-axis rotation by
+/* MtxInitRotY — build an identity matrix in a0, then apply a Y-axis rotation by
  * `angle` (delegated to func_0030A7B8).  sn-2.95.3-136. */
 
 extern void func_0030A7B8(void *, void *, float);
 
-__attribute__((section(".text.func_00147988")))
-void func_00147988(void *a0, float angle) {
+__attribute__((section(".text.MtxInitRotY")))
+void MtxInitRotY(void *a0, float angle) {
     VU0_VMOVE_XYZW(4, 0);
     VU0_VMR32_XYZW(5, 4);
     VU0_VMR32_XYZW(6, 5);

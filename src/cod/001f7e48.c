@@ -1,10 +1,10 @@
 #include "godhand/vu0.h"
 
-/* func_001F7E48 — 3D distance between a0 and a1: length of (a0 - a1) via the
+/* capVu0LengthAB — 3D distance between a0 and a1: length of (a0 - a1) via the
  * VU0 Q/sqrt pipeline. vsqrt emitted as its exact .word. */
 
-__attribute__((section(".text.func_001F7E48")))
-float func_001F7E48(void *a0, void *a1) {
+__attribute__((section(".text.capVu0LengthAB")))
+float capVu0LengthAB(void *a0, void *a1) {
     float r;
     int t;
     VU0_LQC2(4, a0, 0);

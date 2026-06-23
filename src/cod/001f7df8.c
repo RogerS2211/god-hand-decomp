@@ -1,11 +1,11 @@
 #include "godhand/vu0.h"
 
-/* func_001F7DF8 — 3D length of vector a0: sqrt(x*x + y*y + z*z) via the VU0
+/* capVu0Length — 3D length of vector a0: sqrt(x*x + y*y + z*z) via the VU0
  * Q/sqrt pipeline. vsqrt emitted as its exact .word (ee-as encodes it
  * differently from retail). */
 
-__attribute__((section(".text.func_001F7DF8")))
-float func_001F7DF8(void *a0) {
+__attribute__((section(".text.capVu0Length")))
+float capVu0Length(void *a0) {
     float r;
     int t;
     VU0_LQC2(4, a0, 0);

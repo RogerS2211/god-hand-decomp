@@ -6,7 +6,7 @@ extern int D_0044A870;
 extern void func_002736F8(int a0);
 extern void func_00289028(int a0);
 extern int D_0044A878;
-extern void func_00289038(int a0, int a1);
+extern void cEma2_SetEscPos(int a0, int a1);
 extern void cEm00_setAlphaMode(int a0, int a1);
 
 __attribute__((section(".text.cEmWrap_StartEscape")))

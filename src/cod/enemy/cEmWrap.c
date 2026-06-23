@@ -6,7 +6,7 @@ extern void func_0026E7A8(int a0, int a1);
 extern void func_0026E7A0(int a0, float f);
 extern void func_002736F8(int a0);
 extern int D_0044A878;
-extern void func_00289038(int a0, int a1);
+extern void cEma2_SetEscPos(int a0, int a1);
 
 __attribute__((section(".text.cEmWrap_setPos_2959B0")))
 int cEmWrap_setPos_2959B0(int *a0, int a1)
@@ -210,7 +210,7 @@ void cEmWrap_SetEscPos(void *a0, int a1, float f) {
     if (FindResolveActor_295978(a0, f)) {
         int *p = *(int **)((char *)a0 + 4);
         if (func_003A5678(&D_0044A878, p[0x4AC / 4]) == 0) {
-            func_00289038(*(int *)((char *)a0 + 4), a1);
+            cEma2_SetEscPos(*(int *)((char *)a0 + 4), a1);
         }
     }
 }

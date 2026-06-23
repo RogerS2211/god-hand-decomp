@@ -12,7 +12,7 @@ void BuildMatrixAndForward_147BB0(int a0, int a1, int a2) {
 __attribute__((section(".text.BuildAltMatrixAndForward_147BF8")))
 void BuildAltMatrixAndForward_147BF8(int a0, int a1, int a2) {
     int buf[16];
-    func_00147A08(buf, a2);
+    MtxInitScaleVec(buf, a2);
     Tramp_func_0030A2E0_00147548(a0, a1, buf);
 }
 
