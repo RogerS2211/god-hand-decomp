@@ -7380,6 +7380,7 @@ func_003A6420 = 0x003A6420; // type:func
 func_003A6830 = 0x003A6830; // type:func
 func_003A68C8 = 0x003A68C8; // type:func
 __smakebuf = 0x003A6950; // type:func
+func_003A6A20 = 0x003A6A20; // type:func
 func_003A6A88 = 0x003A6A88; // type:func
 __srefill = 0x003A6AA8; // type:func
 func_003A6C10 = 0x003A6C10; // type:func
