@@ -5,7 +5,7 @@ extern int PTR_DAT_003c2f84;
 extern int PTR_DAT_003c23a4;
 extern int PTR_DAT_003bd6e8;
 extern int PTR_DAT_003bd930;
-extern void func_001538F0(void);
+extern void Trans_Clipmatrix_set(void);
 extern void cScrSpriteDraw_drawInit(int);
 extern void ObjTrans(void);
 extern void func_002C3818(int);
@@ -40,7 +40,7 @@ void func_00302930(void *a0, int a1, int a2) {
 
 __attribute__((section(".text.Trans")))
 void Trans(void) {
-    func_001538F0();
+    Trans_Clipmatrix_set();
     cScrSpriteDraw_drawInit(D_003C2FB0);
     ObjTrans();
     func_002C3818(PTR_DAT_003c2f84);

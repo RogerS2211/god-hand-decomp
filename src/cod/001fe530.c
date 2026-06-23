@@ -31,7 +31,7 @@ void *GetSlotInstanceB_1FE5E0(void) {
 }
 
 __attribute__((section(".text.ResetSlotArray_1FE6C8")))
-void ResetSlotArray_1FE6C8(int *a0, int a1) { int i = a0[1]; while (--i != -1) func_001FF028((void *)(a0[2] + i * 0x5C)); a0[0] = a1; }
+void ResetSlotArray_1FE6C8(int *a0, int a1) { int i = a0[1]; while (--i != -1) cDataHolder_systemInit((void *)(a0[2] + i * 0x5C)); a0[0] = a1; }
 
 __attribute__((section(".text.GetActiveEntry_1FE9B8")))
 int GetActiveEntry_1FE9B8(void *a0) {
@@ -45,7 +45,7 @@ __attribute__((section(".text.FreeActiveEntry_1FEC90")))
 int FreeActiveEntry_1FEC90(void *a0, int a1) {
     int v1 = func_001FEE00(a0);
     if (v1 < 0) return 0;
-    func_001FF028(*(int*)((char*)a0+8) + v1*0x5C);
+    cDataHolder_systemInit(*(int*)((char*)a0+8) + v1*0x5C);
     return 1;
 }
 

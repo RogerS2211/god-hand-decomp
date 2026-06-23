@@ -4,7 +4,7 @@ __attribute__((section(".text.cMessage_deleteWorkId")))
 int cMessage_deleteWorkId(void *a0, unsigned short a1)
 {
     int v;
-    v = func_002AED10(a0, a1);
+    v = cMessage_searchWorkId(a0, a1);
     if (v == 0) {
         return 0;
     }

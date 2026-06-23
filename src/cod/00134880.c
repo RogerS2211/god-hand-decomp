@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern void func_002A84A8(int a0, int a1, int a2, int a3, float f12);
-extern int func_00157568(int a0, int a1, int a2, int a3, float f12, float f13, int t0);
+extern int setMotionInfo(int a0, int a1, int a2, int a3, float f12, float f13, int t0);
 extern void func_002B6400(int a0);
 extern void *func_001346C8(int a0, int a1, int a2, int a3, float f);
 extern void func_00134520(void *p, int a2, int a3, float f);
@@ -21,7 +21,7 @@ int func_002A8578(int a0, int a1, int a2, int a3, int t0, int t1, float f12) {
     if ((t1 & 0xFFFF) == 0) {
         func_002A84A8(a0, a1, a2, a3, f12);
     }
-    return func_00157568(a0, a1, a2, a3,
+    return setMotionInfo(a0, a1, a2, a3,
                          *(float*)((char*)a0 + 0x5A8), f12, m);
 }
 

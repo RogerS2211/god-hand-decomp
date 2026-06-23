@@ -5,7 +5,7 @@ extern char **D_003C2384;
 __attribute__((section(".text.BuildMatrixAndForward_147BB0")))
 void BuildMatrixAndForward_147BB0(int a0, int a1, int a2) {
     int buf[16];
-    func_001478A8(buf, a2);
+    MtxInitRotQuaternion(buf, a2);
     Tramp_func_0030A2E0_00147548(a0, a1, buf);
 }
 

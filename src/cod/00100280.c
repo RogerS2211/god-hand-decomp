@@ -77,7 +77,7 @@ void UpdateAttackMoveState_102BD8(void *a0) {
     }
     case 1:
         *(float *)((char *)r + 0x15F0) = D_003BC7C0;
-        if (func_00157C18(a0) != 0) {
+        if (moveMotion(a0) != 0) {
             *(unsigned char *)((char *)a0 + 0x2F4) = 0;
             *(unsigned char *)((char *)a0 + 0x2F5) = 0;
             *(unsigned char *)((char *)a0 + 0x2F6) = 0;

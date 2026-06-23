@@ -26,7 +26,7 @@ void UpdateStatePhase2F6_10CC58(void *a0) {
             *(int *)(s0 + 0x15B0) = v1 - 1;
             InvokeVirtualAtField214AndForward_124E68(s0, 0.19634954f);
         }
-        if (func_00157C18(s0) != 0) {
+        if (moveMotion(s0) != 0) {
             *(unsigned char *)(s0 + 0x2F4) = 0;
             *(unsigned char *)(s0 + 0x2F5) = 0;
             *(unsigned char *)(s0 + 0x2F6) = 0;

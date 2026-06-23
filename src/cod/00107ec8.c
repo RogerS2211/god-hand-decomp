@@ -56,13 +56,13 @@ void UpdateBossPhase_10B780(void *a0) {
         *(unsigned char*)((char*)a0 + 0x2F6) = *(unsigned char*)((char*)a0 + 0x2F6) + 1;
         /* fallthrough */
     case 1:
-        func_00157C18(a0);
+        moveMotion(a0);
         break;
     case 2:
         *(unsigned char*)((char*)a0 + 0x2F6) = st + 1;
         /* fallthrough */
     case 3:
-        if (func_00157C18(a0) != 0) {
+        if (moveMotion(a0) != 0) {
             *(unsigned char*)((char*)a0 + 0x2F6) = 0;
         }
         break;
