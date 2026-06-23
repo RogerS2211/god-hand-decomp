@@ -1063,3 +1063,5 @@
 !src/cod/00273ee0.c
 !src/cod/0027dd10.c
 !src/cod/00294970.c
+.osgrep
+!src/cod/00178980.c
