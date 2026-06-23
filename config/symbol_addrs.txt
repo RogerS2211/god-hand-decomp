@@ -5106,6 +5106,7 @@ func_00321E08 = 0x00321E08; // type:func
 func_00321F48 = 0x00321F48; // type:func
 func_00322030 = 0x00322030; // type:func
 func_00322138 = 0x00322138; // type:func
+func_003224D0 = 0x003224D0; // type:func
 __deregister_frame_info = 0x003224F8; // type:func
 __frame_state_for = 0x00322570; // type:func
 func_00322748 = 0x00322748; // type:func
