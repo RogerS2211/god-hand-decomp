@@ -40,7 +40,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
 CHECKS_DIR="$ROOT/scripts/checks"
-DEFAULT_CHECKS=(splat rel-splat metadata build rel expected dual_compiler_regress units score diff data_decls forced_regs naming_debt naming_sync tu_complete state atlas social)
+DEFAULT_CHECKS=(splat rel-splat metadata build rel expected dual_compiler_regress units score diff data_decls forced_regs naming_debt naming_sync tu_complete atlas social)
 
 # Optional checks read local-only working files (running notes, the in-progress
 # struct atlas, naming bookkeeping) that aren't tracked in the repo, so their
@@ -48,7 +48,7 @@ DEFAULT_CHECKS=(splat rel-splat metadata build rel expected dual_compiler_regres
 # optional check is skipped, not failed. A missing NON-optional check is still a
 # hard error — that catches a typo in DEFAULT_CHECKS or an accidentally-deleted
 # tracked check.
-OPTIONAL_CHECKS=(naming_debt naming_sync state atlas)
+OPTIONAL_CHECKS=(naming_debt naming_sync atlas)
 
 usage() {
     cat <<EOF
