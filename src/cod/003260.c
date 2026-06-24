@@ -178,9 +178,23 @@ __attribute__((section(".text.Obj3260_GetByte_1_D778")))
 int Obj3260_GetByte_1_D778(char *a0) { return a0[1]; }
 
 /* ── Struct initializer (15 insns, no jal/branch) ────────────────────────  */
-/* func_00326568: C compiler reorders sw 0xA0 to first-among-zeros,         */
-/* puts sb 0x3 in delay slot (ASM wants sw 0xA0 in delay slot). T1 research.*/
-INCLUDE_ASM("nonmatching", func_00326568);
+/* Store-rotation order: cygnus rotates the last source store to the front  */
+/* and the second-to-last into the jr delay slot, so sw 0xA0 is written     */
+/* second-to-last and sw 0x3C last to land them as front/delay.             */
+__attribute__((section(".text.func_00326568")))
+void func_00326568(char *p) {
+  *(int *)(p + 0x38) = 0x7FFFFFFF;
+  *(int *)(p + 0xA4) = 0;
+  *(int *)(p + 0x98) = 0;
+  *(int *)(p + 0x2C) = 0;
+  *(int *)(p + 0x30) = 0;
+  *(int *)(p + 0x34) = 0;
+  *(int *)(p + 0x40) = 0;
+  *(int *)(p + 0x44) = 0;
+  p[0x3] = 0;
+  *(int *)(p + 0xA0) = 0;
+  *(int *)(p + 0x3C) = -1;
+}
 
 /* ── Branched-leaf (T0 attempt 1 failed → INCLUDE_ASM) ─────────────────── */
 /* func_00326520: decrement refcount + conditional tail-call.                */
