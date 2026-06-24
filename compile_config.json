@@ -3645,6 +3645,46 @@
     {
       "path": "src/cod/casino/ColiseumEmSelect.c",
       "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/JukeBox.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/casino/BlackJackId.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/casino/cCockItem.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/cObjSimple.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/cRoomSave.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/cCollisionScroll.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/cRoomJump.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/gfx/cWorldLight.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/pl00_reset.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/ccoresave_gameinit.c",
+      "compiler": "sn-2.95.3-136"
     }
   ],
   "_carved_funcs_doc": [
@@ -22122,7 +22162,7 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0012C418",
       "size": 216,
-      "tu": "src/cod/player/pl00.c"
+      "tu": "src/cod/pl00_reset.c"
     },
     {
       "name": "cCollisionScroll_SetCollEnable",
@@ -22528,7 +22568,7 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x001F98D0",
       "size": 456,
-      "tu": "src/cod/system/cCoreSave.c"
+      "tu": "src/cod/ccoresave_gameinit.c"
     },
     {
       "name": "cCoreSave_stageInit",

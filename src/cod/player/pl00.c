@@ -2,6 +2,10 @@
 extern void pl00_reset(void);
 #include "include_asm.h"
 
+#include "godhand/vu0.h"
+
+extern void func_001C8D48(void *obj);
+
 __attribute__((section(".text.pl00_CannonGameMode")))
 void pl00_CannonGameMode(void *a0, int a1) {
     if (a1) {
@@ -46,6 +50,47 @@ void pl00_setPyramidIn(char *a0) {
 
 INCLUDE_ASM("nonmatching", pl00_SetCannonDamage);
 
-INCLUDE_ASM("nonmatching", pl00_DiscardThrowObj);
+__attribute__((section(".text.pl00_DiscardThrowObj")))
+void pl00_DiscardThrowObj(void *a0)
+{
+    char *s0 = (char *)a0;
+    char *obj;
+    char *objF0;
+    char *plF0;
+    char *p;
+    char *obj2;
+    char *p2;
+    char *dst;
+    volatile float buf[4];
 
-INCLUDE_ASM("nonmatching", pl00_reset);
+    obj = *(char **)(s0 + 0x6A0);
+    if (obj == 0)
+        return;
+
+    VU0_SQC2_VF0((void *)buf, 0x0);
+    buf[0] = 0.0f;
+    buf[1] = 0.1f;
+    buf[2] = 0.0f;
+    func_001C8D48(obj);
+
+    plF0 = *(char **)(s0 + 0xF0);
+    objF0 = *(char **)(*(char **)(s0 + 0x6A0) + 0xF0);
+    if (objF0 != plF0) {
+        *(float *)(objF0 + 0x0) = *(float *)(plF0 + 0x0);
+        *(float *)(objF0 + 0x4) = *(float *)(plF0 + 0x4);
+        *(float *)(objF0 + 0x8) = *(float *)(plF0 + 0x8);
+    }
+    p = *(char **)(*(char **)(s0 + 0x6A0) + 0xF0);
+    *(float *)(p + 0x4) = *(float *)(p + 0x4) + 1.6f;
+
+    obj2 = *(char **)(s0 + 0x6A0);
+    dst = obj2 + 0x490;
+    p2 = *(char **)(obj2 + 0xF0);
+    if (dst != p2) {
+        *(float *)(obj2 + 0x490) = *(float *)(p2 + 0x0);
+        *(float *)(dst + 0x4) = *(float *)(p2 + 0x4);
+        *(float *)(dst + 0x8) = *(float *)(p2 + 0x8);
+    }
+    *(int *)(s0 + 0x6A0) = 0;
+}
+

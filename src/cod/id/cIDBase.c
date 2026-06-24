@@ -27,6 +27,15 @@ void cIDBase_restartAnim(void *a0) {
 }
 #include "include_asm.h"
 
+extern unsigned char *PTR_DAT_003c23a4;
+extern void func_002AA6E0(void);
+extern void func_002ABDC0(void *a0, void *a1);
+extern void func_002AC048(void *a0, void *a1);
+extern void func_002AC1C0(void *a0, void *a1);
+extern void func_002AC298(void *a0, void *a1);
+extern void func_002AC378(void *a0, void *a1);
+extern int cMessage_create(int a0, int a1, int a2, int a3, int t0);
+
 __attribute__((section(".text.cIDBase")))
 void *cIDBase(void *a0) {
     VU0_SQC2_VF0(a0, 0x20);
@@ -43,6 +52,41 @@ void cIDBase_setDispFamily(int a0, int a1, int a2) {
 }
 
 
-INCLUDE_ASM("nonmatching", cIDBase_move);
+__attribute__((section(".text.cIDBase_move")))
+void cIDBase_move(void *a0)
+{
+    char *s1 = (char *)a0;
+    int i;
+    int v;
+    unsigned long t;
+    if (*(unsigned char *)(s1 + 0x18) != 0) return;
+    if (*(int *)(s1 + 0x4) == 0) return;
+    func_002AA6E0();
+    if (*(unsigned char *)(s1 + 0x1C) == 0) return;
+    v = *(unsigned short *)(s1 + 0x1A) + 1;
+    *(short *)(s1 + 0x1A) = (short)v;
+    if ((short)v >= 0x2710) *(short *)(s1 + 0x1A) = 0;
+    i = 0;
+    while (i < *(int *)(s1 + 0xC)) {
+        char *s0 = *(char **)(s1 + 0x4) + i * 0xAC;
+        if (s0 != 0) {
+            func_002ABDC0(s1, s0);
+            func_002AC048(s1, s0);
+            func_002AC1C0(s1, s0);
+            func_002AC298(s1, s0);
+            func_002AC378(s1, s0);
+            if (*(unsigned char *)(s0 + 0x88) == 4) {
+                t = *(int *)(s0 + 0x2C);
+                if (((t >> 1) & 1) == 0) {
+                    if (*(unsigned short *)(s0 + 0x90) != 0xFFFF) {
+                        cMessage_create((int)PTR_DAT_003c23a4, *(unsigned short *)(s0 + 0x90), 0, 0, 0);
+                        *(int *)(s0 + 0x2C) = *(int *)(s0 + 0x2C) | 0x2;
+                    }
+                }
+            }
+        }
+        i++;
+    }
+}
 
 INCLUDE_ASM("nonmatching", cIDBase_trans);

@@ -840,6 +840,18 @@
       }
     },
     {
+      "name": "src/cod/pl00_reset",
+      "target_path": "expected/build/src/cod/pl00_reset.o",
+      "base_path": "build/src/cod/pl00_reset.o",
+      "metadata": {
+        "auto_generated": true,
+        "progress_categories": [
+          "engine"
+        ],
+        "complete": true
+      }
+    },
+    {
       "name": "asm/cod/000000.part52",
       "target_path": "expected/build/asm/cod/000000.part52.o",
       "base_path": "build/asm/cod/000000.part52.o",
@@ -1173,7 +1185,8 @@
         "auto_generated": true,
         "progress_categories": [
           "engine"
-        ]
+        ],
+        "complete": true
       }
     },
     {
@@ -2486,7 +2499,8 @@
         "progress_categories": [
           "engine",
           "engine.casino"
-        ]
+        ],
+        "complete": true
       }
     },
     {
@@ -13235,7 +13249,8 @@
         "progress_categories": [
           "engine",
           "engine.casino"
-        ]
+        ],
+        "complete": true
       }
     },
     {
@@ -14947,15 +14962,15 @@
       }
     },
     {
-      "name": "src/cod/system/cCoreSave",
-      "target_path": "expected/build/src/cod/system/cCoreSave.o",
-      "base_path": "build/src/cod/system/cCoreSave.o",
+      "name": "src/cod/ccoresave_gameinit",
+      "target_path": "expected/build/src/cod/ccoresave_gameinit.o",
+      "base_path": "build/src/cod/ccoresave_gameinit.o",
       "metadata": {
         "auto_generated": true,
         "progress_categories": [
-          "engine",
-          "engine.system"
-        ]
+          "engine"
+        ],
+        "complete": true
       }
     },
     {
@@ -14989,6 +15004,19 @@
         "progress_categories": [
           "engine"
         ]
+      }
+    },
+    {
+      "name": "src/cod/system/cCoreSave",
+      "target_path": "expected/build/src/cod/system/cCoreSave.o",
+      "base_path": "build/src/cod/system/cCoreSave.o",
+      "metadata": {
+        "auto_generated": true,
+        "progress_categories": [
+          "engine",
+          "engine.system"
+        ],
+        "complete": true
       }
     },
     {
@@ -23200,7 +23228,8 @@
         "auto_generated": true,
         "progress_categories": [
           "engine"
-        ]
+        ],
+        "complete": true
       }
     },
     {
@@ -24185,7 +24214,8 @@
         "auto_generated": true,
         "progress_categories": [
           "engine"
-        ]
+        ],
+        "complete": true
       }
     },
     {
@@ -24251,7 +24281,8 @@
         "auto_generated": true,
         "progress_categories": [
           "engine"
-        ]
+        ],
+        "complete": true
       }
     },
     {
@@ -24411,7 +24442,8 @@
         "progress_categories": [
           "engine",
           "engine.system"
-        ]
+        ],
+        "complete": true
       }
     },
     {

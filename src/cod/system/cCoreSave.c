@@ -194,7 +194,6 @@ void cCoreSave_addAllStageTime(int a0, int a1)
     }
 }
 
-INCLUDE_ASM("nonmatching", cCoreSave_gameInit);
 
 __attribute__((section(".text.cCoreSave_stageInit")))
 void cCoreSave_stageInit(int a0) {
