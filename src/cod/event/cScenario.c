@@ -1,4 +1,6 @@
 /* TU: cScenario [event] - recovered C++ class. */
+extern void *func_002D5580(void *);
+extern void func_002C3968(void *, void *);
 extern void SetFieldsCESignalSemaSleep_2D5AA0(int a0, int a1);
 
 extern int D_00747A84;
@@ -23,8 +25,14 @@ int cScenario_setCam(void *a0, int a1) {
 }
 #include "include_asm.h"
 
-INCLUDE_ASM("nonmatching", cScenario_taskExec);
-
+__attribute__((section(".text.cScenario_taskExec")))
+void *cScenario_taskExec(void *a0) {
+    void *v0 = func_002D5580((char *)a0 + 0x1C);
+    do {
+        func_002C3968(a0, v0);
+        return v0;
+    } while (0);
+}
 __attribute__((section(".text.cScenario_isEventStartOk")))
 int cScenario_isEventStartOk(void *a0)
 {

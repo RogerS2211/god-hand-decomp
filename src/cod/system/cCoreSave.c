@@ -1,4 +1,6 @@
 /* TU: cCoreSave [system] - recovered C++ class. */
+extern unsigned short D_00747A50;
+extern int D_0061A990[];
 extern int D_003BF160[];
 struct S001FA690 { char pad[0x10]; unsigned short f10; };
 struct W001FA690 { struct S001FA690 *p; };
@@ -194,8 +196,17 @@ void cCoreSave_addAllStageTime(int a0, int a1)
 
 INCLUDE_ASM("nonmatching", cCoreSave_gameInit);
 
-INCLUDE_ASM("nonmatching", cCoreSave_stageInit);
-
+__attribute__((section(".text.cCoreSave_stageInit")))
+void cCoreSave_stageInit(int a0) {
+    ClearField46Array_1FBDD0(a0);
+    cCoreSave_clearKillNpcNum(a0);
+    cCoreSave_initContinueNum(a0);
+    InitSlotTable_1FAFA8(a0);
+    func_002D9D48(D_0061A990, 0);
+    if (D_00747A50 != 0x20) {
+        cCoreSave_setVital(a0, GetField80ViaPtr_1FAC80(a0));
+    }
+}
 __attribute__((section(".text.cCoreSave_getCombo")))
 int cCoreSave_getCombo(int *a0, unsigned int a1, unsigned int a2)
 {

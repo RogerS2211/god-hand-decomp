@@ -6385,7 +6385,8 @@
         "progress_categories": [
           "engine",
           "engine.object"
-        ]
+        ],
+        "complete": true
       }
     },
     {
@@ -10130,7 +10131,8 @@
         "progress_categories": [
           "engine",
           "engine.object"
-        ]
+        ],
+        "complete": true
       }
     },
     {
@@ -10791,7 +10793,8 @@
         "progress_categories": [
           "engine",
           "engine.object"
-        ]
+        ],
+        "complete": true
       }
     },
     {
@@ -10926,7 +10929,8 @@
         "progress_categories": [
           "engine",
           "engine.object"
-        ]
+        ],
+        "complete": true
       }
     },
     {
@@ -14379,7 +14383,8 @@
         "progress_categories": [
           "engine",
           "engine.casino"
-        ]
+        ],
+        "complete": true
       }
     },
     {
@@ -21171,7 +21176,8 @@
         "auto_generated": true,
         "progress_categories": [
           "engine"
-        ]
+        ],
+        "complete": true
       }
     },
     {

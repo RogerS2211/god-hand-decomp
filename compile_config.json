@@ -3629,6 +3629,22 @@
     {
       "path": "src/cod/system/cSaveManager.c",
       "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/cMc.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/cGame.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/object/cOm5c.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/casino/ColiseumEmSelect.c",
+      "compiler": "sn-2.95.3-136"
     }
   ],
   "_carved_funcs_doc": [

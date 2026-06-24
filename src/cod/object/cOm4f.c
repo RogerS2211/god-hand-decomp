@@ -1,4 +1,5 @@
 /* TU: cOm4f [object] - recovered C++ class. */
+extern void func_001A4BD0(void *);
 #include "include_asm.h"
 
 __attribute__((section(".text.cOm4f_isOpen")))
@@ -43,4 +44,18 @@ void cOm4f_setOpen(unsigned char *a0) {
 }
 
 
-INCLUDE_ASM("nonmatching", cOm4f_setClose);
+__attribute__((section(".text.cOm4f_setClose")))
+void cOm4f_setClose(unsigned char *a0) {
+    if (a0[0x762] == 1) {
+        return;
+    }
+    if (a0[0x761] != 1) {
+        return;
+    }
+    a0[0x760] = 1;
+    func_001A4BD0(a0);
+    a0[0x2F4] = 2;
+    a0[0x2F5] = 0;
+    a0[0x2F6] = 0;
+    a0[0x2F7] = 0;
+}
