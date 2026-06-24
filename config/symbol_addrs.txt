@@ -7332,6 +7332,7 @@ sceMpegGetPictureRAW8 = 0x0039A9F0; // type:func
 func_0039AA48 = 0x0039AA48; // type:func
 func_0039AB98 = 0x0039AB98; // type:func
 func_0039AC10 = 0x0039AC10; // type:func
+func_0039AC58 = 0x0039AC58; // type:func
 func_0039ADE0 = 0x0039ADE0; // type:func
 func_0039AE50 = 0x0039AE50; // type:func
 func_0039AE78 = 0x0039AE78; // type:func
