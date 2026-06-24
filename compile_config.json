@@ -3578,6 +3578,57 @@
     {
       "path": "src/cod/0039ac58.c",
       "compiler": "cygnus-2.96"
+    },
+    {
+      "_comment": "Game-logic class TUs: retail compiled these with SN ProDG (sq callee-saved-register saves); pinned for the recovered C bodies."
+    },
+    {
+      "path": "src/cod/camera/cCamManager.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/casino/BlackJack.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/casino/Poker.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/casino/PokerId.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/casino/cCockPlBar.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/enemy/cEmSetParam.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/object/cOm4f.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/object/cOm5a.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/object/cOm71.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/object/cOmb0.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/system/cSaveLoad.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/system/cSaveManager.c",
+      "compiler": "sn-2.95.3-136"
     }
   ],
   "_carved_funcs_doc": [

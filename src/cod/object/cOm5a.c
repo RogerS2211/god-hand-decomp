@@ -10,4 +10,14 @@ INCLUDE_ASM("nonmatching", cOm5a_setOpenFix);
 
 INCLUDE_ASM("nonmatching", cOm5a_setCloseFix);
 
-INCLUDE_ASM("nonmatching", cOm5a_setFaceClose);
+__attribute__((section(".text.cOm5a_setFaceClose")))
+void cOm5a_setFaceClose(int *a0) {
+    int p;
+    a0[0x182] = 2;
+    a0[0x181] = 0;
+    p = a0[0x189];
+    if (p != 0) {
+        cDamageUnit_SetDamageCollActive(p, 0);
+    }
+}
+

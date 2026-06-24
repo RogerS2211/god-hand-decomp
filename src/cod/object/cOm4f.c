@@ -26,6 +26,21 @@ void cOm4f_connectDoor(char *a0, int a1) {
     *(int *)(a0 + 0x790) = a1;
 }
 
-INCLUDE_ASM("nonmatching", cOm4f_setOpen);
+__attribute__((section(".text.cOm4f_setOpen")))
+void cOm4f_setOpen(unsigned char *a0) {
+    if (a0[0x762] == 1) {
+        return;
+    }
+    if (a0[0x761] != 0) {
+        return;
+    }
+    a0[0x760] = 1;
+    func_001A4BD0(a0);
+    a0[0x2F4] = 1;
+    a0[0x2F5] = 0;
+    a0[0x2F6] = 0;
+    a0[0x2F7] = 0;
+}
+
 
 INCLUDE_ASM("nonmatching", cOm4f_setClose);

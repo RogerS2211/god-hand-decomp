@@ -1,4 +1,5 @@
 /* TU: cIDBase [id] - recovered C++ class. */
+#include "godhand/vu0.h"
 extern int *D_003C2384;
 extern void func_002A9DF8(int a0);
 extern void cIDBase_resetAnim(int a0);
@@ -26,9 +27,21 @@ void cIDBase_restartAnim(void *a0) {
 }
 #include "include_asm.h"
 
-INCLUDE_ASM("nonmatching", cIDBase);
+__attribute__((section(".text.cIDBase")))
+void *cIDBase(void *a0) {
+    VU0_SQC2_VF0(a0, 0x20);
+    VU0_SQC2_VF0(a0, 0x30);
+    func_002A9DF8(a0);
+    return a0;
+}
 
-INCLUDE_ASM("nonmatching", cIDBase_setDispFamily);
+__attribute__((section(".text.cIDBase_setDispFamily")))
+void cIDBase_setDispFamily(int a0, int a1, int a2) {
+    int w = cIDBase_getIDWork(a0);
+    func_002AA598(a0, w, a2);
+    func_002AA5F0(a0, w, a2);
+}
+
 
 INCLUDE_ASM("nonmatching", cIDBase_move);
 

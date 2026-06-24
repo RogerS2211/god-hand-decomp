@@ -3,7 +3,11 @@
 
 INCLUDE_ASM("nonmatching", Poker_Initialize);
 
-INCLUDE_ASM("nonmatching", Poker_Release);
+__attribute__((section(".text.Poker_Release")))
+void Poker_Release(void) {
+    func_001DF940();
+}
+
 
 INCLUDE_ASM("nonmatching", Poker_SetDefaultDisp);
 

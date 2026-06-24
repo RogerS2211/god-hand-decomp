@@ -58,10 +58,24 @@ int cSceAtManager_getUnit(int a0, int a1) {
 }
 #include "include_asm.h"
 
-INCLUDE_ASM("nonmatching", cSceAtManager_AtDataSet_exec);
+__attribute__((section(".text.cSceAtManager_AtDataSet_exec")))
+void cSceAtManager_AtDataSet_exec(int a0, unsigned short a1, int a2, int a3, int a4, int a5) {
+    int v0;
+    v0 = cSceAtManager_getUnit(a0, a1);
+    if (v0) {
+        cSceAtManager_AtDataSet_exec_2C2750(a0, v0, a2, a3, a4, a5);
+    }
+}
+
 
 INCLUDE_ASM("nonmatching", cSceAtManager_AtExecute_2C2870);
 
 INCLUDE_ASM("nonmatching", cSceAtManager_AtExecute_2C28B0);
 
-INCLUDE_ASM("nonmatching", cSceAtManager_delUnitData);
+__attribute__((section(".text.cSceAtManager_delUnitData")))
+void cSceAtManager_delUnitData(int a0, int a1) {
+    if (a1) {
+        func_002C3058(a0, a0 + 0x5C, a1);
+    }
+}
+
