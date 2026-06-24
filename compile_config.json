@@ -3693,6 +3693,10 @@
     {
       "path": "src/cod/battle/cHeatSys.c",
       "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/object/cOmSub.c",
+      "compiler": "sn-2.95.3-136"
     }
   ],
   "_carved_funcs_doc": [

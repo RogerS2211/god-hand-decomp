@@ -12898,6 +12898,7 @@ D_00429C50 = 0x00429C50; // type:asciz size:0xC
 D_00429D50 = 0x00429D50; // type:asciz size:0xC
 D_00429D60 = 0x00429D60; // type:asciz size:0xC
 D_00429D70 = 0x00429D70; // type:asciz size:0xC
+D_00429D80 = 0x00429D80; // size:0x18
 D_00429DA0 = 0x00429DA0; // size:0x4
 D_00429DA4 = 0x00429DA4; // size:0x4
 D_00429DA8 = 0x00429DA8; // size:0x4
